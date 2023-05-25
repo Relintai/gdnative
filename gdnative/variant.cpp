@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/variant.h"
+#include "gdn/variant.h"
 
 #include "core/object/reference.h"
 #include "core/variant/variant.h"

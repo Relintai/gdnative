@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/node_path.h"
+#include "gdn/node_path.h"
 
 #include "core/string/node_path.h"
 #include "core/variant/variant.h"

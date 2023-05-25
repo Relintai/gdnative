@@ -64,9 +64,9 @@ typedef struct {
 }
 #endif
 
-#include <gdnative/array.h>
-#include <gdnative/gdnative.h>
-#include <gdnative/variant.h>
+#include <gdn/array.h>
+#include <gdn/gdnative.h>
+#include <gdn/variant.h>
 
 #ifdef __cplusplus
 extern "C" {

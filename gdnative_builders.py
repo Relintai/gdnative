@@ -42,7 +42,7 @@ def _build_gdnative_api_struct_header(api):
         "#ifndef GODOT_GDNATIVE_API_STRUCT_H",
         "#define GODOT_GDNATIVE_API_STRUCT_H",
         "",
-        "#include <gdnative/gdnative.h>",
+        "#include <gdn/gdnative.h>",
         "#include <android/godot_android.h>",
         "#include <nativescript/godot_nativescript.h>",
         "#include <net/godot_net.h>",
@@ -282,7 +282,7 @@ def _build_gdnative_wrapper_code(api):
     out = [
         "/* THIS FILE IS GENERATED DO NOT EDIT */",
         "",
-        "#include <gdnative/gdnative.h>",
+        "#include <gdn/gdnative.h>",
         "#include <nativescript/godot_nativescript.h>",
         "#include <pluginscript/godot_pluginscript.h>",
         "#include <videodecoder/godot_videodecoder.h>",

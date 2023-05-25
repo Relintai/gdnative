@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/array.h"
+#include "gdn/array.h"
 
 #include "core/variant/array.h"
 #include "core/os/memory.h"

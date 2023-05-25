@@ -144,25 +144,25 @@ typedef enum godot_variant_operator {
 }
 #endif
 
-#include <gdnative/aabb.h>
-#include <gdnative/array.h>
-#include <gdnative/basis.h>
-#include <gdnative/color.h>
-#include <gdnative/dictionary.h>
-#include <gdnative/node_path.h>
-#include <gdnative/plane.h>
-#include <gdnative/pool_arrays.h>
-#include <gdnative/quaternion.h>
-#include <gdnative/rect2.h>
-#include <gdnative/rid.h>
-#include <gdnative/string.h>
-#include <gdnative/transform.h>
-#include <gdnative/transform2d.h>
-#include <gdnative/variant.h>
-#include <gdnative/vector2.h>
-#include <gdnative/vector3.h>
+#include <gdn/aabb.h>
+#include <gdn/array.h>
+#include <gdn/basis.h>
+#include <gdn/color.h>
+#include <gdn/dictionary.h>
+#include <gdn/node_path.h>
+#include <gdn/plane.h>
+#include <gdn/pool_arrays.h>
+#include <gdn/quaternion.h>
+#include <gdn/rect2.h>
+#include <gdn/rid.h>
+#include <gdn/string.h>
+#include <gdn/transform.h>
+#include <gdn/transform2d.h>
+#include <gdn/variant.h>
+#include <gdn/vector2.h>
+#include <gdn/vector3.h>
 
-#include <gdnative/gdnative.h>
+#include <gdn/gdnative.h>
 
 #ifdef __cplusplus
 extern "C" {

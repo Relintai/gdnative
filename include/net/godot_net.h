@@ -31,7 +31,7 @@
 #ifndef GODOT_NET_H
 #define GODOT_NET_H
 
-#include <gdnative/gdnative.h>
+#include <gdn/gdnative.h>
 
 #ifdef __cplusplus
 extern "C" {

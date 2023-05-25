@@ -5076,7 +5076,7 @@
             },
             {
                 "name": "godot_string_operator_index",
-                "return_type": "const wchar_t *",
+                "return_type": "const char32_t *",
                 "arguments": [
                     ["godot_string *", "p_self"],
                     ["const godot_int", "p_idx"]
@@ -5084,7 +5084,7 @@
             },
             {
                 "name": "godot_string_operator_index_const",
-                "return_type": "wchar_t",
+                "return_type": "char32_t",
                 "arguments": [
                     ["const godot_string *", "p_self"],
                     ["const godot_int", "p_idx"]
@@ -5092,7 +5092,7 @@
             },
             {
                 "name": "godot_string_wide_str",
-                "return_type": "const wchar_t *",
+                "return_type": "const char32_t *",
                 "arguments": [
                     ["const godot_string *", "p_self"]
                 ]

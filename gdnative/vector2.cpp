@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/vector2.h"
+#include "gdn/vector2.h"
 
 #include "core/math/vector2.h"
 #include "core/variant/variant.h"

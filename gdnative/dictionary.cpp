@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/dictionary.h"
+#include "gdn/dictionary.h"
 
 #include "core/variant/variant.h"
 // core/variant.h before to avoid compile errors with MSVC

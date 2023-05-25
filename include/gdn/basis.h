@@ -51,9 +51,9 @@ typedef struct {
 }
 #endif
 
-#include <gdnative/gdnative.h>
-#include <gdnative/quaternion.h>
-#include <gdnative/vector3.h>
+#include <gdn/gdnative.h>
+#include <gdn/quaternion.h>
+#include <gdn/vector3.h>
 
 #ifdef __cplusplus
 extern "C" {

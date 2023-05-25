@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/aabb.h"
+#include "gdn/aabb.h"
 
 #include "core/math/aabb.h"
 #include "core/variant/variant.h"

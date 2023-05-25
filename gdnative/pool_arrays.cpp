@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/pool_arrays.h"
+#include "gdn/pool_arrays.h"
 
 #include "core/variant/array.h"
 #include "core/containers/pool_vector.h"

@@ -33,8 +33,8 @@
 
 #include "core/io/networked_multiplayer_peer.h"
 
-#include "../include/gdnative/gdnative.h"
-#include "../include/net/godot_net.h"
+#include "gdn/gdnative.h"
+#include "net/godot_net.h"
 
 class MultiplayerPeerGDNative : public NetworkedMultiplayerPeer {
 	GDCLASS(MultiplayerPeerGDNative, NetworkedMultiplayerPeer);

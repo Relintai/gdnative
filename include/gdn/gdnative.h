@@ -142,76 +142,76 @@ typedef void godot_object;
 
 /////// String
 
-#include <gdnative/string.h>
+#include <gdn/string.h>
 
 /////// String name
 
-#include <gdnative/string_name.h>
+#include <gdn/string_name.h>
 
 ////// Vector2
 
-#include <gdnative/vector2.h>
+#include <gdn/vector2.h>
 
 ////// Rect2
 
-#include <gdnative/rect2.h>
+#include <gdn/rect2.h>
 
 ////// Vector3
 
-#include <gdnative/vector3.h>
+#include <gdn/vector3.h>
 
 ////// Transform2D
 
-#include <gdnative/transform2d.h>
+#include <gdn/transform2d.h>
 
 /////// Plane
 
-#include <gdnative/plane.h>
+#include <gdn/plane.h>
 
 /////// Quaternion
 
-#include <gdnative/quaternion.h>
+#include <gdn/quaternion.h>
 
 /////// AABB
 
-#include <gdnative/aabb.h>
+#include <gdn/aabb.h>
 
 /////// Basis
 
-#include <gdnative/basis.h>
+#include <gdn/basis.h>
 
 /////// Transform
 
-#include <gdnative/transform.h>
+#include <gdn/transform.h>
 
 /////// Color
 
-#include <gdnative/color.h>
+#include <gdn/color.h>
 
 /////// NodePath
 
-#include <gdnative/node_path.h>
+#include <gdn/node_path.h>
 
 /////// RID
 
-#include <gdnative/rid.h>
+#include <gdn/rid.h>
 
 /////// Dictionary
 
-#include <gdnative/dictionary.h>
+#include <gdn/dictionary.h>
 
 /////// Array
 
-#include <gdnative/array.h>
+#include <gdn/array.h>
 
 // single API file for Pool*Array
-#include <gdnative/pool_arrays.h>
+#include <gdn/pool_arrays.h>
 
 void GDAPI godot_object_destroy(godot_object *p_o);
 
 ////// Variant
 
-#include <gdnative/variant.h>
+#include <gdn/variant.h>
 
 ////// Singleton API
 

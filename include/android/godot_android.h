@@ -31,7 +31,7 @@
 #ifndef GODOT_ANDROID_H
 #define GODOT_ANDROID_H
 
-#include <gdnative/gdnative.h>
+#include <gdn/gdnative.h>
 
 #ifdef __ANDROID__
 #include <jni.h>

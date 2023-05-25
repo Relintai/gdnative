@@ -1,5 +1,5 @@
 /**************************************************************************/
-/*  webrtc_gdnative.cpp                                                   */
+/*  node_path.h                                                           */
 /**************************************************************************/
 /*                         This file is part of:                          */
 /*                             GODOT ENGINE                               */
@@ -28,33 +28,62 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "../gdnative.h"
-#include "../include/net/godot_net.h"
+#ifndef GDNATIVE_NODE_PATH_H
+#define GDNATIVE_NODE_PATH_H
 
-#ifdef WEBRTC_GDNATIVE_ENABLED
-#include "webrtc/webrtc_data_channel_gdnative.h"
-#include "webrtc/webrtc_peer_connection_gdnative.h"
-#endif
-
+#ifdef __cplusplus
 extern "C" {
-
-void GDAPI godot_net_bind_webrtc_peer_connection(godot_object *p_obj, const godot_net_webrtc_peer_connection *p_impl) {
-#ifdef WEBRTC_GDNATIVE_ENABLED
-	((WebRTCPeerConnectionGDNative *)p_obj)->set_native_webrtc_peer_connection(p_impl);
 #endif
-}
 
-void GDAPI godot_net_bind_webrtc_data_channel(godot_object *p_obj, const godot_net_webrtc_data_channel *p_impl) {
-#ifdef WEBRTC_GDNATIVE_ENABLED
-	((WebRTCDataChannelGDNative *)p_obj)->set_native_webrtc_data_channel(p_impl);
-#endif
-}
+#include <stdint.h>
 
-godot_error GDAPI godot_net_set_webrtc_library(const godot_net_webrtc_library *p_lib) {
-#ifdef WEBRTC_GDNATIVE_ENABLED
-	return (godot_error)WebRTCPeerConnectionGDNative::set_default_library(p_lib);
-#else
-	return (godot_error)ERR_UNAVAILABLE;
+#define GODOT_NODE_PATH_SIZE sizeof(void *)
+
+#ifndef GODOT_CORE_API_GODOT_NODE_PATH_TYPE_DEFINED
+#define GODOT_CORE_API_GODOT_NODE_PATH_TYPE_DEFINED
+typedef struct {
+	uint8_t _dont_touch_that[GODOT_NODE_PATH_SIZE];
+} godot_node_path;
 #endif
+
+// reduce extern "C" nesting for VS2013
+#ifdef __cplusplus
 }
+#endif
+
+#include <gdn/gdnative.h>
+#include <gdn/string.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void GDAPI godot_node_path_new(godot_node_path *r_dest, const godot_string *p_from);
+void GDAPI godot_node_path_new_copy(godot_node_path *r_dest, const godot_node_path *p_src);
+void GDAPI godot_node_path_destroy(godot_node_path *p_self);
+
+godot_string GDAPI godot_node_path_as_string(const godot_node_path *p_self);
+
+godot_bool GDAPI godot_node_path_is_absolute(const godot_node_path *p_self);
+
+godot_int GDAPI godot_node_path_get_name_count(const godot_node_path *p_self);
+
+godot_string GDAPI godot_node_path_get_name(const godot_node_path *p_self, const godot_int p_idx);
+
+godot_int GDAPI godot_node_path_get_subname_count(const godot_node_path *p_self);
+
+godot_string GDAPI godot_node_path_get_subname(const godot_node_path *p_self, const godot_int p_idx);
+
+godot_string GDAPI godot_node_path_get_concatenated_subnames(const godot_node_path *p_self);
+
+godot_bool GDAPI godot_node_path_is_empty(const godot_node_path *p_self);
+
+godot_bool GDAPI godot_node_path_operator_equal(const godot_node_path *p_self, const godot_node_path *p_b);
+
+godot_node_path godot_node_path_get_as_property_path(const godot_node_path *p_self);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif // GDNATIVE_NODE_PATH_H

@@ -31,7 +31,7 @@
 #ifndef GODOT_PLUGINSCRIPT_H
 #define GODOT_PLUGINSCRIPT_H
 
-#include <gdnative/gdnative.h>
+#include <gdn/gdnative.h>
 #include <nativescript/godot_nativescript.h>
 
 #ifdef __cplusplus

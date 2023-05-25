@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/string_name.h"
+#include "gdn/string_name.h"
 
 #include "core/string/string_name.h"
 #include "core/string/ustring.h"

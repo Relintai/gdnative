@@ -151,12 +151,12 @@ typedef struct {
 }
 #endif
 
-#include <gdnative/array.h>
-#include <gdnative/color.h>
-#include <gdnative/vector2.h>
-#include <gdnative/vector3.h>
+#include <gdn/array.h>
+#include <gdn/color.h>
+#include <gdn/vector2.h>
+#include <gdn/vector3.h>
 
-#include <gdnative/gdnative.h>
+#include <gdn/gdnative.h>
 
 #ifdef __cplusplus
 extern "C" {

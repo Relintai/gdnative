@@ -51,10 +51,10 @@ typedef struct {
 }
 #endif
 
-#include <gdnative/pool_arrays.h>
-#include <gdnative/variant.h>
+#include <gdn/pool_arrays.h>
+#include <gdn/variant.h>
 
-#include <gdnative/gdnative.h>
+#include <gdn/gdnative.h>
 
 #ifdef __cplusplus
 extern "C" {

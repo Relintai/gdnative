@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/basis.h"
+#include "gdn/basis.h"
 
 #include "core/math/basis.h"
 #include "core/variant/variant.h"

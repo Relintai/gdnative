@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/transform.h"
+#include "gdn/transform.h"
 
 #include "core/math/transform.h"
 #include "core/variant/variant.h"

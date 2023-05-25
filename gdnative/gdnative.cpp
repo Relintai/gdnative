@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/gdnative.h"
+#include "gdn/gdnative.h"
 
 #include "core/object/class_db.h"
 #include "core/config/engine.h"

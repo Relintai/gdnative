@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/color.h"
+#include "gdn/color.h"
 
 #include "core/math/color.h"
 #include "core/variant/variant.h"

@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/rect2.h"
+#include "gdn/rect2.h"
 
 #include "core/math/transform_2d.h"
 #include "core/variant/variant.h"

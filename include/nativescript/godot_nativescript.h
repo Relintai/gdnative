@@ -31,7 +31,7 @@
 #ifndef GODOT_NATIVESCRIPT_H
 #define GODOT_NATIVESCRIPT_H
 
-#include <gdnative/gdnative.h>
+#include <gdn/gdnative.h>
 
 #ifdef __cplusplus
 extern "C" {

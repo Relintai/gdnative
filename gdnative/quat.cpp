@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/quaternion.h"
+#include "gdn/quaternion.h"
 
 #include "core/math/quaternion.h"
 #include "core/variant/variant.h"

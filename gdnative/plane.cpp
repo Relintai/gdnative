@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#include "gdnative/plane.h"
+#include "gdn/plane.h"
 
 #include "core/math/plane.h"
 #include "core/variant/variant.h"
