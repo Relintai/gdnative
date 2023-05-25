@@ -1,3 +1,6 @@
+#ifndef GDNATIVE_REGISTER_TYPES_H
+#define GDNATIVE_REGISTER_TYPES_H
+
 /**************************************************************************/
 /*  register_types.h                                                      */
 /**************************************************************************/
@@ -28,10 +31,9 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-#ifndef GDNATIVE_REGISTER_TYPES_H
-#define GDNATIVE_REGISTER_TYPES_H
+#include "modules/register_module_types.h"
 
-void register_gdnative_types();
-void unregister_gdnative_types();
+void register_gdnative_types(ModuleRegistrationLevel p_level);
+void unregister_gdnative_types(ModuleRegistrationLevel p_level);
 
 #endif // GDNATIVE_REGISTER_TYPES_H

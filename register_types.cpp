@@ -30,21 +30,18 @@
 
 #include "register_types.h"
 
-#include "gdnative/gdnative.h"
-
 #include "gdnative.h"
 
-#include "arvr/register_types.h"
 #include "nativescript/register_types.h"
 #include "net/register_types.h"
 #include "pluginscript/register_types.h"
 #include "videodecoder/register_types.h"
 
-#include "core/engine.h"
+#include "core/config/engine.h"
 #include "core/io/resource_loader.h"
 #include "core/io/resource_saver.h"
 #include "core/os/os.h"
-#include "core/project_settings.h"
+#include "core/config/project_settings.h"
 
 #ifdef TOOLS_ENABLED
 #include "editor/editor_export.h"
@@ -253,120 +250,123 @@ Vector<Ref<GDNative>> singleton_gdnatives;
 Ref<GDNativeLibraryResourceLoader> resource_loader_gdnlib;
 Ref<GDNativeLibraryResourceSaver> resource_saver_gdnlib;
 
-void register_gdnative_types() {
+void register_gdnative_types(ModuleRegistrationLevel p_level) {
 #ifdef TOOLS_ENABLED
-
-	EditorNode::add_init_callback(editor_init_callback);
+	if (p_level == MODULE_REGISTRATION_LEVEL_EDITOR) {
+		EditorNode::add_init_callback(editor_init_callback);
+	}
 #endif
 
-	ClassDB::register_class<GDNativeLibrary>();
-	ClassDB::register_class<GDNative>();
+	if (p_level == MODULE_REGISTRATION_LEVEL_SINGLETON) {
+		ClassDB::register_class<GDNativeLibrary>();
+		ClassDB::register_class<GDNative>();
 
-	resource_loader_gdnlib.instance();
-	ResourceLoader::add_resource_format_loader(resource_loader_gdnlib);
+		resource_loader_gdnlib.instance();
+		ResourceLoader::add_resource_format_loader(resource_loader_gdnlib);
 
-	resource_saver_gdnlib.instance();
-	ResourceSaver::add_resource_format_saver(resource_saver_gdnlib);
+		resource_saver_gdnlib.instance();
+		ResourceSaver::add_resource_format_saver(resource_saver_gdnlib);
 
-	GDNativeCallRegistry::singleton = memnew(GDNativeCallRegistry);
+		GDNativeCallRegistry::singleton = memnew(GDNativeCallRegistry);
 
-	GDNativeCallRegistry::singleton->register_native_call_type("standard_varcall", cb_standard_varcall);
+		GDNativeCallRegistry::singleton->register_native_call_type("standard_varcall", cb_standard_varcall);
 
-	register_net_types();
-	register_arvr_types();
-	register_nativescript_types();
-	register_pluginscript_types();
-	register_videodecoder_types();
+		register_net_types();
+		register_nativescript_types();
+		register_pluginscript_types();
+		register_videodecoder_types();
 
-	// run singletons
+		// run singletons
 
-	Array singletons = Array();
-	if (ProjectSettings::get_singleton()->has_setting("gdnative/singletons")) {
-		singletons = ProjectSettings::get_singleton()->get("gdnative/singletons");
-	}
-	Array excluded = Array();
-	if (ProjectSettings::get_singleton()->has_setting("gdnative/singletons_disabled")) {
-		excluded = ProjectSettings::get_singleton()->get("gdnative/singletons_disabled");
-	}
-
-	for (int i = 0; i < singletons.size(); i++) {
-		String path = singletons[i];
-
-		if (excluded.has(path)) {
-			continue;
+		Array singletons = Array();
+		if (ProjectSettings::get_singleton()->has_setting("gdnative/singletons")) {
+			singletons = ProjectSettings::get_singleton()->get("gdnative/singletons");
+		}
+		Array excluded = Array();
+		if (ProjectSettings::get_singleton()->has_setting("gdnative/singletons_disabled")) {
+			excluded = ProjectSettings::get_singleton()->get("gdnative/singletons_disabled");
 		}
 
-		Ref<GDNativeLibrary> lib = ResourceLoader::load(path);
-		Ref<GDNative> singleton;
-		singleton.instance();
-		singleton->set_library(lib);
+		for (int i = 0; i < singletons.size(); i++) {
+			String path = singletons[i];
 
-		if (!singleton->initialize()) {
-			// Can't initialize. Don't make a native_call then
-			continue;
-		}
+			if (excluded.has(path)) {
+				continue;
+			}
 
-		void *proc_ptr;
-		Error err = singleton->get_symbol(
-				lib->get_symbol_prefix() + "gdnative_singleton",
-				proc_ptr);
+			Ref<GDNativeLibrary> lib = ResourceLoader::load(path);
+			Ref<GDNative> singleton;
+			singleton.instance();
+			singleton->set_library(lib);
 
-		if (err != OK) {
-			ERR_PRINT("No " + lib->get_symbol_prefix() + "gdnative_singleton in \"" + singleton->get_library()->get_current_library_path() + "\" found");
-		} else {
-			singleton_gdnatives.push_back(singleton);
-			((void (*)())proc_ptr)();
+			if (!singleton->initialize()) {
+				// Can't initialize. Don't make a native_call then
+				continue;
+			}
+
+			void *proc_ptr;
+			Error err = singleton->get_symbol(
+					lib->get_symbol_prefix() + "gdnative_singleton",
+					proc_ptr);
+
+			if (err != OK) {
+				ERR_PRINT("No " + lib->get_symbol_prefix() + "gdnative_singleton in \"" + singleton->get_library()->get_current_library_path() + "\" found");
+			} else {
+				singleton_gdnatives.push_back(singleton);
+				((void (*)())proc_ptr)();
+			}
 		}
 	}
 }
 
-void unregister_gdnative_types() {
-	for (int i = 0; i < singleton_gdnatives.size(); i++) {
-		if (singleton_gdnatives[i].is_null()) {
-			continue;
-		}
+void unregister_gdnative_types(ModuleRegistrationLevel p_level) {
+	if (p_level == MODULE_REGISTRATION_LEVEL_SINGLETON) {
+		for (int i = 0; i < singleton_gdnatives.size(); i++) {
+			if (singleton_gdnatives[i].is_null()) {
+				continue;
+			}
 
-		if (!singleton_gdnatives[i]->is_initialized()) {
-			continue;
-		}
+			if (!singleton_gdnatives[i]->is_initialized()) {
+				continue;
+			}
 
-		singleton_gdnatives.write[i]->terminate();
+			singleton_gdnatives.write[i]->terminate();
+		}
+		singleton_gdnatives.clear();
+
+		unregister_videodecoder_types();
+		unregister_pluginscript_types();
+		unregister_nativescript_types();
+		unregister_net_types();
+
+		memdelete(GDNativeCallRegistry::singleton);
+
+		ResourceLoader::remove_resource_format_loader(resource_loader_gdnlib);
+		resource_loader_gdnlib.unref();
+
+		ResourceSaver::remove_resource_format_saver(resource_saver_gdnlib);
+		resource_saver_gdnlib.unref();
+
+		// This is for printing out the sizes of the core types
+
+		/*
+		print_line(String("array:\t")     + itos(sizeof(Array)));
+		print_line(String("basis:\t")     + itos(sizeof(Basis)));
+		print_line(String("color:\t")     + itos(sizeof(Color)));
+		print_line(String("dict:\t" )     + itos(sizeof(Dictionary)));
+		print_line(String("node_path:\t") + itos(sizeof(NodePath)));
+		print_line(String("plane:\t")     + itos(sizeof(Plane)));
+		print_line(String("poolarray:\t") + itos(sizeof(PoolByteArray)));
+		print_line(String("quat:\t")      + itos(sizeof(Quat)));
+		print_line(String("rect2:\t")     + itos(sizeof(Rect2)));
+		print_line(String("aabb:\t")     + itos(sizeof(AABB)));
+		print_line(String("rid:\t")       + itos(sizeof(RID)));
+		print_line(String("string:\t")    + itos(sizeof(String)));
+		print_line(String("transform:\t") + itos(sizeof(Transform)));
+		print_line(String("transfo2D:\t") + itos(sizeof(Transform2D)));
+		print_line(String("variant:\t")   + itos(sizeof(Variant)));
+		print_line(String("vector2:\t")   + itos(sizeof(Vector2)));
+		print_line(String("vector3:\t")   + itos(sizeof(Vector3)));
+		*/
 	}
-	singleton_gdnatives.clear();
-
-	unregister_videodecoder_types();
-	unregister_pluginscript_types();
-	unregister_nativescript_types();
-	unregister_arvr_types();
-	unregister_net_types();
-
-	memdelete(GDNativeCallRegistry::singleton);
-
-	ResourceLoader::remove_resource_format_loader(resource_loader_gdnlib);
-	resource_loader_gdnlib.unref();
-
-	ResourceSaver::remove_resource_format_saver(resource_saver_gdnlib);
-	resource_saver_gdnlib.unref();
-
-	// This is for printing out the sizes of the core types
-
-	/*
-	print_line(String("array:\t")     + itos(sizeof(Array)));
-	print_line(String("basis:\t")     + itos(sizeof(Basis)));
-	print_line(String("color:\t")     + itos(sizeof(Color)));
-	print_line(String("dict:\t" )     + itos(sizeof(Dictionary)));
-	print_line(String("node_path:\t") + itos(sizeof(NodePath)));
-	print_line(String("plane:\t")     + itos(sizeof(Plane)));
-	print_line(String("poolarray:\t") + itos(sizeof(PoolByteArray)));
-	print_line(String("quat:\t")      + itos(sizeof(Quat)));
-	print_line(String("rect2:\t")     + itos(sizeof(Rect2)));
-	print_line(String("aabb:\t")     + itos(sizeof(AABB)));
-	print_line(String("rid:\t")       + itos(sizeof(RID)));
-	print_line(String("string:\t")    + itos(sizeof(String)));
-	print_line(String("transform:\t") + itos(sizeof(Transform)));
-	print_line(String("transfo2D:\t") + itos(sizeof(Transform2D)));
-	print_line(String("variant:\t")   + itos(sizeof(Variant)));
-	print_line(String("vector2:\t")   + itos(sizeof(Vector2)));
-	print_line(String("vector3:\t")   + itos(sizeof(Vector3)));
-	*/
 }

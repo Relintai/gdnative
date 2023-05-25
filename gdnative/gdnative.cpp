@@ -30,14 +30,14 @@
 
 #include "gdnative/gdnative.h"
 
-#include "core/class_db.h"
-#include "core/engine.h"
-#include "core/error_macros.h"
+#include "core/object/class_db.h"
+#include "core/config/engine.h"
+#include "core/error/error_macros.h"
 #include "core/global_constants.h"
 #include "core/os/os.h"
-#include "core/variant.h"
+#include "core/variant/variant.h"
 
-#include "modules/gdnative/gdnative.h"
+#include "../gdnative/gdnative.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -32,8 +32,8 @@
 
 #ifdef TOOLS_ENABLED
 
-#include "core/class_db.h"
-#include "core/engine.h"
+#include "core/object/class_db.h"
+#include "core/config/engine.h"
 #include "core/global_constants.h"
 #include "core/os/file_access.h"
 #include "core/pair.h"

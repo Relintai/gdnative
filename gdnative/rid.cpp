@@ -30,9 +30,9 @@
 
 #include "gdnative/rid.h"
 
-#include "core/resource.h"
-#include "core/rid.h"
-#include "core/variant.h"
+#include "core/object/resource.h"
+#include "core/object/rid.h"
+#include "core/variant/variant.h"
 
 #ifdef __cplusplus
 extern "C" {

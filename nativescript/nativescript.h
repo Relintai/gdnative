@@ -36,10 +36,10 @@
 #include "core/oa_hash_map.h"
 #include "core/ordered_hash_map.h"
 #include "core/os/thread_safe.h"
-#include "core/resource.h"
+#include "core/object/resource.h"
 #include "core/safe_refcount.h"
-#include "core/script_language.h"
-#include "core/self_list.h"
+#include "core/object/script_language.h"
+#include "core/containers/self_list.h"
 #include "scene/main/node.h"
 
 #include "modules/gdnative/gdnative.h"

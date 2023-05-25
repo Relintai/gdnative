@@ -12,12 +12,11 @@ env_gdnative.add_source_files(env.modules_sources, "nativescript/*.cpp")
 env_gdnative.add_source_files(env.modules_sources, "gdnative_library_singleton_editor.cpp")
 env_gdnative.add_source_files(env.modules_sources, "gdnative_library_editor_plugin.cpp")
 
-env_gdnative.Prepend(CPPPATH=["#modules/gdnative/include/"])
+env_gdnative.Prepend(CPPPATH=["./include/"])
 
 Export("env_gdnative")
 
 SConscript("net/SCsub")
-SConscript("arvr/SCsub")
 SConscript("pluginscript/SCsub")
 SConscript("videodecoder/SCsub")
 
