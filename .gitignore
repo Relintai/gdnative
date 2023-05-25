@@ -1,0 +1,16 @@
+# Do not ignore solution files inside the mono module. Overrides Godot's global gitignore.
+!*.sln
+
+.import
+*.d
+*.o
+*.meta
+*.obj
+*.pyc
+*.bc
+*.os
+*.gen.h
+*.gen.cpp
+
+bin/
+obj/
