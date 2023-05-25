@@ -52,7 +52,7 @@ typedef struct {
 #endif
 
 #include <gdnative/gdnative.h>
-#include <gdnative/quat.h>
+#include <gdnative/quaternion.h>
 #include <gdnative/vector3.h>
 
 #ifdef __cplusplus
@@ -62,7 +62,7 @@ extern "C" {
 void GDAPI godot_basis_new_with_rows(godot_basis *r_dest, const godot_vector3 *p_x_axis, const godot_vector3 *p_y_axis, const godot_vector3 *p_z_axis);
 void GDAPI godot_basis_new_with_axis_and_angle(godot_basis *r_dest, const godot_vector3 *p_axis, const godot_real p_phi);
 void GDAPI godot_basis_new_with_euler(godot_basis *r_dest, const godot_vector3 *p_euler);
-void GDAPI godot_basis_new_with_euler_quat(godot_basis *r_dest, const godot_quat *p_euler);
+void GDAPI godot_basis_new_with_euler_quaternion(godot_basis *r_dest, const godot_quaternion *p_euler);
 
 godot_string GDAPI godot_basis_as_string(const godot_basis *p_self);
 
@@ -82,15 +82,15 @@ godot_vector3 GDAPI godot_basis_get_scale(const godot_basis *p_self);
 
 godot_vector3 GDAPI godot_basis_get_euler(const godot_basis *p_self);
 
-godot_quat GDAPI godot_basis_get_quat(const godot_basis *p_self);
+godot_quaternion GDAPI godot_basis_get_quaternion(const godot_basis *p_self);
 
-void GDAPI godot_basis_set_quat(godot_basis *p_self, const godot_quat *p_quat);
+void GDAPI godot_basis_set_quaternion(godot_basis *p_self, const godot_quaternion *p_quaternion);
 
 void GDAPI godot_basis_set_axis_angle_scale(godot_basis *p_self, const godot_vector3 *p_axis, godot_real p_phi, const godot_vector3 *p_scale);
 
 void GDAPI godot_basis_set_euler_scale(godot_basis *p_self, const godot_vector3 *p_euler, const godot_vector3 *p_scale);
 
-void GDAPI godot_basis_set_quat_scale(godot_basis *p_self, const godot_quat *p_quat, const godot_vector3 *p_scale);
+void GDAPI godot_basis_set_quaternion_scale(godot_basis *p_self, const godot_quaternion *p_quaternion, const godot_vector3 *p_scale);
 
 godot_real GDAPI godot_basis_tdotx(const godot_basis *p_self, const godot_vector3 *p_with);
 

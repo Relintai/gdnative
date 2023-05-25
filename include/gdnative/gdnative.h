@@ -168,9 +168,9 @@ typedef void godot_object;
 
 #include <gdnative/plane.h>
 
-/////// Quat
+/////// Quaternion
 
-#include <gdnative/quat.h>
+#include <gdnative/quaternion.h>
 
 /////// AABB
 

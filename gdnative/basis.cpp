@@ -115,17 +115,17 @@ godot_vector3 GDAPI godot_basis_get_scale(const godot_basis *p_self) {
 	return dest;
 }
 
-godot_quat GDAPI godot_basis_get_quat(const godot_basis *p_self) {
-	godot_quat dest;
+godot_quaternion GDAPI godot_basis_get_quaternion(const godot_basis *p_self) {
+	godot_quaternion dest;
 	const Basis *self = (const Basis *)p_self;
-	*((Quat *)&dest) = self->get_quat();
+	*((Quaternion *)&dest) = self->get_quaternion();
 	return dest;
 }
 
-void GDAPI godot_basis_set_quat(godot_basis *p_self, const godot_quat *p_quat) {
+void GDAPI godot_basis_set_quaternion(godot_basis *p_self, const godot_quaternion *p_quaternion) {
 	Basis *self = (Basis *)p_self;
-	const Quat *quat = (const Quat *)p_quat;
-	self->set_quat(*quat);
+	const Quaternion *quaternion = (const Quaternion *)p_quaternion;
+	self->set_quaternion(*quaternion);
 }
 
 void GDAPI godot_basis_set_axis_angle_scale(godot_basis *p_self, const godot_vector3 *p_axis, godot_real p_phi, const godot_vector3 *p_scale) {
@@ -142,11 +142,11 @@ void GDAPI godot_basis_set_euler_scale(godot_basis *p_self, const godot_vector3 
 	self->set_euler_scale(*euler, *scale);
 }
 
-void GDAPI godot_basis_set_quat_scale(godot_basis *p_self, const godot_quat *p_quat, const godot_vector3 *p_scale) {
+void GDAPI godot_basis_set_quaternion_scale(godot_basis *p_self, const godot_quaternion *p_quaternion, const godot_vector3 *p_scale) {
 	Basis *self = (Basis *)p_self;
-	const Quat *quat = (const Quat *)p_quat;
+	const Quaternion *quaternion = (const Quaternion *)p_quaternion;
 	const Vector3 *scale = (const Vector3 *)p_scale;
-	self->set_quat_scale(*quat, *scale);
+	self->set_quaternion_scale(*quaternion, *scale);
 }
 
 godot_vector3 GDAPI godot_basis_get_euler(const godot_basis *p_self) {
@@ -200,9 +200,9 @@ void GDAPI godot_basis_new(godot_basis *r_dest) {
 	*dest = Basis();
 }
 
-void GDAPI godot_basis_new_with_euler_quat(godot_basis *r_dest, const godot_quat *p_euler) {
+void GDAPI godot_basis_new_with_euler_quaternion(godot_basis *r_dest, const godot_quaternion *p_euler) {
 	Basis *dest = (Basis *)r_dest;
-	const Quat *euler = (const Quat *)p_euler;
+	const Quaternion *euler = (const Quaternion *)p_euler;
 	*dest = Basis(*euler);
 }
 
