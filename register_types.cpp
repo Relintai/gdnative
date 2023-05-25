@@ -48,10 +48,11 @@
 #include "editor/editor_node.h"
 #include "gdnative_library_editor_plugin.h"
 #include "gdnative_library_singleton_editor.h"
+#include "scene/gui/tab_container.h"
 
 class GDNativeExportPlugin : public EditorExportPlugin {
 protected:
-	virtual void _export_file(const String &p_path, const String &p_type, const Set<String> &p_features);
+	virtual void _export_file(const String &p_path, const String &p_type, const RBSet<String> &p_features);
 };
 
 struct LibrarySymbol {
@@ -59,7 +60,7 @@ struct LibrarySymbol {
 	bool is_required;
 };
 
-void GDNativeExportPlugin::_export_file(const String &p_path, const String &p_type, const Set<String> &p_features) {
+void GDNativeExportPlugin::_export_file(const String &p_path, const String &p_type, const RBSet<String> &p_features) {
 	if (p_type != "GDNativeLibrary") {
 		return;
 	}

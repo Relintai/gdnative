@@ -37,7 +37,7 @@
 #include "core/os/os.h"
 #include "core/variant/variant.h"
 
-#include "../gdnative/gdnative.h"
+#include "../gdnative.h"
 
 #ifdef __cplusplus
 extern "C" {

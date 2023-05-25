@@ -83,12 +83,12 @@ godot_string GDAPI godot_aabb_as_string(const godot_aabb *p_self) {
 
 godot_real GDAPI godot_aabb_get_area(const godot_aabb *p_self) {
 	const AABB *self = (const AABB *)p_self;
-	return self->get_area();
+	return self->get_volume();
 }
 
 godot_bool GDAPI godot_aabb_has_no_area(const godot_aabb *p_self) {
 	const AABB *self = (const AABB *)p_self;
-	return self->has_no_area();
+	return self->has_no_volume();
 }
 
 godot_bool GDAPI godot_aabb_has_no_surface(const godot_aabb *p_self) {

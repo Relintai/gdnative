@@ -33,16 +33,16 @@
 
 #include "core/io/resource_loader.h"
 #include "core/io/resource_saver.h"
-#include "core/oa_hash_map.h"
-#include "core/ordered_hash_map.h"
+#include "core/containers/oa_hash_map.h"
+#include "core/containers/ordered_hash_map.h"
 #include "core/os/thread_safe.h"
 #include "core/object/resource.h"
-#include "core/safe_refcount.h"
+#include "core/os/safe_refcount.h"
 #include "core/object/script_language.h"
 #include "core/containers/self_list.h"
 #include "scene/main/node.h"
 
-#include "modules/gdnative/gdnative.h"
+#include "../gdnative.h"
 #include <nativescript/godot_nativescript.h>
 
 #ifndef NO_THREADS
@@ -70,9 +70,9 @@ struct NativeScriptDesc {
 		String documentation;
 	};
 
-	Map<StringName, Method> methods;
+	RBMap<StringName, Method> methods;
 	OrderedHashMap<StringName, Property> properties;
-	Map<StringName, Signal> signals_; // QtCreator doesn't like the name signals
+	RBMap<StringName, Signal> signals_; // QtCreator doesn't like the name signals
 	StringName base;
 	StringName base_native_type;
 	NativeScriptDesc *base_data;
@@ -102,7 +102,7 @@ class NativeScript : public Script {
 	GDCLASS(NativeScript, Script);
 
 #ifdef TOOLS_ENABLED
-	Set<PlaceHolderScriptInstance *> placeholders;
+	RBSet<PlaceHolderScriptInstance *> placeholders;
 	void _update_placeholder(PlaceHolderScriptInstance *p_placeholder);
 	virtual void _placeholder_erased(PlaceHolderScriptInstance *p_placeholder);
 #endif
@@ -122,7 +122,7 @@ class NativeScript : public Script {
 	String script_class_icon_path;
 
 	Mutex owners_lock;
-	Set<Object *> instance_owners;
+	RBSet<Object *> instance_owners;
 
 protected:
 	static void _bind_methods();
@@ -238,8 +238,8 @@ private:
 #ifndef NO_THREADS
 	Mutex mutex;
 
-	Set<Ref<GDNativeLibrary>> libs_to_init;
-	Set<NativeScript *> scripts_to_register;
+	RBSet<Ref<GDNativeLibrary>> libs_to_init;
+	RBSet<NativeScript *> scripts_to_register;
 	SafeFlag has_objects_to_register; // so that we don't lock mutex every frame - it's rarely needed
 	void defer_init_library(Ref<GDNativeLibrary> lib, NativeScript *script);
 #endif
@@ -251,9 +251,9 @@ private:
 	void call_libraries_cb(const StringName &name);
 
 	Vector<Pair<bool, godot_instance_binding_functions>> binding_functions;
-	Set<Vector<void *> *> binding_instances;
+	RBSet<Vector<void *> *> binding_instances;
 
-	Map<int, HashMap<StringName, const void *>> global_type_tags;
+	RBMap<int, HashMap<StringName, const void *>> global_type_tags;
 
 	struct ProfileData {
 		StringName signature;
@@ -268,14 +268,14 @@ private:
 		uint64_t last_frame_total_time;
 	};
 
-	Map<StringName, ProfileData> profile_data;
+	RBMap<StringName, ProfileData> profile_data;
 
 public:
 	// These two maps must only be touched on the main thread
-	Map<String, Map<StringName, NativeScriptDesc>> library_classes;
-	Map<String, Ref<GDNative>> library_gdnatives;
+	RBMap<String, RBMap<StringName, NativeScriptDesc>> library_classes;
+	RBMap<String, Ref<GDNative>> library_gdnatives;
 
-	Map<String, Set<NativeScript *>> library_script_users;
+	RBMap<String, RBSet<NativeScript *>> library_script_users;
 
 	StringName _init_call_type;
 	StringName _init_call_name;
@@ -314,7 +314,7 @@ public:
 	virtual void get_comment_delimiters(List<String> *p_delimiters) const;
 	virtual void get_string_delimiters(List<String> *p_delimiters) const;
 	virtual Ref<Script> get_template(const String &p_class_name, const String &p_base_class_name) const;
-	virtual bool validate(const String &p_script, int &r_line_error, int &r_col_error, String &r_test_error, const String &p_path, List<String> *r_functions, List<ScriptLanguage::Warning> *r_warnings = nullptr, Set<int> *r_safe_lines = nullptr) const;
+	virtual bool validate(const String &p_script, int &r_line_error, int &r_col_error, String &r_test_error, const String &p_path, List<String> *r_functions, List<ScriptLanguage::Warning> *r_warnings = nullptr, RBSet<int> *r_safe_lines = nullptr) const;
 	virtual Script *create_script() const;
 	virtual bool has_named_classes() const;
 	virtual bool supports_builtin_mode() const;
@@ -361,7 +361,7 @@ public:
 };
 
 inline NativeScriptDesc *NativeScript::get_script_desc() const {
-	Map<StringName, NativeScriptDesc>::Element *E = NativeScriptLanguage::singleton->library_classes[lib_path].find(class_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NativeScriptLanguage::singleton->library_classes[lib_path].find(class_name);
 	return E ? &E->get() : nullptr;
 }
 
@@ -379,7 +379,7 @@ public:
 
 class ResourceFormatLoaderNativeScript : public ResourceFormatLoader {
 public:
-	virtual RES load(const String &p_path, const String &p_original_path = "", Error *r_error = nullptr, bool p_no_subresource_cache = false);
+	virtual RES load(const String &p_path, const String &p_original_path = "", Error *r_error = nullptr);
 	virtual void get_recognized_extensions(List<String> *p_extensions) const;
 	virtual bool handles_type(const String &p_type) const;
 	virtual String get_resource_type(const String &p_path) const;

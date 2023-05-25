@@ -31,7 +31,7 @@
 #include "gdnative/rid.h"
 
 #include "core/object/resource.h"
-#include "core/object/rid.h"
+#include "core/containers/rid.h"
 #include "core/variant/variant.h"
 
 #ifdef __cplusplus

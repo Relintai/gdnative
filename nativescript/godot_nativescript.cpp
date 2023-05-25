@@ -53,7 +53,7 @@ extern "C" void _native_script_hook() {
 void GDAPI godot_nativescript_register_class(void *p_gdnative_handle, const char *p_name, const char *p_base, godot_instance_create_func p_create_func, godot_instance_destroy_func p_destroy_func) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc> *classes = &NSL->library_classes[*s];
+	RBMap<StringName, NativeScriptDesc> *classes = &NSL->library_classes[*s];
 
 	NativeScriptDesc desc;
 
@@ -77,7 +77,7 @@ void GDAPI godot_nativescript_register_class(void *p_gdnative_handle, const char
 void GDAPI godot_nativescript_register_tool_class(void *p_gdnative_handle, const char *p_name, const char *p_base, godot_instance_create_func p_create_func, godot_instance_destroy_func p_destroy_func) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc> *classes = &NSL->library_classes[*s];
+	RBMap<StringName, NativeScriptDesc> *classes = &NSL->library_classes[*s];
 
 	NativeScriptDesc desc;
 
@@ -100,7 +100,7 @@ void GDAPI godot_nativescript_register_tool_class(void *p_gdnative_handle, const
 void GDAPI godot_nativescript_register_method(void *p_gdnative_handle, const char *p_name, const char *p_function_name, godot_method_attributes p_attr, godot_instance_method p_method) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to register method on non-existent class.");
 
 	NativeScriptDesc::Method method;
@@ -114,7 +114,7 @@ void GDAPI godot_nativescript_register_method(void *p_gdnative_handle, const cha
 void GDAPI godot_nativescript_register_property(void *p_gdnative_handle, const char *p_name, const char *p_path, godot_property_attributes *p_attr, godot_property_set_func p_set_func, godot_property_get_func p_get_func) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to register method on non-existent class.");
 
 	NativeScriptDesc::Property property;
@@ -134,7 +134,7 @@ void GDAPI godot_nativescript_register_property(void *p_gdnative_handle, const c
 void GDAPI godot_nativescript_register_signal(void *p_gdnative_handle, const char *p_name, const godot_signal *p_signal) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to register method on non-existent class.");
 
 	List<PropertyInfo> args;
@@ -196,10 +196,10 @@ void GDAPI *godot_nativescript_get_userdata(godot_object *p_instance) {
 void GDAPI godot_nativescript_set_method_argument_information(void *p_gdnative_handle, const char *p_name, const char *p_function_name, int p_num_args, const godot_method_arg *p_args) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to add argument information for a method on a non-existent class.");
 
-	Map<StringName, NativeScriptDesc::Method>::Element *method = E->get().methods.find(p_function_name);
+	RBMap<StringName, NativeScriptDesc::Method>::Element *method = E->get().methods.find(p_function_name);
 	ERR_FAIL_COND_MSG(!method, "Attempted to add argument information to non-existent method.");
 
 	MethodInfo *method_information = &method->get().info;
@@ -223,7 +223,7 @@ void GDAPI godot_nativescript_set_method_argument_information(void *p_gdnative_h
 void GDAPI godot_nativescript_set_class_documentation(void *p_gdnative_handle, const char *p_name, godot_string p_documentation) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to add documentation to a non-existent class.");
 
 	E->get().documentation = *(String *)&p_documentation;
@@ -232,10 +232,10 @@ void GDAPI godot_nativescript_set_class_documentation(void *p_gdnative_handle, c
 void GDAPI godot_nativescript_set_method_documentation(void *p_gdnative_handle, const char *p_name, const char *p_function_name, godot_string p_documentation) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to add documentation to a method on a non-existent class.");
 
-	Map<StringName, NativeScriptDesc::Method>::Element *method = E->get().methods.find(p_function_name);
+	RBMap<StringName, NativeScriptDesc::Method>::Element *method = E->get().methods.find(p_function_name);
 	ERR_FAIL_COND_MSG(!method, "Attempted to add documentation to non-existent method.");
 
 	method->get().documentation = *(String *)&p_documentation;
@@ -244,7 +244,7 @@ void GDAPI godot_nativescript_set_method_documentation(void *p_gdnative_handle, 
 void GDAPI godot_nativescript_set_property_documentation(void *p_gdnative_handle, const char *p_name, const char *p_path, godot_string p_documentation) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to add documentation to a property on a non-existent class.");
 
 	OrderedHashMap<StringName, NativeScriptDesc::Property>::Element property = E->get().properties.find(p_path);
@@ -256,10 +256,10 @@ void GDAPI godot_nativescript_set_property_documentation(void *p_gdnative_handle
 void GDAPI godot_nativescript_set_signal_documentation(void *p_gdnative_handle, const char *p_name, const char *p_signal_name, godot_string p_documentation) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to add documentation to a signal on a non-existent class.");
 
-	Map<StringName, NativeScriptDesc::Signal>::Element *signal = E->get().signals_.find(p_signal_name);
+	RBMap<StringName, NativeScriptDesc::Signal>::Element *signal = E->get().signals_.find(p_signal_name);
 	ERR_FAIL_COND_MSG(!signal, "Attempted to add documentation to non-existent signal.");
 
 	signal->get().documentation = *(String *)&p_documentation;
@@ -276,7 +276,7 @@ const void GDAPI *godot_nativescript_get_global_type_tag(int p_idx, const char *
 void GDAPI godot_nativescript_set_type_tag(void *p_gdnative_handle, const char *p_name, const void *p_type_tag) {
 	String *s = (String *)p_gdnative_handle;
 
-	Map<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
+	RBMap<StringName, NativeScriptDesc>::Element *E = NSL->library_classes[*s].find(p_name);
 	ERR_FAIL_COND_MSG(!E, "Attempted to set type tag on a non-existent class.");
 
 	E->get().type_tag = p_type_tag;

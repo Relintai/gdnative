@@ -36,8 +36,8 @@
 #include "core/os/thread_safe.h"
 #include "core/object/resource.h"
 
-#include "gdnative/gdnative.h"
-#include "gdnative_api_struct.gen.h"
+#include "include/gdnative/gdnative.h"
+#include "include/gdnative_api_struct.gen.h"
 
 #include "core/io/config_file.h"
 
@@ -47,7 +47,7 @@ class GDNative;
 class GDNativeLibrary : public Resource {
 	GDCLASS(GDNativeLibrary, Resource);
 
-	static Map<String, Vector<Ref<GDNative>>> loaded_libraries;
+	static RBMap<String, Vector<Ref<GDNative>>> loaded_libraries;
 
 	friend class GDNativeLibraryResourceLoader;
 	friend class GDNative;
@@ -129,7 +129,7 @@ struct GDNativeCallRegistry {
 	inline GDNativeCallRegistry() :
 			native_calls() {}
 
-	Map<StringName, native_call_cb> native_calls;
+	RBMap<StringName, native_call_cb> native_calls;
 
 	void register_native_call_type(StringName p_call_type, native_call_cb p_callback);
 

@@ -35,6 +35,8 @@
 #include "editor/editor_file_system.h"
 #include "editor/project_settings_editor.h"
 
+#include "scene/gui/box_container.h"
+
 class GDNativeLibrarySingletonEditor : public VBoxContainer {
 	GDCLASS(GDNativeLibrarySingletonEditor, VBoxContainer);
 
@@ -44,7 +46,7 @@ private:
 
 	bool updating;
 
-	static Set<String> _find_singletons_recursive(EditorFileSystemDirectory *p_dir);
+	static RBSet<String> _find_singletons_recursive(EditorFileSystemDirectory *p_dir);
 
 protected:
 	void _notification(int p_what);

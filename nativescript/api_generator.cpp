@@ -36,7 +36,7 @@
 #include "core/config/engine.h"
 #include "core/global_constants.h"
 #include "core/os/file_access.h"
-#include "core/pair.h"
+#include "core/containers/pair.h"
 
 // helper stuff
 
@@ -63,7 +63,7 @@ struct MethodAPI {
 	List<String> argument_types;
 	List<String> argument_names;
 
-	Map<int, Variant> default_arguments;
+	RBMap<int, Variant> default_arguments;
 
 	int argument_count;
 	bool has_varargs;
@@ -92,7 +92,7 @@ struct SignalAPI {
 	String name;
 	List<String> argument_types;
 	List<String> argument_names;
-	Map<int, Variant> default_arguments;
+	RBMap<int, Variant> default_arguments;
 };
 
 struct EnumAPI {

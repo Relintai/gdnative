@@ -210,9 +210,9 @@ void GDAPI godot_basis_new_with_euler_quaternion(godot_basis *r_dest, const godo
 void GDAPI godot_basis_get_elements(const godot_basis *p_self, godot_vector3 *p_elements) {
 	const Basis *self = (const Basis *)p_self;
 	Vector3 *elements = (Vector3 *)p_elements;
-	elements[0] = self->elements[0];
-	elements[1] = self->elements[1];
-	elements[2] = self->elements[2];
+	elements[0] = self->rows[0];
+	elements[1] = self->rows[1];
+	elements[2] = self->rows[2];
 }
 
 godot_vector3 GDAPI godot_basis_get_axis(const godot_basis *p_self, const godot_int p_axis) {

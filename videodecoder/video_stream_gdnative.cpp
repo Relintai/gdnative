@@ -380,7 +380,7 @@ RES ResourceFormatLoaderVideoStreamGDNative::load(const String &p_path, const St
 }
 
 void ResourceFormatLoaderVideoStreamGDNative::get_recognized_extensions(List<String> *p_extensions) const {
-	Map<String, int>::Element *el = VideoDecoderServer::get_instance()->get_extensions().front();
+	RBMap<String, int>::Element *el = VideoDecoderServer::get_instance()->get_extensions().front();
 	while (el) {
 		p_extensions->push_back(el->key());
 		el = el->next();

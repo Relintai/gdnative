@@ -34,11 +34,17 @@
 
 #include "editor/editor_scale.h"
 
+#include "editor/editor_file_dialog.h"
+#include "scene/gui/line_edit.h"
+#include "scene/gui/popup_menu.h"
+#include "scene/gui/tree.h"
+#include "scene/gui/label.h"
+
 void GDNativeLibraryEditor::edit(Ref<GDNativeLibrary> p_library) {
 	library = p_library;
 	Ref<ConfigFile> config = p_library->get_config_file();
 
-	for (Map<String, NativePlatformConfig>::Element *E = platforms.front(); E; E = E->next()) {
+	for (RBMap<String, NativePlatformConfig>::Element *E = platforms.front(); E; E = E->next()) {
 		for (List<String>::Element *it = E->value().entries.front(); it; it = it->next()) {
 			String target = E->key() + "." + it->get();
 			TargetConfig ecfg;
@@ -71,7 +77,7 @@ void GDNativeLibraryEditor::_update_tree() {
 		if (!filter_list->is_item_checked(i)) {
 			continue;
 		}
-		Map<String, NativePlatformConfig>::Element *E = platforms.find(filter_list->get_item_metadata(i));
+		RBMap<String, NativePlatformConfig>::Element *E = platforms.find(filter_list->get_item_metadata(i));
 		if (!text.empty()) {
 			text += ", ";
 		}
@@ -81,9 +87,9 @@ void GDNativeLibraryEditor::_update_tree() {
 		platform->set_text(0, E->get().name);
 		platform->set_metadata(0, E->get().library_extension);
 
-		platform->set_custom_bg_color(0, get_color("prop_category", "Editor"));
-		platform->set_custom_bg_color(1, get_color("prop_category", "Editor"));
-		platform->set_custom_bg_color(2, get_color("prop_category", "Editor"));
+		platform->set_custom_bg_color(0, get_theme_color("prop_category", "Editor"));
+		platform->set_custom_bg_color(1, get_theme_color("prop_category", "Editor"));
+		platform->set_custom_bg_color(2, get_theme_color("prop_category", "Editor"));
 		platform->set_selectable(0, false);
 		platform->set_expand_right(0, true);
 
@@ -94,31 +100,31 @@ void GDNativeLibraryEditor::_update_tree() {
 			bit->set_text(0, it->get());
 			bit->set_metadata(0, target);
 			bit->set_selectable(0, false);
-			bit->set_custom_bg_color(0, get_color("prop_subsection", "Editor"));
+			bit->set_custom_bg_color(0, get_theme_color("prop_subsection", "Editor"));
 
-			bit->add_button(1, get_icon("Folder", "EditorIcons"), BUTTON_SELECT_LIBRARY, false, TTR("Select the dynamic library for this entry"));
+			bit->add_button(1, get_theme_icon("Folder", "EditorIcons"), BUTTON_SELECT_LIBRARY, false, TTR("Select the dynamic library for this entry"));
 			String file = entry_configs[target].library;
 			if (!file.empty()) {
-				bit->add_button(1, get_icon("Clear", "EditorIcons"), BUTTON_CLEAR_LIBRARY, false, TTR("Clear"));
+				bit->add_button(1, get_theme_icon("Clear", "EditorIcons"), BUTTON_CLEAR_LIBRARY, false, TTR("Clear"));
 			}
 			bit->set_text(1, file);
 
-			bit->add_button(2, get_icon("Folder", "EditorIcons"), BUTTON_SELECT_DEPENDENCES, false, TTR("Select dependencies of the library for this entry"));
+			bit->add_button(2, get_theme_icon("Folder", "EditorIcons"), BUTTON_SELECT_DEPENDENCES, false, TTR("Select dependencies of the library for this entry"));
 			Array files = entry_configs[target].dependencies;
 			if (files.size()) {
-				bit->add_button(2, get_icon("Clear", "EditorIcons"), BUTTON_CLEAR_DEPENDENCES, false, TTR("Clear"));
+				bit->add_button(2, get_theme_icon("Clear", "EditorIcons"), BUTTON_CLEAR_DEPENDENCES, false, TTR("Clear"));
 			}
 			bit->set_text(2, Variant(files));
 
-			bit->add_button(3, get_icon("MoveUp", "EditorIcons"), BUTTON_MOVE_UP, false, TTR("Move Up"));
-			bit->add_button(3, get_icon("MoveDown", "EditorIcons"), BUTTON_MOVE_DOWN, false, TTR("Move Down"));
-			bit->add_button(3, get_icon("Remove", "EditorIcons"), BUTTON_ERASE_ENTRY, false, TTR("Remove current entry"));
+			bit->add_button(3, get_theme_icon("MoveUp", "EditorIcons"), BUTTON_MOVE_UP, false, TTR("Move Up"));
+			bit->add_button(3, get_theme_icon("MoveDown", "EditorIcons"), BUTTON_MOVE_DOWN, false, TTR("Move Down"));
+			bit->add_button(3, get_theme_icon("Remove", "EditorIcons"), BUTTON_ERASE_ENTRY, false, TTR("Remove current entry"));
 		}
 
 		TreeItem *new_arch = tree->create_item(platform);
 		new_arch->set_text(0, TTR("Double click to create a new entry"));
 		new_arch->set_text_align(0, TreeItem::ALIGN_CENTER);
-		new_arch->set_custom_color(0, get_color("accent_color", "Editor"));
+		new_arch->set_custom_color(0, get_theme_color("accent_color", "Editor"));
 		new_arch->set_expand_right(0, true);
 		new_arch->set_metadata(1, E->key());
 
@@ -187,7 +193,7 @@ void GDNativeLibraryEditor::_on_item_collapsed(Object *p_item) {
 
 	if (item->is_collapsed()) {
 		collapsed_items.insert(name);
-	} else if (Set<String>::Element *e = collapsed_items.find(name)) {
+	} else if (RBSet<String>::Element *e = collapsed_items.find(name)) {
 		collapsed_items.erase(e);
 	}
 }
@@ -253,7 +259,7 @@ void GDNativeLibraryEditor::_translate_to_config_file() {
 		config->erase_section("entry");
 		config->erase_section("dependencies");
 
-		for (Map<String, NativePlatformConfig>::Element *E = platforms.front(); E; E = E->next()) {
+		for (RBMap<String, NativePlatformConfig>::Element *E = platforms.front(); E; E = E->next()) {
 			for (List<String>::Element *it = E->value().entries.front(); it; it = it->next()) {
 				String target = E->key() + "." + it->get();
 				if (entry_configs[target].library.empty() && entry_configs[target].dependencies.empty()) {
@@ -349,7 +355,7 @@ GDNativeLibraryEditor::GDNativeLibraryEditor() {
 	filter_list->set_hide_on_checkable_item_selection(false);
 
 	int idx = 0;
-	for (Map<String, NativePlatformConfig>::Element *E = platforms.front(); E; E = E->next()) {
+	for (RBMap<String, NativePlatformConfig>::Element *E = platforms.front(); E; E = E->next()) {
 		filter_list->add_check_item(E->get().name, idx);
 		filter_list->set_item_metadata(idx, E->key());
 		filter_list->set_item_checked(idx, true);

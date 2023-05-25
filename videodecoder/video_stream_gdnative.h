@@ -65,7 +65,7 @@ private:
 class VideoDecoderServer {
 private:
 	Vector<VideoDecoderGDNative *> decoders;
-	Map<String, int> extensions;
+	RBMap<String, int> extensions;
 
 	static VideoDecoderServer *instance;
 
@@ -74,7 +74,7 @@ public:
 		return instance;
 	}
 
-	const Map<String, int> &get_extensions() {
+	const RBMap<String, int> &get_extensions() {
 		return extensions;
 	}
 

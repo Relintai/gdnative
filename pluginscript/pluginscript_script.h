@@ -54,15 +54,15 @@ private:
 	StringName _native_parent;
 	SelfList<PluginScript> _script_list;
 
-	Map<StringName, int> _member_lines;
-	Map<StringName, Variant> _properties_default_values;
-	Map<StringName, PropertyInfo> _properties_info;
-	Map<StringName, MethodInfo> _signals_info;
-	Map<StringName, MethodInfo> _methods_info;
-	Map<StringName, MultiplayerAPI::RPCMode> _variables_rset_mode;
-	Map<StringName, MultiplayerAPI::RPCMode> _methods_rpc_mode;
+	RBMap<StringName, int> _member_lines;
+	RBMap<StringName, Variant> _properties_default_values;
+	RBMap<StringName, PropertyInfo> _properties_info;
+	RBMap<StringName, MethodInfo> _signals_info;
+	RBMap<StringName, MethodInfo> _methods_info;
+	RBMap<StringName, MultiplayerAPI::RPCMode> _variables_rset_mode;
+	RBMap<StringName, MultiplayerAPI::RPCMode> _methods_rpc_mode;
 
-	Set<Object *> _instances;
+	RBSet<Object *> _instances;
 	//exported members
 	String _source;
 	String _path;
@@ -77,7 +77,7 @@ protected:
 	Variant _new(const Variant **p_args, int p_argcount, Variant::CallError &r_error);
 
 #ifdef TOOLS_ENABLED
-	Set<PlaceHolderScriptInstance *> placeholders;
+	RBSet<PlaceHolderScriptInstance *> placeholders;
 	//void _update_placeholder(PlaceHolderScriptInstance *p_placeholder);
 	virtual void _placeholder_erased(PlaceHolderScriptInstance *p_placeholder);
 #endif

@@ -34,8 +34,11 @@
 
 #include "editor/editor_node.h"
 
-Set<String> GDNativeLibrarySingletonEditor::_find_singletons_recursive(EditorFileSystemDirectory *p_dir) {
-	Set<String> file_paths;
+#include "core/config/project_settings.h"
+#include "scene/gui/tree.h"
+
+RBSet<String> GDNativeLibrarySingletonEditor::_find_singletons_recursive(EditorFileSystemDirectory *p_dir) {
+	RBSet<String> file_paths;
 
 	// check children
 
@@ -55,9 +58,9 @@ Set<String> GDNativeLibrarySingletonEditor::_find_singletons_recursive(EditorFil
 
 	// check subdirectories
 	for (int i = 0; i < p_dir->get_subdir_count(); i++) {
-		Set<String> paths = _find_singletons_recursive(p_dir->get_subdir(i));
+		RBSet<String> paths = _find_singletons_recursive(p_dir->get_subdir(i));
 
-		for (Set<String>::Element *E = paths.front(); E; E = E->next()) {
+		for (RBSet<String>::Element *E = paths.front(); E; E = E->next()) {
 			file_paths.insert(E->get());
 		}
 	}
@@ -68,7 +71,7 @@ Set<String> GDNativeLibrarySingletonEditor::_find_singletons_recursive(EditorFil
 void GDNativeLibrarySingletonEditor::_discover_singletons() {
 	EditorFileSystemDirectory *dir = EditorFileSystem::get_singleton()->get_filesystem();
 
-	Set<String> file_paths = _find_singletons_recursive(dir);
+	RBSet<String> file_paths = _find_singletons_recursive(dir);
 
 	bool changed = false;
 	Array current_files;
@@ -76,7 +79,7 @@ void GDNativeLibrarySingletonEditor::_discover_singletons() {
 		current_files = ProjectSettings::get_singleton()->get("gdnative/singletons");
 	}
 	Array files;
-	for (Set<String>::Element *E = file_paths.front(); E; E = E->next()) {
+	for (RBSet<String>::Element *E = file_paths.front(); E; E = E->next()) {
 		if (!current_files.has(E->get())) {
 			changed = true;
 		}

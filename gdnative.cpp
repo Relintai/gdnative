@@ -49,7 +49,7 @@ static const bool default_reloadable = true;
 // Defined in gdnative_api_struct.gen.cpp
 extern const godot_gdnative_core_api_struct api_struct;
 
-Map<String, Vector<Ref<GDNative>>> GDNativeLibrary::loaded_libraries;
+RBMap<String, Vector<Ref<GDNative>>> GDNativeLibrary::loaded_libraries;
 
 GDNativeLibrary::GDNativeLibrary() {
 	config_file.instance();
@@ -473,7 +473,7 @@ Vector<StringName> GDNativeCallRegistry::get_native_call_types() {
 	call_types.resize(native_calls.size());
 
 	size_t idx = 0;
-	for (Map<StringName, native_call_cb>::Element *E = native_calls.front(); E; E = E->next(), idx++) {
+	for (RBMap<StringName, native_call_cb>::Element *E = native_calls.front(); E; E = E->next(), idx++) {
 		call_types.write[idx] = E->key();
 	}
 
@@ -481,7 +481,7 @@ Vector<StringName> GDNativeCallRegistry::get_native_call_types() {
 }
 
 Variant GDNative::call_native(StringName p_native_call_type, StringName p_procedure_name, Array p_arguments) {
-	Map<StringName, native_call_cb>::Element *E = GDNativeCallRegistry::singleton->native_calls.find(p_native_call_type);
+	RBMap<StringName, native_call_cb>::Element *E = GDNativeCallRegistry::singleton->native_calls.find(p_native_call_type);
 	if (!E) {
 		ERR_PRINT((String("No handler for native call type \"" + p_native_call_type) + "\" found").utf8().get_data());
 		return Variant();

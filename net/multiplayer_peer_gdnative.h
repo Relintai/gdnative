@@ -32,7 +32,8 @@
 #define MULTIPLAYER_PEER_GDNATIVE_H
 
 #include "core/io/networked_multiplayer_peer.h"
-#include "../gdnative.h"
+
+#include "../include/gdnative/gdnative.h"
 #include "../include/net/godot_net.h"
 
 class MultiplayerPeerGDNative : public NetworkedMultiplayerPeer {

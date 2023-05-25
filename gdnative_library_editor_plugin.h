@@ -64,12 +64,12 @@ class GDNativeLibraryEditor : public Control {
 	EditorFileDialog *file_dialog;
 	ConfirmationDialog *new_architecture_dialog;
 	LineEdit *new_architecture_input;
-	Set<String> collapsed_items;
+	RBSet<String> collapsed_items;
 
 	String showing_platform;
 	Ref<GDNativeLibrary> library;
-	Map<String, NativePlatformConfig> platforms;
-	Map<String, TargetConfig> entry_configs;
+	RBMap<String, NativePlatformConfig> platforms;
+	RBMap<String, TargetConfig> entry_configs;
 
 protected:
 	static void _bind_methods();

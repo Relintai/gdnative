@@ -177,11 +177,11 @@ void PluginScript::update_exports() {
 	ASSERT_SCRIPT_VALID();
 	if (placeholders.size()) {
 		//update placeholders if any
-		Map<StringName, Variant> propdefvalues;
+		RBMap<StringName, Variant> propdefvalues;
 		List<PropertyInfo> propinfos;
 
 		get_script_property_list(&propinfos);
-		for (Set<PlaceHolderScriptInstance *>::Element *E = placeholders.front(); E; E = E->next()) {
+		for (RBSet<PlaceHolderScriptInstance *>::Element *E = placeholders.front(); E; E = E->next()) {
 			E->get()->update(propinfos, _properties_default_values);
 		}
 	}
@@ -359,14 +359,14 @@ Error PluginScript::reload(bool p_keep_state) {
 
 void PluginScript::get_script_method_list(List<MethodInfo> *r_methods) const {
 	ASSERT_SCRIPT_VALID();
-	for (Map<StringName, MethodInfo>::Element *e = _methods_info.front(); e != nullptr; e = e->next()) {
+	for (RBMap<StringName, MethodInfo>::Element *e = _methods_info.front(); e != nullptr; e = e->next()) {
 		r_methods->push_back(e->get());
 	}
 }
 
 void PluginScript::get_script_property_list(List<PropertyInfo> *r_properties) const {
 	ASSERT_SCRIPT_VALID();
-	for (Map<StringName, PropertyInfo>::Element *e = _properties_info.front(); e != nullptr; e = e->next()) {
+	for (RBMap<StringName, PropertyInfo>::Element *e = _properties_info.front(); e != nullptr; e = e->next()) {
 		r_properties->push_back(e->get());
 	}
 }
@@ -378,7 +378,7 @@ bool PluginScript::has_method(const StringName &p_method) const {
 
 MethodInfo PluginScript::get_method_info(const StringName &p_method) const {
 	ASSERT_SCRIPT_VALID_V(MethodInfo());
-	const Map<StringName, MethodInfo>::Element *e = _methods_info.find(p_method);
+	const RBMap<StringName, MethodInfo>::Element *e = _methods_info.find(p_method);
 	if (e != nullptr) {
 		return e->get();
 	} else {
@@ -393,7 +393,7 @@ bool PluginScript::has_property(const StringName &p_method) const {
 
 PropertyInfo PluginScript::get_property_info(const StringName &p_property) const {
 	ASSERT_SCRIPT_VALID_V(PropertyInfo());
-	const Map<StringName, PropertyInfo>::Element *e = _properties_info.find(p_property);
+	const RBMap<StringName, PropertyInfo>::Element *e = _properties_info.find(p_property);
 	if (e != nullptr) {
 		return e->get();
 	} else {
@@ -404,7 +404,7 @@ PropertyInfo PluginScript::get_property_info(const StringName &p_property) const
 bool PluginScript::get_property_default_value(const StringName &p_property, Variant &r_value) const {
 	ASSERT_SCRIPT_VALID_V(false);
 #ifdef TOOLS_ENABLED
-	const Map<StringName, Variant>::Element *e = _properties_default_values.find(p_property);
+	const RBMap<StringName, Variant>::Element *e = _properties_default_values.find(p_property);
 	if (e != nullptr) {
 		r_value = e->get();
 		return true;
@@ -451,7 +451,7 @@ bool PluginScript::has_script_signal(const StringName &p_signal) const {
 
 void PluginScript::get_script_signal_list(List<MethodInfo> *r_signals) const {
 	ASSERT_SCRIPT_VALID();
-	for (Map<StringName, MethodInfo>::Element *e = _signals_info.front(); e != nullptr; e = e->next()) {
+	for (RBMap<StringName, MethodInfo>::Element *e = _signals_info.front(); e != nullptr; e = e->next()) {
 		r_signals->push_back(e->get());
 	}
 }
@@ -467,7 +467,7 @@ int PluginScript::get_member_line(const StringName &p_member) const {
 
 MultiplayerAPI::RPCMode PluginScript::get_rpc_mode(const StringName &p_method) const {
 	ASSERT_SCRIPT_VALID_V(MultiplayerAPI::RPC_MODE_DISABLED);
-	const Map<StringName, MultiplayerAPI::RPCMode>::Element *e = _methods_rpc_mode.find(p_method);
+	const RBMap<StringName, MultiplayerAPI::RPCMode>::Element *e = _methods_rpc_mode.find(p_method);
 	if (e != nullptr) {
 		return e->get();
 	} else {
@@ -477,7 +477,7 @@ MultiplayerAPI::RPCMode PluginScript::get_rpc_mode(const StringName &p_method) c
 
 MultiplayerAPI::RPCMode PluginScript::get_rset_mode(const StringName &p_variable) const {
 	ASSERT_SCRIPT_VALID_V(MultiplayerAPI::RPC_MODE_DISABLED);
-	const Map<StringName, MultiplayerAPI::RPCMode>::Element *e = _variables_rset_mode.find(p_variable);
+	const RBMap<StringName, MultiplayerAPI::RPCMode>::Element *e = _variables_rset_mode.find(p_variable);
 	if (e != nullptr) {
 		return e->get();
 	} else {

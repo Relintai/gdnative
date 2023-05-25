@@ -78,19 +78,19 @@ void GDAPI godot_string_new_with_wide_string(godot_string *r_dest, const wchar_t
 	memnew_placement(dest, String(p_contents, p_size));
 }
 
-const wchar_t GDAPI *godot_string_operator_index(godot_string *p_self, const godot_int p_idx) {
+const char32_t GDAPI *godot_string_operator_index(godot_string *p_self, const godot_int p_idx) {
 	String *self = (String *)p_self;
 	return &(self->operator[](p_idx));
 }
 
-wchar_t GDAPI godot_string_operator_index_const(const godot_string *p_self, const godot_int p_idx) {
+char32_t GDAPI godot_string_operator_index_const(const godot_string *p_self, const godot_int p_idx) {
 	const String *self = (const String *)p_self;
 	return self->operator[](p_idx);
 }
 
-const wchar_t GDAPI *godot_string_wide_str(const godot_string *p_self) {
+const char32_t GDAPI *godot_string_wide_str(const godot_string *p_self) {
 	const String *self = (const String *)p_self;
-	return self->c_str();
+	return self->get_data();
 }
 
 godot_bool GDAPI godot_string_operator_equal(const godot_string *p_self, const godot_string *p_b) {
