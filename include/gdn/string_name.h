@@ -58,9 +58,6 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI pandemonium_string_name_new(pandemonium_string_name *r_dest, const pandemonium_string *p_name);
-void GDAPI pandemonium_string_name_new_data(pandemonium_string_name *r_dest, const char *p_name);
-
 pandemonium_string GDAPI pandemonium_string_name_get_name(const pandemonium_string_name *p_self);
 
 uint32_t GDAPI pandemonium_string_name_get_hash(const pandemonium_string_name *p_self);
@@ -68,6 +65,10 @@ const void GDAPI *pandemonium_string_name_get_data_unique_pointer(const pandemon
 
 pandemonium_bool GDAPI pandemonium_string_name_operator_equal(const pandemonium_string_name *p_self, const pandemonium_string_name *p_other);
 pandemonium_bool GDAPI pandemonium_string_name_operator_less(const pandemonium_string_name *p_self, const pandemonium_string_name *p_other);
+
+void GDAPI pandemonium_string_name_new(pandemonium_string_name *r_dest, const pandemonium_string *p_name);
+void GDAPI pandemonium_string_name_new_data(pandemonium_string_name *r_dest, const char *p_name);
+//static variant
 
 void GDAPI pandemonium_string_name_destroy(pandemonium_string_name *p_self);
 
