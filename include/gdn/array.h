@@ -2,8 +2,8 @@
 /*  array.h                                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_ARRAY_SIZE sizeof(void *)
+#define PANDEMONIUM_ARRAY_SIZE sizeof(void *)
 
-#ifndef GODOT_CORE_API_GODOT_ARRAY_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_ARRAY_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_ARRAY_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_ARRAY_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_ARRAY_SIZE];
-} godot_array;
+	uint8_t _dont_touch_that[PANDEMONIUM_ARRAY_SIZE];
+} pandemonium_array;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -60,85 +60,85 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_array_new(godot_array *r_dest);
-void GDAPI godot_array_new_copy(godot_array *r_dest, const godot_array *p_src);
-void GDAPI godot_array_new_pool_color_array(godot_array *r_dest, const godot_pool_color_array *p_pca);
-void GDAPI godot_array_new_pool_vector3_array(godot_array *r_dest, const godot_pool_vector3_array *p_pv3a);
-void GDAPI godot_array_new_pool_vector2_array(godot_array *r_dest, const godot_pool_vector2_array *p_pv2a);
-void GDAPI godot_array_new_pool_string_array(godot_array *r_dest, const godot_pool_string_array *p_psa);
-void GDAPI godot_array_new_pool_real_array(godot_array *r_dest, const godot_pool_real_array *p_pra);
-void GDAPI godot_array_new_pool_int_array(godot_array *r_dest, const godot_pool_int_array *p_pia);
-void GDAPI godot_array_new_pool_byte_array(godot_array *r_dest, const godot_pool_byte_array *p_pba);
+void GDAPI pandemonium_array_new(pandemonium_array *r_dest);
+void GDAPI pandemonium_array_new_copy(pandemonium_array *r_dest, const pandemonium_array *p_src);
+void GDAPI pandemonium_array_new_pool_color_array(pandemonium_array *r_dest, const pandemonium_pool_color_array *p_pca);
+void GDAPI pandemonium_array_new_pool_vector3_array(pandemonium_array *r_dest, const pandemonium_pool_vector3_array *p_pv3a);
+void GDAPI pandemonium_array_new_pool_vector2_array(pandemonium_array *r_dest, const pandemonium_pool_vector2_array *p_pv2a);
+void GDAPI pandemonium_array_new_pool_string_array(pandemonium_array *r_dest, const pandemonium_pool_string_array *p_psa);
+void GDAPI pandemonium_array_new_pool_real_array(pandemonium_array *r_dest, const pandemonium_pool_real_array *p_pra);
+void GDAPI pandemonium_array_new_pool_int_array(pandemonium_array *r_dest, const pandemonium_pool_int_array *p_pia);
+void GDAPI pandemonium_array_new_pool_byte_array(pandemonium_array *r_dest, const pandemonium_pool_byte_array *p_pba);
 
-void GDAPI godot_array_set(godot_array *p_self, const godot_int p_idx, const godot_variant *p_value);
+void GDAPI pandemonium_array_set(pandemonium_array *p_self, const pandemonium_int p_idx, const pandemonium_variant *p_value);
 
-godot_variant GDAPI godot_array_get(const godot_array *p_self, const godot_int p_idx);
+pandemonium_variant GDAPI pandemonium_array_get(const pandemonium_array *p_self, const pandemonium_int p_idx);
 
-godot_variant GDAPI *godot_array_operator_index(godot_array *p_self, const godot_int p_idx);
+pandemonium_variant GDAPI *pandemonium_array_operator_index(pandemonium_array *p_self, const pandemonium_int p_idx);
 
-const godot_variant GDAPI *godot_array_operator_index_const(const godot_array *p_self, const godot_int p_idx);
+const pandemonium_variant GDAPI *pandemonium_array_operator_index_const(const pandemonium_array *p_self, const pandemonium_int p_idx);
 
-void GDAPI godot_array_append(godot_array *p_self, const godot_variant *p_value);
+void GDAPI pandemonium_array_append(pandemonium_array *p_self, const pandemonium_variant *p_value);
 
-void GDAPI godot_array_clear(godot_array *p_self);
+void GDAPI pandemonium_array_clear(pandemonium_array *p_self);
 
-godot_int GDAPI godot_array_count(const godot_array *p_self, const godot_variant *p_value);
+pandemonium_int GDAPI pandemonium_array_count(const pandemonium_array *p_self, const pandemonium_variant *p_value);
 
-godot_bool GDAPI godot_array_empty(const godot_array *p_self);
+pandemonium_bool GDAPI pandemonium_array_empty(const pandemonium_array *p_self);
 
-void GDAPI godot_array_erase(godot_array *p_self, const godot_variant *p_value);
+void GDAPI pandemonium_array_erase(pandemonium_array *p_self, const pandemonium_variant *p_value);
 
-godot_variant GDAPI godot_array_front(const godot_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_front(const pandemonium_array *p_self);
 
-godot_variant GDAPI godot_array_back(const godot_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_back(const pandemonium_array *p_self);
 
-godot_int GDAPI godot_array_find(const godot_array *p_self, const godot_variant *p_what, const godot_int p_from);
+pandemonium_int GDAPI pandemonium_array_find(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from);
 
-godot_int GDAPI godot_array_find_last(const godot_array *p_self, const godot_variant *p_what);
+pandemonium_int GDAPI pandemonium_array_find_last(const pandemonium_array *p_self, const pandemonium_variant *p_what);
 
-godot_bool GDAPI godot_array_has(const godot_array *p_self, const godot_variant *p_value);
+pandemonium_bool GDAPI pandemonium_array_has(const pandemonium_array *p_self, const pandemonium_variant *p_value);
 
-godot_int GDAPI godot_array_hash(const godot_array *p_self);
+pandemonium_int GDAPI pandemonium_array_hash(const pandemonium_array *p_self);
 
-void GDAPI godot_array_insert(godot_array *p_self, const godot_int p_pos, const godot_variant *p_value);
+void GDAPI pandemonium_array_insert(pandemonium_array *p_self, const pandemonium_int p_pos, const pandemonium_variant *p_value);
 
-void GDAPI godot_array_invert(godot_array *p_self);
+void GDAPI pandemonium_array_invert(pandemonium_array *p_self);
 
-godot_variant GDAPI godot_array_pop_back(godot_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_pop_back(pandemonium_array *p_self);
 
-godot_variant GDAPI godot_array_pop_front(godot_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_pop_front(pandemonium_array *p_self);
 
-void GDAPI godot_array_push_back(godot_array *p_self, const godot_variant *p_value);
+void GDAPI pandemonium_array_push_back(pandemonium_array *p_self, const pandemonium_variant *p_value);
 
-void GDAPI godot_array_push_front(godot_array *p_self, const godot_variant *p_value);
+void GDAPI pandemonium_array_push_front(pandemonium_array *p_self, const pandemonium_variant *p_value);
 
-void GDAPI godot_array_remove(godot_array *p_self, const godot_int p_idx);
+void GDAPI pandemonium_array_remove(pandemonium_array *p_self, const pandemonium_int p_idx);
 
-void GDAPI godot_array_resize(godot_array *p_self, const godot_int p_size);
+void GDAPI pandemonium_array_resize(pandemonium_array *p_self, const pandemonium_int p_size);
 
-godot_int GDAPI godot_array_rfind(const godot_array *p_self, const godot_variant *p_what, const godot_int p_from);
+pandemonium_int GDAPI pandemonium_array_rfind(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from);
 
-godot_int GDAPI godot_array_size(const godot_array *p_self);
+pandemonium_int GDAPI pandemonium_array_size(const pandemonium_array *p_self);
 
-void GDAPI godot_array_sort(godot_array *p_self);
+void GDAPI pandemonium_array_sort(pandemonium_array *p_self);
 
-void GDAPI godot_array_sort_custom(godot_array *p_self, godot_object *p_obj, const godot_string *p_func);
+void GDAPI pandemonium_array_sort_custom(pandemonium_array *p_self, pandemonium_object *p_obj, const pandemonium_string *p_func);
 
-godot_int GDAPI godot_array_bsearch(godot_array *p_self, const godot_variant *p_value, const godot_bool p_before);
+pandemonium_int GDAPI pandemonium_array_bsearch(pandemonium_array *p_self, const pandemonium_variant *p_value, const pandemonium_bool p_before);
 
-godot_int GDAPI godot_array_bsearch_custom(godot_array *p_self, const godot_variant *p_value, godot_object *p_obj, const godot_string *p_func, const godot_bool p_before);
+pandemonium_int GDAPI pandemonium_array_bsearch_custom(pandemonium_array *p_self, const pandemonium_variant *p_value, pandemonium_object *p_obj, const pandemonium_string *p_func, const pandemonium_bool p_before);
 
-void GDAPI godot_array_destroy(godot_array *p_self);
+void GDAPI pandemonium_array_destroy(pandemonium_array *p_self);
 
-godot_array GDAPI godot_array_duplicate(const godot_array *p_self, const godot_bool p_deep);
+pandemonium_array GDAPI pandemonium_array_duplicate(const pandemonium_array *p_self, const pandemonium_bool p_deep);
 
-godot_array GDAPI godot_array_slice(const godot_array *p_self, const godot_int p_begin, const godot_int p_end, const godot_int p_step, const godot_bool p_deep);
+pandemonium_array GDAPI pandemonium_array_slice(const pandemonium_array *p_self, const pandemonium_int p_begin, const pandemonium_int p_end, const pandemonium_int p_step, const pandemonium_bool p_deep);
 
-godot_variant GDAPI godot_array_max(const godot_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_max(const pandemonium_array *p_self);
 
-godot_variant GDAPI godot_array_min(const godot_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_min(const pandemonium_array *p_self);
 
-void GDAPI godot_array_shuffle(godot_array *p_self);
+void GDAPI pandemonium_array_shuffle(pandemonium_array *p_self);
 
 #ifdef __cplusplus
 }

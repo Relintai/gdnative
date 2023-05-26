@@ -2,8 +2,8 @@
 /*  multiplayer_peer_gdnative.h                                           */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -34,21 +34,21 @@
 #include "core/io/networked_multiplayer_peer.h"
 
 #include "gdn/gdnative.h"
-#include "net/godot_net.h"
+#include "net/pandemonium_net.h"
 
 class MultiplayerPeerGDNative : public NetworkedMultiplayerPeer {
 	GDCLASS(MultiplayerPeerGDNative, NetworkedMultiplayerPeer);
 
 protected:
 	static void _bind_methods();
-	const godot_net_multiplayer_peer *interface;
+	const pandemonium_net_multiplayer_peer *interface;
 
 public:
 	MultiplayerPeerGDNative();
 	~MultiplayerPeerGDNative();
 
 	/* Sets the interface implementation from GDNative */
-	void set_native_multiplayer_peer(const godot_net_multiplayer_peer *p_impl);
+	void set_native_multiplayer_peer(const pandemonium_net_multiplayer_peer *p_impl);
 
 	/* Specific to PacketPeer */
 	virtual Error get_packet(const uint8_t **r_buffer, int &r_buffer_size);

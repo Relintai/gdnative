@@ -2,8 +2,8 @@
 /*  api_generator.cpp                                                     */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -164,7 +164,7 @@ struct ConstantAPIComparator {
 };
 
 /*
- * Reads the entire Godot API to a list
+ * Reads the entire Pandemonium API to a list
  */
 List<ClassAPI> generate_c_api_classes() {
 	List<ClassAPI> api;
@@ -511,7 +511,7 @@ static List<String> generate_c_api_json(const List<ClassAPI> &p_api) {
 #endif
 
 /*
- * Saves the whole Godot API to a JSON file located at
+ * Saves the whole Pandemonium API to a JSON file located at
  *  p_path
  */
 Error generate_c_api(const String &p_path) {

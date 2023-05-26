@@ -2,8 +2,8 @@
 /*  aabb.h                                                                */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_AABB_SIZE 24
+#define PANDEMONIUM_AABB_SIZE 24
 
-#ifndef GODOT_CORE_API_GODOT_AABB_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_AABB_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_AABB_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_AABB_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_AABB_SIZE];
-} godot_aabb;
+	uint8_t _dont_touch_that[PANDEMONIUM_AABB_SIZE];
+} pandemonium_aabb;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -59,57 +59,57 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_aabb_new(godot_aabb *r_dest, const godot_vector3 *p_pos, const godot_vector3 *p_size);
+void GDAPI pandemonium_aabb_new(pandemonium_aabb *r_dest, const pandemonium_vector3 *p_pos, const pandemonium_vector3 *p_size);
 
-godot_vector3 GDAPI godot_aabb_get_position(const godot_aabb *p_self);
-void GDAPI godot_aabb_set_position(const godot_aabb *p_self, const godot_vector3 *p_v);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_position(const pandemonium_aabb *p_self);
+void GDAPI pandemonium_aabb_set_position(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_v);
 
-godot_vector3 GDAPI godot_aabb_get_size(const godot_aabb *p_self);
-void GDAPI godot_aabb_set_size(const godot_aabb *p_self, const godot_vector3 *p_v);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_size(const pandemonium_aabb *p_self);
+void GDAPI pandemonium_aabb_set_size(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_v);
 
-godot_string GDAPI godot_aabb_as_string(const godot_aabb *p_self);
+pandemonium_string GDAPI pandemonium_aabb_as_string(const pandemonium_aabb *p_self);
 
-godot_real GDAPI godot_aabb_get_area(const godot_aabb *p_self);
+pandemonium_real GDAPI pandemonium_aabb_get_area(const pandemonium_aabb *p_self);
 
-godot_bool GDAPI godot_aabb_has_no_area(const godot_aabb *p_self);
+pandemonium_bool GDAPI pandemonium_aabb_has_no_area(const pandemonium_aabb *p_self);
 
-godot_bool GDAPI godot_aabb_has_no_surface(const godot_aabb *p_self);
+pandemonium_bool GDAPI pandemonium_aabb_has_no_surface(const pandemonium_aabb *p_self);
 
-godot_bool GDAPI godot_aabb_intersects(const godot_aabb *p_self, const godot_aabb *p_with);
+pandemonium_bool GDAPI pandemonium_aabb_intersects(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
 
-godot_bool GDAPI godot_aabb_encloses(const godot_aabb *p_self, const godot_aabb *p_with);
+pandemonium_bool GDAPI pandemonium_aabb_encloses(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
 
-godot_aabb GDAPI godot_aabb_merge(const godot_aabb *p_self, const godot_aabb *p_with);
+pandemonium_aabb GDAPI pandemonium_aabb_merge(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
 
-godot_aabb GDAPI godot_aabb_intersection(const godot_aabb *p_self, const godot_aabb *p_with);
+pandemonium_aabb GDAPI pandemonium_aabb_intersection(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
 
-godot_bool GDAPI godot_aabb_intersects_plane(const godot_aabb *p_self, const godot_plane *p_plane);
+pandemonium_bool GDAPI pandemonium_aabb_intersects_plane(const pandemonium_aabb *p_self, const pandemonium_plane *p_plane);
 
-godot_bool GDAPI godot_aabb_intersects_segment(const godot_aabb *p_self, const godot_vector3 *p_from, const godot_vector3 *p_to);
+pandemonium_bool GDAPI pandemonium_aabb_intersects_segment(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_to);
 
-godot_bool GDAPI godot_aabb_has_point(const godot_aabb *p_self, const godot_vector3 *p_point);
+pandemonium_bool GDAPI pandemonium_aabb_has_point(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_point);
 
-godot_vector3 GDAPI godot_aabb_get_support(const godot_aabb *p_self, const godot_vector3 *p_dir);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_support(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_dir);
 
-godot_vector3 GDAPI godot_aabb_get_longest_axis(const godot_aabb *p_self);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_longest_axis(const pandemonium_aabb *p_self);
 
-godot_int GDAPI godot_aabb_get_longest_axis_index(const godot_aabb *p_self);
+pandemonium_int GDAPI pandemonium_aabb_get_longest_axis_index(const pandemonium_aabb *p_self);
 
-godot_real GDAPI godot_aabb_get_longest_axis_size(const godot_aabb *p_self);
+pandemonium_real GDAPI pandemonium_aabb_get_longest_axis_size(const pandemonium_aabb *p_self);
 
-godot_vector3 GDAPI godot_aabb_get_shortest_axis(const godot_aabb *p_self);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_shortest_axis(const pandemonium_aabb *p_self);
 
-godot_int GDAPI godot_aabb_get_shortest_axis_index(const godot_aabb *p_self);
+pandemonium_int GDAPI pandemonium_aabb_get_shortest_axis_index(const pandemonium_aabb *p_self);
 
-godot_real GDAPI godot_aabb_get_shortest_axis_size(const godot_aabb *p_self);
+pandemonium_real GDAPI pandemonium_aabb_get_shortest_axis_size(const pandemonium_aabb *p_self);
 
-godot_aabb GDAPI godot_aabb_expand(const godot_aabb *p_self, const godot_vector3 *p_to_point);
+pandemonium_aabb GDAPI pandemonium_aabb_expand(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_to_point);
 
-godot_aabb GDAPI godot_aabb_grow(const godot_aabb *p_self, const godot_real p_by);
+pandemonium_aabb GDAPI pandemonium_aabb_grow(const pandemonium_aabb *p_self, const pandemonium_real p_by);
 
-godot_vector3 GDAPI godot_aabb_get_endpoint(const godot_aabb *p_self, const godot_int p_idx);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_endpoint(const pandemonium_aabb *p_self, const pandemonium_int p_idx);
 
-godot_bool GDAPI godot_aabb_operator_equal(const godot_aabb *p_self, const godot_aabb *p_b);
+pandemonium_bool GDAPI pandemonium_aabb_operator_equal(const pandemonium_aabb *p_self, const pandemonium_aabb *p_b);
 
 #ifdef __cplusplus
 }

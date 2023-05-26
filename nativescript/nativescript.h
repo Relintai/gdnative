@@ -2,8 +2,8 @@
 /*  nativescript.h                                                        */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -43,7 +43,7 @@
 #include "scene/main/node.h"
 
 #include "../gdnative.h"
-#include <nativescript/godot_nativescript.h>
+#include <nativescript/pandemonium_nativescript.h>
 
 #ifndef NO_THREADS
 #include "core/os/mutex.h"
@@ -51,14 +51,14 @@
 
 struct NativeScriptDesc {
 	struct Method {
-		godot_instance_method method;
+		pandemonium_instance_method method;
 		MethodInfo info;
 		int rpc_mode;
 		String documentation;
 	};
 	struct Property {
-		godot_property_set_func setter;
-		godot_property_get_func getter;
+		pandemonium_property_set_func setter;
+		pandemonium_property_get_func getter;
 		PropertyInfo info;
 		Variant default_value;
 		int rset_mode;
@@ -76,8 +76,8 @@ struct NativeScriptDesc {
 	StringName base;
 	StringName base_native_type;
 	NativeScriptDesc *base_data;
-	godot_instance_create_func create_func;
-	godot_instance_destroy_func destroy_func;
+	pandemonium_instance_create_func create_func;
+	pandemonium_instance_destroy_func destroy_func;
 
 	String documentation;
 
@@ -93,8 +93,8 @@ struct NativeScriptDesc {
 			base_native_type(),
 			documentation(),
 			type_tag(nullptr) {
-		memset(&create_func, 0, sizeof(godot_instance_create_func));
-		memset(&destroy_func, 0, sizeof(godot_instance_destroy_func));
+		memset(&create_func, 0, sizeof(pandemonium_instance_create_func));
+		memset(&destroy_func, 0, sizeof(pandemonium_instance_destroy_func));
 	}
 };
 
@@ -250,7 +250,7 @@ private:
 
 	void call_libraries_cb(const StringName &name);
 
-	Vector<Pair<bool, godot_instance_binding_functions>> binding_functions;
+	Vector<Pair<bool, pandemonium_instance_binding_functions>> binding_functions;
 	RBSet<Vector<void *> *> binding_instances;
 
 	RBMap<int, HashMap<StringName, const void *>> global_type_tags;
@@ -341,7 +341,7 @@ public:
 	virtual int profiling_get_accumulated_data(ProfilingInfo *p_info_arr, int p_info_max);
 	virtual int profiling_get_frame_data(ProfilingInfo *p_info_arr, int p_info_max);
 
-	int register_binding_functions(godot_instance_binding_functions p_binding_functions);
+	int register_binding_functions(pandemonium_instance_binding_functions p_binding_functions);
 	void unregister_binding_functions(int p_idx);
 
 	void *get_instance_binding_data(int p_idx, Object *p_object);

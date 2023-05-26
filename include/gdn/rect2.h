@@ -2,8 +2,8 @@
 /*  rect2.h                                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,11 +37,11 @@ extern "C" {
 
 #include <stdint.h>
 
-#ifndef GODOT_CORE_API_GODOT_RECT2_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_RECT2_TYPE_DEFINED
-typedef struct godot_rect2 {
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_RECT2_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_RECT2_TYPE_DEFINED
+typedef struct pandemonium_rect2 {
 	uint8_t _dont_touch_that[16];
-} godot_rect2;
+} pandemonium_rect2;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -56,44 +56,44 @@ typedef struct godot_rect2 {
 extern "C" {
 #endif
 
-void GDAPI godot_rect2_new_with_position_and_size(godot_rect2 *r_dest, const godot_vector2 *p_pos, const godot_vector2 *p_size);
-void GDAPI godot_rect2_new(godot_rect2 *r_dest, const godot_real p_x, const godot_real p_y, const godot_real p_width, const godot_real p_height);
+void GDAPI pandemonium_rect2_new_with_position_and_size(pandemonium_rect2 *r_dest, const pandemonium_vector2 *p_pos, const pandemonium_vector2 *p_size);
+void GDAPI pandemonium_rect2_new(pandemonium_rect2 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_width, const pandemonium_real p_height);
 
-godot_string GDAPI godot_rect2_as_string(const godot_rect2 *p_self);
+pandemonium_string GDAPI pandemonium_rect2_as_string(const pandemonium_rect2 *p_self);
 
-godot_real GDAPI godot_rect2_get_area(const godot_rect2 *p_self);
+pandemonium_real GDAPI pandemonium_rect2_get_area(const pandemonium_rect2 *p_self);
 
-godot_bool GDAPI godot_rect2_intersects(const godot_rect2 *p_self, const godot_rect2 *p_b);
+pandemonium_bool GDAPI pandemonium_rect2_intersects(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
-godot_bool GDAPI godot_rect2_encloses(const godot_rect2 *p_self, const godot_rect2 *p_b);
+pandemonium_bool GDAPI pandemonium_rect2_encloses(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
-godot_bool GDAPI godot_rect2_has_no_area(const godot_rect2 *p_self);
+pandemonium_bool GDAPI pandemonium_rect2_has_no_area(const pandemonium_rect2 *p_self);
 
-godot_rect2 GDAPI godot_rect2_clip(const godot_rect2 *p_self, const godot_rect2 *p_b);
+pandemonium_rect2 GDAPI pandemonium_rect2_clip(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
-godot_rect2 GDAPI godot_rect2_merge(const godot_rect2 *p_self, const godot_rect2 *p_b);
+pandemonium_rect2 GDAPI pandemonium_rect2_merge(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
-godot_bool GDAPI godot_rect2_has_point(const godot_rect2 *p_self, const godot_vector2 *p_point);
+pandemonium_bool GDAPI pandemonium_rect2_has_point(const pandemonium_rect2 *p_self, const pandemonium_vector2 *p_point);
 
-godot_rect2 GDAPI godot_rect2_grow(const godot_rect2 *p_self, const godot_real p_by);
+pandemonium_rect2 GDAPI pandemonium_rect2_grow(const pandemonium_rect2 *p_self, const pandemonium_real p_by);
 
-godot_rect2 GDAPI godot_rect2_grow_individual(const godot_rect2 *p_self, const godot_real p_left, const godot_real p_top, const godot_real p_right, const godot_real p_bottom);
+pandemonium_rect2 GDAPI pandemonium_rect2_grow_individual(const pandemonium_rect2 *p_self, const pandemonium_real p_left, const pandemonium_real p_top, const pandemonium_real p_right, const pandemonium_real p_bottom);
 
-godot_rect2 GDAPI godot_rect2_grow_margin(const godot_rect2 *p_self, const godot_int p_margin, const godot_real p_by);
+pandemonium_rect2 GDAPI pandemonium_rect2_grow_margin(const pandemonium_rect2 *p_self, const pandemonium_int p_margin, const pandemonium_real p_by);
 
-godot_rect2 GDAPI godot_rect2_abs(const godot_rect2 *p_self);
+pandemonium_rect2 GDAPI pandemonium_rect2_abs(const pandemonium_rect2 *p_self);
 
-godot_rect2 GDAPI godot_rect2_expand(const godot_rect2 *p_self, const godot_vector2 *p_to);
+pandemonium_rect2 GDAPI pandemonium_rect2_expand(const pandemonium_rect2 *p_self, const pandemonium_vector2 *p_to);
 
-godot_bool GDAPI godot_rect2_operator_equal(const godot_rect2 *p_self, const godot_rect2 *p_b);
+pandemonium_bool GDAPI pandemonium_rect2_operator_equal(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
-godot_vector2 GDAPI godot_rect2_get_position(const godot_rect2 *p_self);
+pandemonium_vector2 GDAPI pandemonium_rect2_get_position(const pandemonium_rect2 *p_self);
 
-godot_vector2 GDAPI godot_rect2_get_size(const godot_rect2 *p_self);
+pandemonium_vector2 GDAPI pandemonium_rect2_get_size(const pandemonium_rect2 *p_self);
 
-void GDAPI godot_rect2_set_position(godot_rect2 *p_self, const godot_vector2 *p_pos);
+void GDAPI pandemonium_rect2_set_position(pandemonium_rect2 *p_self, const pandemonium_vector2 *p_pos);
 
-void GDAPI godot_rect2_set_size(godot_rect2 *p_self, const godot_vector2 *p_size);
+void GDAPI pandemonium_rect2_set_size(pandemonium_rect2 *p_self, const pandemonium_vector2 *p_size);
 
 #ifdef __cplusplus
 }

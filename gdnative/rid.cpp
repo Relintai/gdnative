@@ -2,8 +2,8 @@
 /*  rid.cpp                                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -38,34 +38,34 @@
 extern "C" {
 #endif
 
-static_assert(sizeof(godot_rid) == sizeof(RID), "RID size mismatch");
+static_assert(sizeof(pandemonium_rid) == sizeof(RID), "RID size mismatch");
 
-void GDAPI godot_rid_new(godot_rid *r_dest) {
+void GDAPI pandemonium_rid_new(pandemonium_rid *r_dest) {
 	RID *dest = (RID *)r_dest;
 	memnew_placement(dest, RID);
 }
 
-godot_int GDAPI godot_rid_get_id(const godot_rid *p_self) {
+pandemonium_int GDAPI pandemonium_rid_get_id(const pandemonium_rid *p_self) {
 	const RID *self = (const RID *)p_self;
 	return self->get_id();
 }
 
-void GDAPI godot_rid_new_with_resource(godot_rid *r_dest, const godot_object *p_from) {
+void GDAPI pandemonium_rid_new_with_resource(pandemonium_rid *r_dest, const pandemonium_object *p_from) {
 	const Resource *res_from = Object::cast_to<Resource>((Object *)p_from);
-	godot_rid_new(r_dest);
+	pandemonium_rid_new(r_dest);
 	if (res_from) {
 		RID *dest = (RID *)r_dest;
 		*dest = RID(res_from->get_rid());
 	}
 }
 
-godot_bool GDAPI godot_rid_operator_equal(const godot_rid *p_self, const godot_rid *p_b) {
+pandemonium_bool GDAPI pandemonium_rid_operator_equal(const pandemonium_rid *p_self, const pandemonium_rid *p_b) {
 	const RID *self = (const RID *)p_self;
 	const RID *b = (const RID *)p_b;
 	return *self == *b;
 }
 
-godot_bool GDAPI godot_rid_operator_less(const godot_rid *p_self, const godot_rid *p_b) {
+pandemonium_bool GDAPI pandemonium_rid_operator_less(const pandemonium_rid *p_self, const pandemonium_rid *p_b) {
 	const RID *self = (const RID *)p_self;
 	const RID *b = (const RID *)p_b;
 	return *self < *b;

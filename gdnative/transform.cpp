@@ -2,8 +2,8 @@
 /*  transform.cpp                                                         */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,9 +37,9 @@
 extern "C" {
 #endif
 
-static_assert(sizeof(godot_transform) == sizeof(Transform), "Transform size mismatch");
+static_assert(sizeof(pandemonium_transform) == sizeof(Transform), "Transform size mismatch");
 
-void GDAPI godot_transform_new_with_axis_origin(godot_transform *r_dest, const godot_vector3 *p_x_axis, const godot_vector3 *p_y_axis, const godot_vector3 *p_z_axis, const godot_vector3 *p_origin) {
+void GDAPI pandemonium_transform_new_with_axis_origin(pandemonium_transform *r_dest, const pandemonium_vector3 *p_x_axis, const pandemonium_vector3 *p_y_axis, const pandemonium_vector3 *p_z_axis, const pandemonium_vector3 *p_origin) {
 	const Vector3 *x_axis = (const Vector3 *)p_x_axis;
 	const Vector3 *y_axis = (const Vector3 *)p_y_axis;
 	const Vector3 *z_axis = (const Vector3 *)p_z_axis;
@@ -51,99 +51,99 @@ void GDAPI godot_transform_new_with_axis_origin(godot_transform *r_dest, const g
 	dest->origin = *origin;
 }
 
-void GDAPI godot_transform_new(godot_transform *r_dest, const godot_basis *p_basis, const godot_vector3 *p_origin) {
+void GDAPI pandemonium_transform_new(pandemonium_transform *r_dest, const pandemonium_basis *p_basis, const pandemonium_vector3 *p_origin) {
 	const Basis *basis = (const Basis *)p_basis;
 	const Vector3 *origin = (const Vector3 *)p_origin;
 	Transform *dest = (Transform *)r_dest;
 	*dest = Transform(*basis, *origin);
 }
 
-void GDAPI godot_transform_new_with_quaternion(godot_transform *r_dest, const godot_quaternion *p_quaternion) {
+void GDAPI pandemonium_transform_new_with_quaternion(pandemonium_transform *r_dest, const pandemonium_quaternion *p_quaternion) {
 	const Quaternion *quaternion = (const Quaternion *)p_quaternion;
 	Transform *dest = (Transform *)r_dest;
 	*dest = Transform(*quaternion);
 }
 
-godot_basis GDAPI godot_transform_get_basis(const godot_transform *p_self) {
-	godot_basis dest;
+pandemonium_basis GDAPI pandemonium_transform_get_basis(const pandemonium_transform *p_self) {
+	pandemonium_basis dest;
 	const Transform *self = (const Transform *)p_self;
 	*((Basis *)&dest) = self->basis;
 	return dest;
 }
 
-void GDAPI godot_transform_set_basis(godot_transform *p_self, const godot_basis *p_v) {
+void GDAPI pandemonium_transform_set_basis(pandemonium_transform *p_self, const pandemonium_basis *p_v) {
 	Transform *self = (Transform *)p_self;
 	const Basis *v = (const Basis *)p_v;
 	self->basis = *v;
 }
 
-godot_vector3 GDAPI godot_transform_get_origin(const godot_transform *p_self) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_transform_get_origin(const pandemonium_transform *p_self) {
+	pandemonium_vector3 dest;
 	const Transform *self = (const Transform *)p_self;
 	*((Vector3 *)&dest) = self->origin;
 	return dest;
 }
 
-void GDAPI godot_transform_set_origin(godot_transform *p_self, const godot_vector3 *p_v) {
+void GDAPI pandemonium_transform_set_origin(pandemonium_transform *p_self, const pandemonium_vector3 *p_v) {
 	Transform *self = (Transform *)p_self;
 	const Vector3 *v = (const Vector3 *)p_v;
 	self->origin = *v;
 }
 
-godot_string GDAPI godot_transform_as_string(const godot_transform *p_self) {
-	godot_string ret;
+pandemonium_string GDAPI pandemonium_transform_as_string(const pandemonium_transform *p_self) {
+	pandemonium_string ret;
 	const Transform *self = (const Transform *)p_self;
 	memnew_placement(&ret, String(*self));
 	return ret;
 }
 
-godot_transform GDAPI godot_transform_inverse(const godot_transform *p_self) {
-	godot_transform dest;
+pandemonium_transform GDAPI pandemonium_transform_inverse(const pandemonium_transform *p_self) {
+	pandemonium_transform dest;
 	const Transform *self = (const Transform *)p_self;
 	*((Transform *)&dest) = self->inverse();
 	return dest;
 }
 
-godot_transform GDAPI godot_transform_affine_inverse(const godot_transform *p_self) {
-	godot_transform dest;
+pandemonium_transform GDAPI pandemonium_transform_affine_inverse(const pandemonium_transform *p_self) {
+	pandemonium_transform dest;
 	const Transform *self = (const Transform *)p_self;
 	*((Transform *)&dest) = self->affine_inverse();
 	return dest;
 }
 
-godot_transform GDAPI godot_transform_orthonormalized(const godot_transform *p_self) {
-	godot_transform dest;
+pandemonium_transform GDAPI pandemonium_transform_orthonormalized(const pandemonium_transform *p_self) {
+	pandemonium_transform dest;
 	const Transform *self = (const Transform *)p_self;
 	*((Transform *)&dest) = self->orthonormalized();
 	return dest;
 }
 
-godot_transform GDAPI godot_transform_rotated(const godot_transform *p_self, const godot_vector3 *p_axis, const godot_real p_phi) {
-	godot_transform dest;
+pandemonium_transform GDAPI pandemonium_transform_rotated(const pandemonium_transform *p_self, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi) {
+	pandemonium_transform dest;
 	const Transform *self = (const Transform *)p_self;
 	const Vector3 *axis = (const Vector3 *)p_axis;
 	*((Transform *)&dest) = self->rotated(*axis, p_phi);
 	return dest;
 }
 
-godot_transform GDAPI godot_transform_scaled(const godot_transform *p_self, const godot_vector3 *p_scale) {
-	godot_transform dest;
+pandemonium_transform GDAPI pandemonium_transform_scaled(const pandemonium_transform *p_self, const pandemonium_vector3 *p_scale) {
+	pandemonium_transform dest;
 	const Transform *self = (const Transform *)p_self;
 	const Vector3 *scale = (const Vector3 *)p_scale;
 	*((Transform *)&dest) = self->scaled(*scale);
 	return dest;
 }
 
-godot_transform GDAPI godot_transform_translated(const godot_transform *p_self, const godot_vector3 *p_ofs) {
-	godot_transform dest;
+pandemonium_transform GDAPI pandemonium_transform_translated(const pandemonium_transform *p_self, const pandemonium_vector3 *p_ofs) {
+	pandemonium_transform dest;
 	const Transform *self = (const Transform *)p_self;
 	const Vector3 *ofs = (const Vector3 *)p_ofs;
 	*((Transform *)&dest) = self->translated(*ofs);
 	return dest;
 }
 
-godot_transform GDAPI godot_transform_looking_at(const godot_transform *p_self, const godot_vector3 *p_target, const godot_vector3 *p_up) {
-	godot_transform dest;
+pandemonium_transform GDAPI pandemonium_transform_looking_at(const pandemonium_transform *p_self, const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up) {
+	pandemonium_transform dest;
 	const Transform *self = (const Transform *)p_self;
 	const Vector3 *target = (const Vector3 *)p_target;
 	const Vector3 *up = (const Vector3 *)p_up;
@@ -151,8 +151,8 @@ godot_transform GDAPI godot_transform_looking_at(const godot_transform *p_self, 
 	return dest;
 }
 
-godot_plane GDAPI godot_transform_xform_plane(const godot_transform *p_self, const godot_plane *p_v) {
-	godot_plane raw_dest;
+pandemonium_plane GDAPI pandemonium_transform_xform_plane(const pandemonium_transform *p_self, const pandemonium_plane *p_v) {
+	pandemonium_plane raw_dest;
 	Plane *dest = (Plane *)&raw_dest;
 	const Transform *self = (const Transform *)p_self;
 	const Plane *v = (const Plane *)p_v;
@@ -160,8 +160,8 @@ godot_plane GDAPI godot_transform_xform_plane(const godot_transform *p_self, con
 	return raw_dest;
 }
 
-godot_plane GDAPI godot_transform_xform_inv_plane(const godot_transform *p_self, const godot_plane *p_v) {
-	godot_plane raw_dest;
+pandemonium_plane GDAPI pandemonium_transform_xform_inv_plane(const pandemonium_transform *p_self, const pandemonium_plane *p_v) {
+	pandemonium_plane raw_dest;
 	Plane *dest = (Plane *)&raw_dest;
 	const Transform *self = (const Transform *)p_self;
 	const Plane *v = (const Plane *)p_v;
@@ -169,19 +169,19 @@ godot_plane GDAPI godot_transform_xform_inv_plane(const godot_transform *p_self,
 	return raw_dest;
 }
 
-void GDAPI godot_transform_new_identity(godot_transform *r_dest) {
+void GDAPI pandemonium_transform_new_identity(pandemonium_transform *r_dest) {
 	Transform *dest = (Transform *)r_dest;
 	*dest = Transform();
 }
 
-godot_bool GDAPI godot_transform_operator_equal(const godot_transform *p_self, const godot_transform *p_b) {
+pandemonium_bool GDAPI pandemonium_transform_operator_equal(const pandemonium_transform *p_self, const pandemonium_transform *p_b) {
 	const Transform *self = (const Transform *)p_self;
 	const Transform *b = (const Transform *)p_b;
 	return *self == *b;
 }
 
-godot_transform GDAPI godot_transform_operator_multiply(const godot_transform *p_self, const godot_transform *p_b) {
-	godot_transform raw_dest;
+pandemonium_transform GDAPI pandemonium_transform_operator_multiply(const pandemonium_transform *p_self, const pandemonium_transform *p_b) {
+	pandemonium_transform raw_dest;
 	Transform *dest = (Transform *)&raw_dest;
 	const Transform *self = (const Transform *)p_self;
 	const Transform *b = (const Transform *)p_b;
@@ -189,8 +189,8 @@ godot_transform GDAPI godot_transform_operator_multiply(const godot_transform *p
 	return raw_dest;
 }
 
-godot_vector3 GDAPI godot_transform_xform_vector3(const godot_transform *p_self, const godot_vector3 *p_v) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_transform_xform_vector3(const pandemonium_transform *p_self, const pandemonium_vector3 *p_v) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	const Transform *self = (const Transform *)p_self;
 	const Vector3 *v = (const Vector3 *)p_v;
@@ -198,8 +198,8 @@ godot_vector3 GDAPI godot_transform_xform_vector3(const godot_transform *p_self,
 	return raw_dest;
 }
 
-godot_vector3 GDAPI godot_transform_xform_inv_vector3(const godot_transform *p_self, const godot_vector3 *p_v) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_transform_xform_inv_vector3(const pandemonium_transform *p_self, const pandemonium_vector3 *p_v) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	const Transform *self = (const Transform *)p_self;
 	const Vector3 *v = (const Vector3 *)p_v;
@@ -207,8 +207,8 @@ godot_vector3 GDAPI godot_transform_xform_inv_vector3(const godot_transform *p_s
 	return raw_dest;
 }
 
-godot_aabb GDAPI godot_transform_xform_aabb(const godot_transform *p_self, const godot_aabb *p_v) {
-	godot_aabb raw_dest;
+pandemonium_aabb GDAPI pandemonium_transform_xform_aabb(const pandemonium_transform *p_self, const pandemonium_aabb *p_v) {
+	pandemonium_aabb raw_dest;
 	AABB *dest = (AABB *)&raw_dest;
 	const Transform *self = (const Transform *)p_self;
 	const AABB *v = (const AABB *)p_v;
@@ -216,8 +216,8 @@ godot_aabb GDAPI godot_transform_xform_aabb(const godot_transform *p_self, const
 	return raw_dest;
 }
 
-godot_aabb GDAPI godot_transform_xform_inv_aabb(const godot_transform *p_self, const godot_aabb *p_v) {
-	godot_aabb raw_dest;
+pandemonium_aabb GDAPI pandemonium_transform_xform_inv_aabb(const pandemonium_transform *p_self, const pandemonium_aabb *p_v) {
+	pandemonium_aabb raw_dest;
 	AABB *dest = (AABB *)&raw_dest;
 	const Transform *self = (const Transform *)p_self;
 	const AABB *v = (const AABB *)p_v;

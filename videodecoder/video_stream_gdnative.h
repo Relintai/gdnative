@@ -2,8 +2,8 @@
 /*  video_stream_gdnative.h                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,7 +37,7 @@
 #include "scene/resources/video_stream.h"
 
 struct VideoDecoderGDNative {
-	const godot_videodecoder_interface_gdnative *interface;
+	const pandemonium_videodecoder_interface_gdnative *interface;
 	String plugin_name;
 	Vector<String> supported_extensions;
 
@@ -45,7 +45,7 @@ struct VideoDecoderGDNative {
 			interface(nullptr),
 			plugin_name("none") {}
 
-	VideoDecoderGDNative(const godot_videodecoder_interface_gdnative *p_interface) :
+	VideoDecoderGDNative(const pandemonium_videodecoder_interface_gdnative *p_interface) :
 			interface(p_interface),
 			plugin_name(p_interface->get_plugin_name()) {
 		_get_supported_extensions();
@@ -78,7 +78,7 @@ public:
 		return extensions;
 	}
 
-	void register_decoder_interface(const godot_videodecoder_interface_gdnative *p_interface) {
+	void register_decoder_interface(const pandemonium_videodecoder_interface_gdnative *p_interface) {
 		VideoDecoderGDNative *decoder = memnew(VideoDecoderGDNative(p_interface));
 		int index = decoders.size();
 		for (int i = 0; i < decoder->supported_extensions.size(); i++) {
@@ -137,14 +137,14 @@ protected:
 
 	FileAccess *file;
 
-	const godot_videodecoder_interface_gdnative *interface;
+	const pandemonium_videodecoder_interface_gdnative *interface;
 	void *data_struct;
 
 public:
 	VideoStreamPlaybackGDNative();
 	~VideoStreamPlaybackGDNative();
 
-	void set_interface(const godot_videodecoder_interface_gdnative *p_interface);
+	void set_interface(const pandemonium_videodecoder_interface_gdnative *p_interface);
 
 	bool open_file(const String &p_file);
 

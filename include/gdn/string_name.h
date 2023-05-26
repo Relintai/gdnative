@@ -2,8 +2,8 @@
 /*  string_name.h                                                         */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -38,13 +38,13 @@ extern "C" {
 #include <stdint.h>
 #include <wchar.h>
 
-#define GODOT_STRING_NAME_SIZE sizeof(void *)
+#define PANDEMONIUM_STRING_NAME_SIZE sizeof(void *)
 
-#ifndef GODOT_CORE_API_GODOT_STRING_NAME_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_STRING_NAME_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_STRING_NAME_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_STRING_NAME_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_STRING_NAME_SIZE];
-} godot_string_name;
+	uint8_t _dont_touch_that[PANDEMONIUM_STRING_NAME_SIZE];
+} pandemonium_string_name;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -58,18 +58,18 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_string_name_new(godot_string_name *r_dest, const godot_string *p_name);
-void GDAPI godot_string_name_new_data(godot_string_name *r_dest, const char *p_name);
+void GDAPI pandemonium_string_name_new(pandemonium_string_name *r_dest, const pandemonium_string *p_name);
+void GDAPI pandemonium_string_name_new_data(pandemonium_string_name *r_dest, const char *p_name);
 
-godot_string GDAPI godot_string_name_get_name(const godot_string_name *p_self);
+pandemonium_string GDAPI pandemonium_string_name_get_name(const pandemonium_string_name *p_self);
 
-uint32_t GDAPI godot_string_name_get_hash(const godot_string_name *p_self);
-const void GDAPI *godot_string_name_get_data_unique_pointer(const godot_string_name *p_self);
+uint32_t GDAPI pandemonium_string_name_get_hash(const pandemonium_string_name *p_self);
+const void GDAPI *pandemonium_string_name_get_data_unique_pointer(const pandemonium_string_name *p_self);
 
-godot_bool GDAPI godot_string_name_operator_equal(const godot_string_name *p_self, const godot_string_name *p_other);
-godot_bool GDAPI godot_string_name_operator_less(const godot_string_name *p_self, const godot_string_name *p_other);
+pandemonium_bool GDAPI pandemonium_string_name_operator_equal(const pandemonium_string_name *p_self, const pandemonium_string_name *p_other);
+pandemonium_bool GDAPI pandemonium_string_name_operator_less(const pandemonium_string_name *p_self, const pandemonium_string_name *p_other);
 
-void GDAPI godot_string_name_destroy(godot_string_name *p_self);
+void GDAPI pandemonium_string_name_destroy(pandemonium_string_name *p_self);
 
 #ifdef __cplusplus
 }

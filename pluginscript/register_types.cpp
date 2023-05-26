@@ -2,8 +2,8 @@
 /*  register_types.cpp                                                    */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -39,11 +39,11 @@
 
 #include "pluginscript_language.h"
 #include "pluginscript_script.h"
-#include <pluginscript/godot_pluginscript.h>
+#include <pluginscript/pandemonium_pluginscript.h>
 
 static List<PluginScriptLanguage *> pluginscript_languages;
 
-static Error _check_language_desc(const godot_pluginscript_language_desc *desc) {
+static Error _check_language_desc(const pandemonium_pluginscript_language_desc *desc) {
 	ERR_FAIL_COND_V(!desc->name || desc->name == String(), ERR_BUG);
 	ERR_FAIL_COND_V(!desc->type || desc->type == String(), ERR_BUG);
 	ERR_FAIL_COND_V(!desc->extension || desc->extension == String(), ERR_BUG);
@@ -94,7 +94,7 @@ static Error _check_language_desc(const godot_pluginscript_language_desc *desc) 
 	return OK;
 }
 
-void GDAPI godot_pluginscript_register_language(const godot_pluginscript_language_desc *language_desc) {
+void GDAPI pandemonium_pluginscript_register_language(const pandemonium_pluginscript_language_desc *language_desc) {
 	Error ret = _check_language_desc(language_desc);
 	if (ret) {
 		ERR_FAIL();

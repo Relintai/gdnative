@@ -2,8 +2,8 @@
 /*  stream_peer_gdnative.cpp                                              */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,7 +37,7 @@ StreamPeerGDNative::StreamPeerGDNative() {
 StreamPeerGDNative::~StreamPeerGDNative() {
 }
 
-void StreamPeerGDNative::set_native_stream_peer(const godot_net_stream_peer *p_interface) {
+void StreamPeerGDNative::set_native_stream_peer(const pandemonium_net_stream_peer *p_interface) {
 	interface = p_interface;
 }
 
@@ -71,7 +71,7 @@ int StreamPeerGDNative::get_available_bytes() const {
 
 extern "C" {
 
-void GDAPI godot_net_bind_stream_peer(godot_object *p_obj, const godot_net_stream_peer *p_interface) {
+void GDAPI pandemonium_net_bind_stream_peer(pandemonium_object *p_obj, const pandemonium_net_stream_peer *p_interface) {
 	((StreamPeerGDNative *)p_obj)->set_native_stream_peer(p_interface);
 }
 }

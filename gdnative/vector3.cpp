@@ -2,8 +2,8 @@
 /*  vector3.cpp                                                           */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,61 +37,61 @@
 extern "C" {
 #endif
 
-static_assert(sizeof(godot_vector3) == sizeof(Vector3), "Vector3 size mismatch");
+static_assert(sizeof(pandemonium_vector3) == sizeof(Vector3), "Vector3 size mismatch");
 
-void GDAPI godot_vector3_new(godot_vector3 *r_dest, const godot_real p_x, const godot_real p_y, const godot_real p_z) {
+void GDAPI pandemonium_vector3_new(pandemonium_vector3 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_z) {
 	Vector3 *dest = (Vector3 *)r_dest;
 	*dest = Vector3(p_x, p_y, p_z);
 }
 
-godot_string GDAPI godot_vector3_as_string(const godot_vector3 *p_self) {
-	godot_string ret;
+pandemonium_string GDAPI pandemonium_vector3_as_string(const pandemonium_vector3 *p_self) {
+	pandemonium_string ret;
 	const Vector3 *self = (const Vector3 *)p_self;
 	memnew_placement(&ret, String(*self));
 	return ret;
 }
 
-godot_int GDAPI godot_vector3_min_axis(const godot_vector3 *p_self) {
+pandemonium_int GDAPI pandemonium_vector3_min_axis(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->min_axis();
 }
 
-godot_int GDAPI godot_vector3_max_axis(const godot_vector3 *p_self) {
+pandemonium_int GDAPI pandemonium_vector3_max_axis(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->max_axis();
 }
 
-godot_real GDAPI godot_vector3_length(const godot_vector3 *p_self) {
+pandemonium_real GDAPI pandemonium_vector3_length(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->length();
 }
 
-godot_real GDAPI godot_vector3_length_squared(const godot_vector3 *p_self) {
+pandemonium_real GDAPI pandemonium_vector3_length_squared(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->length_squared();
 }
 
-godot_bool GDAPI godot_vector3_is_normalized(const godot_vector3 *p_self) {
+pandemonium_bool GDAPI pandemonium_vector3_is_normalized(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->is_normalized();
 }
 
-godot_vector3 GDAPI godot_vector3_normalized(const godot_vector3 *p_self) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_normalized(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Vector3 *)&dest) = self->normalized();
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_inverse(const godot_vector3 *p_self) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_inverse(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Vector3 *)&dest) = self->inverse();
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_snapped(const godot_vector3 *p_self, const godot_vector3 *p_by) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_snapped(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_by) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *snap_axis = (const Vector3 *)p_by;
 
@@ -99,24 +99,24 @@ godot_vector3 GDAPI godot_vector3_snapped(const godot_vector3 *p_self, const god
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_rotated(const godot_vector3 *p_self, const godot_vector3 *p_axis, const godot_real p_phi) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_rotated(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *axis = (const Vector3 *)p_axis;
 	*((Vector3 *)&dest) = self->rotated(*axis, p_phi);
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_linear_interpolate(const godot_vector3 *p_self, const godot_vector3 *p_b, const godot_real p_t) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_linear_interpolate(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b, const pandemonium_real p_t) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	*((Vector3 *)&dest) = self->linear_interpolate(*b, p_t);
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_cubic_interpolate(const godot_vector3 *p_self, const godot_vector3 *p_b, const godot_vector3 *p_pre_a, const godot_vector3 *p_post_b, const godot_real p_t) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_cubic_interpolate(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b, const pandemonium_vector3 *p_pre_a, const pandemonium_vector3 *p_post_b, const pandemonium_real p_t) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	const Vector3 *pre_a = (const Vector3 *)p_pre_a;
@@ -125,116 +125,116 @@ godot_vector3 GDAPI godot_vector3_cubic_interpolate(const godot_vector3 *p_self,
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_move_toward(const godot_vector3 *p_self, const godot_vector3 *p_to, const godot_real p_delta) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_move_toward(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to, const pandemonium_real p_delta) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *to = (const Vector3 *)p_to;
 	*((Vector3 *)&dest) = self->move_toward(*to, p_delta);
 	return dest;
 }
 
-godot_real GDAPI godot_vector3_dot(const godot_vector3 *p_self, const godot_vector3 *p_b) {
+pandemonium_real GDAPI pandemonium_vector3_dot(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	return self->dot(*b);
 }
 
-godot_vector3 GDAPI godot_vector3_cross(const godot_vector3 *p_self, const godot_vector3 *p_b) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_cross(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	*((Vector3 *)&dest) = self->cross(*b);
 	return dest;
 }
 
-godot_basis GDAPI godot_vector3_outer(const godot_vector3 *p_self, const godot_vector3 *p_b) {
-	godot_basis dest;
+pandemonium_basis GDAPI pandemonium_vector3_outer(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
+	pandemonium_basis dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	*((Basis *)&dest) = self->outer(*b);
 	return dest;
 }
 
-godot_basis GDAPI godot_vector3_to_diagonal_matrix(const godot_vector3 *p_self) {
-	godot_basis dest;
+pandemonium_basis GDAPI pandemonium_vector3_to_diagonal_matrix(const pandemonium_vector3 *p_self) {
+	pandemonium_basis dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Basis *)&dest) = self->to_diagonal_matrix();
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_abs(const godot_vector3 *p_self) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_abs(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Vector3 *)&dest) = self->abs();
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_floor(const godot_vector3 *p_self) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_floor(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Vector3 *)&dest) = self->floor();
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_ceil(const godot_vector3 *p_self) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_ceil(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Vector3 *)&dest) = self->ceil();
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_direction_to(const godot_vector3 *p_self, const godot_vector3 *p_to) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_direction_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *to = (const Vector3 *)p_to;
 	*((Vector3 *)&dest) = self->direction_to(*to);
 	return dest;
 }
 
-godot_real GDAPI godot_vector3_distance_to(const godot_vector3 *p_self, const godot_vector3 *p_b) {
+pandemonium_real GDAPI pandemonium_vector3_distance_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	return self->distance_to(*b);
 }
 
-godot_real GDAPI godot_vector3_distance_squared_to(const godot_vector3 *p_self, const godot_vector3 *p_b) {
+pandemonium_real GDAPI pandemonium_vector3_distance_squared_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	return self->distance_squared_to(*b);
 }
 
-godot_real GDAPI godot_vector3_angle_to(const godot_vector3 *p_self, const godot_vector3 *p_to) {
+pandemonium_real GDAPI pandemonium_vector3_angle_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *to = (const Vector3 *)p_to;
 	return self->angle_to(*to);
 }
 
-godot_vector3 GDAPI godot_vector3_slide(const godot_vector3 *p_self, const godot_vector3 *p_n) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_slide(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_n) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *n = (const Vector3 *)p_n;
 	*((Vector3 *)&dest) = self->slide(*n);
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_bounce(const godot_vector3 *p_self, const godot_vector3 *p_n) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_bounce(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_n) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *n = (const Vector3 *)p_n;
 	*((Vector3 *)&dest) = self->bounce(*n);
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_reflect(const godot_vector3 *p_self, const godot_vector3 *p_n) {
-	godot_vector3 dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_reflect(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_n) {
+	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *n = (const Vector3 *)p_n;
 	*((Vector3 *)&dest) = self->reflect(*n);
 	return dest;
 }
 
-godot_vector3 GDAPI godot_vector3_operator_add(const godot_vector3 *p_self, const godot_vector3 *p_b) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_add(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
@@ -242,8 +242,8 @@ godot_vector3 GDAPI godot_vector3_operator_add(const godot_vector3 *p_self, cons
 	return raw_dest;
 }
 
-godot_vector3 GDAPI godot_vector3_operator_subtract(const godot_vector3 *p_self, const godot_vector3 *p_b) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_subtract(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
@@ -251,8 +251,8 @@ godot_vector3 GDAPI godot_vector3_operator_subtract(const godot_vector3 *p_self,
 	return raw_dest;
 }
 
-godot_vector3 GDAPI godot_vector3_operator_multiply_vector(const godot_vector3 *p_self, const godot_vector3 *p_b) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_multiply_vector(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
@@ -260,16 +260,16 @@ godot_vector3 GDAPI godot_vector3_operator_multiply_vector(const godot_vector3 *
 	return raw_dest;
 }
 
-godot_vector3 GDAPI godot_vector3_operator_multiply_scalar(const godot_vector3 *p_self, const godot_real p_b) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_multiply_scalar(const pandemonium_vector3 *p_self, const pandemonium_real p_b) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	Vector3 *self = (Vector3 *)p_self;
 	*dest = *self * p_b;
 	return raw_dest;
 }
 
-godot_vector3 GDAPI godot_vector3_operator_divide_vector(const godot_vector3 *p_self, const godot_vector3 *p_b) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_divide_vector(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
@@ -277,40 +277,40 @@ godot_vector3 GDAPI godot_vector3_operator_divide_vector(const godot_vector3 *p_
 	return raw_dest;
 }
 
-godot_vector3 GDAPI godot_vector3_operator_divide_scalar(const godot_vector3 *p_self, const godot_real p_b) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_divide_scalar(const pandemonium_vector3 *p_self, const pandemonium_real p_b) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	Vector3 *self = (Vector3 *)p_self;
 	*dest = *self / p_b;
 	return raw_dest;
 }
 
-godot_bool GDAPI godot_vector3_operator_equal(const godot_vector3 *p_self, const godot_vector3 *p_b) {
+pandemonium_bool GDAPI pandemonium_vector3_operator_equal(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	return *self == *b;
 }
 
-godot_bool GDAPI godot_vector3_operator_less(const godot_vector3 *p_self, const godot_vector3 *p_b) {
+pandemonium_bool GDAPI pandemonium_vector3_operator_less(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	return *self < *b;
 }
 
-godot_vector3 GDAPI godot_vector3_operator_neg(const godot_vector3 *p_self) {
-	godot_vector3 raw_dest;
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_neg(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*dest = -(*self);
 	return raw_dest;
 }
 
-void GDAPI godot_vector3_set_axis(godot_vector3 *p_self, const godot_vector3_axis p_axis, const godot_real p_val) {
+void GDAPI pandemonium_vector3_set_axis(pandemonium_vector3 *p_self, const pandemonium_vector3_axis p_axis, const pandemonium_real p_val) {
 	Vector3 *self = (Vector3 *)p_self;
 	self->set_axis(p_axis, p_val);
 }
 
-godot_real GDAPI godot_vector3_get_axis(const godot_vector3 *p_self, const godot_vector3_axis p_axis) {
+pandemonium_real GDAPI pandemonium_vector3_get_axis(const pandemonium_vector3 *p_self, const pandemonium_vector3_axis p_axis) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->get_axis(p_axis);
 }

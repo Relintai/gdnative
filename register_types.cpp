@@ -2,8 +2,8 @@
 /*  register_types.cpp                                                    */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -237,9 +237,9 @@ static void editor_init_callback() {
 
 #endif
 
-static godot_variant cb_standard_varcall(void *p_procedure_handle, godot_array *p_args) {
-	godot_gdnative_procedure_fn proc;
-	proc = (godot_gdnative_procedure_fn)p_procedure_handle;
+static pandemonium_variant cb_standard_varcall(void *p_procedure_handle, pandemonium_array *p_args) {
+	pandemonium_gdnative_procedure_fn proc;
+	proc = (pandemonium_gdnative_procedure_fn)p_procedure_handle;
 
 	return proc(p_args);
 }

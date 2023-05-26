@@ -2,8 +2,8 @@
 /*  string_name.cpp                                                       */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -39,49 +39,49 @@
 extern "C" {
 #endif
 
-static_assert(sizeof(godot_string_name) == sizeof(StringName), "StringName size mismatch");
+static_assert(sizeof(pandemonium_string_name) == sizeof(StringName), "StringName size mismatch");
 
-void GDAPI godot_string_name_new(godot_string_name *r_dest, const godot_string *p_name) {
+void GDAPI pandemonium_string_name_new(pandemonium_string_name *r_dest, const pandemonium_string *p_name) {
 	StringName *dest = (StringName *)r_dest;
 	const String *name = (const String *)p_name;
 	memnew_placement(dest, StringName(*name));
 }
 
-void GDAPI godot_string_name_new_data(godot_string_name *r_dest, const char *p_name) {
+void GDAPI pandemonium_string_name_new_data(pandemonium_string_name *r_dest, const char *p_name) {
 	StringName *dest = (StringName *)r_dest;
 	memnew_placement(dest, StringName(p_name));
 }
 
-godot_string GDAPI godot_string_name_get_name(const godot_string_name *p_self) {
-	godot_string ret;
+pandemonium_string GDAPI pandemonium_string_name_get_name(const pandemonium_string_name *p_self) {
+	pandemonium_string ret;
 	const StringName *self = (const StringName *)p_self;
 	memnew_placement(&ret, String(*self));
 	return ret;
 }
 
-uint32_t GDAPI godot_string_name_get_hash(const godot_string_name *p_self) {
+uint32_t GDAPI pandemonium_string_name_get_hash(const pandemonium_string_name *p_self) {
 	const StringName *self = (const StringName *)p_self;
 	return self->hash();
 }
 
-const void GDAPI *godot_string_name_get_data_unique_pointer(const godot_string_name *p_self) {
+const void GDAPI *pandemonium_string_name_get_data_unique_pointer(const pandemonium_string_name *p_self) {
 	const StringName *self = (const StringName *)p_self;
 	return self->data_unique_pointer();
 }
 
-godot_bool GDAPI godot_string_name_operator_equal(const godot_string_name *p_self, const godot_string_name *p_other) {
+pandemonium_bool GDAPI pandemonium_string_name_operator_equal(const pandemonium_string_name *p_self, const pandemonium_string_name *p_other) {
 	const StringName *self = (const StringName *)p_self;
 	const StringName *other = (const StringName *)p_other;
 	return *self == *other;
 }
 
-godot_bool GDAPI godot_string_name_operator_less(const godot_string_name *p_self, const godot_string_name *p_other) {
+pandemonium_bool GDAPI pandemonium_string_name_operator_less(const pandemonium_string_name *p_self, const pandemonium_string_name *p_other) {
 	const StringName *self = (const StringName *)p_self;
 	const StringName *other = (const StringName *)p_other;
 	return *self < *other;
 }
 
-void GDAPI godot_string_name_destroy(godot_string_name *p_self) {
+void GDAPI pandemonium_string_name_destroy(pandemonium_string_name *p_self) {
 	StringName *self = (StringName *)p_self;
 	self->~StringName();
 }

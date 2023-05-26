@@ -2,8 +2,8 @@
 /*  pluginscript_instance.h                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -31,11 +31,11 @@
 #ifndef PLUGINSCRIPT_INSTANCE_H
 #define PLUGINSCRIPT_INSTANCE_H
 
-// Godot imports
+// Pandemonium imports
 #include "core/object/script_language.h"
 
 // PluginScript imports
-#include <pluginscript/godot_pluginscript.h>
+#include <pluginscript/pandemonium_pluginscript.h>
 
 class PluginScript;
 
@@ -46,8 +46,8 @@ private:
 	Ref<PluginScript> _script;
 	Object *_owner;
 	Variant _owner_variant;
-	godot_pluginscript_instance_data *_data;
-	const godot_pluginscript_instance_desc *_desc;
+	pandemonium_pluginscript_instance_data *_data;
+	const pandemonium_pluginscript_instance_desc *_desc;
 
 public:
 	_FORCE_INLINE_ Object *get_owner() { return _owner; }
@@ -64,7 +64,7 @@ public:
 
 	// Rely on default implementations provided by ScriptInstance for the moment.
 	// Note that multilevel call could be removed in 3.0 release, so stay tuned
-	// (see https://godotengine.org/qa/9244/can-override-the-_ready-and-_process-functions-child-classes)
+	// (see https://pandemoniumengine.org/qa/9244/can-override-the-_ready-and-_process-functions-child-classes)
 	//virtual void call_multilevel(const StringName& p_method,const Variant** p_args,int p_argcount);
 	//virtual void call_multilevel_reversed(const StringName& p_method,const Variant** p_args,int p_argcount);
 

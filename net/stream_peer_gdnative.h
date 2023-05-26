@@ -2,8 +2,8 @@
 /*  stream_peer_gdnative.h                                                */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -33,21 +33,21 @@
 
 #include "core/io/stream_peer.h"
 #include "../gdnative.h"
-#include "../include/net/godot_net.h"
+#include "../include/net/pandemonium_net.h"
 
 class StreamPeerGDNative : public StreamPeer {
 	GDCLASS(StreamPeerGDNative, StreamPeer);
 
 protected:
 	static void _bind_methods();
-	const godot_net_stream_peer *interface;
+	const pandemonium_net_stream_peer *interface;
 
 public:
 	StreamPeerGDNative();
 	~StreamPeerGDNative();
 
 	/* Sets the interface implementation from GDNative */
-	void set_native_stream_peer(const godot_net_stream_peer *p_interface);
+	void set_native_stream_peer(const pandemonium_net_stream_peer *p_interface);
 
 	/* Specific to StreamPeer */
 	Error put_data(const uint8_t *p_data, int p_bytes);

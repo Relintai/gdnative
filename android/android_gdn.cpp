@@ -2,8 +2,8 @@
 /*  android_gdn.cpp                                                       */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -34,7 +34,7 @@
 // These entry points are only for the android platform and are simple stubs in all others.
 
 #ifdef __ANDROID__
-#include "platform/android/java_godot_wrapper.h"
+#include "platform/android/java_pandemonium_wrapper.h"
 #include "platform/android/os_android.h"
 #include "platform/android/thread_jandroid.h"
 #else
@@ -46,7 +46,7 @@
 extern "C" {
 #endif
 
-JNIEnv *GDAPI godot_android_get_env() {
+JNIEnv *GDAPI pandemonium_android_get_env() {
 #ifdef __ANDROID__
 	return get_jni_env();
 #else
@@ -54,28 +54,28 @@ JNIEnv *GDAPI godot_android_get_env() {
 #endif
 }
 
-jobject GDAPI godot_android_get_activity() {
+jobject GDAPI pandemonium_android_get_activity() {
 #ifdef __ANDROID__
 	OS_Android *os_android = (OS_Android *)OS::get_singleton();
-	return os_android->get_godot_java()->get_activity();
+	return os_android->get_pandemonium_java()->get_activity();
 #else
 	return nullptr;
 #endif
 }
 
-jobject GDAPI godot_android_get_surface() {
+jobject GDAPI pandemonium_android_get_surface() {
 #ifdef __ANDROID__
 	OS_Android *os_android = (OS_Android *)OS::get_singleton();
-	return os_android->get_godot_java()->get_surface();
+	return os_android->get_pandemonium_java()->get_surface();
 #else
 	return nullptr;
 #endif
 }
 
-bool GDAPI godot_android_is_activity_resumed() {
+bool GDAPI pandemonium_android_is_activity_resumed() {
 #ifdef __ANDROID__
 	OS_Android *os_android = (OS_Android *)OS::get_singleton();
-	return os_android->get_godot_java()->is_activity_resumed();
+	return os_android->get_pandemonium_java()->is_activity_resumed();
 #else
 	return false;
 #endif

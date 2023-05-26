@@ -2,8 +2,8 @@
 /*  transform.h                                                           */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_TRANSFORM_SIZE 48
+#define PANDEMONIUM_TRANSFORM_SIZE 48
 
-#ifndef GODOT_CORE_API_GODOT_TRANSFORM_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_TRANSFORM_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_TRANSFORM_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_TRANSFORM_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_TRANSFORM_SIZE];
-} godot_transform;
+	uint8_t _dont_touch_that[PANDEMONIUM_TRANSFORM_SIZE];
+} pandemonium_transform;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -60,49 +60,49 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_transform_new_with_axis_origin(godot_transform *r_dest, const godot_vector3 *p_x_axis, const godot_vector3 *p_y_axis, const godot_vector3 *p_z_axis, const godot_vector3 *p_origin);
-void GDAPI godot_transform_new(godot_transform *r_dest, const godot_basis *p_basis, const godot_vector3 *p_origin);
-void GDAPI godot_transform_new_with_quaternion(godot_transform *r_dest, const godot_quaternion *p_quaternion);
+void GDAPI pandemonium_transform_new_with_axis_origin(pandemonium_transform *r_dest, const pandemonium_vector3 *p_x_axis, const pandemonium_vector3 *p_y_axis, const pandemonium_vector3 *p_z_axis, const pandemonium_vector3 *p_origin);
+void GDAPI pandemonium_transform_new(pandemonium_transform *r_dest, const pandemonium_basis *p_basis, const pandemonium_vector3 *p_origin);
+void GDAPI pandemonium_transform_new_with_quaternion(pandemonium_transform *r_dest, const pandemonium_quaternion *p_quaternion);
 
-godot_basis GDAPI godot_transform_get_basis(const godot_transform *p_self);
-void GDAPI godot_transform_set_basis(godot_transform *p_self, const godot_basis *p_v);
+pandemonium_basis GDAPI pandemonium_transform_get_basis(const pandemonium_transform *p_self);
+void GDAPI pandemonium_transform_set_basis(pandemonium_transform *p_self, const pandemonium_basis *p_v);
 
-godot_vector3 GDAPI godot_transform_get_origin(const godot_transform *p_self);
-void GDAPI godot_transform_set_origin(godot_transform *p_self, const godot_vector3 *p_v);
+pandemonium_vector3 GDAPI pandemonium_transform_get_origin(const pandemonium_transform *p_self);
+void GDAPI pandemonium_transform_set_origin(pandemonium_transform *p_self, const pandemonium_vector3 *p_v);
 
-godot_string GDAPI godot_transform_as_string(const godot_transform *p_self);
+pandemonium_string GDAPI pandemonium_transform_as_string(const pandemonium_transform *p_self);
 
-godot_transform GDAPI godot_transform_inverse(const godot_transform *p_self);
+pandemonium_transform GDAPI pandemonium_transform_inverse(const pandemonium_transform *p_self);
 
-godot_transform GDAPI godot_transform_affine_inverse(const godot_transform *p_self);
+pandemonium_transform GDAPI pandemonium_transform_affine_inverse(const pandemonium_transform *p_self);
 
-godot_transform GDAPI godot_transform_orthonormalized(const godot_transform *p_self);
+pandemonium_transform GDAPI pandemonium_transform_orthonormalized(const pandemonium_transform *p_self);
 
-godot_transform GDAPI godot_transform_rotated(const godot_transform *p_self, const godot_vector3 *p_axis, const godot_real p_phi);
+pandemonium_transform GDAPI pandemonium_transform_rotated(const pandemonium_transform *p_self, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi);
 
-godot_transform GDAPI godot_transform_scaled(const godot_transform *p_self, const godot_vector3 *p_scale);
+pandemonium_transform GDAPI pandemonium_transform_scaled(const pandemonium_transform *p_self, const pandemonium_vector3 *p_scale);
 
-godot_transform GDAPI godot_transform_translated(const godot_transform *p_self, const godot_vector3 *p_ofs);
+pandemonium_transform GDAPI pandemonium_transform_translated(const pandemonium_transform *p_self, const pandemonium_vector3 *p_ofs);
 
-godot_transform GDAPI godot_transform_looking_at(const godot_transform *p_self, const godot_vector3 *p_target, const godot_vector3 *p_up);
+pandemonium_transform GDAPI pandemonium_transform_looking_at(const pandemonium_transform *p_self, const pandemonium_vector3 *p_target, const pandemonium_vector3 *p_up);
 
-godot_plane GDAPI godot_transform_xform_plane(const godot_transform *p_self, const godot_plane *p_v);
+pandemonium_plane GDAPI pandemonium_transform_xform_plane(const pandemonium_transform *p_self, const pandemonium_plane *p_v);
 
-godot_plane GDAPI godot_transform_xform_inv_plane(const godot_transform *p_self, const godot_plane *p_v);
+pandemonium_plane GDAPI pandemonium_transform_xform_inv_plane(const pandemonium_transform *p_self, const pandemonium_plane *p_v);
 
-void GDAPI godot_transform_new_identity(godot_transform *r_dest);
+void GDAPI pandemonium_transform_new_identity(pandemonium_transform *r_dest);
 
-godot_bool GDAPI godot_transform_operator_equal(const godot_transform *p_self, const godot_transform *p_b);
+pandemonium_bool GDAPI pandemonium_transform_operator_equal(const pandemonium_transform *p_self, const pandemonium_transform *p_b);
 
-godot_transform GDAPI godot_transform_operator_multiply(const godot_transform *p_self, const godot_transform *p_b);
+pandemonium_transform GDAPI pandemonium_transform_operator_multiply(const pandemonium_transform *p_self, const pandemonium_transform *p_b);
 
-godot_vector3 GDAPI godot_transform_xform_vector3(const godot_transform *p_self, const godot_vector3 *p_v);
+pandemonium_vector3 GDAPI pandemonium_transform_xform_vector3(const pandemonium_transform *p_self, const pandemonium_vector3 *p_v);
 
-godot_vector3 GDAPI godot_transform_xform_inv_vector3(const godot_transform *p_self, const godot_vector3 *p_v);
+pandemonium_vector3 GDAPI pandemonium_transform_xform_inv_vector3(const pandemonium_transform *p_self, const pandemonium_vector3 *p_v);
 
-godot_aabb GDAPI godot_transform_xform_aabb(const godot_transform *p_self, const godot_aabb *p_v);
+pandemonium_aabb GDAPI pandemonium_transform_xform_aabb(const pandemonium_transform *p_self, const pandemonium_aabb *p_v);
 
-godot_aabb GDAPI godot_transform_xform_inv_aabb(const godot_transform *p_self, const godot_aabb *p_v);
+pandemonium_aabb GDAPI pandemonium_transform_xform_inv_aabb(const pandemonium_transform *p_self, const pandemonium_aabb *p_v);
 
 #ifdef __cplusplus
 }

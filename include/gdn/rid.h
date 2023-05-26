@@ -2,8 +2,8 @@
 /*  rid.h                                                                 */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_RID_SIZE sizeof(void *)
+#define PANDEMONIUM_RID_SIZE sizeof(void *)
 
-#ifndef GODOT_CORE_API_GODOT_RID_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_RID_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_RID_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_RID_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_RID_SIZE];
-} godot_rid;
+	uint8_t _dont_touch_that[PANDEMONIUM_RID_SIZE];
+} pandemonium_rid;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -57,15 +57,15 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_rid_new(godot_rid *r_dest);
+void GDAPI pandemonium_rid_new(pandemonium_rid *r_dest);
 
-godot_int GDAPI godot_rid_get_id(const godot_rid *p_self);
+pandemonium_int GDAPI pandemonium_rid_get_id(const pandemonium_rid *p_self);
 
-void GDAPI godot_rid_new_with_resource(godot_rid *r_dest, const godot_object *p_from);
+void GDAPI pandemonium_rid_new_with_resource(pandemonium_rid *r_dest, const pandemonium_object *p_from);
 
-godot_bool GDAPI godot_rid_operator_equal(const godot_rid *p_self, const godot_rid *p_b);
+pandemonium_bool GDAPI pandemonium_rid_operator_equal(const pandemonium_rid *p_self, const pandemonium_rid *p_b);
 
-godot_bool GDAPI godot_rid_operator_less(const godot_rid *p_self, const godot_rid *p_b);
+pandemonium_bool GDAPI pandemonium_rid_operator_less(const pandemonium_rid *p_self, const pandemonium_rid *p_b);
 
 #ifdef __cplusplus
 }

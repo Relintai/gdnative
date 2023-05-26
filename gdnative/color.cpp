@@ -2,8 +2,8 @@
 /*  color.cpp                                                             */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,181 +37,181 @@
 extern "C" {
 #endif
 
-static_assert(sizeof(godot_color) == sizeof(Color), "Color size mismatch");
+static_assert(sizeof(pandemonium_color) == sizeof(Color), "Color size mismatch");
 
-void GDAPI godot_color_new_rgba(godot_color *r_dest, const godot_real p_r, const godot_real p_g, const godot_real p_b, const godot_real p_a) {
+void GDAPI pandemonium_color_new_rgba(pandemonium_color *r_dest, const pandemonium_real p_r, const pandemonium_real p_g, const pandemonium_real p_b, const pandemonium_real p_a) {
 	Color *dest = (Color *)r_dest;
 	*dest = Color(p_r, p_g, p_b, p_a);
 }
 
-void GDAPI godot_color_new_rgb(godot_color *r_dest, const godot_real p_r, const godot_real p_g, const godot_real p_b) {
+void GDAPI pandemonium_color_new_rgb(pandemonium_color *r_dest, const pandemonium_real p_r, const pandemonium_real p_g, const pandemonium_real p_b) {
 	Color *dest = (Color *)r_dest;
 	*dest = Color(p_r, p_g, p_b);
 }
 
-godot_real godot_color_get_r(const godot_color *p_self) {
+pandemonium_real pandemonium_color_get_r(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->r;
 }
 
-void godot_color_set_r(godot_color *p_self, const godot_real val) {
+void pandemonium_color_set_r(pandemonium_color *p_self, const pandemonium_real val) {
 	Color *self = (Color *)p_self;
 	self->r = val;
 }
 
-godot_real godot_color_get_g(const godot_color *p_self) {
+pandemonium_real pandemonium_color_get_g(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->g;
 }
 
-void godot_color_set_g(godot_color *p_self, const godot_real val) {
+void pandemonium_color_set_g(pandemonium_color *p_self, const pandemonium_real val) {
 	Color *self = (Color *)p_self;
 	self->g = val;
 }
 
-godot_real godot_color_get_b(const godot_color *p_self) {
+pandemonium_real pandemonium_color_get_b(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->b;
 }
 
-void godot_color_set_b(godot_color *p_self, const godot_real val) {
+void pandemonium_color_set_b(pandemonium_color *p_self, const pandemonium_real val) {
 	Color *self = (Color *)p_self;
 	self->b = val;
 }
 
-godot_real godot_color_get_a(const godot_color *p_self) {
+pandemonium_real pandemonium_color_get_a(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->a;
 }
 
-void godot_color_set_a(godot_color *p_self, const godot_real val) {
+void pandemonium_color_set_a(pandemonium_color *p_self, const pandemonium_real val) {
 	Color *self = (Color *)p_self;
 	self->a = val;
 }
 
-godot_real godot_color_get_h(const godot_color *p_self) {
+pandemonium_real pandemonium_color_get_h(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->get_h();
 }
 
-godot_real godot_color_get_s(const godot_color *p_self) {
+pandemonium_real pandemonium_color_get_s(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->get_s();
 }
 
-godot_real godot_color_get_v(const godot_color *p_self) {
+pandemonium_real pandemonium_color_get_v(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->get_v();
 }
 
-godot_string GDAPI godot_color_as_string(const godot_color *p_self) {
-	godot_string ret;
+pandemonium_string GDAPI pandemonium_color_as_string(const pandemonium_color *p_self) {
+	pandemonium_string ret;
 	const Color *self = (const Color *)p_self;
 	memnew_placement(&ret, String(*self));
 	return ret;
 }
 
-godot_int GDAPI godot_color_to_rgba32(const godot_color *p_self) {
+pandemonium_int GDAPI pandemonium_color_to_rgba32(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->to_rgba32();
 }
 
-godot_int GDAPI godot_color_to_abgr32(const godot_color *p_self) {
+pandemonium_int GDAPI pandemonium_color_to_abgr32(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->to_abgr32();
 }
 
-godot_int GDAPI godot_color_to_abgr64(const godot_color *p_self) {
+pandemonium_int GDAPI pandemonium_color_to_abgr64(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->to_abgr64();
 }
 
-godot_int GDAPI godot_color_to_argb64(const godot_color *p_self) {
+pandemonium_int GDAPI pandemonium_color_to_argb64(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->to_argb64();
 }
 
-godot_int GDAPI godot_color_to_rgba64(const godot_color *p_self) {
+pandemonium_int GDAPI pandemonium_color_to_rgba64(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->to_rgba64();
 }
 
-godot_int GDAPI godot_color_to_argb32(const godot_color *p_self) {
+pandemonium_int GDAPI pandemonium_color_to_argb32(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->to_argb32();
 }
 
-godot_real GDAPI godot_color_gray(const godot_color *p_self) {
+pandemonium_real GDAPI pandemonium_color_gray(const pandemonium_color *p_self) {
 	const Color *self = (const Color *)p_self;
 	return self->gray();
 }
 
-godot_color GDAPI godot_color_inverted(const godot_color *p_self) {
-	godot_color dest;
+pandemonium_color GDAPI pandemonium_color_inverted(const pandemonium_color *p_self) {
+	pandemonium_color dest;
 	const Color *self = (const Color *)p_self;
 	*((Color *)&dest) = self->inverted();
 	return dest;
 }
 
-godot_color GDAPI godot_color_contrasted(const godot_color *p_self) {
-	godot_color dest;
+pandemonium_color GDAPI pandemonium_color_contrasted(const pandemonium_color *p_self) {
+	pandemonium_color dest;
 	const Color *self = (const Color *)p_self;
 	*((Color *)&dest) = self->contrasted();
 	return dest;
 }
 
-godot_color GDAPI godot_color_linear_interpolate(const godot_color *p_self, const godot_color *p_b, const godot_real p_t) {
-	godot_color dest;
+pandemonium_color GDAPI pandemonium_color_linear_interpolate(const pandemonium_color *p_self, const pandemonium_color *p_b, const pandemonium_real p_t) {
+	pandemonium_color dest;
 	const Color *self = (const Color *)p_self;
 	const Color *b = (const Color *)p_b;
 	*((Color *)&dest) = self->linear_interpolate(*b, p_t);
 	return dest;
 }
 
-godot_color GDAPI godot_color_blend(const godot_color *p_self, const godot_color *p_over) {
-	godot_color dest;
+pandemonium_color GDAPI pandemonium_color_blend(const pandemonium_color *p_self, const pandemonium_color *p_over) {
+	pandemonium_color dest;
 	const Color *self = (const Color *)p_self;
 	const Color *over = (const Color *)p_over;
 	*((Color *)&dest) = self->blend(*over);
 	return dest;
 }
 
-godot_color GDAPI godot_color_darkened(const godot_color *p_self, const godot_real p_amount) {
-	godot_color dest;
+pandemonium_color GDAPI pandemonium_color_darkened(const pandemonium_color *p_self, const pandemonium_real p_amount) {
+	pandemonium_color dest;
 	const Color *self = (const Color *)p_self;
 	*((Color *)&dest) = self->darkened(p_amount);
 	return dest;
 }
 
-godot_color GDAPI godot_color_from_hsv(const godot_color *p_self, const godot_real p_h, const godot_real p_s, const godot_real p_v, const godot_real p_a) {
-	godot_color dest;
+pandemonium_color GDAPI pandemonium_color_from_hsv(const pandemonium_color *p_self, const pandemonium_real p_h, const pandemonium_real p_s, const pandemonium_real p_v, const pandemonium_real p_a) {
+	pandemonium_color dest;
 	const Color *self = (const Color *)p_self;
 	*((Color *)&dest) = self->from_hsv(p_h, p_s, p_v, p_a);
 	return dest;
 }
 
-godot_color GDAPI godot_color_lightened(const godot_color *p_self, const godot_real p_amount) {
-	godot_color dest;
+pandemonium_color GDAPI pandemonium_color_lightened(const pandemonium_color *p_self, const pandemonium_real p_amount) {
+	pandemonium_color dest;
 	const Color *self = (const Color *)p_self;
 	*((Color *)&dest) = self->lightened(p_amount);
 	return dest;
 }
 
-godot_string GDAPI godot_color_to_html(const godot_color *p_self, const godot_bool p_with_alpha) {
-	godot_string dest;
+pandemonium_string GDAPI pandemonium_color_to_html(const pandemonium_color *p_self, const pandemonium_bool p_with_alpha) {
+	pandemonium_string dest;
 	const Color *self = (const Color *)p_self;
 
 	memnew_placement(&dest, String(self->to_html(p_with_alpha)));
 	return dest;
 }
 
-godot_bool GDAPI godot_color_operator_equal(const godot_color *p_self, const godot_color *p_b) {
+pandemonium_bool GDAPI pandemonium_color_operator_equal(const pandemonium_color *p_self, const pandemonium_color *p_b) {
 	const Color *self = (const Color *)p_self;
 	const Color *b = (const Color *)p_b;
 	return *self == *b;
 }
 
-godot_bool GDAPI godot_color_operator_less(const godot_color *p_self, const godot_color *p_b) {
+pandemonium_bool GDAPI pandemonium_color_operator_less(const pandemonium_color *p_self, const pandemonium_color *p_b) {
 	const Color *self = (const Color *)p_self;
 	const Color *b = (const Color *)p_b;
 	return *self < *b;

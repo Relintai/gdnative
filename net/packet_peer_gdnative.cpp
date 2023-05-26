@@ -2,8 +2,8 @@
 /*  packet_peer_gdnative.cpp                                              */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,7 +37,7 @@ PacketPeerGDNative::PacketPeerGDNative() {
 PacketPeerGDNative::~PacketPeerGDNative() {
 }
 
-void PacketPeerGDNative::set_native_packet_peer(const godot_net_packet_peer *p_impl) {
+void PacketPeerGDNative::set_native_packet_peer(const pandemonium_net_packet_peer *p_impl) {
 	interface = p_impl;
 }
 
@@ -66,7 +66,7 @@ int PacketPeerGDNative::get_available_packet_count() const {
 
 extern "C" {
 
-void GDAPI godot_net_bind_packet_peer(godot_object *p_obj, const godot_net_packet_peer *p_impl) {
+void GDAPI pandemonium_net_bind_packet_peer(pandemonium_object *p_obj, const pandemonium_net_packet_peer *p_impl) {
 	((PacketPeerGDNative *)p_obj)->set_native_packet_peer(p_impl);
 }
 }

@@ -2,8 +2,8 @@
 /*  pluginscript_script.cpp                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -28,7 +28,7 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
-// Godot imports
+// Pandemonium imports
 #include "core/os/file_access.h"
 // PluginScript imports
 #include "pluginscript_instance.h"
@@ -268,20 +268,20 @@ Error PluginScript::reload(bool p_keep_state) {
 	}
 
 	Error err;
-	godot_pluginscript_script_manifest manifest = _desc->init(
+	pandemonium_pluginscript_script_manifest manifest = _desc->init(
 			_language->_data,
-			(godot_string *)&_path,
-			(godot_string *)&_source,
-			(godot_error *)&err);
+			(pandemonium_string *)&_path,
+			(pandemonium_string *)&_source,
+			(pandemonium_error *)&err);
 // Manifest's attributes must be explicitly freed
 #define FREE_SCRIPT_MANIFEST(manifest)                    \
 	{                                                     \
-		godot_string_name_destroy(&manifest.name);        \
-		godot_string_name_destroy(&manifest.base);        \
-		godot_dictionary_destroy(&manifest.member_lines); \
-		godot_array_destroy(&manifest.methods);           \
-		godot_array_destroy(&manifest.signals);           \
-		godot_array_destroy(&manifest.properties);        \
+		pandemonium_string_name_destroy(&manifest.name);        \
+		pandemonium_string_name_destroy(&manifest.base);        \
+		pandemonium_dictionary_destroy(&manifest.member_lines); \
+		pandemonium_array_destroy(&manifest.methods);           \
+		pandemonium_array_destroy(&manifest.signals);           \
+		pandemonium_array_destroy(&manifest.properties);        \
 	}
 
 	if (err) {

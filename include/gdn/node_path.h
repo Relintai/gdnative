@@ -2,8 +2,8 @@
 /*  node_path.h                                                           */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_NODE_PATH_SIZE sizeof(void *)
+#define PANDEMONIUM_NODE_PATH_SIZE sizeof(void *)
 
-#ifndef GODOT_CORE_API_GODOT_NODE_PATH_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_NODE_PATH_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_NODE_PATH_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_NODE_PATH_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_NODE_PATH_SIZE];
-} godot_node_path;
+	uint8_t _dont_touch_that[PANDEMONIUM_NODE_PATH_SIZE];
+} pandemonium_node_path;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -58,29 +58,29 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_node_path_new(godot_node_path *r_dest, const godot_string *p_from);
-void GDAPI godot_node_path_new_copy(godot_node_path *r_dest, const godot_node_path *p_src);
-void GDAPI godot_node_path_destroy(godot_node_path *p_self);
+void GDAPI pandemonium_node_path_new(pandemonium_node_path *r_dest, const pandemonium_string *p_from);
+void GDAPI pandemonium_node_path_new_copy(pandemonium_node_path *r_dest, const pandemonium_node_path *p_src);
+void GDAPI pandemonium_node_path_destroy(pandemonium_node_path *p_self);
 
-godot_string GDAPI godot_node_path_as_string(const godot_node_path *p_self);
+pandemonium_string GDAPI pandemonium_node_path_as_string(const pandemonium_node_path *p_self);
 
-godot_bool GDAPI godot_node_path_is_absolute(const godot_node_path *p_self);
+pandemonium_bool GDAPI pandemonium_node_path_is_absolute(const pandemonium_node_path *p_self);
 
-godot_int GDAPI godot_node_path_get_name_count(const godot_node_path *p_self);
+pandemonium_int GDAPI pandemonium_node_path_get_name_count(const pandemonium_node_path *p_self);
 
-godot_string GDAPI godot_node_path_get_name(const godot_node_path *p_self, const godot_int p_idx);
+pandemonium_string GDAPI pandemonium_node_path_get_name(const pandemonium_node_path *p_self, const pandemonium_int p_idx);
 
-godot_int GDAPI godot_node_path_get_subname_count(const godot_node_path *p_self);
+pandemonium_int GDAPI pandemonium_node_path_get_subname_count(const pandemonium_node_path *p_self);
 
-godot_string GDAPI godot_node_path_get_subname(const godot_node_path *p_self, const godot_int p_idx);
+pandemonium_string GDAPI pandemonium_node_path_get_subname(const pandemonium_node_path *p_self, const pandemonium_int p_idx);
 
-godot_string GDAPI godot_node_path_get_concatenated_subnames(const godot_node_path *p_self);
+pandemonium_string GDAPI pandemonium_node_path_get_concatenated_subnames(const pandemonium_node_path *p_self);
 
-godot_bool GDAPI godot_node_path_is_empty(const godot_node_path *p_self);
+pandemonium_bool GDAPI pandemonium_node_path_is_empty(const pandemonium_node_path *p_self);
 
-godot_bool GDAPI godot_node_path_operator_equal(const godot_node_path *p_self, const godot_node_path *p_b);
+pandemonium_bool GDAPI pandemonium_node_path_operator_equal(const pandemonium_node_path *p_self, const pandemonium_node_path *p_b);
 
-godot_node_path godot_node_path_get_as_property_path(const godot_node_path *p_self);
+pandemonium_node_path pandemonium_node_path_get_as_property_path(const pandemonium_node_path *p_self);
 
 #ifdef __cplusplus
 }

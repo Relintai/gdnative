@@ -2,8 +2,8 @@
 /*  transform2d.h                                                         */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_TRANSFORM2D_SIZE 24
+#define PANDEMONIUM_TRANSFORM2D_SIZE 24
 
-#ifndef GODOT_CORE_API_GODOT_TRANSFORM2D_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_TRANSFORM2D_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_TRANSFORM2D_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_TRANSFORM2D_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_TRANSFORM2D_SIZE];
-} godot_transform2d;
+	uint8_t _dont_touch_that[PANDEMONIUM_TRANSFORM2D_SIZE];
+} pandemonium_transform2d;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -59,50 +59,50 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_transform2d_new(godot_transform2d *r_dest, const godot_real p_rot, const godot_vector2 *p_pos);
-void GDAPI godot_transform2d_new_axis_origin(godot_transform2d *r_dest, const godot_vector2 *p_x_axis, const godot_vector2 *p_y_axis, const godot_vector2 *p_origin);
+void GDAPI pandemonium_transform2d_new(pandemonium_transform2d *r_dest, const pandemonium_real p_rot, const pandemonium_vector2 *p_pos);
+void GDAPI pandemonium_transform2d_new_axis_origin(pandemonium_transform2d *r_dest, const pandemonium_vector2 *p_x_axis, const pandemonium_vector2 *p_y_axis, const pandemonium_vector2 *p_origin);
 
-godot_string GDAPI godot_transform2d_as_string(const godot_transform2d *p_self);
+pandemonium_string GDAPI pandemonium_transform2d_as_string(const pandemonium_transform2d *p_self);
 
-godot_transform2d GDAPI godot_transform2d_inverse(const godot_transform2d *p_self);
+pandemonium_transform2d GDAPI pandemonium_transform2d_inverse(const pandemonium_transform2d *p_self);
 
-godot_transform2d GDAPI godot_transform2d_affine_inverse(const godot_transform2d *p_self);
+pandemonium_transform2d GDAPI pandemonium_transform2d_affine_inverse(const pandemonium_transform2d *p_self);
 
-godot_real GDAPI godot_transform2d_get_rotation(const godot_transform2d *p_self);
+pandemonium_real GDAPI pandemonium_transform2d_get_rotation(const pandemonium_transform2d *p_self);
 
-godot_vector2 GDAPI godot_transform2d_get_origin(const godot_transform2d *p_self);
+pandemonium_vector2 GDAPI pandemonium_transform2d_get_origin(const pandemonium_transform2d *p_self);
 
-godot_vector2 GDAPI godot_transform2d_get_scale(const godot_transform2d *p_self);
+pandemonium_vector2 GDAPI pandemonium_transform2d_get_scale(const pandemonium_transform2d *p_self);
 
-godot_real GDAPI godot_transform2d_determinant(const godot_transform2d *p_self);
+pandemonium_real GDAPI pandemonium_transform2d_determinant(const pandemonium_transform2d *p_self);
 
-godot_transform2d GDAPI godot_transform2d_orthonormalized(const godot_transform2d *p_self);
+pandemonium_transform2d GDAPI pandemonium_transform2d_orthonormalized(const pandemonium_transform2d *p_self);
 
-godot_transform2d GDAPI godot_transform2d_rotated(const godot_transform2d *p_self, const godot_real p_phi);
+pandemonium_transform2d GDAPI pandemonium_transform2d_rotated(const pandemonium_transform2d *p_self, const pandemonium_real p_phi);
 
-godot_transform2d GDAPI godot_transform2d_scaled(const godot_transform2d *p_self, const godot_vector2 *p_scale);
+pandemonium_transform2d GDAPI pandemonium_transform2d_scaled(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_scale);
 
-godot_transform2d GDAPI godot_transform2d_translated(const godot_transform2d *p_self, const godot_vector2 *p_offset);
+pandemonium_transform2d GDAPI pandemonium_transform2d_translated(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_offset);
 
-godot_vector2 GDAPI godot_transform2d_xform_vector2(const godot_transform2d *p_self, const godot_vector2 *p_v);
+pandemonium_vector2 GDAPI pandemonium_transform2d_xform_vector2(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_v);
 
-godot_vector2 GDAPI godot_transform2d_xform_inv_vector2(const godot_transform2d *p_self, const godot_vector2 *p_v);
+pandemonium_vector2 GDAPI pandemonium_transform2d_xform_inv_vector2(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_v);
 
-godot_vector2 GDAPI godot_transform2d_basis_xform_vector2(const godot_transform2d *p_self, const godot_vector2 *p_v);
+pandemonium_vector2 GDAPI pandemonium_transform2d_basis_xform_vector2(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_v);
 
-godot_vector2 GDAPI godot_transform2d_basis_xform_inv_vector2(const godot_transform2d *p_self, const godot_vector2 *p_v);
+pandemonium_vector2 GDAPI pandemonium_transform2d_basis_xform_inv_vector2(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_v);
 
-godot_transform2d GDAPI godot_transform2d_interpolate_with(const godot_transform2d *p_self, const godot_transform2d *p_m, const godot_real p_c);
+pandemonium_transform2d GDAPI pandemonium_transform2d_interpolate_with(const pandemonium_transform2d *p_self, const pandemonium_transform2d *p_m, const pandemonium_real p_c);
 
-godot_bool GDAPI godot_transform2d_operator_equal(const godot_transform2d *p_self, const godot_transform2d *p_b);
+pandemonium_bool GDAPI pandemonium_transform2d_operator_equal(const pandemonium_transform2d *p_self, const pandemonium_transform2d *p_b);
 
-godot_transform2d GDAPI godot_transform2d_operator_multiply(const godot_transform2d *p_self, const godot_transform2d *p_b);
+pandemonium_transform2d GDAPI pandemonium_transform2d_operator_multiply(const pandemonium_transform2d *p_self, const pandemonium_transform2d *p_b);
 
-void GDAPI godot_transform2d_new_identity(godot_transform2d *r_dest);
+void GDAPI pandemonium_transform2d_new_identity(pandemonium_transform2d *r_dest);
 
-godot_rect2 GDAPI godot_transform2d_xform_rect2(const godot_transform2d *p_self, const godot_rect2 *p_v);
+pandemonium_rect2 GDAPI pandemonium_transform2d_xform_rect2(const pandemonium_transform2d *p_self, const pandemonium_rect2 *p_v);
 
-godot_rect2 GDAPI godot_transform2d_xform_inv_rect2(const godot_transform2d *p_self, const godot_rect2 *p_v);
+pandemonium_rect2 GDAPI pandemonium_transform2d_xform_inv_rect2(const pandemonium_transform2d *p_self, const pandemonium_rect2 *p_v);
 
 #ifdef __cplusplus
 }

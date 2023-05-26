@@ -2,8 +2,8 @@
 /*  plane.h                                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_PLANE_SIZE 16
+#define PANDEMONIUM_PLANE_SIZE 16
 
-#ifndef GODOT_CORE_API_GODOT_PLANE_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_PLANE_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_PLANE_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_PLANE_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_PLANE_SIZE];
-} godot_plane;
+	uint8_t _dont_touch_that[PANDEMONIUM_PLANE_SIZE];
+} pandemonium_plane;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -58,43 +58,43 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_plane_new_with_reals(godot_plane *r_dest, const godot_real p_a, const godot_real p_b, const godot_real p_c, const godot_real p_d);
-void GDAPI godot_plane_new_with_vectors(godot_plane *r_dest, const godot_vector3 *p_v1, const godot_vector3 *p_v2, const godot_vector3 *p_v3);
-void GDAPI godot_plane_new_with_normal(godot_plane *r_dest, const godot_vector3 *p_normal, const godot_real p_d);
+void GDAPI pandemonium_plane_new_with_reals(pandemonium_plane *r_dest, const pandemonium_real p_a, const pandemonium_real p_b, const pandemonium_real p_c, const pandemonium_real p_d);
+void GDAPI pandemonium_plane_new_with_vectors(pandemonium_plane *r_dest, const pandemonium_vector3 *p_v1, const pandemonium_vector3 *p_v2, const pandemonium_vector3 *p_v3);
+void GDAPI pandemonium_plane_new_with_normal(pandemonium_plane *r_dest, const pandemonium_vector3 *p_normal, const pandemonium_real p_d);
 
-godot_string GDAPI godot_plane_as_string(const godot_plane *p_self);
+pandemonium_string GDAPI pandemonium_plane_as_string(const pandemonium_plane *p_self);
 
-godot_plane GDAPI godot_plane_normalized(const godot_plane *p_self);
+pandemonium_plane GDAPI pandemonium_plane_normalized(const pandemonium_plane *p_self);
 
-godot_vector3 GDAPI godot_plane_center(const godot_plane *p_self);
+pandemonium_vector3 GDAPI pandemonium_plane_center(const pandemonium_plane *p_self);
 
-godot_vector3 GDAPI godot_plane_get_any_point(const godot_plane *p_self);
+pandemonium_vector3 GDAPI pandemonium_plane_get_any_point(const pandemonium_plane *p_self);
 
-godot_bool GDAPI godot_plane_is_point_over(const godot_plane *p_self, const godot_vector3 *p_point);
+pandemonium_bool GDAPI pandemonium_plane_is_point_over(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
 
-godot_real GDAPI godot_plane_distance_to(const godot_plane *p_self, const godot_vector3 *p_point);
+pandemonium_real GDAPI pandemonium_plane_distance_to(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
 
-godot_bool GDAPI godot_plane_has_point(const godot_plane *p_self, const godot_vector3 *p_point, const godot_real p_epsilon);
+pandemonium_bool GDAPI pandemonium_plane_has_point(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point, const pandemonium_real p_epsilon);
 
-godot_vector3 GDAPI godot_plane_project(const godot_plane *p_self, const godot_vector3 *p_point);
+pandemonium_vector3 GDAPI pandemonium_plane_project(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
 
-godot_bool GDAPI godot_plane_intersect_3(const godot_plane *p_self, godot_vector3 *r_dest, const godot_plane *p_b, const godot_plane *p_c);
+pandemonium_bool GDAPI pandemonium_plane_intersect_3(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_plane *p_b, const pandemonium_plane *p_c);
 
-godot_bool GDAPI godot_plane_intersects_ray(const godot_plane *p_self, godot_vector3 *r_dest, const godot_vector3 *p_from, const godot_vector3 *p_dir);
+pandemonium_bool GDAPI pandemonium_plane_intersects_ray(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_dir);
 
-godot_bool GDAPI godot_plane_intersects_segment(const godot_plane *p_self, godot_vector3 *r_dest, const godot_vector3 *p_begin, const godot_vector3 *p_end);
+pandemonium_bool GDAPI pandemonium_plane_intersects_segment(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_vector3 *p_begin, const pandemonium_vector3 *p_end);
 
-godot_plane GDAPI godot_plane_operator_neg(const godot_plane *p_self);
+pandemonium_plane GDAPI pandemonium_plane_operator_neg(const pandemonium_plane *p_self);
 
-godot_bool GDAPI godot_plane_operator_equal(const godot_plane *p_self, const godot_plane *p_b);
+pandemonium_bool GDAPI pandemonium_plane_operator_equal(const pandemonium_plane *p_self, const pandemonium_plane *p_b);
 
-void GDAPI godot_plane_set_normal(godot_plane *p_self, const godot_vector3 *p_normal);
+void GDAPI pandemonium_plane_set_normal(pandemonium_plane *p_self, const pandemonium_vector3 *p_normal);
 
-godot_vector3 GDAPI godot_plane_get_normal(const godot_plane *p_self);
+pandemonium_vector3 GDAPI pandemonium_plane_get_normal(const pandemonium_plane *p_self);
 
-godot_real GDAPI godot_plane_get_d(const godot_plane *p_self);
+pandemonium_real GDAPI pandemonium_plane_get_d(const pandemonium_plane *p_self);
 
-void GDAPI godot_plane_set_d(godot_plane *p_self, const godot_real p_d);
+void GDAPI pandemonium_plane_set_d(pandemonium_plane *p_self, const pandemonium_real p_d);
 
 #ifdef __cplusplus
 }

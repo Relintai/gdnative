@@ -12,12 +12,12 @@ def _spaced(e):
 
 
 def _build_gdnative_api_struct_header(api):
-    gdnative_api_init_macro = ["\textern const godot_gdnative_core_api_struct *_gdnative_wrapper_api_struct;"]
+    gdnative_api_init_macro = ["\textern const pandemonium_gdnative_core_api_struct *_gdnative_wrapper_api_struct;"]
 
     for ext in api["extensions"]:
         name = ext["name"]
         gdnative_api_init_macro.append(
-            "\textern const godot_gdnative_ext_{0}_api_struct *_gdnative_wrapper_{0}_api_struct;".format(name)
+            "\textern const pandemonium_gdnative_ext_{0}_api_struct *_gdnative_wrapper_{0}_api_struct;".format(name)
         )
 
     gdnative_api_init_macro.append("\t_gdnative_wrapper_api_struct = options->api_struct;")
@@ -30,7 +30,7 @@ def _build_gdnative_api_struct_header(api):
         name = ext["name"]
         gdnative_api_init_macro.append("\t\t\tcase GDNATIVE_EXT_%s:" % ext["type"])
         gdnative_api_init_macro.append(
-            "\t\t\t\t_gdnative_wrapper_{0}_api_struct = (godot_gdnative_ext_{0}_api_struct *)"
+            "\t\t\t\t_gdnative_wrapper_{0}_api_struct = (pandemonium_gdnative_ext_{0}_api_struct *)"
             " _gdnative_wrapper_api_struct->extensions[i];".format(name)
         )
         gdnative_api_init_macro.append("\t\t\t\tbreak;")
@@ -39,15 +39,15 @@ def _build_gdnative_api_struct_header(api):
 
     out = [
         "/* THIS FILE IS GENERATED DO NOT EDIT */",
-        "#ifndef GODOT_GDNATIVE_API_STRUCT_H",
-        "#define GODOT_GDNATIVE_API_STRUCT_H",
+        "#ifndef PANDEMONIUM_GDNATIVE_API_STRUCT_H",
+        "#define PANDEMONIUM_GDNATIVE_API_STRUCT_H",
         "",
         "#include <gdn/gdnative.h>",
-        "#include <android/godot_android.h>",
-        "#include <nativescript/godot_nativescript.h>",
-        "#include <net/godot_net.h>",
-        "#include <pluginscript/godot_pluginscript.h>",
-        "#include <videodecoder/godot_videodecoder.h>",
+        "#include <android/pandemonium_android.h>",
+        "#include <nativescript/pandemonium_nativescript.h>",
+        "#include <net/pandemonium_net.h>",
+        "#include <pluginscript/pandemonium_pluginscript.h>",
+        "#include <videodecoder/pandemonium_videodecoder.h>",
         "",
         "#define GDNATIVE_API_INIT(options) do {  \\\n" + "  \\\n".join(gdnative_api_init_macro) + "  \\\n } while (0)",
         "",
@@ -70,13 +70,13 @@ def _build_gdnative_api_struct_header(api):
             ret_val += generate_extension_struct(name, ext["next"])
 
         ret_val += [
-            "typedef struct godot_gdnative_ext_"
+            "typedef struct pandemonium_gdnative_ext_"
             + name
             + ("" if not include_version else ("_{0}_{1}".format(ext["version"]["major"], ext["version"]["minor"])))
             + "_api_struct {",
             "\tunsigned int type;",
-            "\tgodot_gdnative_api_version version;",
-            "\tconst godot_gdnative_api_struct *next;",
+            "\tpandemonium_gdnative_api_version version;",
+            "\tconst pandemonium_gdnative_api_struct *next;",
         ]
 
         for funcdef in ext["api"]:
@@ -84,7 +84,7 @@ def _build_gdnative_api_struct_header(api):
             ret_val.append("\t%s(*%s)(%s);" % (_spaced(funcdef["return_type"]), funcdef["name"], args))
 
         ret_val += [
-            "} godot_gdnative_ext_"
+            "} pandemonium_gdnative_ext_"
             + name
             + ("" if not include_version else ("_{0}_{1}".format(ext["version"]["major"], ext["version"]["minor"])))
             + "_api_struct;",
@@ -99,12 +99,12 @@ def _build_gdnative_api_struct_header(api):
             ret_val += generate_core_extension_struct(core["next"])
 
         ret_val += [
-            "typedef struct godot_gdnative_core_"
+            "typedef struct pandemonium_gdnative_core_"
             + ("{0}_{1}".format(core["version"]["major"], core["version"]["minor"]))
             + "_api_struct {",
             "\tunsigned int type;",
-            "\tgodot_gdnative_api_version version;",
-            "\tconst godot_gdnative_api_struct *next;",
+            "\tpandemonium_gdnative_api_version version;",
+            "\tconst pandemonium_gdnative_api_struct *next;",
         ]
 
         for funcdef in core["api"]:
@@ -112,7 +112,7 @@ def _build_gdnative_api_struct_header(api):
             ret_val.append("\t%s(*%s)(%s);" % (_spaced(funcdef["return_type"]), funcdef["name"], args))
 
         ret_val += [
-            "} godot_gdnative_core_"
+            "} pandemonium_gdnative_core_"
             + "{0}_{1}".format(core["version"]["major"], core["version"]["minor"])
             + "_api_struct;",
             "",
@@ -128,12 +128,12 @@ def _build_gdnative_api_struct_header(api):
         out += generate_core_extension_struct(api["core"]["next"])
 
     out += [
-        "typedef struct godot_gdnative_core_api_struct {",
+        "typedef struct pandemonium_gdnative_core_api_struct {",
         "\tunsigned int type;",
-        "\tgodot_gdnative_api_version version;",
-        "\tconst godot_gdnative_api_struct *next;",
+        "\tpandemonium_gdnative_api_version version;",
+        "\tconst pandemonium_gdnative_api_struct *next;",
         "\tunsigned int num_extensions;",
-        "\tconst godot_gdnative_api_struct **extensions;",
+        "\tconst pandemonium_gdnative_api_struct **extensions;",
     ]
 
     for funcdef in api["core"]["api"]:
@@ -141,13 +141,13 @@ def _build_gdnative_api_struct_header(api):
         out.append("\t%s(*%s)(%s);" % (_spaced(funcdef["return_type"]), funcdef["name"], args))
 
     out += [
-        "} godot_gdnative_core_api_struct;",
+        "} pandemonium_gdnative_core_api_struct;",
         "",
         "#ifdef __cplusplus",
         "}",
         "#endif",
         "",
-        "#endif // GODOT_GDNATIVE_API_STRUCT_H",
+        "#endif // PANDEMONIUM_GDNATIVE_API_STRUCT_H",
         "",
     ]
     return "\n".join(out)
@@ -158,7 +158,7 @@ def _build_gdnative_api_struct_source(api):
 
     def get_extension_struct_name(name, ext, include_version=True):
         return (
-            "godot_gdnative_ext_"
+            "pandemonium_gdnative_ext_"
             + name
             + ("" if not include_version else ("_{0}_{1}".format(ext["version"]["major"], ext["version"]["minor"])))
             + "_api_struct"
@@ -191,7 +191,7 @@ def _build_gdnative_api_struct_source(api):
             + (
                 "NULL"
                 if not ext["next"]
-                else ("(const godot_gdnative_api_struct *)&" + get_extension_struct_instance_name(name, ext["next"]))
+                else ("(const pandemonium_gdnative_api_struct *)&" + get_extension_struct_instance_name(name, ext["next"]))
             )
             + ",",
         ]
@@ -210,7 +210,7 @@ def _build_gdnative_api_struct_source(api):
             ret_val += get_core_struct_definition(core["next"])
 
         ret_val += [
-            "extern const godot_gdnative_core_"
+            "extern const pandemonium_gdnative_core_"
             + ("{0}_{1}_api_struct api_{0}_{1}".format(core["version"]["major"], core["version"]["minor"]))
             + " = {",
             "\tGDNATIVE_" + core["type"] + ",",
@@ -220,7 +220,7 @@ def _build_gdnative_api_struct_source(api):
                 "NULL"
                 if not core["next"]
                 else (
-                    "(const godot_gdnative_api_struct *)& api_{0}_{1}".format(
+                    "(const pandemonium_gdnative_api_struct *)& api_{0}_{1}".format(
                         core["next"]["version"]["major"], core["next"]["version"]["minor"]
                     )
                 )
@@ -239,11 +239,11 @@ def _build_gdnative_api_struct_source(api):
         name = ext["name"]
         out += get_extension_struct_definition(name, ext, False)
 
-    out += ["", "const godot_gdnative_api_struct *gdnative_extensions_pointers[] = {"]
+    out += ["", "const pandemonium_gdnative_api_struct *gdnative_extensions_pointers[] = {"]
 
     for ext in api["extensions"]:
         name = ext["name"]
-        out += ["\t(godot_gdnative_api_struct *)&api_extension_" + name + "_struct,"]
+        out += ["\t(pandemonium_gdnative_api_struct *)&api_extension_" + name + "_struct,"]
 
     out += ["};\n"]
 
@@ -251,10 +251,10 @@ def _build_gdnative_api_struct_source(api):
         out += get_core_struct_definition(api["core"]["next"])
 
     out += [
-        "extern const godot_gdnative_core_api_struct api_struct = {",
+        "extern const pandemonium_gdnative_core_api_struct api_struct = {",
         "\tGDNATIVE_" + api["core"]["type"] + ",",
         "\t{" + str(api["core"]["version"]["major"]) + ", " + str(api["core"]["version"]["minor"]) + "},",
-        "\t(const godot_gdnative_api_struct *)&api_1_1,",
+        "\t(const pandemonium_gdnative_api_struct *)&api_1_1,",
         "\t" + str(len(api["extensions"])) + ",",
         "\tgdnative_extensions_pointers,",
     ]
@@ -283,9 +283,9 @@ def _build_gdnative_wrapper_code(api):
         "/* THIS FILE IS GENERATED DO NOT EDIT */",
         "",
         "#include <gdn/gdnative.h>",
-        "#include <nativescript/godot_nativescript.h>",
-        "#include <pluginscript/godot_pluginscript.h>",
-        "#include <videodecoder/godot_videodecoder.h>",
+        "#include <nativescript/pandemonium_nativescript.h>",
+        "#include <pluginscript/pandemonium_pluginscript.h>",
+        "#include <videodecoder/pandemonium_videodecoder.h>",
         "",
         "#include <gdnative_api_struct.gen.h>",
         "",
@@ -293,12 +293,12 @@ def _build_gdnative_wrapper_code(api):
         'extern "C" {',
         "#endif",
         "",
-        "godot_gdnative_core_api_struct *_gdnative_wrapper_api_struct = 0;",
+        "pandemonium_gdnative_core_api_struct *_gdnative_wrapper_api_struct = 0;",
     ]
 
     for ext in api["extensions"]:
         name = ext["name"]
-        out.append("godot_gdnative_ext_" + name + "_api_struct *_gdnative_wrapper_" + name + "_api_struct = 0;")
+        out.append("pandemonium_gdnative_ext_" + name + "_api_struct *_gdnative_wrapper_" + name + "_api_struct = 0;")
 
     out += [""]
 

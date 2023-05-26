@@ -2,8 +2,8 @@
 /*  basis.h                                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,13 +37,13 @@ extern "C" {
 
 #include <stdint.h>
 
-#define GODOT_BASIS_SIZE 36
+#define PANDEMONIUM_BASIS_SIZE 36
 
-#ifndef GODOT_CORE_API_GODOT_BASIS_TYPE_DEFINED
-#define GODOT_CORE_API_GODOT_BASIS_TYPE_DEFINED
+#ifndef PANDEMONIUM_CORE_API_PANDEMONIUM_BASIS_TYPE_DEFINED
+#define PANDEMONIUM_CORE_API_PANDEMONIUM_BASIS_TYPE_DEFINED
 typedef struct {
-	uint8_t _dont_touch_that[GODOT_BASIS_SIZE];
-} godot_basis;
+	uint8_t _dont_touch_that[PANDEMONIUM_BASIS_SIZE];
+} pandemonium_basis;
 #endif
 
 // reduce extern "C" nesting for VS2013
@@ -59,75 +59,75 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI godot_basis_new_with_rows(godot_basis *r_dest, const godot_vector3 *p_x_axis, const godot_vector3 *p_y_axis, const godot_vector3 *p_z_axis);
-void GDAPI godot_basis_new_with_axis_and_angle(godot_basis *r_dest, const godot_vector3 *p_axis, const godot_real p_phi);
-void GDAPI godot_basis_new_with_euler(godot_basis *r_dest, const godot_vector3 *p_euler);
-void GDAPI godot_basis_new_with_euler_quaternion(godot_basis *r_dest, const godot_quaternion *p_euler);
+void GDAPI pandemonium_basis_new_with_rows(pandemonium_basis *r_dest, const pandemonium_vector3 *p_x_axis, const pandemonium_vector3 *p_y_axis, const pandemonium_vector3 *p_z_axis);
+void GDAPI pandemonium_basis_new_with_axis_and_angle(pandemonium_basis *r_dest, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi);
+void GDAPI pandemonium_basis_new_with_euler(pandemonium_basis *r_dest, const pandemonium_vector3 *p_euler);
+void GDAPI pandemonium_basis_new_with_euler_quaternion(pandemonium_basis *r_dest, const pandemonium_quaternion *p_euler);
 
-godot_string GDAPI godot_basis_as_string(const godot_basis *p_self);
+pandemonium_string GDAPI pandemonium_basis_as_string(const pandemonium_basis *p_self);
 
-godot_basis GDAPI godot_basis_inverse(const godot_basis *p_self);
+pandemonium_basis GDAPI pandemonium_basis_inverse(const pandemonium_basis *p_self);
 
-godot_basis GDAPI godot_basis_transposed(const godot_basis *p_self);
+pandemonium_basis GDAPI pandemonium_basis_transposed(const pandemonium_basis *p_self);
 
-godot_basis GDAPI godot_basis_orthonormalized(const godot_basis *p_self);
+pandemonium_basis GDAPI pandemonium_basis_orthonormalized(const pandemonium_basis *p_self);
 
-godot_real GDAPI godot_basis_determinant(const godot_basis *p_self);
+pandemonium_real GDAPI pandemonium_basis_determinant(const pandemonium_basis *p_self);
 
-godot_basis GDAPI godot_basis_rotated(const godot_basis *p_self, const godot_vector3 *p_axis, const godot_real p_phi);
+pandemonium_basis GDAPI pandemonium_basis_rotated(const pandemonium_basis *p_self, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi);
 
-godot_basis GDAPI godot_basis_scaled(const godot_basis *p_self, const godot_vector3 *p_scale);
+pandemonium_basis GDAPI pandemonium_basis_scaled(const pandemonium_basis *p_self, const pandemonium_vector3 *p_scale);
 
-godot_vector3 GDAPI godot_basis_get_scale(const godot_basis *p_self);
+pandemonium_vector3 GDAPI pandemonium_basis_get_scale(const pandemonium_basis *p_self);
 
-godot_vector3 GDAPI godot_basis_get_euler(const godot_basis *p_self);
+pandemonium_vector3 GDAPI pandemonium_basis_get_euler(const pandemonium_basis *p_self);
 
-godot_quaternion GDAPI godot_basis_get_quaternion(const godot_basis *p_self);
+pandemonium_quaternion GDAPI pandemonium_basis_get_quaternion(const pandemonium_basis *p_self);
 
-void GDAPI godot_basis_set_quaternion(godot_basis *p_self, const godot_quaternion *p_quaternion);
+void GDAPI pandemonium_basis_set_quaternion(pandemonium_basis *p_self, const pandemonium_quaternion *p_quaternion);
 
-void GDAPI godot_basis_set_axis_angle_scale(godot_basis *p_self, const godot_vector3 *p_axis, godot_real p_phi, const godot_vector3 *p_scale);
+void GDAPI pandemonium_basis_set_axis_angle_scale(pandemonium_basis *p_self, const pandemonium_vector3 *p_axis, pandemonium_real p_phi, const pandemonium_vector3 *p_scale);
 
-void GDAPI godot_basis_set_euler_scale(godot_basis *p_self, const godot_vector3 *p_euler, const godot_vector3 *p_scale);
+void GDAPI pandemonium_basis_set_euler_scale(pandemonium_basis *p_self, const pandemonium_vector3 *p_euler, const pandemonium_vector3 *p_scale);
 
-void GDAPI godot_basis_set_quaternion_scale(godot_basis *p_self, const godot_quaternion *p_quaternion, const godot_vector3 *p_scale);
+void GDAPI pandemonium_basis_set_quaternion_scale(pandemonium_basis *p_self, const pandemonium_quaternion *p_quaternion, const pandemonium_vector3 *p_scale);
 
-godot_real GDAPI godot_basis_tdotx(const godot_basis *p_self, const godot_vector3 *p_with);
+pandemonium_real GDAPI pandemonium_basis_tdotx(const pandemonium_basis *p_self, const pandemonium_vector3 *p_with);
 
-godot_real GDAPI godot_basis_tdoty(const godot_basis *p_self, const godot_vector3 *p_with);
+pandemonium_real GDAPI pandemonium_basis_tdoty(const pandemonium_basis *p_self, const pandemonium_vector3 *p_with);
 
-godot_real GDAPI godot_basis_tdotz(const godot_basis *p_self, const godot_vector3 *p_with);
+pandemonium_real GDAPI pandemonium_basis_tdotz(const pandemonium_basis *p_self, const pandemonium_vector3 *p_with);
 
-godot_vector3 GDAPI godot_basis_xform(const godot_basis *p_self, const godot_vector3 *p_v);
+pandemonium_vector3 GDAPI pandemonium_basis_xform(const pandemonium_basis *p_self, const pandemonium_vector3 *p_v);
 
-godot_vector3 GDAPI godot_basis_xform_inv(const godot_basis *p_self, const godot_vector3 *p_v);
+pandemonium_vector3 GDAPI pandemonium_basis_xform_inv(const pandemonium_basis *p_self, const pandemonium_vector3 *p_v);
 
-godot_int GDAPI godot_basis_get_orthogonal_index(const godot_basis *p_self);
+pandemonium_int GDAPI pandemonium_basis_get_orthogonal_index(const pandemonium_basis *p_self);
 
-void GDAPI godot_basis_new(godot_basis *r_dest);
+void GDAPI pandemonium_basis_new(pandemonium_basis *r_dest);
 
 // p_elements is a pointer to an array of 3 (!!) vector3
-void GDAPI godot_basis_get_elements(const godot_basis *p_self, godot_vector3 *p_elements);
+void GDAPI pandemonium_basis_get_elements(const pandemonium_basis *p_self, pandemonium_vector3 *p_elements);
 
-godot_vector3 GDAPI godot_basis_get_axis(const godot_basis *p_self, const godot_int p_axis);
+pandemonium_vector3 GDAPI pandemonium_basis_get_axis(const pandemonium_basis *p_self, const pandemonium_int p_axis);
 
-void GDAPI godot_basis_set_axis(godot_basis *p_self, const godot_int p_axis, const godot_vector3 *p_value);
+void GDAPI pandemonium_basis_set_axis(pandemonium_basis *p_self, const pandemonium_int p_axis, const pandemonium_vector3 *p_value);
 
-godot_vector3 GDAPI godot_basis_get_row(const godot_basis *p_self, const godot_int p_row);
+pandemonium_vector3 GDAPI pandemonium_basis_get_row(const pandemonium_basis *p_self, const pandemonium_int p_row);
 
-void GDAPI godot_basis_set_row(godot_basis *p_self, const godot_int p_row, const godot_vector3 *p_value);
+void GDAPI pandemonium_basis_set_row(pandemonium_basis *p_self, const pandemonium_int p_row, const pandemonium_vector3 *p_value);
 
-godot_bool GDAPI godot_basis_operator_equal(const godot_basis *p_self, const godot_basis *p_b);
+pandemonium_bool GDAPI pandemonium_basis_operator_equal(const pandemonium_basis *p_self, const pandemonium_basis *p_b);
 
-godot_basis GDAPI godot_basis_operator_add(const godot_basis *p_self, const godot_basis *p_b);
+pandemonium_basis GDAPI pandemonium_basis_operator_add(const pandemonium_basis *p_self, const pandemonium_basis *p_b);
 
-godot_basis GDAPI godot_basis_operator_subtract(const godot_basis *p_self, const godot_basis *p_b);
+pandemonium_basis GDAPI pandemonium_basis_operator_subtract(const pandemonium_basis *p_self, const pandemonium_basis *p_b);
 
-godot_basis GDAPI godot_basis_operator_multiply_vector(const godot_basis *p_self, const godot_basis *p_b);
+pandemonium_basis GDAPI pandemonium_basis_operator_multiply_vector(const pandemonium_basis *p_self, const pandemonium_basis *p_b);
 
-godot_basis GDAPI godot_basis_operator_multiply_scalar(const godot_basis *p_self, const godot_real p_b);
+pandemonium_basis GDAPI pandemonium_basis_operator_multiply_scalar(const pandemonium_basis *p_self, const pandemonium_real p_b);
 
-godot_basis GDAPI godot_basis_slerp(const godot_basis *p_self, const godot_basis *p_b, const godot_real p_t);
+pandemonium_basis GDAPI pandemonium_basis_slerp(const pandemonium_basis *p_self, const pandemonium_basis *p_b, const pandemonium_real p_t);
 
 #ifdef __cplusplus
 }

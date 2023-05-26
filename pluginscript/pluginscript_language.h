@@ -2,8 +2,8 @@
 /*  pluginscript_language.h                                               */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -31,7 +31,7 @@
 #ifndef PLUGINSCRIPT_LANGUAGE_H
 #define PLUGINSCRIPT_LANGUAGE_H
 
-// Godot imports
+// Pandemonium imports
 #include "core/io/resource_loader.h"
 #include "core/io/resource_saver.h"
 #include "core/containers/rb_map.h"
@@ -39,7 +39,7 @@
 #include "core/containers/self_list.h"
 // PluginScript imports
 #include "pluginscript_loader.h"
-#include <pluginscript/godot_pluginscript.h>
+#include <pluginscript/pandemonium_pluginscript.h>
 
 class PluginScript;
 class PluginScriptInstance;
@@ -50,8 +50,8 @@ class PluginScriptLanguage : public ScriptLanguage {
 
 	Ref<ResourceFormatLoaderPluginScript> _resource_loader;
 	Ref<ResourceFormatSaverPluginScript> _resource_saver;
-	const godot_pluginscript_language_desc _desc;
-	godot_pluginscript_language_data *_data;
+	const pandemonium_pluginscript_language_desc _desc;
+	pandemonium_pluginscript_language_data *_data;
 
 	Mutex _lock;
 	SelfList<PluginScript>::List _script_list;
@@ -126,7 +126,7 @@ public:
 	void lock();
 	void unlock();
 
-	PluginScriptLanguage(const godot_pluginscript_language_desc *desc);
+	PluginScriptLanguage(const pandemonium_pluginscript_language_desc *desc);
 	virtual ~PluginScriptLanguage() {}
 };
 

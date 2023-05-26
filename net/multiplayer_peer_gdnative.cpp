@@ -2,8 +2,8 @@
 /*  multiplayer_peer_gdnative.cpp                                         */
 /**************************************************************************/
 /*                         This file is part of:                          */
-/*                             GODOT ENGINE                               */
-/*                        https://godotengine.org                         */
+/*                             PANDEMONIUM ENGINE                               */
+/*                        https://pandemoniumengine.org                         */
 /**************************************************************************/
 /* Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md). */
 /* Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.                  */
@@ -37,7 +37,7 @@ MultiplayerPeerGDNative::MultiplayerPeerGDNative() {
 MultiplayerPeerGDNative::~MultiplayerPeerGDNative() {
 }
 
-void MultiplayerPeerGDNative::set_native_multiplayer_peer(const godot_net_multiplayer_peer *p_interface) {
+void MultiplayerPeerGDNative::set_native_multiplayer_peer(const pandemonium_net_multiplayer_peer *p_interface) {
 	interface = p_interface;
 }
 
@@ -64,7 +64,7 @@ int MultiplayerPeerGDNative::get_available_packet_count() const {
 /* NetworkedMultiplayerPeer */
 void MultiplayerPeerGDNative::set_transfer_mode(TransferMode p_mode) {
 	ERR_FAIL_COND(interface == nullptr);
-	interface->set_transfer_mode(interface->data, (godot_int)p_mode);
+	interface->set_transfer_mode(interface->data, (pandemonium_int)p_mode);
 }
 
 NetworkedMultiplayerPeer::TransferMode MultiplayerPeerGDNative::get_transfer_mode() const {
@@ -119,7 +119,7 @@ void MultiplayerPeerGDNative::_bind_methods() {
 
 extern "C" {
 
-void GDAPI godot_net_bind_multiplayer_peer(godot_object *p_obj, const godot_net_multiplayer_peer *p_impl) {
+void GDAPI pandemonium_net_bind_multiplayer_peer(pandemonium_object *p_obj, const pandemonium_net_multiplayer_peer *p_impl) {
 	((MultiplayerPeerGDNative *)p_obj)->set_native_multiplayer_peer(p_impl);
 }
 }
