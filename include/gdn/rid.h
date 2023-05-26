@@ -57,8 +57,6 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI pandemonium_rid_new(pandemonium_rid *r_dest);
-
 pandemonium_int GDAPI pandemonium_rid_get_id(const pandemonium_rid *p_self);
 
 void GDAPI pandemonium_rid_new_with_resource(pandemonium_rid *r_dest, const pandemonium_object *p_from);
@@ -66,6 +64,8 @@ void GDAPI pandemonium_rid_new_with_resource(pandemonium_rid *r_dest, const pand
 pandemonium_bool GDAPI pandemonium_rid_operator_equal(const pandemonium_rid *p_self, const pandemonium_rid *p_b);
 
 pandemonium_bool GDAPI pandemonium_rid_operator_less(const pandemonium_rid *p_self, const pandemonium_rid *p_b);
+
+void GDAPI pandemonium_rid_new(pandemonium_rid *r_dest);
 
 #ifdef __cplusplus
 }

@@ -30,8 +30,8 @@
 
 #include "gdn/rid.h"
 
-#include "core/object/resource.h"
 #include "core/containers/rid.h"
+#include "core/object/resource.h"
 #include "core/variant/variant.h"
 
 #ifdef __cplusplus
@@ -39,11 +39,6 @@ extern "C" {
 #endif
 
 static_assert(sizeof(pandemonium_rid) == sizeof(RID), "RID size mismatch");
-
-void GDAPI pandemonium_rid_new(pandemonium_rid *r_dest) {
-	RID *dest = (RID *)r_dest;
-	memnew_placement(dest, RID);
-}
 
 pandemonium_int GDAPI pandemonium_rid_get_id(const pandemonium_rid *p_self) {
 	const RID *self = (const RID *)p_self;
@@ -69,6 +64,11 @@ pandemonium_bool GDAPI pandemonium_rid_operator_less(const pandemonium_rid *p_se
 	const RID *self = (const RID *)p_self;
 	const RID *b = (const RID *)p_b;
 	return *self < *b;
+}
+
+void GDAPI pandemonium_rid_new(pandemonium_rid *r_dest) {
+	RID *dest = (RID *)r_dest;
+	memnew_placement(dest, RID);
 }
 
 #ifdef __cplusplus
