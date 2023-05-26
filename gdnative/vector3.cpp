@@ -30,8 +30,8 @@
 
 #include "gdn/vector3.h"
 
-#include "core/variant/variant.h"
 #include "core/containers/vector.h"
+#include "core/variant/variant.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,23 +39,19 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_vector3) == sizeof(Vector3), "Vector3 size mismatch");
 
-void GDAPI pandemonium_vector3_new(pandemonium_vector3 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_z) {
-	Vector3 *dest = (Vector3 *)r_dest;
-	*dest = Vector3(p_x, p_y, p_z);
+void GDAPI pandemonium_vector3_set_axis(pandemonium_vector3 *p_self, const pandemonium_vector3_axis p_axis, const pandemonium_real p_val) {
+	Vector3 *self = (Vector3 *)p_self;
+	self->set_axis(p_axis, p_val);
 }
-
-pandemonium_string GDAPI pandemonium_vector3_as_string(const pandemonium_vector3 *p_self) {
-	pandemonium_string ret;
+pandemonium_real GDAPI pandemonium_vector3_get_axis(const pandemonium_vector3 *p_self, const pandemonium_vector3_axis p_axis) {
 	const Vector3 *self = (const Vector3 *)p_self;
-	memnew_placement(&ret, String(*self));
-	return ret;
+	return self->get_axis(p_axis);
 }
 
 pandemonium_int GDAPI pandemonium_vector3_min_axis(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->min_axis();
 }
-
 pandemonium_int GDAPI pandemonium_vector3_max_axis(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->max_axis();
@@ -65,15 +61,9 @@ pandemonium_real GDAPI pandemonium_vector3_length(const pandemonium_vector3 *p_s
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->length();
 }
-
 pandemonium_real GDAPI pandemonium_vector3_length_squared(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->length_squared();
-}
-
-pandemonium_bool GDAPI pandemonium_vector3_is_normalized(const pandemonium_vector3 *p_self) {
-	const Vector3 *self = (const Vector3 *)p_self;
-	return self->is_normalized();
 }
 
 pandemonium_vector3 GDAPI pandemonium_vector3_normalized(const pandemonium_vector3 *p_self) {
@@ -82,7 +72,10 @@ pandemonium_vector3 GDAPI pandemonium_vector3_normalized(const pandemonium_vecto
 	*((Vector3 *)&dest) = self->normalized();
 	return dest;
 }
-
+pandemonium_bool GDAPI pandemonium_vector3_is_normalized(const pandemonium_vector3 *p_self) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	return self->is_normalized();
+}
 pandemonium_vector3 GDAPI pandemonium_vector3_inverse(const pandemonium_vector3 *p_self) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
@@ -133,18 +126,17 @@ pandemonium_vector3 GDAPI pandemonium_vector3_move_toward(const pandemonium_vect
 	return dest;
 }
 
-pandemonium_real GDAPI pandemonium_vector3_dot(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
-	const Vector3 *self = (const Vector3 *)p_self;
-	const Vector3 *b = (const Vector3 *)p_b;
-	return self->dot(*b);
-}
-
 pandemonium_vector3 GDAPI pandemonium_vector3_cross(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	*((Vector3 *)&dest) = self->cross(*b);
 	return dest;
+}
+pandemonium_real GDAPI pandemonium_vector3_dot(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *b = (const Vector3 *)p_b;
+	return self->dot(*b);
 }
 
 pandemonium_basis GDAPI pandemonium_vector3_outer(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
@@ -183,6 +175,12 @@ pandemonium_vector3 GDAPI pandemonium_vector3_ceil(const pandemonium_vector3 *p_
 	return dest;
 }
 
+pandemonium_real GDAPI pandemonium_vector3_angle_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *to = (const Vector3 *)p_to;
+	return self->angle_to(*to);
+}
+
 pandemonium_vector3 GDAPI pandemonium_vector3_direction_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
@@ -201,12 +199,6 @@ pandemonium_real GDAPI pandemonium_vector3_distance_squared_to(const pandemonium
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
 	return self->distance_squared_to(*b);
-}
-
-pandemonium_real GDAPI pandemonium_vector3_angle_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to) {
-	const Vector3 *self = (const Vector3 *)p_self;
-	const Vector3 *to = (const Vector3 *)p_to;
-	return self->angle_to(*to);
 }
 
 pandemonium_vector3 GDAPI pandemonium_vector3_slide(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_n) {
@@ -285,6 +277,14 @@ pandemonium_vector3 GDAPI pandemonium_vector3_operator_divide_scalar(const pande
 	return raw_dest;
 }
 
+pandemonium_vector3 GDAPI pandemonium_vector3_operator_neg(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 raw_dest;
+	Vector3 *dest = (Vector3 *)&raw_dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	*dest = -(*self);
+	return raw_dest;
+}
+
 pandemonium_bool GDAPI pandemonium_vector3_operator_equal(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *b = (const Vector3 *)p_b;
@@ -297,22 +297,16 @@ pandemonium_bool GDAPI pandemonium_vector3_operator_less(const pandemonium_vecto
 	return *self < *b;
 }
 
-pandemonium_vector3 GDAPI pandemonium_vector3_operator_neg(const pandemonium_vector3 *p_self) {
-	pandemonium_vector3 raw_dest;
-	Vector3 *dest = (Vector3 *)&raw_dest;
+pandemonium_string GDAPI pandemonium_vector3_as_string(const pandemonium_vector3 *p_self) {
+	pandemonium_string ret;
 	const Vector3 *self = (const Vector3 *)p_self;
-	*dest = -(*self);
-	return raw_dest;
+	memnew_placement(&ret, String(*self));
+	return ret;
 }
 
-void GDAPI pandemonium_vector3_set_axis(pandemonium_vector3 *p_self, const pandemonium_vector3_axis p_axis, const pandemonium_real p_val) {
-	Vector3 *self = (Vector3 *)p_self;
-	self->set_axis(p_axis, p_val);
-}
-
-pandemonium_real GDAPI pandemonium_vector3_get_axis(const pandemonium_vector3 *p_self, const pandemonium_vector3_axis p_axis) {
-	const Vector3 *self = (const Vector3 *)p_self;
-	return self->get_axis(p_axis);
+void GDAPI pandemonium_vector3_new(pandemonium_vector3 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_z) {
+	Vector3 *dest = (Vector3 *)r_dest;
+	*dest = Vector3(p_x, p_y, p_z);
 }
 
 #ifdef __cplusplus
