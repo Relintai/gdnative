@@ -60,8 +60,6 @@ extern "C" {
 typedef enum {
 	PANDEMONIUM_VECTOR2_AXIS_X,
 	PANDEMONIUM_VECTOR2_AXIS_Y,
-
-	PANDEMONIUM_VECTOR2_AXIS_COUNT,
 } pandemonium_vector2_axis;
 
 void GDAPI pandemonium_vector2_set_x(pandemonium_vector2 *p_self, const pandemonium_real p_x);
@@ -70,8 +68,8 @@ void GDAPI pandemonium_vector2_set_y(pandemonium_vector2 *p_self, const pandemon
 pandemonium_real GDAPI pandemonium_vector2_get_x(const pandemonium_vector2 *p_self);
 pandemonium_real GDAPI pandemonium_vector2_get_y(const pandemonium_vector2 *p_self);
 
-void GDAPI pandemonium_vector2_set_axis(pandemonium_vector2 *p_self, const pandemonium_int p_axis, const pandemonium_real p_value);
-pandemonium_real GDAPI pandemonium_vector2_get_axis(const pandemonium_vector2 *p_self, const pandemonium_int p_axis);
+void GDAPI pandemonium_vector2_set_axis(pandemonium_vector2 *p_self, const pandemonium_vector2_axis p_axis, const pandemonium_real p_value);
+pandemonium_real GDAPI pandemonium_vector2_get_axis(const pandemonium_vector2 *p_self, const pandemonium_vector2_axis p_axis);
 
 void GDAPI pandemonium_vector2_set_all(pandemonium_vector2 *p_self, const pandemonium_real p_value);
 
