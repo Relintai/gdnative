@@ -39,29 +39,6 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_quaternion) == sizeof(Quaternion), "Quaternion size mismatch");
 
-void GDAPI pandemonium_quaternion_new(pandemonium_quaternion *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_z, const pandemonium_real p_w) {
-	Quaternion *dest = (Quaternion *)r_dest;
-	*dest = Quaternion(p_x, p_y, p_z, p_w);
-}
-
-void GDAPI pandemonium_quaternion_new_with_axis_angle(pandemonium_quaternion *r_dest, const pandemonium_vector3 *p_axis, const pandemonium_real p_angle) {
-	const Vector3 *axis = (const Vector3 *)p_axis;
-	Quaternion *dest = (Quaternion *)r_dest;
-	*dest = Quaternion(*axis, p_angle);
-}
-
-void GDAPI pandemonium_quaternion_new_with_basis(pandemonium_quaternion *r_dest, const pandemonium_basis *p_basis) {
-	const Basis *basis = (const Basis *)p_basis;
-	Quaternion *dest = (Quaternion *)r_dest;
-	*dest = Quaternion(*basis);
-}
-
-void GDAPI pandemonium_quaternion_new_with_euler(pandemonium_quaternion *r_dest, const pandemonium_vector3 *p_euler) {
-	const Vector3 *euler = (const Vector3 *)p_euler;
-	Quaternion *dest = (Quaternion *)r_dest;
-	*dest = Quaternion(*euler);
-}
-
 pandemonium_real GDAPI pandemonium_quaternion_get_x(const pandemonium_quaternion *p_self) {
 	const Quaternion *self = (const Quaternion *)p_self;
 	return self->x;
@@ -100,13 +77,6 @@ pandemonium_real GDAPI pandemonium_quaternion_get_w(const pandemonium_quaternion
 void GDAPI pandemonium_quaternion_set_w(pandemonium_quaternion *p_self, const pandemonium_real val) {
 	Quaternion *self = (Quaternion *)p_self;
 	self->w = val;
-}
-
-pandemonium_string GDAPI pandemonium_quaternion_as_string(const pandemonium_quaternion *p_self) {
-	pandemonium_string ret;
-	const Quaternion *self = (const Quaternion *)p_self;
-	memnew_placement(&ret, String(*self));
-	return ret;
 }
 
 pandemonium_real GDAPI pandemonium_quaternion_length(const pandemonium_quaternion *p_self) {
@@ -230,6 +200,36 @@ void GDAPI pandemonium_quaternion_set_axis_angle(pandemonium_quaternion *p_self,
 	Quaternion *self = (Quaternion *)p_self;
 	const Vector3 *axis = (const Vector3 *)p_axis;
 	self->set_axis_angle(*axis, p_angle);
+}
+
+pandemonium_string GDAPI pandemonium_quaternion_as_string(const pandemonium_quaternion *p_self) {
+	pandemonium_string ret;
+	const Quaternion *self = (const Quaternion *)p_self;
+	memnew_placement(&ret, String(*self));
+	return ret;
+}
+
+void GDAPI pandemonium_quaternion_new(pandemonium_quaternion *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_z, const pandemonium_real p_w) {
+	Quaternion *dest = (Quaternion *)r_dest;
+	*dest = Quaternion(p_x, p_y, p_z, p_w);
+}
+
+void GDAPI pandemonium_quaternion_new_with_axis_angle(pandemonium_quaternion *r_dest, const pandemonium_vector3 *p_axis, const pandemonium_real p_angle) {
+	const Vector3 *axis = (const Vector3 *)p_axis;
+	Quaternion *dest = (Quaternion *)r_dest;
+	*dest = Quaternion(*axis, p_angle);
+}
+
+void GDAPI pandemonium_quaternion_new_with_basis(pandemonium_quaternion *r_dest, const pandemonium_basis *p_basis) {
+	const Basis *basis = (const Basis *)p_basis;
+	Quaternion *dest = (Quaternion *)r_dest;
+	*dest = Quaternion(*basis);
+}
+
+void GDAPI pandemonium_quaternion_new_with_euler(pandemonium_quaternion *r_dest, const pandemonium_vector3 *p_euler) {
+	const Vector3 *euler = (const Vector3 *)p_euler;
+	Quaternion *dest = (Quaternion *)r_dest;
+	*dest = Quaternion(*euler);
 }
 
 #ifdef __cplusplus
