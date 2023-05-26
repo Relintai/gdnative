@@ -58,43 +58,40 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI pandemonium_plane_new_with_reals(pandemonium_plane *r_dest, const pandemonium_real p_a, const pandemonium_real p_b, const pandemonium_real p_c, const pandemonium_real p_d);
-void GDAPI pandemonium_plane_new_with_vectors(pandemonium_plane *r_dest, const pandemonium_vector3 *p_v1, const pandemonium_vector3 *p_v2, const pandemonium_vector3 *p_v3);
-void GDAPI pandemonium_plane_new_with_normal(pandemonium_plane *r_dest, const pandemonium_vector3 *p_normal, const pandemonium_real p_d);
+pandemonium_real GDAPI pandemonium_plane_get_d(const pandemonium_plane *p_self);
+void GDAPI pandemonium_plane_set_d(pandemonium_plane *p_self, const pandemonium_real p_d);
 
-pandemonium_string GDAPI pandemonium_plane_as_string(const pandemonium_plane *p_self);
+void GDAPI pandemonium_plane_set_normal(pandemonium_plane *p_self, const pandemonium_vector3 *p_normal);
+pandemonium_vector3 GDAPI pandemonium_plane_get_normal(const pandemonium_plane *p_self);
 
+//void normalize();
 pandemonium_plane GDAPI pandemonium_plane_normalized(const pandemonium_plane *p_self);
 
 pandemonium_vector3 GDAPI pandemonium_plane_center(const pandemonium_plane *p_self);
-
 pandemonium_vector3 GDAPI pandemonium_plane_get_any_point(const pandemonium_plane *p_self);
+//Vector3 get_any_perpendicular_normal() const;
 
 pandemonium_bool GDAPI pandemonium_plane_is_point_over(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
-
 pandemonium_real GDAPI pandemonium_plane_distance_to(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
-
 pandemonium_bool GDAPI pandemonium_plane_has_point(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point, const pandemonium_real p_epsilon);
+
+pandemonium_bool GDAPI pandemonium_plane_intersect_3(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_plane *p_b, const pandemonium_plane *p_c);
+pandemonium_bool GDAPI pandemonium_plane_intersects_ray(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_dir);
+pandemonium_bool GDAPI pandemonium_plane_intersects_segment(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_vector3 *p_begin, const pandemonium_vector3 *p_end);
 
 pandemonium_vector3 GDAPI pandemonium_plane_project(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
 
-pandemonium_bool GDAPI pandemonium_plane_intersect_3(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_plane *p_b, const pandemonium_plane *p_c);
-
-pandemonium_bool GDAPI pandemonium_plane_intersects_ray(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_dir);
-
-pandemonium_bool GDAPI pandemonium_plane_intersects_segment(const pandemonium_plane *p_self, pandemonium_vector3 *r_dest, const pandemonium_vector3 *p_begin, const pandemonium_vector3 *p_end);
-
 pandemonium_plane GDAPI pandemonium_plane_operator_neg(const pandemonium_plane *p_self);
+//bool is_equal_approx(const Plane &p_plane) const;
+//bool is_equal_approx_any_side(const Plane &p_plane) const;
 
 pandemonium_bool GDAPI pandemonium_plane_operator_equal(const pandemonium_plane *p_self, const pandemonium_plane *p_b);
 
-void GDAPI pandemonium_plane_set_normal(pandemonium_plane *p_self, const pandemonium_vector3 *p_normal);
+pandemonium_string GDAPI pandemonium_plane_as_string(const pandemonium_plane *p_self);
 
-pandemonium_vector3 GDAPI pandemonium_plane_get_normal(const pandemonium_plane *p_self);
-
-pandemonium_real GDAPI pandemonium_plane_get_d(const pandemonium_plane *p_self);
-
-void GDAPI pandemonium_plane_set_d(pandemonium_plane *p_self, const pandemonium_real p_d);
+void GDAPI pandemonium_plane_new_with_reals(pandemonium_plane *r_dest, const pandemonium_real p_a, const pandemonium_real p_b, const pandemonium_real p_c, const pandemonium_real p_d);
+void GDAPI pandemonium_plane_new_with_vectors(pandemonium_plane *r_dest, const pandemonium_vector3 *p_v1, const pandemonium_vector3 *p_v2, const pandemonium_vector3 *p_v3);
+void GDAPI pandemonium_plane_new_with_normal(pandemonium_plane *r_dest, const pandemonium_vector3 *p_normal, const pandemonium_real p_d);
 
 #ifdef __cplusplus
 }
