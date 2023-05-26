@@ -286,8 +286,6 @@ void GDAPI pandemonium_print_error(const char *p_description, const char *p_func
 void GDAPI pandemonium_print_warning(const char *p_description, const char *p_function, const char *p_file, int p_line);
 void GDAPI pandemonium_print(const pandemonium_string *p_message);
 
-// GDNATIVE CORE 1.0.1
-
 bool GDAPI pandemonium_is_instance_valid(const pandemonium_object *p_object);
 
 //tags used for safe dynamic casting
