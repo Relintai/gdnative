@@ -164,38 +164,47 @@ extern "C" {
 
 // byte
 
-void GDAPI pandemonium_pool_byte_array_new(pandemonium_pool_byte_array *r_dest);
-void GDAPI pandemonium_pool_byte_array_new_copy(pandemonium_pool_byte_array *r_dest, const pandemonium_pool_byte_array *p_src);
-void GDAPI pandemonium_pool_byte_array_new_with_array(pandemonium_pool_byte_array *r_dest, const pandemonium_array *p_a);
+pandemonium_pool_byte_array_read_access GDAPI *pandemonium_pool_byte_array_read(const pandemonium_pool_byte_array *p_self);
+pandemonium_pool_byte_array_write_access GDAPI *pandemonium_pool_byte_array_write(pandemonium_pool_byte_array *p_self);
 
-void GDAPI pandemonium_pool_byte_array_append(pandemonium_pool_byte_array *p_self, const uint8_t p_data);
-
-void GDAPI pandemonium_pool_byte_array_append_array(pandemonium_pool_byte_array *p_self, const pandemonium_pool_byte_array *p_array);
-
-pandemonium_error GDAPI pandemonium_pool_byte_array_insert(pandemonium_pool_byte_array *p_self, const pandemonium_int p_idx, const uint8_t p_data);
-
-void GDAPI pandemonium_pool_byte_array_invert(pandemonium_pool_byte_array *p_self);
-
-void GDAPI pandemonium_pool_byte_array_push_back(pandemonium_pool_byte_array *p_self, const uint8_t p_data);
+//void fill_with(const MC &p_mc) {
 
 void GDAPI pandemonium_pool_byte_array_remove(pandemonium_pool_byte_array *p_self, const pandemonium_int p_idx);
 
-void GDAPI pandemonium_pool_byte_array_resize(pandemonium_pool_byte_array *p_self, const pandemonium_int p_size);
-
-void GDAPI pandemonium_pool_byte_array_sort(pandemonium_pool_byte_array *p_self);
-
-pandemonium_pool_byte_array_read_access GDAPI *pandemonium_pool_byte_array_read(const pandemonium_pool_byte_array *p_self);
-
-pandemonium_pool_byte_array_write_access GDAPI *pandemonium_pool_byte_array_write(pandemonium_pool_byte_array *p_self);
-
+pandemonium_int GDAPI pandemonium_pool_byte_array_size(const pandemonium_pool_byte_array *p_self);
+pandemonium_bool GDAPI pandemonium_pool_byte_array_empty(const pandemonium_pool_byte_array *p_self);
 void GDAPI pandemonium_pool_byte_array_set(pandemonium_pool_byte_array *p_self, const pandemonium_int p_idx, const uint8_t p_data);
 uint8_t GDAPI pandemonium_pool_byte_array_get(const pandemonium_pool_byte_array *p_self, const pandemonium_int p_idx);
+//void fill(const T &p_val);
+void GDAPI pandemonium_pool_byte_array_push_back(pandemonium_pool_byte_array *p_self, const uint8_t p_data);
+void GDAPI pandemonium_pool_byte_array_append(pandemonium_pool_byte_array *p_self, const uint8_t p_data);
+void GDAPI pandemonium_pool_byte_array_append_array(pandemonium_pool_byte_array *p_self, const pandemonium_pool_byte_array *p_array);
 
-pandemonium_int GDAPI pandemonium_pool_byte_array_size(const pandemonium_pool_byte_array *p_self);
+//PoolVector<T> subarray(int p_from, int p_to) const {
 
-pandemonium_bool GDAPI pandemonium_pool_byte_array_empty(const pandemonium_pool_byte_array *p_self);
+pandemonium_error GDAPI pandemonium_pool_byte_array_insert(pandemonium_pool_byte_array *p_self, const pandemonium_int p_idx, const uint8_t p_data);
 
+//String join(const String &delimiter) const {
+
+//bool contains(const T &p_val) const;
+//int find(const T &p_val, int p_from = 0) const;
+//int rfind(const T &p_val, int p_from = -1) const;
+//bool count(const T &p_val) const;
 pandemonium_bool GDAPI pandemonium_pool_byte_array_has(const pandemonium_pool_byte_array *p_self, const uint8_t p_data);
+
+//bool is_locked() const {
+
+//inline T operator[](int p_index) const;
+
+void GDAPI pandemonium_pool_byte_array_resize(pandemonium_pool_byte_array *p_self, const pandemonium_int p_size);
+//Error clear() {
+
+void GDAPI pandemonium_pool_byte_array_invert(pandemonium_pool_byte_array *p_self);
+void GDAPI pandemonium_pool_byte_array_sort(pandemonium_pool_byte_array *p_self);
+
+void GDAPI pandemonium_pool_byte_array_new(pandemonium_pool_byte_array *r_dest);
+void GDAPI pandemonium_pool_byte_array_new_copy(pandemonium_pool_byte_array *r_dest, const pandemonium_pool_byte_array *p_src);
+void GDAPI pandemonium_pool_byte_array_new_with_array(pandemonium_pool_byte_array *r_dest, const pandemonium_array *p_a);
 
 void GDAPI pandemonium_pool_byte_array_destroy(pandemonium_pool_byte_array *p_self);
 
