@@ -56,44 +56,59 @@ typedef struct pandemonium_rect2 {
 extern "C" {
 #endif
 
-void GDAPI pandemonium_rect2_new_with_position_and_size(pandemonium_rect2 *r_dest, const pandemonium_vector2 *p_pos, const pandemonium_vector2 *p_size);
-void GDAPI pandemonium_rect2_new(pandemonium_rect2 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_width, const pandemonium_real p_height);
+pandemonium_vector2 GDAPI pandemonium_rect2_get_position(const pandemonium_rect2 *p_self);
+void GDAPI pandemonium_rect2_set_position(pandemonium_rect2 *p_self, const pandemonium_vector2 *p_pos);
 
-pandemonium_string GDAPI pandemonium_rect2_as_string(const pandemonium_rect2 *p_self);
+pandemonium_vector2 GDAPI pandemonium_rect2_get_size(const pandemonium_rect2 *p_self);
+void GDAPI pandemonium_rect2_set_size(pandemonium_rect2 *p_self, const pandemonium_vector2 *p_size);
 
 pandemonium_real GDAPI pandemonium_rect2_get_area(const pandemonium_rect2 *p_self);
 
+//_FORCE_INLINE_ Vector2 get_center() const { return position + (size * 0.5f); }
+
 pandemonium_bool GDAPI pandemonium_rect2_intersects(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
+
+//inline real_t distance_to(const Vector2 &p_point) const {
+
+//bool intersects_transformed(const Transform2D &p_xform, const Rect2 &p_rect) const;
+
+//bool intersects_segment(const Point2 &p_from, const Point2 &p_to, Point2 *r_pos = nullptr, Point2 *r_normal = nullptr) const;
 
 pandemonium_bool GDAPI pandemonium_rect2_encloses(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
 pandemonium_bool GDAPI pandemonium_rect2_has_no_area(const pandemonium_rect2 *p_self);
-
 pandemonium_rect2 GDAPI pandemonium_rect2_clip(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
+//inline Rect2 intersection(const Rect2 &p_rect) const {
+
 pandemonium_rect2 GDAPI pandemonium_rect2_merge(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
-
 pandemonium_bool GDAPI pandemonium_rect2_has_point(const pandemonium_rect2 *p_self, const pandemonium_vector2 *p_point);
-
-pandemonium_rect2 GDAPI pandemonium_rect2_grow(const pandemonium_rect2 *p_self, const pandemonium_real p_by);
-
-pandemonium_rect2 GDAPI pandemonium_rect2_grow_individual(const pandemonium_rect2 *p_self, const pandemonium_real p_left, const pandemonium_real p_top, const pandemonium_real p_right, const pandemonium_real p_bottom);
-
-pandemonium_rect2 GDAPI pandemonium_rect2_grow_margin(const pandemonium_rect2 *p_self, const pandemonium_int p_margin, const pandemonium_real p_by);
-
-pandemonium_rect2 GDAPI pandemonium_rect2_abs(const pandemonium_rect2 *p_self);
-
-pandemonium_rect2 GDAPI pandemonium_rect2_expand(const pandemonium_rect2 *p_self, const pandemonium_vector2 *p_to);
+//bool is_equal_approx(const Rect2 &p_rect) const;
 
 pandemonium_bool GDAPI pandemonium_rect2_operator_equal(const pandemonium_rect2 *p_self, const pandemonium_rect2 *p_b);
 
-pandemonium_vector2 GDAPI pandemonium_rect2_get_position(const pandemonium_rect2 *p_self);
+pandemonium_rect2 GDAPI pandemonium_rect2_grow(const pandemonium_rect2 *p_self, const pandemonium_real p_by);
+//inline void grow_by(real_t p_by) {
+pandemonium_rect2 GDAPI pandemonium_rect2_grow_margin(const pandemonium_rect2 *p_self, const pandemonium_int p_margin, const pandemonium_real p_by);
+//inline Rect2 grow_side(Side p_side, real_t p_amount) const {
+pandemonium_rect2 GDAPI pandemonium_rect2_grow_individual(const pandemonium_rect2 *p_self, const pandemonium_real p_left, const pandemonium_real p_top, const pandemonium_real p_right, const pandemonium_real p_bottom);
 
-pandemonium_vector2 GDAPI pandemonium_rect2_get_size(const pandemonium_rect2 *p_self);
+pandemonium_rect2 GDAPI pandemonium_rect2_expand(const pandemonium_rect2 *p_self, const pandemonium_vector2 *p_to);
+//inline void expand_to(const Vector2 &p_vector) { //in place function for speed
 
-void GDAPI pandemonium_rect2_set_position(pandemonium_rect2 *p_self, const pandemonium_vector2 *p_pos);
+pandemonium_rect2 GDAPI pandemonium_rect2_abs(const pandemonium_rect2 *p_self);
 
-void GDAPI pandemonium_rect2_set_size(pandemonium_rect2 *p_self, const pandemonium_vector2 *p_size);
+//Vector2 get_support(const Vector2 &p_normal) const {
+
+//_FORCE_INLINE_ bool intersects_filled_polygon(const Vector2 *p_points, int p_point_count) const {
+
+//_FORCE_INLINE_ void set_end(const Vector2 &p_end) {
+//_FORCE_INLINE_ Vector2 get_end() const {
+
+pandemonium_string GDAPI pandemonium_rect2_as_string(const pandemonium_rect2 *p_self);
+
+void GDAPI pandemonium_rect2_new_with_position_and_size(pandemonium_rect2 *r_dest, const pandemonium_vector2 *p_pos, const pandemonium_vector2 *p_size);
+void GDAPI pandemonium_rect2_new(pandemonium_rect2 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_width, const pandemonium_real p_height);
 
 #ifdef __cplusplus
 }

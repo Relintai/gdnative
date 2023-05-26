@@ -39,25 +39,6 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_rect2) == sizeof(Rect2), "Rect2 size mismatch");
 
-void GDAPI pandemonium_rect2_new_with_position_and_size(pandemonium_rect2 *r_dest, const pandemonium_vector2 *p_pos, const pandemonium_vector2 *p_size) {
-	const Vector2 *position = (const Vector2 *)p_pos;
-	const Vector2 *size = (const Vector2 *)p_size;
-	Rect2 *dest = (Rect2 *)r_dest;
-	*dest = Rect2(*position, *size);
-}
-
-void GDAPI pandemonium_rect2_new(pandemonium_rect2 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_width, const pandemonium_real p_height) {
-	Rect2 *dest = (Rect2 *)r_dest;
-	*dest = Rect2(p_x, p_y, p_width, p_height);
-}
-
-pandemonium_string GDAPI pandemonium_rect2_as_string(const pandemonium_rect2 *p_self) {
-	pandemonium_string ret;
-	const Rect2 *self = (const Rect2 *)p_self;
-	memnew_placement(&ret, String(*self));
-	return ret;
-}
-
 pandemonium_real GDAPI pandemonium_rect2_get_area(const pandemonium_rect2 *p_self) {
 	const Rect2 *self = (const Rect2 *)p_self;
 	return self->get_area();
@@ -171,6 +152,25 @@ void GDAPI pandemonium_rect2_set_size(pandemonium_rect2 *p_self, const pandemoni
 	Rect2 *self = (Rect2 *)p_self;
 	const Vector2 *size = (const Vector2 *)p_size;
 	self->set_size(*size);
+}
+
+pandemonium_string GDAPI pandemonium_rect2_as_string(const pandemonium_rect2 *p_self) {
+	pandemonium_string ret;
+	const Rect2 *self = (const Rect2 *)p_self;
+	memnew_placement(&ret, String(*self));
+	return ret;
+}
+
+void GDAPI pandemonium_rect2_new_with_position_and_size(pandemonium_rect2 *r_dest, const pandemonium_vector2 *p_pos, const pandemonium_vector2 *p_size) {
+	const Vector2 *position = (const Vector2 *)p_pos;
+	const Vector2 *size = (const Vector2 *)p_size;
+	Rect2 *dest = (Rect2 *)r_dest;
+	*dest = Rect2(*position, *size);
+}
+
+void GDAPI pandemonium_rect2_new(pandemonium_rect2 *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_width, const pandemonium_real p_height) {
+	Rect2 *dest = (Rect2 *)r_dest;
+	*dest = Rect2(p_x, p_y, p_width, p_height);
 }
 
 #ifdef __cplusplus
