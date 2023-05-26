@@ -60,6 +60,67 @@ typedef struct {
 extern "C" {
 #endif
 
+pandemonium_variant GDAPI *pandemonium_array_operator_index(pandemonium_array *p_self, const pandemonium_int p_idx);
+const pandemonium_variant GDAPI *pandemonium_array_operator_index_const(const pandemonium_array *p_self, const pandemonium_int p_idx);
+
+void GDAPI pandemonium_array_set(pandemonium_array *p_self, const pandemonium_int p_idx, const pandemonium_variant *p_value);
+pandemonium_variant GDAPI pandemonium_array_get(const pandemonium_array *p_self, const pandemonium_int p_idx);
+
+pandemonium_int GDAPI pandemonium_array_size(const pandemonium_array *p_self);
+pandemonium_bool GDAPI pandemonium_array_empty(const pandemonium_array *p_self);
+void GDAPI pandemonium_array_clear(pandemonium_array *p_self);
+
+//bool deep_equal(const Array &p_array, int p_recursion_count = 0) const;
+//bool operator==(const Array &p_array) const;
+
+pandemonium_int GDAPI pandemonium_array_hash(const pandemonium_array *p_self);
+//void operator=(const Array &p_array);
+
+void GDAPI pandemonium_array_push_back(pandemonium_array *p_self, const pandemonium_variant *p_value);
+void GDAPI pandemonium_array_append(pandemonium_array *p_self, const pandemonium_variant *p_value);
+//void append_array(const Array &p_array);
+void GDAPI pandemonium_array_resize(pandemonium_array *p_self, const pandemonium_int p_size);
+
+void GDAPI pandemonium_array_insert(pandemonium_array *p_self, const pandemonium_int p_pos, const pandemonium_variant *p_value);
+void GDAPI pandemonium_array_remove(pandemonium_array *p_self, const pandemonium_int p_idx);
+//void fill(const Variant &p_value);
+
+pandemonium_variant GDAPI pandemonium_array_front(const pandemonium_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_back(const pandemonium_array *p_self);
+
+void GDAPI pandemonium_array_sort(pandemonium_array *p_self);
+void GDAPI pandemonium_array_sort_custom(pandemonium_array *p_self, pandemonium_object *p_obj, const pandemonium_string *p_func);
+void GDAPI pandemonium_array_shuffle(pandemonium_array *p_self);
+//before variant
+pandemonium_int GDAPI pandemonium_array_bsearch(pandemonium_array *p_self, const pandemonium_variant *p_value, const pandemonium_bool p_before);
+pandemonium_int GDAPI pandemonium_array_bsearch_custom(pandemonium_array *p_self, const pandemonium_variant *p_value, pandemonium_object *p_obj, const pandemonium_string *p_func, const pandemonium_bool p_before);
+
+void GDAPI pandemonium_array_invert(pandemonium_array *p_self);
+
+//int find(const Variant &p_value, int p_from = 0) const; p_from version
+pandemonium_int GDAPI pandemonium_array_find(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from);
+//int rfind(const Variant &p_value, int p_from = -1) const; p_from version
+pandemonium_int GDAPI pandemonium_array_rfind(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from);
+pandemonium_int GDAPI pandemonium_array_find_last(const pandemonium_array *p_self, const pandemonium_variant *p_what);
+pandemonium_int GDAPI pandemonium_array_count(const pandemonium_array *p_self, const pandemonium_variant *p_value);
+pandemonium_bool GDAPI pandemonium_array_has(const pandemonium_array *p_self, const pandemonium_variant *p_value);
+
+void GDAPI pandemonium_array_erase(pandemonium_array *p_self, const pandemonium_variant *p_value);
+
+void GDAPI pandemonium_array_push_front(pandemonium_array *p_self, const pandemonium_variant *p_value);
+pandemonium_variant GDAPI pandemonium_array_pop_back(pandemonium_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_pop_front(pandemonium_array *p_self);
+//Variant pop_at(int p_pos);
+
+//Array duplicate(bool p_deep = false) const; deep variant
+pandemonium_array GDAPI pandemonium_array_duplicate(const pandemonium_array *p_self, const pandemonium_bool p_deep);
+
+//Array slice(int p_begin, int p_end, int p_step = 1, bool p_deep = false) const; variants
+pandemonium_array GDAPI pandemonium_array_slice(const pandemonium_array *p_self, const pandemonium_int p_begin, const pandemonium_int p_end, const pandemonium_int p_step, const pandemonium_bool p_deep);
+
+pandemonium_variant GDAPI pandemonium_array_min(const pandemonium_array *p_self);
+pandemonium_variant GDAPI pandemonium_array_max(const pandemonium_array *p_self);
+
 void GDAPI pandemonium_array_new(pandemonium_array *r_dest);
 void GDAPI pandemonium_array_new_copy(pandemonium_array *r_dest, const pandemonium_array *p_src);
 void GDAPI pandemonium_array_new_pool_color_array(pandemonium_array *r_dest, const pandemonium_pool_color_array *p_pca);
@@ -69,76 +130,9 @@ void GDAPI pandemonium_array_new_pool_string_array(pandemonium_array *r_dest, co
 void GDAPI pandemonium_array_new_pool_real_array(pandemonium_array *r_dest, const pandemonium_pool_real_array *p_pra);
 void GDAPI pandemonium_array_new_pool_int_array(pandemonium_array *r_dest, const pandemonium_pool_int_array *p_pia);
 void GDAPI pandemonium_array_new_pool_byte_array(pandemonium_array *r_dest, const pandemonium_pool_byte_array *p_pba);
-
-void GDAPI pandemonium_array_set(pandemonium_array *p_self, const pandemonium_int p_idx, const pandemonium_variant *p_value);
-
-pandemonium_variant GDAPI pandemonium_array_get(const pandemonium_array *p_self, const pandemonium_int p_idx);
-
-pandemonium_variant GDAPI *pandemonium_array_operator_index(pandemonium_array *p_self, const pandemonium_int p_idx);
-
-const pandemonium_variant GDAPI *pandemonium_array_operator_index_const(const pandemonium_array *p_self, const pandemonium_int p_idx);
-
-void GDAPI pandemonium_array_append(pandemonium_array *p_self, const pandemonium_variant *p_value);
-
-void GDAPI pandemonium_array_clear(pandemonium_array *p_self);
-
-pandemonium_int GDAPI pandemonium_array_count(const pandemonium_array *p_self, const pandemonium_variant *p_value);
-
-pandemonium_bool GDAPI pandemonium_array_empty(const pandemonium_array *p_self);
-
-void GDAPI pandemonium_array_erase(pandemonium_array *p_self, const pandemonium_variant *p_value);
-
-pandemonium_variant GDAPI pandemonium_array_front(const pandemonium_array *p_self);
-
-pandemonium_variant GDAPI pandemonium_array_back(const pandemonium_array *p_self);
-
-pandemonium_int GDAPI pandemonium_array_find(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from);
-
-pandemonium_int GDAPI pandemonium_array_find_last(const pandemonium_array *p_self, const pandemonium_variant *p_what);
-
-pandemonium_bool GDAPI pandemonium_array_has(const pandemonium_array *p_self, const pandemonium_variant *p_value);
-
-pandemonium_int GDAPI pandemonium_array_hash(const pandemonium_array *p_self);
-
-void GDAPI pandemonium_array_insert(pandemonium_array *p_self, const pandemonium_int p_pos, const pandemonium_variant *p_value);
-
-void GDAPI pandemonium_array_invert(pandemonium_array *p_self);
-
-pandemonium_variant GDAPI pandemonium_array_pop_back(pandemonium_array *p_self);
-
-pandemonium_variant GDAPI pandemonium_array_pop_front(pandemonium_array *p_self);
-
-void GDAPI pandemonium_array_push_back(pandemonium_array *p_self, const pandemonium_variant *p_value);
-
-void GDAPI pandemonium_array_push_front(pandemonium_array *p_self, const pandemonium_variant *p_value);
-
-void GDAPI pandemonium_array_remove(pandemonium_array *p_self, const pandemonium_int p_idx);
-
-void GDAPI pandemonium_array_resize(pandemonium_array *p_self, const pandemonium_int p_size);
-
-pandemonium_int GDAPI pandemonium_array_rfind(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from);
-
-pandemonium_int GDAPI pandemonium_array_size(const pandemonium_array *p_self);
-
-void GDAPI pandemonium_array_sort(pandemonium_array *p_self);
-
-void GDAPI pandemonium_array_sort_custom(pandemonium_array *p_self, pandemonium_object *p_obj, const pandemonium_string *p_func);
-
-pandemonium_int GDAPI pandemonium_array_bsearch(pandemonium_array *p_self, const pandemonium_variant *p_value, const pandemonium_bool p_before);
-
-pandemonium_int GDAPI pandemonium_array_bsearch_custom(pandemonium_array *p_self, const pandemonium_variant *p_value, pandemonium_object *p_obj, const pandemonium_string *p_func, const pandemonium_bool p_before);
+//Add the new ones
 
 void GDAPI pandemonium_array_destroy(pandemonium_array *p_self);
-
-pandemonium_array GDAPI pandemonium_array_duplicate(const pandemonium_array *p_self, const pandemonium_bool p_deep);
-
-pandemonium_array GDAPI pandemonium_array_slice(const pandemonium_array *p_self, const pandemonium_int p_begin, const pandemonium_int p_end, const pandemonium_int p_step, const pandemonium_bool p_deep);
-
-pandemonium_variant GDAPI pandemonium_array_max(const pandemonium_array *p_self);
-
-pandemonium_variant GDAPI pandemonium_array_min(const pandemonium_array *p_self);
-
-void GDAPI pandemonium_array_shuffle(pandemonium_array *p_self);
 
 #ifdef __cplusplus
 }
