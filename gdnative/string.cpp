@@ -56,28 +56,6 @@ const char GDAPI *pandemonium_char_string_get_data(const pandemonium_char_string
 	return cs->get_data();
 }
 
-void GDAPI pandemonium_char_string_destroy(pandemonium_char_string *p_cs) {
-	CharString *cs = (CharString *)p_cs;
-
-	cs->~CharString();
-}
-
-void GDAPI pandemonium_string_new(pandemonium_string *r_dest) {
-	String *dest = (String *)r_dest;
-	memnew_placement(dest, String);
-}
-
-void GDAPI pandemonium_string_new_copy(pandemonium_string *r_dest, const pandemonium_string *p_src) {
-	String *dest = (String *)r_dest;
-	const String *src = (const String *)p_src;
-	memnew_placement(dest, String(*src));
-}
-
-void GDAPI pandemonium_string_new_with_wide_string(pandemonium_string *r_dest, const wchar_t *p_contents, const int p_size) {
-	String *dest = (String *)r_dest;
-	memnew_placement(dest, String(p_contents, p_size));
-}
-
 const char32_t GDAPI *pandemonium_string_operator_index(pandemonium_string *p_self, const pandemonium_int p_idx) {
 	String *self = (String *)p_self;
 	return &(self->operator[](p_idx));
@@ -1390,6 +1368,28 @@ pandemonium_pool_string_array GDAPI pandemonium_string_rsplit(const pandemonium_
 	}
 
 	return result;
+}
+
+void GDAPI pandemonium_string_new(pandemonium_string *r_dest) {
+	String *dest = (String *)r_dest;
+	memnew_placement(dest, String);
+}
+
+void GDAPI pandemonium_string_new_copy(pandemonium_string *r_dest, const pandemonium_string *p_src) {
+	String *dest = (String *)r_dest;
+	const String *src = (const String *)p_src;
+	memnew_placement(dest, String(*src));
+}
+
+void GDAPI pandemonium_string_new_with_wide_string(pandemonium_string *r_dest, const wchar_t *p_contents, const int p_size) {
+	String *dest = (String *)r_dest;
+	memnew_placement(dest, String(p_contents, p_size));
+}
+
+void GDAPI pandemonium_char_string_destroy(pandemonium_char_string *p_cs) {
+	CharString *cs = (CharString *)p_cs;
+
+	cs->~CharString();
 }
 
 #ifdef __cplusplus
