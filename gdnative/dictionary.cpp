@@ -166,8 +166,6 @@ pandemonium_string GDAPI pandemonium_dictionary_to_json(const pandemonium_dictio
 	return raw_dest;
 }
 
-// GDNative core 1.1
-
 pandemonium_bool GDAPI pandemonium_dictionary_erase_with_return(pandemonium_dictionary *p_self, const pandemonium_variant *p_key) {
 	Dictionary *self = (Dictionary *)p_self;
 	const Variant *key = (const Variant *)p_key;
@@ -185,8 +183,6 @@ pandemonium_variant GDAPI pandemonium_dictionary_get_with_default(const pandemon
 
 	return raw_dest;
 }
-
-// GDNative core 1.3
 
 void GDAPI pandemonium_dictionary_merge(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, const pandemonium_bool p_overwrite) {
 	Dictionary *self = (Dictionary *)p_self;

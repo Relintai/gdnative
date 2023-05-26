@@ -59,52 +59,42 @@ typedef struct {
 extern "C" {
 #endif
 
-void GDAPI pandemonium_dictionary_new(pandemonium_dictionary *r_dest);
-void GDAPI pandemonium_dictionary_new_copy(pandemonium_dictionary *r_dest, const pandemonium_dictionary *p_src);
-void GDAPI pandemonium_dictionary_destroy(pandemonium_dictionary *p_self);
-
-pandemonium_dictionary GDAPI pandemonium_dictionary_duplicate(const pandemonium_dictionary *p_self, const pandemonium_bool p_deep);
-
-pandemonium_int GDAPI pandemonium_dictionary_size(const pandemonium_dictionary *p_self);
-
-pandemonium_bool GDAPI pandemonium_dictionary_empty(const pandemonium_dictionary *p_self);
-
-void GDAPI pandemonium_dictionary_clear(pandemonium_dictionary *p_self);
-
-pandemonium_bool GDAPI pandemonium_dictionary_has(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
-
-pandemonium_bool GDAPI pandemonium_dictionary_has_all(const pandemonium_dictionary *p_self, const pandemonium_array *p_keys);
-
-void GDAPI pandemonium_dictionary_erase(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
-
-pandemonium_int GDAPI pandemonium_dictionary_hash(const pandemonium_dictionary *p_self);
-
-pandemonium_array GDAPI pandemonium_dictionary_keys(const pandemonium_dictionary *p_self);
-
-pandemonium_array GDAPI pandemonium_dictionary_values(const pandemonium_dictionary *p_self);
+pandemonium_variant GDAPI *pandemonium_dictionary_operator_index(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
+const pandemonium_variant GDAPI *pandemonium_dictionary_operator_index_const(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
 
 pandemonium_variant GDAPI pandemonium_dictionary_get(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
 void GDAPI pandemonium_dictionary_set(pandemonium_dictionary *p_self, const pandemonium_variant *p_key, const pandemonium_variant *p_value);
+pandemonium_variant GDAPI pandemonium_dictionary_get_with_default(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key, const pandemonium_variant *p_default);
 
-pandemonium_variant GDAPI *pandemonium_dictionary_operator_index(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
+pandemonium_int GDAPI pandemonium_dictionary_size(const pandemonium_dictionary *p_self);
+pandemonium_bool GDAPI pandemonium_dictionary_empty(const pandemonium_dictionary *p_self);
+void GDAPI pandemonium_dictionary_clear(pandemonium_dictionary *p_self);
+//void merge(const Dictionary &p_dictionary, bool p_overwrite = false); p_overwrite false version
+void GDAPI pandemonium_dictionary_merge(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, const pandemonium_bool p_overwrite);
 
-const pandemonium_variant GDAPI *pandemonium_dictionary_operator_index_const(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
+pandemonium_bool GDAPI pandemonium_dictionary_has(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
+pandemonium_bool GDAPI pandemonium_dictionary_has_all(const pandemonium_dictionary *p_self, const pandemonium_array *p_keys);
+
+void GDAPI pandemonium_dictionary_erase(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
+pandemonium_bool GDAPI pandemonium_dictionary_erase_with_return(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
+
+//bool deep_equal(const Dictionary &p_dictionary, int p_recursion_count = 0) const;
+pandemonium_bool GDAPI pandemonium_dictionary_operator_equal(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_b);
+
+pandemonium_int GDAPI pandemonium_dictionary_hash(const pandemonium_dictionary *p_self);
 
 pandemonium_variant GDAPI *pandemonium_dictionary_next(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
 
-pandemonium_bool GDAPI pandemonium_dictionary_operator_equal(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_b);
+pandemonium_array GDAPI pandemonium_dictionary_keys(const pandemonium_dictionary *p_self);
+pandemonium_array GDAPI pandemonium_dictionary_values(const pandemonium_dictionary *p_self);
+
+pandemonium_dictionary GDAPI pandemonium_dictionary_duplicate(const pandemonium_dictionary *p_self, const pandemonium_bool p_deep);
 
 pandemonium_string GDAPI pandemonium_dictionary_to_json(const pandemonium_dictionary *p_self);
 
-// GDNative core 1.1
-
-pandemonium_bool GDAPI pandemonium_dictionary_erase_with_return(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
-
-pandemonium_variant GDAPI pandemonium_dictionary_get_with_default(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key, const pandemonium_variant *p_default);
-
-// GDNative core 1.3
-
-void GDAPI pandemonium_dictionary_merge(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, const pandemonium_bool p_overwrite);
+void GDAPI pandemonium_dictionary_new(pandemonium_dictionary *r_dest);
+void GDAPI pandemonium_dictionary_new_copy(pandemonium_dictionary *r_dest, const pandemonium_dictionary *p_src);
+void GDAPI pandemonium_dictionary_destroy(pandemonium_dictionary *p_self);
 
 #ifdef __cplusplus
 }
