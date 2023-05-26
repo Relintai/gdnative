@@ -4140,7 +4140,7 @@
                 ]
             },
             {
-                "name": "pandemonium_transform2d_determinant",
+                "name": "pandemonium_transform2d_basis_determinant",
                 "return_type": "pandemonium_real",
                 "arguments": [
                     ["const pandemonium_transform2d *", "p_self"]
