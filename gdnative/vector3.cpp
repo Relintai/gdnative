@@ -39,6 +39,36 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_vector3) == sizeof(Vector3), "Vector3 size mismatch");
 
+pandemonium_real GDAPI pandemonium_vector3_get_x(const pandemonium_vector3 *p_self) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	return self->x;
+}
+
+void GDAPI pandemonium_vector3_set_x(pandemonium_vector3 *p_self, const pandemonium_real val) {
+	Vector3 *self = (Vector3 *)p_self;
+	self->x = val;
+}
+
+pandemonium_real GDAPI pandemonium_vector3_get_y(const pandemonium_vector3 *p_self) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	return self->y;
+}
+
+void GDAPI pandemonium_vector3_set_y(pandemonium_vector3 *p_self, const pandemonium_real val) {
+	Vector3 *self = (Vector3 *)p_self;
+	self->y = val;
+}
+
+pandemonium_real GDAPI pandemonium_vector3_get_z(const pandemonium_vector3 *p_self) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	return self->z;
+}
+
+void GDAPI pandemonium_vector3_set_z(pandemonium_vector3 *p_self, const pandemonium_real val) {
+	Vector3 *self = (Vector3 *)p_self;
+	self->z = val;
+}
+
 pandemonium_real GDAPI *pandemonium_vector3_operator_index(pandemonium_vector3 *p_self, const pandemonium_int p_idx) {
 	Vector3 *self = (Vector3 *)p_self;
 	return (pandemonium_real *)&self->operator[](p_idx);

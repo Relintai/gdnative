@@ -39,6 +39,46 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_vector4) == sizeof(Vector4), "Vector4 size mismatch");
 
+pandemonium_real GDAPI pandemonium_vector4_get_x(const pandemonium_vector4 *p_self) {
+	const Vector4 *self = (const Vector4 *)p_self;
+	return self->x;
+}
+
+void GDAPI pandemonium_vector4_set_x(pandemonium_vector4 *p_self, const pandemonium_real val) {
+	Vector4 *self = (Vector4 *)p_self;
+	self->x = val;
+}
+
+pandemonium_real GDAPI pandemonium_vector4_get_y(const pandemonium_vector4 *p_self) {
+	const Vector4 *self = (const Vector4 *)p_self;
+	return self->y;
+}
+
+void GDAPI pandemonium_vector4_set_y(pandemonium_vector4 *p_self, const pandemonium_real val) {
+	Vector4 *self = (Vector4 *)p_self;
+	self->y = val;
+}
+
+pandemonium_real GDAPI pandemonium_vector4_get_z(const pandemonium_vector4 *p_self) {
+	const Vector4 *self = (const Vector4 *)p_self;
+	return self->z;
+}
+
+void GDAPI pandemonium_vector4_set_z(pandemonium_vector4 *p_self, const pandemonium_real val) {
+	Vector4 *self = (Vector4 *)p_self;
+	self->z = val;
+}
+
+pandemonium_real GDAPI pandemonium_vector4_get_w(const pandemonium_vector4 *p_self) {
+	const Vector4 *self = (const Vector4 *)p_self;
+	return self->w;
+}
+
+void GDAPI pandemonium_vector4_set_w(pandemonium_vector4 *p_self, const pandemonium_real val) {
+	Vector4 *self = (Vector4 *)p_self;
+	self->w = val;
+}
+
 pandemonium_real GDAPI *pandemonium_vector4_operator_index(pandemonium_vector4 *p_self, const pandemonium_int p_idx) {
 	Vector4 *self = (Vector4 *)p_self;
 	return (pandemonium_real *)&self->operator[](p_idx);

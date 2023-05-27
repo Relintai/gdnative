@@ -65,6 +65,18 @@ typedef enum {
 	PANDEMONIUM_VECTOR4I_AXIS_W,
 } pandemonium_vector4i_axis;
 
+pandemonium_int GDAPI pandemonium_vector4i_get_x(const pandemonium_vector4i *p_self);
+void GDAPI pandemonium_vector4i_set_x(pandemonium_vector4i *p_self, const pandemonium_int val);
+
+pandemonium_int GDAPI pandemonium_vector4i_get_y(const pandemonium_vector4i *p_self);
+void GDAPI pandemonium_vector4i_set_y(pandemonium_vector4i *p_self, const pandemonium_int val);
+
+pandemonium_int GDAPI pandemonium_vector4i_get_z(const pandemonium_vector4i *p_self);
+void GDAPI pandemonium_vector4i_set_z(pandemonium_vector4i *p_self, const pandemonium_int val);
+
+pandemonium_int GDAPI pandemonium_vector4i_get_w(const pandemonium_vector4i *p_self);
+void GDAPI pandemonium_vector4i_set_w(pandemonium_vector4i *p_self, const pandemonium_int val);
+
 pandemonium_int GDAPI *pandemonium_vector4i_operator_index(pandemonium_vector4i *p_self, const pandemonium_int p_idx);
 const pandemonium_int GDAPI *pandemonium_vector4i_operator_index_const(const pandemonium_vector4i *p_self, const pandemonium_int p_idx);
 
