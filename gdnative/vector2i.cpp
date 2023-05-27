@@ -39,43 +39,43 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_vector2i) == sizeof(Vector2i), "Vector2i size mismatch");
 
-void GDAPI pandemonium_vector2i_set_x(pandemonium_vector2i *p_self, const pandemonium_real p_x) {
+void GDAPI pandemonium_vector2i_set_x(pandemonium_vector2i *p_self, const pandemonium_int p_x) {
 	Vector2i *self = (Vector2i *)p_self;
 	self->x = p_x;
 }
-void GDAPI pandemonium_vector2i_set_y(pandemonium_vector2i *p_self, const pandemonium_real p_y) {
+void GDAPI pandemonium_vector2i_set_y(pandemonium_vector2i *p_self, const pandemonium_int p_y) {
 	Vector2i *self = (Vector2i *)p_self;
 	self->y = p_y;
 }
 
-pandemonium_real GDAPI pandemonium_vector2i_get_x(const pandemonium_vector2i *p_self) {
+pandemonium_int GDAPI pandemonium_vector2i_get_x(const pandemonium_vector2i *p_self) {
 	const Vector2i *self = (const Vector2i *)p_self;
 	return self->x;
 }
-pandemonium_real GDAPI pandemonium_vector2i_get_y(const pandemonium_vector2i *p_self) {
+pandemonium_int GDAPI pandemonium_vector2i_get_y(const pandemonium_vector2i *p_self) {
 	const Vector2i *self = (const Vector2i *)p_self;
 	return self->y;
 }
 
-pandemonium_real GDAPI *pandemonium_vector2i_operator_index(pandemonium_vector2i *p_self, const pandemonium_int p_idx) {
+pandemonium_int GDAPI *pandemonium_vector2i_operator_index(pandemonium_vector2i *p_self, const pandemonium_int p_idx) {
 	Vector2i *self = (Vector2i *)p_self;
-	return (pandemonium_real *)&self->operator[](p_idx);
+	return (pandemonium_int *)&self->operator[](p_idx);
 }
-const pandemonium_real GDAPI *pandemonium_vector2i_operator_index_const(const pandemonium_vector2i *p_self, const pandemonium_int p_idx) {
+const pandemonium_int GDAPI *pandemonium_vector2i_operator_index_const(const pandemonium_vector2i *p_self, const pandemonium_int p_idx) {
 	const Vector2i *self = (const Vector2i *)p_self;
-	return (const pandemonium_real *)&self->operator[](p_idx);
+	return (const pandemonium_int *)&self->operator[](p_idx);
 }
 
-void GDAPI pandemonium_vector2i_set_axis(pandemonium_vector2i *p_self, const pandemonium_vector2i_axis p_axis, const pandemonium_real p_value) {
+void GDAPI pandemonium_vector2i_set_axis(pandemonium_vector2i *p_self, const pandemonium_vector2i_axis p_axis, const pandemonium_int p_value) {
 	Vector2i *self = (Vector2i *)p_self;
 	self->operator[](p_axis) = p_value;
 }
-pandemonium_real GDAPI pandemonium_vector2i_get_axis(const pandemonium_vector2i *p_self, const pandemonium_vector2i_axis p_axis) {
+pandemonium_int GDAPI pandemonium_vector2i_get_axis(const pandemonium_vector2i *p_self, const pandemonium_vector2i_axis p_axis) {
 	const Vector2i *self = (const Vector2i *)p_self;
 	return self->operator[](p_axis);
 }
 
-void GDAPI pandemonium_vector2i_set_all(pandemonium_vector2i *p_self, const pandemonium_real p_value) {
+void GDAPI pandemonium_vector2i_set_all(pandemonium_vector2i *p_self, const pandemonium_int p_value) {
 	Vector2i *self = (Vector2i *)p_self;
 	self->set_all(p_value);
 }
@@ -137,7 +137,7 @@ pandemonium_vector2i GDAPI pandemonium_vector2i_operator_multiply_vector(const p
 	*dest = *self * *b;
 	return raw_dest;
 }
-pandemonium_vector2i GDAPI pandemonium_vector2i_operator_multiply_scalar(const pandemonium_vector2i *p_self, const pandemonium_real p_b) {
+pandemonium_vector2i GDAPI pandemonium_vector2i_operator_multiply_scalar(const pandemonium_vector2i *p_self, const pandemonium_int p_b) {
 	pandemonium_vector2i raw_dest;
 	Vector2i *dest = (Vector2i *)&raw_dest;
 	const Vector2i *self = (const Vector2i *)p_self;
@@ -153,7 +153,7 @@ pandemonium_vector2i GDAPI pandemonium_vector2i_operator_divide_vector(const pan
 	*dest = *self / *b;
 	return raw_dest;
 }
-pandemonium_vector2i GDAPI pandemonium_vector2i_operator_divide_scalar(const pandemonium_vector2i *p_self, const pandemonium_real p_b) {
+pandemonium_vector2i GDAPI pandemonium_vector2i_operator_divide_scalar(const pandemonium_vector2i *p_self, const pandemonium_int p_b) {
 	pandemonium_vector2i raw_dest;
 	Vector2i *dest = (Vector2i *)&raw_dest;
 	const Vector2i *self = (const Vector2i *)p_self;
@@ -184,7 +184,7 @@ pandemonium_real GDAPI pandemonium_vector2i_length(const pandemonium_vector2i *p
 	const Vector2i *self = (const Vector2i *)p_self;
 	return self->length();
 }
-pandemonium_real GDAPI pandemonium_vector2i_length_squared(const pandemonium_vector2i *p_self) {
+pandemonium_int GDAPI pandemonium_vector2i_length_squared(const pandemonium_vector2i *p_self) {
 	const Vector2i *self = (const Vector2i *)p_self;
 	return self->length_squared();
 }
@@ -214,7 +214,7 @@ pandemonium_string GDAPI pandemonium_vector2i_as_string(const pandemonium_vector
 	return ret;
 }
 
-void GDAPI pandemonium_vector2i_new(pandemonium_vector2i *r_dest, const pandemonium_real p_x, const pandemonium_real p_y) {
+void GDAPI pandemonium_vector2i_new(pandemonium_vector2i *r_dest, const pandemonium_int p_x, const pandemonium_int p_y) {
 	Vector2i *dest = (Vector2i *)r_dest;
 	*dest = Vector2i(p_x, p_y);
 }
