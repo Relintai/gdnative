@@ -48,6 +48,11 @@ pandemonium_real GDAPI pandemonium_vector3_get_axis(const pandemonium_vector3 *p
 	return self->get_axis(p_axis);
 }
 
+void GDAPI pandemonium_vector3_set_all(pandemonium_vector3 *p_self, const pandemonium_real p_value) {
+	Vector3 *self = (Vector3 *)p_self;
+	self->set_all(p_value);
+}
+
 pandemonium_int GDAPI pandemonium_vector3_min_axis(const pandemonium_vector3 *p_self) {
 	const Vector3 *self = (const Vector3 *)p_self;
 	return self->min_axis();
@@ -66,6 +71,10 @@ pandemonium_real GDAPI pandemonium_vector3_length_squared(const pandemonium_vect
 	return self->length_squared();
 }
 
+void GDAPI pandemonium_vector3_normalize(pandemonium_vector3 *p_self) {
+	Vector3 *self = (Vector3 *)p_self;
+	self->normalize();
+}
 pandemonium_vector3 GDAPI pandemonium_vector3_normalized(const pandemonium_vector3 *p_self) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
@@ -82,7 +91,29 @@ pandemonium_vector3 GDAPI pandemonium_vector3_inverse(const pandemonium_vector3 
 	*((Vector3 *)&dest) = self->inverse();
 	return dest;
 }
+pandemonium_vector3 GDAPI pandemonium_vector3_limit_length(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	*((Vector3 *)&dest) = self->limit_length();
+	return dest;
+}
+pandemonium_vector3 GDAPI pandemonium_vector3_limit_length_len(const pandemonium_vector3 *p_self, const pandemonium_real p_val) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	*((Vector3 *)&dest) = self->limit_length(p_val);
+	return dest;
+}
 
+void GDAPI pandemonium_vector3_zero(pandemonium_vector3 *p_self) {
+	Vector3 *self = (Vector3 *)p_self;
+	self->zero();
+}
+
+void GDAPI pandemonium_vector3_snap(pandemonium_vector3 *p_self, const pandemonium_vector3 *p_val) {
+	Vector3 *self = (Vector3 *)p_self;
+	const Vector3 *val = (const Vector3 *)p_val;
+	self->snap(*val);
+}
 pandemonium_vector3 GDAPI pandemonium_vector3_snapped(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_by) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
@@ -92,6 +123,12 @@ pandemonium_vector3 GDAPI pandemonium_vector3_snapped(const pandemonium_vector3 
 	return dest;
 }
 
+void GDAPI pandemonium_vector3_rotate(pandemonium_vector3 *p_self, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi) {
+	pandemonium_vector3 dest;
+	Vector3 *self = (Vector3 *)p_self;
+	const Vector3 *axis = (const Vector3 *)p_axis;
+	self->rotate(*axis, p_phi);
+}
 pandemonium_vector3 GDAPI pandemonium_vector3_rotated(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
@@ -107,7 +144,13 @@ pandemonium_vector3 GDAPI pandemonium_vector3_linear_interpolate(const pandemoni
 	*((Vector3 *)&dest) = self->linear_interpolate(*b, p_t);
 	return dest;
 }
-
+pandemonium_vector3 GDAPI pandemonium_vector3_slerp(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to, const pandemonium_real p_weight) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *to = (const Vector3 *)p_to;
+	*((Vector3 *)&dest) = self->slerp(*to, p_weight);
+	return dest;
+}
 pandemonium_vector3 GDAPI pandemonium_vector3_cubic_interpolate(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b, const pandemonium_vector3 *p_pre_a, const pandemonium_vector3 *p_post_b, const pandemonium_real p_t) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
@@ -115,6 +158,15 @@ pandemonium_vector3 GDAPI pandemonium_vector3_cubic_interpolate(const pandemoniu
 	const Vector3 *pre_a = (const Vector3 *)p_pre_a;
 	const Vector3 *post_b = (const Vector3 *)p_post_b;
 	*((Vector3 *)&dest) = self->cubic_interpolate(*b, *pre_a, *post_b, p_t);
+	return dest;
+}
+pandemonium_vector3 GDAPI pandemonium_vector3_bezier_interpolate(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_control_1, const pandemonium_vector3 *p_control_2, const pandemonium_vector3 *p_end, const pandemonium_real p_t) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *control_1 = (const Vector3 *)p_control_1;
+	const Vector3 *control_2 = (const Vector3 *)p_control_2;
+	const Vector3 *end = (const Vector3 *)p_end;
+	*((Vector3 *)&dest) = self->cubic_interpolate(*control_1, *control_2, *end, p_t);
 	return dest;
 }
 
@@ -160,18 +212,49 @@ pandemonium_vector3 GDAPI pandemonium_vector3_abs(const pandemonium_vector3 *p_s
 	*((Vector3 *)&dest) = self->abs();
 	return dest;
 }
-
 pandemonium_vector3 GDAPI pandemonium_vector3_floor(const pandemonium_vector3 *p_self) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Vector3 *)&dest) = self->floor();
 	return dest;
 }
-
+pandemonium_vector3 GDAPI pandemonium_vector3_sign(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	*((Vector3 *)&dest) = self->sign();
+	return dest;
+}
 pandemonium_vector3 GDAPI pandemonium_vector3_ceil(const pandemonium_vector3 *p_self) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	*((Vector3 *)&dest) = self->ceil();
+	return dest;
+}
+pandemonium_vector3 GDAPI pandemonium_vector3_round(const pandemonium_vector3 *p_self) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	*((Vector3 *)&dest) = self->round();
+	return dest;
+}
+
+pandemonium_vector3 GDAPI pandemonium_vector3_posmod(const pandemonium_vector3 *p_self, const pandemonium_real p_mod) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	*((Vector3 *)&dest) = self->posmod(p_mod);
+	return dest;
+}
+pandemonium_vector3 GDAPI pandemonium_vector3_posmodv(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_modv) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *modv = (const Vector3 *)p_modv;
+	*((Vector3 *)&dest) = self->posmodv(*modv);
+	return dest;
+}
+pandemonium_vector3 GDAPI pandemonium_vector3_project(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *to = (const Vector3 *)p_to;
+	*((Vector3 *)&dest) = self->project(*to);
 	return dest;
 }
 
@@ -180,12 +263,26 @@ pandemonium_real GDAPI pandemonium_vector3_angle_to(const pandemonium_vector3 *p
 	const Vector3 *to = (const Vector3 *)p_to;
 	return self->angle_to(*to);
 }
-
+pandemonium_real GDAPI pandemonium_vector3_signed_angle_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to, const pandemonium_vector3 *p_axis) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *to = (const Vector3 *)p_to;
+	const Vector3 *axis = (const Vector3 *)p_axis;
+	return self->signed_angle_to(*to, *axis);
+}
 pandemonium_vector3 GDAPI pandemonium_vector3_direction_to(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_to) {
 	pandemonium_vector3 dest;
 	const Vector3 *self = (const Vector3 *)p_self;
 	const Vector3 *to = (const Vector3 *)p_to;
 	*((Vector3 *)&dest) = self->direction_to(*to);
+	return dest;
+}
+
+pandemonium_vector3 GDAPI pandemonium_vector3_clamp(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_min, const pandemonium_vector3 *p_max) {
+	pandemonium_vector3 dest;
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *min = (const Vector3 *)p_min;
+	const Vector3 *max = (const Vector3 *)p_max;
+	*((Vector3 *)&dest) = self->clamp(*min, *max);
 	return dest;
 }
 
@@ -223,6 +320,22 @@ pandemonium_vector3 GDAPI pandemonium_vector3_reflect(const pandemonium_vector3 
 	const Vector3 *n = (const Vector3 *)p_n;
 	*((Vector3 *)&dest) = self->reflect(*n);
 	return dest;
+}
+
+pandemonium_bool GDAPI pandemonium_vector3_is_equal_approx(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_v) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *v = (const Vector3 *)p_v;
+	return self->is_equal_approx(*v);
+}
+pandemonium_bool GDAPI pandemonium_vector3_is_equal_approx_tolerance(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_v, const pandemonium_real p_tolerance) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *v = (const Vector3 *)p_v;
+	return self->is_equal_approx(*v, p_tolerance);
+}
+pandemonium_bool GDAPI pandemonium_vector3_is_equal_approxt(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_v, const pandemonium_real p_tolerance) {
+	const Vector3 *self = (const Vector3 *)p_self;
+	const Vector3 *v = (const Vector3 *)p_v;
+	return self->is_equal_approxt(*v, p_tolerance);
 }
 
 pandemonium_vector3 GDAPI pandemonium_vector3_operator_add(const pandemonium_vector3 *p_self, const pandemonium_vector3 *p_b) {
