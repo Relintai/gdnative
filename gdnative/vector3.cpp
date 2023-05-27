@@ -133,7 +133,6 @@ pandemonium_vector3 GDAPI pandemonium_vector3_snapped(const pandemonium_vector3 
 }
 
 void GDAPI pandemonium_vector3_rotate(pandemonium_vector3 *p_self, const pandemonium_vector3 *p_axis, const pandemonium_real p_phi) {
-	pandemonium_vector3 dest;
 	Vector3 *self = (Vector3 *)p_self;
 	const Vector3 *axis = (const Vector3 *)p_axis;
 	self->rotate(*axis, p_phi);
