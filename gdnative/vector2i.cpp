@@ -195,6 +195,21 @@ pandemonium_vector2i GDAPI pandemonium_vector2i_abs(const pandemonium_vector2i *
 	*((Vector2i *)&dest) = self->abs();
 	return dest;
 }
+pandemonium_vector2i GDAPI pandemonium_vector2i_clamp(const pandemonium_vector2i *p_self, const pandemonium_vector2i *p_min, const pandemonium_vector2i *p_max) {
+	pandemonium_vector2i dest;
+	const Vector2i *self = (const Vector2i *)p_self;
+	const Vector2i *min = (const Vector2i *)p_min;
+	const Vector2i *max = (const Vector2i *)p_max;
+	*((Vector2i *)&dest) = self->clamp(*min, *max);
+	return dest;
+}
+
+pandemonium_vector2 GDAPI pandemonium_vector2i_to_vector2(const pandemonium_vector2i *p_self) {
+	pandemonium_vector2 dest;
+	const Vector2i *self = (const Vector2i *)p_self;
+	*((Vector2 *)&dest) = self->to_vector2();
+	return dest;
+}
 
 pandemonium_vector2i GDAPI pandemonium_vector2i_sign(const pandemonium_vector2i *p_self) {
 	pandemonium_vector2i dest;

@@ -104,9 +104,9 @@ pandemonium_int GDAPI pandemonium_vector2i_length_squared(const pandemonium_vect
 pandemonium_real GDAPI pandemonium_vector2i_aspect(const pandemonium_vector2i *p_self);
 pandemonium_vector2i GDAPI pandemonium_vector2i_sign(const pandemonium_vector2i *p_self);
 pandemonium_vector2i GDAPI pandemonium_vector2i_abs(const pandemonium_vector2i *p_self);
-//Vector2i clamp(const Vector2i &p_min, const Vector2i &p_max) const;
+pandemonium_vector2i GDAPI pandemonium_vector2i_clamp(const pandemonium_vector2i *p_self, const pandemonium_vector2i *p_min, const pandemonium_vector2i *p_max);
 
-//Vector2 to_vector2() const { return Vector2(x, y); }
+pandemonium_vector2 GDAPI pandemonium_vector2i_to_vector2(const pandemonium_vector2i *p_self);
 
 pandemonium_string GDAPI pandemonium_vector2i_as_string(const pandemonium_vector2i *p_self);
 
