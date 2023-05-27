@@ -115,7 +115,6 @@ pandemonium_vector3i GDAPI pandemonium_vector3i_clamp(const pandemonium_vector3i
 	return dest;
 }
 
-
 pandemonium_vector3i GDAPI pandemonium_vector3i_operator_add(const pandemonium_vector3i *p_self, const pandemonium_vector3i *p_b) {
 	pandemonium_vector3i raw_dest;
 	Vector3i *dest = (Vector3i *)&raw_dest;
@@ -186,6 +185,13 @@ pandemonium_bool GDAPI pandemonium_vector3i_operator_less(const pandemonium_vect
 	Vector3i *self = (Vector3i *)p_self;
 	const Vector3i *b = (const Vector3i *)p_b;
 	return *self < *b;
+}
+
+pandemonium_vector3 GDAPI pandemonium_vector3i_to_vector3(const pandemonium_vector3i *p_self) {
+	pandemonium_vector3 dest;
+	const Vector3i *self = (const Vector3i *)p_self;
+	*((Vector3 *)&dest) = self->to_vector3();
+	return dest;
 }
 
 pandemonium_string GDAPI pandemonium_vector3i_as_string(const pandemonium_vector3i *p_self) {

@@ -101,6 +101,8 @@ pandemonium_vector3i GDAPI pandemonium_vector3i_operator_neg(const pandemonium_v
 pandemonium_bool GDAPI pandemonium_vector3i_operator_equal(const pandemonium_vector3i *p_self, const pandemonium_vector3i *p_b);
 pandemonium_bool GDAPI pandemonium_vector3i_operator_less(const pandemonium_vector3i *p_self, const pandemonium_vector3i *p_b);
 
+pandemonium_vector3 GDAPI pandemonium_vector3i_to_vector3(const pandemonium_vector3i *p_self);
+
 pandemonium_string GDAPI pandemonium_vector3i_as_string(const pandemonium_vector3i *p_self);
 
 void GDAPI pandemonium_vector3i_new(pandemonium_vector3i *r_dest, const pandemonium_int p_x, const pandemonium_int p_y, const pandemonium_int p_z);
