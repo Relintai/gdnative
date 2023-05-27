@@ -57,6 +57,15 @@ pandemonium_real GDAPI pandemonium_vector2i_get_y(const pandemonium_vector2i *p_
 	return self->y;
 }
 
+pandemonium_real GDAPI *pandemonium_vector2i_operator_index(pandemonium_vector2i *p_self, const pandemonium_int p_idx) {
+	Vector2i *self = (Vector2i *)p_self;
+	return (pandemonium_real *)&self->operator[](p_idx);
+}
+const pandemonium_real GDAPI *pandemonium_vector2i_operator_index_const(const pandemonium_vector2i *p_self, const pandemonium_int p_idx) {
+	const Vector2i *self = (const Vector2i *)p_self;
+	return (const pandemonium_real *)&self->operator[](p_idx);
+}
+
 void GDAPI pandemonium_vector2i_set_axis(pandemonium_vector2i *p_self, const pandemonium_vector2i_axis p_axis, const pandemonium_real p_value) {
 	Vector2i *self = (Vector2i *)p_self;
 	self->operator[](p_axis) = p_value;
