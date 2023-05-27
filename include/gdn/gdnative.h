@@ -164,6 +164,18 @@ typedef void pandemonium_object;
 
 #include <gdn/vector3.h>
 
+////// Vector3i
+
+#include <gdn/vector3i.h>
+
+////// Vector4
+
+#include <gdn/vector4.h>
+
+////// Vector4i
+
+#include <gdn/vector4i.h>
+
 ////// Transform2D
 
 #include <gdn/transform2d.h>
