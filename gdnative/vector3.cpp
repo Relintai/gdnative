@@ -174,7 +174,7 @@ pandemonium_vector3 GDAPI pandemonium_vector3_bezier_interpolate(const pandemoni
 	const Vector3 *control_1 = (const Vector3 *)p_control_1;
 	const Vector3 *control_2 = (const Vector3 *)p_control_2;
 	const Vector3 *end = (const Vector3 *)p_end;
-	*((Vector3 *)&dest) = self->cubic_interpolate(*control_1, *control_2, *end, p_t);
+	*((Vector3 *)&dest) = self->bezier_interpolate(*control_1, *control_2, *end, p_t);
 	return dest;
 }
 
