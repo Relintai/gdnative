@@ -59,10 +59,8 @@ typedef struct {
 extern "C" {
 #endif
 
-//real_t get_volume() const; /// get area
-//_FORCE_INLINE_ bool has_no_volume() const {  fix names
-pandemonium_real GDAPI pandemonium_aabb_get_area(const pandemonium_aabb *p_self);
-pandemonium_bool GDAPI pandemonium_aabb_has_no_area(const pandemonium_aabb *p_self);
+pandemonium_real GDAPI pandemonium_aabb_get_volume(const pandemonium_aabb *p_self);
+pandemonium_bool GDAPI pandemonium_aabb_has_no_volume(const pandemonium_aabb *p_self);
 pandemonium_bool GDAPI pandemonium_aabb_has_no_surface(const pandemonium_aabb *p_self);
 
 pandemonium_vector3 GDAPI pandemonium_aabb_get_position(const pandemonium_aabb *p_self);
@@ -73,22 +71,23 @@ void GDAPI pandemonium_aabb_set_size(const pandemonium_aabb *p_self, const pande
 
 pandemonium_bool GDAPI pandemonium_aabb_operator_equal(const pandemonium_aabb *p_self, const pandemonium_aabb *p_b);
 
-//bool is_equal_approx(const AABB &p_aabb) const;
+pandemonium_bool GDAPI pandemonium_aabb_is_equal_approx(const pandemonium_aabb *p_self, const pandemonium_aabb *p_aabb);
 pandemonium_bool GDAPI pandemonium_aabb_intersects(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
-//_FORCE_INLINE_ bool intersects_inclusive(const AABB &p_aabb) const; /// Both AABBs (or their faces) overlap
+pandemonium_bool GDAPI pandemonium_aabb_intersects_inclusive(const pandemonium_aabb *p_self, const pandemonium_aabb *p_aabb);
 pandemonium_bool GDAPI pandemonium_aabb_encloses(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
 
 pandemonium_aabb GDAPI pandemonium_aabb_merge(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
-//void merge_with(const AABB &p_aabb); ///merge with another AABB
+void GDAPI pandemonium_aabb_merge_with(pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
 pandemonium_aabb GDAPI pandemonium_aabb_intersection(const pandemonium_aabb *p_self, const pandemonium_aabb *p_with);
-//bool intersects_segment(const Vector3 &p_from, const Vector3 &p_to, Vector3 *r_clip = nullptr, Vector3 *r_normal = nullptr) const; //add variants
 pandemonium_bool GDAPI pandemonium_aabb_intersects_segment(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_to);
+pandemonium_bool GDAPI pandemonium_aabb_intersects_segment_clip(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_to, const pandemonium_vector3 *r_clip);
+pandemonium_bool GDAPI pandemonium_aabb_intersects_segment_clip_normal(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_to, const pandemonium_vector3 *r_clip, const pandemonium_vector3 *r_normal);
 
-//bool intersects_ray(const Vector3 &p_from, const Vector3 &p_dir, Vector3 *r_clip = nullptr, Vector3 *r_normal = nullptr) const;
-//_FORCE_INLINE_ bool smits_intersect_ray(const Vector3 &p_from, const Vector3 &p_dir, real_t t0, real_t t1) const;
+pandemonium_bool GDAPI pandemonium_aabb_intersects_ray(const pandemonium_aabb *p_self, const pandemonium_aabb *p_from, const pandemonium_aabb *p_dir);
+pandemonium_bool GDAPI pandemonium_aabb_intersects_ray_clip(const pandemonium_aabb *p_self, const pandemonium_aabb *p_from, const pandemonium_aabb *p_dir, pandemonium_aabb *r_clip);
+pandemonium_bool GDAPI pandemonium_aabb_intersects_ray_clip_normal(const pandemonium_aabb *p_self, const pandemonium_aabb *p_from, const pandemonium_aabb *p_dir, pandemonium_aabb *r_clip, pandemonium_aabb *r_normal);
+pandemonium_bool GDAPI pandemonium_aabb_intersects_smits_intersect_ray(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_dir, const pandemonium_real t0, const pandemonium_real t1);
 
-//_FORCE_INLINE_ bool intersects_convex_shape(const Plane *p_planes, int p_plane_count, const Vector3 *p_points, int p_point_count) const;
-//_FORCE_INLINE_ bool inside_convex_shape(const Plane *p_planes, int p_plane_count) const;
 pandemonium_bool GDAPI pandemonium_aabb_intersects_plane(const pandemonium_aabb *p_self, const pandemonium_plane *p_plane);
 
 pandemonium_bool GDAPI pandemonium_aabb_has_point(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_point);
@@ -103,27 +102,26 @@ pandemonium_int GDAPI pandemonium_aabb_get_shortest_axis_index(const pandemonium
 pandemonium_real GDAPI pandemonium_aabb_get_shortest_axis_size(const pandemonium_aabb *p_self);
 
 pandemonium_aabb GDAPI pandemonium_aabb_grow(const pandemonium_aabb *p_self, const pandemonium_real p_by);
-//_FORCE_INLINE_ void grow_by(real_t p_amount);
+void GDAPI pandemonium_aabb_grow_by(pandemonium_aabb *p_self, const pandemonium_real p_amount);
 
-//void get_edge(int p_edge, Vector3 &r_from, Vector3 &r_to) const;
+void GDAPI pandemonium_aabb_get_edge(const pandemonium_aabb *p_self, const pandemonium_int p_edge, pandemonium_vector3 *r_from, pandemonium_vector3 *r_to);
 pandemonium_vector3 GDAPI pandemonium_aabb_get_endpoint(const pandemonium_aabb *p_self, const pandemonium_int p_idx);
 
 pandemonium_aabb GDAPI pandemonium_aabb_expand(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_to_point);
-//_FORCE_INLINE_ void project_range_in_plane(const Plane &p_plane, real_t &r_min, real_t &r_max) const;
-//_FORCE_INLINE_ void expand_to(const Vector3 &p_vector); /** expand to contain a point if necessary */
-//bool create_from_points(const Vector<Vector3> &p_points);
+void GDAPI pandemonium_aabb_project_range_in_plane(const pandemonium_aabb *p_self, const pandemonium_plane *p_plane, pandemonium_real *r_min, pandemonium_real *r_max);
+void GDAPI pandemonium_aabb_expand_to(pandemonium_aabb *p_self, const pandemonium_vector3 *p_vector);
 
-//_FORCE_INLINE_ AABB abs() const {
+pandemonium_aabb GDAPI pandemonium_aabb_abs(const pandemonium_aabb *p_self);
 
-//Variant intersects_segmentv(const Vector3 &p_from, const Vector3 &p_to) const;
-//Variant intersects_rayv(const Vector3 &p_from, const Vector3 &p_dir) const;
+pandemonium_variant GDAPI pandemonium_aabb_intersects_segmentv(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_to);
+pandemonium_variant GDAPI pandemonium_aabb_intersects_rayv(const pandemonium_aabb *p_self, const pandemonium_vector3 *p_from, const pandemonium_vector3 *p_dir);
 
-//_FORCE_INLINE_ void quantize(real_t p_unit);
-//_FORCE_INLINE_ AABB quantized(real_t p_unit) const;
+void GDAPI pandemonium_aabb_quantize(pandemonium_aabb *p_self, const pandemonium_real p_unit);
+pandemonium_aabb GDAPI pandemonium_aabb_quantized(const pandemonium_aabb *p_self, const pandemonium_real p_unit);
 
-//_FORCE_INLINE_ void set_end(const Vector3 &p_end) {
-//_FORCE_INLINE_ Vector3 get_end() const {
-//_FORCE_INLINE_ Vector3 get_center() const {
+void GDAPI pandemonium_aabb_set_end(pandemonium_aabb *p_self, const pandemonium_vector3 *p_end);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_end(const pandemonium_aabb *p_self);
+pandemonium_vector3 GDAPI pandemonium_aabb_get_center(const pandemonium_aabb *p_self);
 
 pandemonium_string GDAPI pandemonium_aabb_as_string(const pandemonium_aabb *p_self);
 

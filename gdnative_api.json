@@ -3698,20 +3698,6 @@
                 ]
             },
             {
-                "name": "pandemonium_aabb_get_area",
-                "return_type": "pandemonium_real",
-                "arguments": [
-                    ["const pandemonium_aabb *", "p_self"]
-                ]
-            },
-            {
-                "name": "pandemonium_aabb_has_no_area",
-                "return_type": "pandemonium_bool",
-                "arguments": [
-                    ["const pandemonium_aabb *", "p_self"]
-                ]
-            },
-            {
                 "name": "pandemonium_aabb_has_no_surface",
                 "return_type": "pandemonium_bool",
                 "arguments": [
