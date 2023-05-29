@@ -39,11 +39,56 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_transform2d) == sizeof(Transform2D), "Transform2D size mismatch");
 
+pandemonium_real GDAPI pandemonium_transform2d_tdotx(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_v) {
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2 *v = (const Vector2 *)p_v;
+	return self->tdotx(*v);
+}
+pandemonium_real GDAPI pandemonium_transform2d_tdoty(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_v) {
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2 *v = (const Vector2 *)p_v;
+	return self->tdoty(*v);
+}
+
+pandemonium_vector2 GDAPI pandemonium_transform2d_get_axis(const pandemonium_transform2d *p_self, pandemonium_int p_axis) {
+	pandemonium_vector2 dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	*((Vector2 *)&dest) = self->get_axis(p_axis);
+	return dest;
+}
+void GDAPI pandemonium_transform2d_set_axis(pandemonium_transform2d *p_self, pandemonium_int p_axis, const pandemonium_vector2 *p_vec) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *vec = (const Vector2 *)p_vec;
+	self->set_axis(p_axis, *vec);
+}
+
+pandemonium_vector2 GDAPI pandemonium_transform2d_get_column(const pandemonium_transform2d *p_self, pandemonium_int p_colum) {
+	pandemonium_vector2 dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	*((Vector2 *)&dest) = self->get_column(p_colum);
+	return dest;
+}
+void GDAPI pandemonium_transform2d_set_column(pandemonium_transform2d *p_self, pandemonium_int p_colum, const pandemonium_vector2 *p_vec) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *vec = (const Vector2 *)p_vec;
+	self->set_column(p_colum, *vec);
+}
+
+void GDAPI pandemonium_transform2d_invert(pandemonium_transform2d *p_self) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->invert();
+}
+
 pandemonium_transform2d GDAPI pandemonium_transform2d_inverse(const pandemonium_transform2d *p_self) {
 	pandemonium_transform2d dest;
 	const Transform2D *self = (const Transform2D *)p_self;
 	*((Transform2D *)&dest) = self->inverse();
 	return dest;
+}
+
+void GDAPI pandemonium_transform2d_affine_invert(pandemonium_transform2d *p_self) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->affine_invert();
 }
 
 pandemonium_transform2d GDAPI pandemonium_transform2d_affine_inverse(const pandemonium_transform2d *p_self) {
@@ -53,9 +98,67 @@ pandemonium_transform2d GDAPI pandemonium_transform2d_affine_inverse(const pande
 	return dest;
 }
 
+void GDAPI pandemonium_transform2d_set_rotation(pandemonium_transform2d *p_self, pandemonium_real p_rot) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->set_rotation(p_rot);
+}
+
 pandemonium_real GDAPI pandemonium_transform2d_get_rotation(const pandemonium_transform2d *p_self) {
 	const Transform2D *self = (const Transform2D *)p_self;
 	return self->get_rotation();
+}
+
+pandemonium_real GDAPI pandemonium_transform2d_get_skew(const pandemonium_transform2d *p_self) {
+	const Transform2D *self = (const Transform2D *)p_self;
+	return self->get_skew();
+}
+void GDAPI pandemonium_transform2d_set_skew(pandemonium_transform2d *p_self, const pandemonium_real p_angle) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->set_skew(p_angle);
+}
+void GDAPI pandemonium_transform2d_set_rotation_and_scale(pandemonium_transform2d *p_self, pandemonium_real p_rot, const pandemonium_vector2 *p_scale) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *scale = (const Vector2 *)p_scale;
+	self->set_rotation_and_scale(p_rot, *scale);
+}
+void GDAPI pandemonium_transform2d_set_rotation_scale_and_skew(pandemonium_transform2d *p_self, const pandemonium_real p_rot, const pandemonium_vector2 *p_scale, const pandemonium_real p_skew) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *scale = (const Vector2 *)p_scale;
+	self->set_rotation_scale_and_skew(p_rot, *scale, p_skew);
+}
+void GDAPI pandemonium_transform2d_rotate(pandemonium_transform2d *p_self, pandemonium_real p_phi) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->rotate(p_phi);
+}
+
+void GDAPI pandemonium_transform2d_scale(pandemonium_transform2d *p_self, const pandemonium_vector2 *p_scale) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *scale = (const Vector2 *)p_scale;
+	self->scale(*scale);
+}
+void GDAPI pandemonium_transform2d_scale_basis(pandemonium_transform2d *p_self, const pandemonium_vector2 *p_scale) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *scale = (const Vector2 *)p_scale;
+	self->scale_basis(*scale);
+}
+
+void GDAPI pandemonium_transform2d_translater(pandemonium_transform2d *p_self, pandemonium_real p_tx, pandemonium_real p_ty) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->translater(p_tx, p_ty);
+}
+void GDAPI pandemonium_transform2d_translatev(pandemonium_transform2d *p_self, const pandemonium_vector2 *p_offset) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *offset = (const Vector2 *)p_offset;
+	self->translatev(*offset);
+}
+void GDAPI pandemonium_transform2d_translate_localr(pandemonium_transform2d *p_self, pandemonium_real p_tx, pandemonium_real p_ty) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->translate_localr(p_tx, p_ty);
+}
+void GDAPI pandemonium_transform2d_translate_localv(pandemonium_transform2d *p_self, const pandemonium_vector2 *p_translation) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *translation = (const Vector2 *)p_translation;
+	self->translate_localv(*translation);
 }
 
 pandemonium_real GDAPI pandemonium_transform2d_basis_determinant(const pandemonium_transform2d *p_self) {
@@ -70,10 +173,30 @@ pandemonium_vector2 GDAPI pandemonium_transform2d_get_scale(const pandemonium_tr
 	return dest;
 }
 
+void GDAPI pandemonium_transform2d_set_scale(pandemonium_transform2d *p_self, const pandemonium_vector2 *p_scale) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *scale = (const Vector2 *)p_scale;
+	self->set_scale(*scale);
+}
+
 pandemonium_vector2 GDAPI pandemonium_transform2d_get_origin(const pandemonium_transform2d *p_self) {
 	pandemonium_vector2 dest;
 	const Transform2D *self = (const Transform2D *)p_self;
 	*((Vector2 *)&dest) = self->get_origin();
+	return dest;
+}
+
+void GDAPI pandemonium_transform2d_set_origin(pandemonium_transform2d *p_self, const pandemonium_vector2 *p_origin) {
+	Transform2D *self = (Transform2D *)p_self;
+	const Vector2 *origin = (const Vector2 *)p_origin;
+	self->set_origin(*origin);
+}
+
+pandemonium_transform2d GDAPI pandemonium_transform2d_basis_scaled(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_scale) {
+	pandemonium_transform2d dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2 *scale = (const Vector2 *)p_scale;
+	*((Transform2D *)&dest) = self->basis_scaled(*scale);
 	return dest;
 }
 
@@ -84,6 +207,15 @@ pandemonium_transform2d GDAPI pandemonium_transform2d_scaled(const pandemonium_t
 	*((Transform2D *)&dest) = self->scaled(*scale);
 	return dest;
 }
+
+pandemonium_transform2d GDAPI pandemonium_transform2d_scaled_local(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_scale) {
+	pandemonium_transform2d dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2 *scale = (const Vector2 *)p_scale;
+	*((Transform2D *)&dest) = self->scaled_local(*scale);
+	return dest;
+}
+
 pandemonium_transform2d GDAPI pandemonium_transform2d_translated(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_offset) {
 	pandemonium_transform2d dest;
 	const Transform2D *self = (const Transform2D *)p_self;
@@ -91,6 +223,14 @@ pandemonium_transform2d GDAPI pandemonium_transform2d_translated(const pandemoni
 	*((Transform2D *)&dest) = self->translated(*offset);
 	return dest;
 }
+pandemonium_transform2d GDAPI pandemonium_transform2d_translated_local(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_offset) {
+	pandemonium_transform2d dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2 *offset = (const Vector2 *)p_offset;
+	*((Transform2D *)&dest) = self->translated_local(*offset);
+	return dest;
+}
+
 pandemonium_transform2d GDAPI pandemonium_transform2d_rotated(const pandemonium_transform2d *p_self, const pandemonium_real p_phi) {
 	pandemonium_transform2d dest;
 	const Transform2D *self = (const Transform2D *)p_self;
@@ -99,10 +239,43 @@ pandemonium_transform2d GDAPI pandemonium_transform2d_rotated(const pandemonium_
 	return dest;
 }
 
+pandemonium_transform2d GDAPI pandemonium_transform2d_rotated_local(const pandemonium_transform2d *p_self, const pandemonium_real p_angle) {
+	pandemonium_transform2d dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	*((Transform2D *)&dest) = self->rotated_local(p_angle);
+	return dest;
+}
+
+pandemonium_transform2d GDAPI pandemonium_transform2d_untranslated(const pandemonium_transform2d *p_self) {
+	pandemonium_transform2d dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	*((Transform2D *)&dest) = self->untranslated();
+	return dest;
+}
+
+void GDAPI pandemonium_transform2d_orthonormalize(pandemonium_transform2d *p_self) {
+	Transform2D *self = (Transform2D *)p_self;
+	self->orthonormalize();
+}
+
 pandemonium_transform2d GDAPI pandemonium_transform2d_orthonormalized(const pandemonium_transform2d *p_self) {
 	pandemonium_transform2d dest;
 	const Transform2D *self = (const Transform2D *)p_self;
 	*((Transform2D *)&dest) = self->orthonormalized();
+	return dest;
+}
+
+pandemonium_bool GDAPI pandemonium_transform2d_is_equal_approx(const pandemonium_transform2d *p_self, const pandemonium_transform2d *p_transform) {
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Transform2D *transform = (const Transform2D *)p_transform;
+	return self->is_equal_approx(*transform);
+}
+
+pandemonium_transform2d GDAPI pandemonium_transform2d_looking_at(const pandemonium_transform2d *p_self, const pandemonium_vector2 *p_target) {
+	pandemonium_transform2d dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2 *target = (const Vector2 *)p_target;
+	*((Transform2D *)&dest) = self->looking_at(*target);
 	return dest;
 }
 
@@ -180,6 +353,35 @@ pandemonium_rect2 GDAPI pandemonium_transform2d_xform_inv_rect2(const pandemoniu
 	const Rect2 *v = (const Rect2 *)p_v;
 	*dest = self->xform_inv(*v);
 	return raw_dest;
+}
+
+pandemonium_vector2i GDAPI pandemonium_transform2d_basis_xform(const pandemonium_transform2d *p_self, const pandemonium_vector2i *p_vec) {
+	pandemonium_vector2i dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2i *vec = (const Vector2i *)p_vec;
+	*((Vector2i *)&dest) = self->basis_xform(*vec);
+	return dest;
+}
+pandemonium_vector2i GDAPI pandemonium_transform2d_basis_xform_inv(const pandemonium_transform2d *p_self, const pandemonium_vector2i *p_vec) {
+	pandemonium_vector2i dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2i *vec = (const Vector2i *)p_vec;
+	*((Vector2i *)&dest) = self->basis_xform_inv(*vec);
+	return dest;
+}
+pandemonium_vector2i GDAPI pandemonium_transform2d_xform_vector2i(const pandemonium_transform2d *p_self, const pandemonium_vector2i *p_vec) {
+	pandemonium_vector2i dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2i *vec = (const Vector2i *)p_vec;
+	*((Vector2i *)&dest) = self->xform(*vec);
+	return dest;
+}
+pandemonium_vector2i GDAPI pandemonium_transform2d_xform_inv_vector2i(const pandemonium_transform2d *p_self, const pandemonium_vector2i *p_vec) {
+	pandemonium_vector2i dest;
+	const Transform2D *self = (const Transform2D *)p_self;
+	const Vector2i *vec = (const Vector2i *)p_vec;
+	*((Vector2i *)&dest) = self->xform_inv(*vec);
+	return dest;
 }
 
 pandemonium_string GDAPI pandemonium_transform2d_as_string(const pandemonium_transform2d *p_self) {

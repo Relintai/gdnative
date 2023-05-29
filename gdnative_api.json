@@ -4743,7 +4743,7 @@
                 ]
             },
             {
-                "name": "pandemonium_string_wide_str",
+                "name": "pandemonium_string_get_data",
                 "return_type": "const char32_t *",
                 "arguments": [
                     ["const pandemonium_string *", "p_self"]
@@ -5410,20 +5410,6 @@
                 ]
             },
             {
-                "name": "pandemonium_string_char_lowercase",
-                "return_type": "wchar_t",
-                "arguments": [
-                    ["wchar_t", "p_char"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_char_uppercase",
-                "return_type": "wchar_t",
-                "arguments": [
-                    ["wchar_t", "p_char"]
-                ]
-            },
-            {
                 "name": "pandemonium_string_to_lower",
                 "return_type": "pandemonium_string",
                 "arguments": [
@@ -5457,14 +5443,6 @@
                 "arguments": [
                     ["const pandemonium_string *", "p_self"],
                     ["pandemonium_int", "p_pos"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_ord_at",
-                "return_type": "wchar_t",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["pandemonium_int", "p_idx"]
                 ]
             },
             {
