@@ -119,9 +119,6 @@ public:
 
 	virtual int get_member_line(const StringName &p_member) const;
 
-	MultiplayerAPI::RPCMode get_rpc_mode(const StringName &p_method) const;
-	MultiplayerAPI::RPCMode get_rset_mode(const StringName &p_variable) const;
-
 	PluginScript();
 	void init(PluginScriptLanguage *language);
 	virtual ~PluginScript();

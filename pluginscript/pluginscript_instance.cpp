@@ -95,14 +95,6 @@ void PluginScriptInstance::notification(int p_notification) {
 	_desc->notification(_data, p_notification);
 }
 
-MultiplayerAPI::RPCMode PluginScriptInstance::get_rpc_mode(const StringName &p_method) const {
-	return _script->get_rpc_mode(p_method);
-}
-
-MultiplayerAPI::RPCMode PluginScriptInstance::get_rset_mode(const StringName &p_variable) const {
-	return _script->get_rset_mode(p_variable);
-}
-
 void PluginScriptInstance::refcount_incremented() {
 	if (_desc->refcount_decremented) {
 		_desc->refcount_incremented(_data);

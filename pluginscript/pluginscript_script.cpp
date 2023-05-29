@@ -465,26 +465,6 @@ int PluginScript::get_member_line(const StringName &p_member) const {
 	return -1;
 }
 
-MultiplayerAPI::RPCMode PluginScript::get_rpc_mode(const StringName &p_method) const {
-	ASSERT_SCRIPT_VALID_V(MultiplayerAPI::RPC_MODE_DISABLED);
-	const RBMap<StringName, MultiplayerAPI::RPCMode>::Element *e = _methods_rpc_mode.find(p_method);
-	if (e != nullptr) {
-		return e->get();
-	} else {
-		return MultiplayerAPI::RPC_MODE_DISABLED;
-	}
-}
-
-MultiplayerAPI::RPCMode PluginScript::get_rset_mode(const StringName &p_variable) const {
-	ASSERT_SCRIPT_VALID_V(MultiplayerAPI::RPC_MODE_DISABLED);
-	const RBMap<StringName, MultiplayerAPI::RPCMode>::Element *e = _variables_rset_mode.find(p_variable);
-	if (e != nullptr) {
-		return e->get();
-	} else {
-		return MultiplayerAPI::RPC_MODE_DISABLED;
-	}
-}
-
 PluginScript::PluginScript() :
 		_data(nullptr),
 		_desc(nullptr),

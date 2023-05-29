@@ -42,9 +42,7 @@ typedef enum {
 	PANDEMONIUM_METHOD_RPC_MODE_REMOTE,
 	PANDEMONIUM_METHOD_RPC_MODE_MASTER,
 	PANDEMONIUM_METHOD_RPC_MODE_PUPPET,
-	PANDEMONIUM_METHOD_RPC_MODE_SLAVE = PANDEMONIUM_METHOD_RPC_MODE_PUPPET,
 	PANDEMONIUM_METHOD_RPC_MODE_REMOTESYNC,
-	PANDEMONIUM_METHOD_RPC_MODE_SYNC = PANDEMONIUM_METHOD_RPC_MODE_REMOTESYNC,
 	PANDEMONIUM_METHOD_RPC_MODE_MASTERSYNC,
 	PANDEMONIUM_METHOD_RPC_MODE_PUPPETSYNC,
 } pandemonium_method_rpc_mode;
@@ -54,9 +52,9 @@ typedef enum {
 	PANDEMONIUM_PROPERTY_HINT_RANGE, ///< hint_text = "min,max,step,slider; //slider is optional"
 	PANDEMONIUM_PROPERTY_HINT_EXP_RANGE, ///< hint_text = "min,max,step", exponential edit
 	PANDEMONIUM_PROPERTY_HINT_ENUM, ///< hint_text= "val1,val2,val3,etc"
-	PANDEMONIUM_PROPERTY_HINT_EXP_EASING, /// exponential easing function (Math::ease)
+	PANDEMONIUM_PROPERTY_HINT_EXP_EASING, /// exponential easing function (Math::ease) use "attenuation" hint string to revert (flip h), "full" to also include in/out. (ie: "attenuation,inout")
 	PANDEMONIUM_PROPERTY_HINT_LENGTH, ///< hint_text= "length" (as integer)
-	PANDEMONIUM_PROPERTY_HINT_SPRITE_FRAME, // FIXME: Obsolete: drop whenever we can break compat
+	PANDEMONIUM_PROPERTY_HINT_BUTTON, // Use a button in the inspector for this property. The property's type has to be Variant::NIL. hint_text="call_func:name/theme_type" -> calls call_func on press, optional: ":name/theme_type" -> get_theme_icon("name", "theme_type")
 	PANDEMONIUM_PROPERTY_HINT_KEY_ACCEL, ///< hint_text= "length" (as integer)
 	PANDEMONIUM_PROPERTY_HINT_FLAGS, ///< hint_text= "flag1,flag2,etc" (as bit flags)
 	PANDEMONIUM_PROPERTY_HINT_LAYERS_2D_RENDER,
@@ -90,7 +88,7 @@ typedef enum {
 	PANDEMONIUM_PROPERTY_HINT_NODE_PATH_VALID_TYPES,
 	PANDEMONIUM_PROPERTY_HINT_SAVE_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,". This opens a save dialog
 	PANDEMONIUM_PROPERTY_HINT_ENUM_SUGGESTION, ///< hint_text= "val1,val2,val3,etc"
-	PANDEMONIUM_PROPERTY_HINT_LOCALE_ID,
+	PANDEMONIUM_PROPERTY_HINT_LINK,
 	PANDEMONIUM_PROPERTY_HINT_MAX,
 } pandemonium_property_hint;
 
@@ -105,14 +103,21 @@ typedef enum {
 	PANDEMONIUM_PROPERTY_USAGE_INTERNATIONALIZED = 64, //hint for internationalized strings
 	PANDEMONIUM_PROPERTY_USAGE_GROUP = 128, //used for grouping props in the editor
 	PANDEMONIUM_PROPERTY_USAGE_CATEGORY = 256,
-	PANDEMONIUM_PROPERTY_USAGE_STORE_IF_NONZERO = 512, // FIXME: Obsolete: drop whenever we can break compat
-	PANDEMONIUM_PROPERTY_USAGE_STORE_IF_NONONE = 1024, // FIXME: Obsolete: drop whenever we can break compat
 	PANDEMONIUM_PROPERTY_USAGE_NO_INSTANCE_STATE = 2048,
 	PANDEMONIUM_PROPERTY_USAGE_RESTART_IF_CHANGED = 4096,
 	PANDEMONIUM_PROPERTY_USAGE_SCRIPT_VARIABLE = 8192,
 	PANDEMONIUM_PROPERTY_USAGE_STORE_IF_NULL = 16384,
 	PANDEMONIUM_PROPERTY_USAGE_ANIMATE_AS_TRIGGER = 32768,
 	PANDEMONIUM_PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED = 65536,
+	PANDEMONIUM_PROPERTY_USAGE_SCRIPT_DEFAULT_VALUE = 1 << 17,
+	PANDEMONIUM_PROPERTY_USAGE_CLASS_IS_ENUM = 1 << 18,
+	PANDEMONIUM_PROPERTY_USAGE_NIL_IS_VARIANT = 1 << 19,
+	PANDEMONIUM_PROPERTY_USAGE_INTERNAL = 1 << 20,
+	PANDEMONIUM_PROPERTY_USAGE_DO_NOT_SHARE_ON_DUPLICATE = 1 << 21, // If the object is duplicated also this property will be duplicated
+	PANDEMONIUM_PROPERTY_USAGE_HIGH_END_GFX = 1 << 22,
+	PANDEMONIUM_PROPERTY_USAGE_NODE_PATH_FROM_SCENE_ROOT = 1 << 23,
+	PANDEMONIUM_PROPERTY_USAGE_RESOURCE_NOT_PERSISTENT = 1 << 24,
+	PANDEMONIUM_PROPERTY_USAGE_KEYING_INCREMENTS = 1 << 25, // Used in inspector to increment property when keyed in animation player
 
 	PANDEMONIUM_PROPERTY_USAGE_DEFAULT = PANDEMONIUM_PROPERTY_USAGE_STORAGE | PANDEMONIUM_PROPERTY_USAGE_EDITOR | PANDEMONIUM_PROPERTY_USAGE_NETWORK,
 	PANDEMONIUM_PROPERTY_USAGE_DEFAULT_INTL = PANDEMONIUM_PROPERTY_USAGE_STORAGE | PANDEMONIUM_PROPERTY_USAGE_EDITOR | PANDEMONIUM_PROPERTY_USAGE_NETWORK | PANDEMONIUM_PROPERTY_USAGE_INTERNATIONALIZED,
@@ -196,14 +201,6 @@ typedef struct {
 void GDAPI pandemonium_nativescript_register_signal(void *p_gdnative_handle, const char *p_name, const pandemonium_signal *p_signal);
 
 void GDAPI *pandemonium_nativescript_get_userdata(pandemonium_object *p_instance);
-
-/*
- *
- *
- * NativeScript 1.1
- *
- *
- */
 
 // method registering with argument names
 

@@ -41,8 +41,8 @@ extern "C" {
 // version info to detect whether a call is available
 
 // Use these to populate version in your plugin
-#define PANDEMONIUM_NET_API_MAJOR 3
-#define PANDEMONIUM_NET_API_MINOR 1
+#define PANDEMONIUM_NET_API_MAJOR 1
+#define PANDEMONIUM_NET_API_MINOR 0
 
 typedef struct {
 	pandemonium_gdnative_api_version version; /* version of our API */
