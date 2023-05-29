@@ -191,23 +191,25 @@ pandemonium_variant_type GDAPI pandemonium_variant_get_type(const pandemonium_va
 //static bool can_convert(Type p_type_from, Type p_type_to);
 //static bool can_convert_strict(Type p_type_from, Type p_type_to);
 
-//bool is_ref() const;
-//_FORCE_INLINE_ bool is_num() const { return type == INT || type == REAL; };
-//_FORCE_INLINE_ bool is_array() const { return type >= ARRAY; };
-//_FORCE_INLINE_ bool is_null() const { return type == NIL; };
-//bool is_shared() const;
-//bool is_zero() const;
-//bool is_one() const;
+pandemonium_bool GDAPI pandemonium_variant_is_ref(const pandemonium_variant *p_self);
+pandemonium_bool GDAPI pandemonium_variant_is_num(const pandemonium_variant *p_self);
+pandemonium_bool GDAPI pandemonium_variant_is_array(const pandemonium_variant *p_self);
+pandemonium_bool GDAPI pandemonium_variant_is_null(const pandemonium_variant *p_self);
+pandemonium_bool GDAPI pandemonium_variant_is_shared(const pandemonium_variant *p_self);
+pandemonium_bool GDAPI pandemonium_variant_is_zero(const pandemonium_variant *p_self);
+pandemonium_bool GDAPI pandemonium_variant_is_one(const pandemonium_variant *p_self);
 
-//ObjectID get_object_instance_id() const;
-//bool is_invalid_object() const;
+pandemonium_int GDAPI pandemonium_variant_get_object_instance_id(const pandemonium_variant *p_self);
+pandemonium_bool GDAPI pandemonium_variant_is_invalid_object(const pandemonium_variant *p_self);
 
 pandemonium_string GDAPI pandemonium_variant_get_operator_name(pandemonium_variant_operator p_op);
 void GDAPI pandemonium_variant_evaluate(pandemonium_variant_operator p_op, const pandemonium_variant *p_a, const pandemonium_variant *p_b, pandemonium_variant *r_ret, pandemonium_bool *r_valid);
-//static _FORCE_INLINE_ Variant evaluate(const Operator &p_op, const Variant &p_a, const Variant &p_b) {
+//static _FORCE_INLINE_ Variant evaluate(const Operator &p_op, const Variant &p_a, const Variant &p_b);
 
-//void zero();
-//Variant duplicate(bool deep = false) const;
+void GDAPI pandemonium_variant_zero(pandemonium_variant *p_self);
+pandemonium_variant GDAPI pandemonium_variant_duplicate(const pandemonium_variant *p_self);
+pandemonium_variant GDAPI pandemonium_variant_duplicate_deep(const pandemonium_variant *p_self, pandemonium_bool deep);
+
 //static void blend(const Variant &a, const Variant &b, float c, Variant &r_dst);
 //static void interpolate(const Variant &a, const Variant &b, float c, Variant &r_dst);
 //static void sub(const Variant &a, const Variant &b, Variant &r_dst);
@@ -241,10 +243,11 @@ pandemonium_bool GDAPI pandemonium_variant_has_method(const pandemonium_variant 
 
 //void get_property_list(List<PropertyInfo> *p_list) const;
 
-//bool deep_equal(const Variant &p_variant, int p_recursion_count = 0) const;
+pandemonium_bool GDAPI pandemonium_variant_deep_equal(const pandemonium_variant *p_self, const pandemonium_variant *p_variant);
+pandemonium_bool GDAPI pandemonium_variant_deep_equal_recursion_count(const pandemonium_variant *p_self, const pandemonium_variant *p_variant, pandemonium_int p_recursion_count);
 pandemonium_bool GDAPI pandemonium_variant_operator_equal(const pandemonium_variant *p_self, const pandemonium_variant *p_other);
 pandemonium_bool GDAPI pandemonium_variant_operator_less(const pandemonium_variant *p_self, const pandemonium_variant *p_other);
-//uint32_t hash() const;
+pandemonium_int GDAPI pandemonium_variant_hash(const pandemonium_variant *p_self);
 
 pandemonium_bool GDAPI pandemonium_variant_hash_compare(const pandemonium_variant *p_self, const pandemonium_variant *p_other);
 pandemonium_bool GDAPI pandemonium_variant_booleanize(const pandemonium_variant *p_self);

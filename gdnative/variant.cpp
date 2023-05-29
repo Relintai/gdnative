@@ -62,6 +62,44 @@ pandemonium_variant_type GDAPI pandemonium_variant_get_type(const pandemonium_va
 	return (pandemonium_variant_type)self->get_type();
 }
 
+pandemonium_bool GDAPI pandemonium_variant_is_ref(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_ref();
+}
+pandemonium_bool GDAPI pandemonium_variant_is_num(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_num();
+}
+pandemonium_bool GDAPI pandemonium_variant_is_array(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_array();
+}
+pandemonium_bool GDAPI pandemonium_variant_is_null(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_null();
+}
+pandemonium_bool GDAPI pandemonium_variant_is_shared(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_shared();
+}
+pandemonium_bool GDAPI pandemonium_variant_is_zero(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_zero();
+}
+pandemonium_bool GDAPI pandemonium_variant_is_one(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_one();
+}
+
+pandemonium_int GDAPI pandemonium_variant_get_object_instance_id(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->get_object_instance_id();
+}
+pandemonium_bool GDAPI pandemonium_variant_is_invalid_object(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->is_invalid_object();
+}
+
 void GDAPI pandemonium_variant_new_copy(pandemonium_variant *p_dest, const pandemonium_variant *p_src) {
 	Variant *dest = (Variant *)p_dest;
 	Variant *src = (Variant *)p_src;
@@ -477,6 +515,17 @@ pandemonium_bool GDAPI pandemonium_variant_has_method(const pandemonium_variant 
 	return self->has_method(*method);
 }
 
+pandemonium_bool GDAPI pandemonium_variant_deep_equal(const pandemonium_variant *p_self, const pandemonium_variant *p_variant) {
+	const Variant *self = (const Variant *)p_self;
+	const Variant *variant = (const Variant *)p_variant;
+	return self->deep_equal(*variant);
+}
+pandemonium_bool GDAPI pandemonium_variant_deep_equal_recursion_count(const pandemonium_variant *p_self, const pandemonium_variant *p_variant, pandemonium_int p_recursion_count) {
+	const Variant *self = (const Variant *)p_self;
+	const Variant *variant = (const Variant *)p_variant;
+	return self->deep_equal(*variant, p_recursion_count);
+}
+
 pandemonium_bool GDAPI pandemonium_variant_operator_equal(const pandemonium_variant *p_self, const pandemonium_variant *p_other) {
 	const Variant *self = (const Variant *)p_self;
 	const Variant *other = (const Variant *)p_other;
@@ -487,6 +536,11 @@ pandemonium_bool GDAPI pandemonium_variant_operator_less(const pandemonium_varia
 	const Variant *self = (const Variant *)p_self;
 	const Variant *other = (const Variant *)p_other;
 	return self->operator<(*other);
+}
+
+pandemonium_int GDAPI pandemonium_variant_hash(const pandemonium_variant *p_self) {
+	const Variant *self = (const Variant *)p_self;
+	return self->hash();
 }
 
 pandemonium_bool GDAPI pandemonium_variant_hash_compare(const pandemonium_variant *p_self, const pandemonium_variant *p_other) {
@@ -521,6 +575,23 @@ void GDAPI pandemonium_variant_evaluate(pandemonium_variant_operator p_op, const
 	const Variant *b = (const Variant *)p_b;
 	Variant *ret = (Variant *)r_ret;
 	Variant::evaluate(op, *a, *b, *ret, *r_valid);
+}
+
+void GDAPI pandemonium_variant_zero(pandemonium_variant *p_self) {
+	Variant *self = (Variant *)p_self;
+	self->zero();
+}
+pandemonium_variant GDAPI pandemonium_variant_duplicate(const pandemonium_variant *p_self) {
+	pandemonium_variant dest;
+	const Variant *self = (const Variant *)p_self;
+	*((Variant *)&dest) = self->duplicate();
+	return dest;
+}
+pandemonium_variant GDAPI pandemonium_variant_duplicate_deep(const pandemonium_variant *p_self, pandemonium_bool deep) {
+	pandemonium_variant dest;
+	const Variant *self = (const Variant *)p_self;
+	*((Variant *)&dest) = self->duplicate(deep);
+	return dest;
 }
 
 #ifdef __cplusplus
