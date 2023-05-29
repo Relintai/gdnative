@@ -1228,7 +1228,7 @@
                 ]
             },
             {
-                "name": "pandemonium_basis_operator_multiply_vector",
+                "name": "pandemonium_basis_operator_multiply",
                 "return_type": "pandemonium_basis",
                 "arguments": [
                     ["const pandemonium_basis *", "p_self"],
