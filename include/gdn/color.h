@@ -83,78 +83,82 @@ pandemonium_real GDAPI pandemonium_color_gray(const pandemonium_color *p_self);
 pandemonium_real pandemonium_color_get_h(const pandemonium_color *p_self);
 pandemonium_real pandemonium_color_get_s(const pandemonium_color *p_self);
 pandemonium_real pandemonium_color_get_v(const pandemonium_color *p_self);
-//void set_hsv(float p_h, float p_s, float p_v, float p_alpha = 1.0);
+void GDAPI pandemonium_color_set_hsv(pandemonium_color *p_self, pandemonium_real p_h, pandemonium_real p_s, pandemonium_real p_v);
+void GDAPI pandemonium_color_set_hsv_alpha(pandemonium_color *p_self, pandemonium_real p_h, pandemonium_real p_s, pandemonium_real p_v, pandemonium_real p_alpha);
 
-//_FORCE_INLINE_ float &operator[](int idx) {
-//_FORCE_INLINE_ const float &operator[](int idx) const {
+pandemonium_real GDAPI *pandemonium_color_operator_index(pandemonium_color *p_self, pandemonium_int idx);
+const pandemonium_real GDAPI *pandemonium_color_operator_index_const(const pandemonium_color *p_self, pandemonium_int idx);
 
-//Color operator+(const Color &p_color) const;
-//void operator+=(const Color &p_color);
+pandemonium_color GDAPI pandemonium_color_operator_add(const pandemonium_color *p_self, const pandemonium_color *p_color);
+void GDAPI pandemonium_color_operator_add_eq(pandemonium_color *p_self, const pandemonium_color *p_color);
 
-//Color operator-() const;
-//Color operator-(const Color &p_color) const;
-//void operator-=(const Color &p_color);
+pandemonium_color GDAPI pandemonium_color_operator_negate(const pandemonium_color *p_self);
 
-//Color operator*(const Color &p_color) const;
-//Color operator*(const real_t &rvalue) const;
-//void operator*=(const Color &p_color);
-//void operator*=(const real_t &rvalue);
+pandemonium_color GDAPI pandemonium_color_operator_sub(const pandemonium_color *p_self, const pandemonium_color *p_color);
+void GDAPI pandemonium_color_operator_sub_eq(pandemonium_color *p_self, const pandemonium_color *p_color);
 
-//Color operator/(const Color &p_color) const;
-//Color operator/(const real_t &rvalue) const;
-//void operator/=(const Color &p_color);
-//void operator/=(const real_t &rvalue);
+pandemonium_color GDAPI pandemonium_color_operator_mul_color(const pandemonium_color *p_self, const pandemonium_color *p_color);
+pandemonium_color GDAPI pandemonium_color_operator_mul_real(const pandemonium_color *p_self, const pandemonium_real rvalue);
+void GDAPI pandemonium_color_operator_mul_color_eq(pandemonium_color *p_self, const pandemonium_color *p_color);
+void GDAPI pandemonium_color_operator_mul_real_eq(pandemonium_color *p_self, const pandemonium_real rvalue);
 
-//bool is_equal_approx(const Color &p_color) const;
+pandemonium_color GDAPI pandemonium_color_operator_div_color(const pandemonium_color *p_self, const pandemonium_color *p_color);
+pandemonium_color GDAPI pandemonium_color_operator_div_real(const pandemonium_color *p_self, const pandemonium_real rvalue);
+void GDAPI pandemonium_color_operator_div_color_eq(pandemonium_color *p_self, const pandemonium_color *p_color);
+void GDAPI pandemonium_color_operator_div_real_eq(pandemonium_color *p_self, const pandemonium_real rvalue);
 
-//Color clamp(const Color &p_min = Color(0, 0, 0, 0), const Color &p_max = Color(1, 1, 1, 1)) const;
+pandemonium_bool GDAPI pandemonium_color_is_equal_approx(const pandemonium_color *p_self, const pandemonium_color *p_color);
 
-//void invert();
-//void contrast();
+pandemonium_color GDAPI pandemonium_color_clamp(const pandemonium_color *p_self, const pandemonium_color *p_min);
+
+void GDAPI pandemonium_color_invert(pandemonium_color *p_self);
+void GDAPI pandemonium_color_contrast(pandemonium_color *p_self);
+
 pandemonium_color GDAPI pandemonium_color_inverted(const pandemonium_color *p_self);
 pandemonium_color GDAPI pandemonium_color_contrasted(const pandemonium_color *p_self);
 
-//_FORCE_INLINE_ float get_luminance() const {
+pandemonium_real GDAPI pandemonium_color_get_luminance(const pandemonium_color *p_self);
 
 pandemonium_color GDAPI pandemonium_color_linear_interpolate(const pandemonium_color *p_self, const pandemonium_color *p_b, const pandemonium_real p_t);
 
 pandemonium_color GDAPI pandemonium_color_darkened(const pandemonium_color *p_self, const pandemonium_real p_amount);
 pandemonium_color GDAPI pandemonium_color_lightened(const pandemonium_color *p_self, const pandemonium_real p_amount);
 
-//_FORCE_INLINE_ uint32_t to_rgbe9995() const {
+pandemonium_int GDAPI pandemonium_color_to_rgbe9995(const pandemonium_color *p_self);
 
 pandemonium_color GDAPI pandemonium_color_blend(const pandemonium_color *p_self, const pandemonium_color *p_over);
 
-//_FORCE_INLINE_ Color to_linear() const {
-//_FORCE_INLINE_ Color to_srgb() const {
+pandemonium_color GDAPI pandemonium_color_to_linear(const pandemonium_color *p_self);
+pandemonium_color GDAPI pandemonium_color_to_srgb(const pandemonium_color *p_self);
 
-//static Color hex(uint32_t p_hex);
-//static Color hex64(uint64_t p_hex);
-//static Color html(const String &p_color);
-//static bool html_is_valid(const String &p_color);
-//static Color named(const String &p_name);
+pandemonium_color GDAPI pandemonium_color_hex(pandemonium_int p_hex);
+pandemonium_color GDAPI pandemonium_color_hex64(pandemonium_int p_hex);
+pandemonium_color GDAPI pandemonium_color_html(const pandemonium_string *p_color);
+pandemonium_bool GDAPI pandemonium_color_html_is_valid(const pandemonium_string *p_color);
+pandemonium_color GDAPI pandemonium_color_named(const pandemonium_string *p_name);
+
 pandemonium_string GDAPI pandemonium_color_to_html(const pandemonium_color *p_self, const pandemonium_bool p_with_alpha);
 pandemonium_color GDAPI pandemonium_color_from_hsv(const pandemonium_color *p_self, const pandemonium_real p_h, const pandemonium_real p_s, const pandemonium_real p_v, const pandemonium_real p_a);
-//static Color from_rgbe9995(uint32_t p_rgbe);
+pandemonium_color GDAPI pandemonium_color_from_rgbe9995(pandemonium_int p_rgbe);
 
 pandemonium_bool GDAPI pandemonium_color_operator_less(const pandemonium_color *p_self, const pandemonium_color *p_b);
 pandemonium_string GDAPI pandemonium_color_as_string(const pandemonium_color *p_self);
 
-//static _FORCE_INLINE_ Color color8(int r, int g, int b) {
-//static _FORCE_INLINE_ Color color8(int r, int g, int b, int a) {
+pandemonium_color GDAPI pandemonium_color_color8(pandemonium_int r, pandemonium_int g, pandemonium_int b);
+pandemonium_color GDAPI pandemonium_color_color8_alpha(pandemonium_int r, pandemonium_int g, pandemonium_int b, pandemonium_int a);
 
-//_FORCE_INLINE_ void set_r8(int32_t r8) { r = (CLAMP(r8, 0, 255) / 255.0f); }
-//_FORCE_INLINE_ int32_t get_r8() const { return int32_t(CLAMP(Math::round(r * 255.0f), 0.0f, 255.0f)); }
-//_FORCE_INLINE_ void set_g8(int32_t g8) { g = (CLAMP(g8, 0, 255) / 255.0f); }
-//_FORCE_INLINE_ int32_t get_g8() const { return int32_t(CLAMP(Math::round(g * 255.0f), 0.0f, 255.0f)); }
-//_FORCE_INLINE_ void set_b8(int32_t b8) { b = (CLAMP(b8, 0, 255) / 255.0f); }
-//_FORCE_INLINE_ int32_t get_b8() const { return int32_t(CLAMP(Math::round(b * 255.0f), 0.0f, 255.0f)); }
-//_FORCE_INLINE_ void set_a8(int32_t a8) { a = (CLAMP(a8, 0, 255) / 255.0f); }
-//_FORCE_INLINE_ int32_t get_a8() const { return int32_t(CLAMP(Math::round(a * 255.0f), 0.0f, 255.0f)); }
+void GDAPI pandemonium_color_set_r8(pandemonium_color *p_self, pandemonium_int r8);
+pandemonium_int GDAPI pandemonium_color_get_r8(const pandemonium_color *p_self);
+void GDAPI pandemonium_color_set_g8(pandemonium_color *p_self, pandemonium_int g8);
+pandemonium_int GDAPI pandemonium_color_get_g8(const pandemonium_color *p_self);
+void GDAPI pandemonium_color_set_b8(pandemonium_color *p_self, pandemonium_int b8);
+pandemonium_int GDAPI pandemonium_color_get_b8(const pandemonium_color *p_self);
+void GDAPI pandemonium_color_set_a8(pandemonium_color *p_self, pandemonium_int a8);
+pandemonium_int GDAPI pandemonium_color_get_a8(const pandemonium_color *p_self);
 
-//_FORCE_INLINE_ void set_h(float p_h) { set_hsv(p_h, get_s(), get_v(), a); }
-//_FORCE_INLINE_ void set_s(float p_s) { set_hsv(get_h(), p_s, get_v(), a); }
-//_FORCE_INLINE_ void set_v(float p_v) { set_hsv(get_h(), get_s(), p_v, a); }
+void GDAPI pandemonium_color_set_h(pandemonium_color *p_self, pandemonium_real p_h);
+void GDAPI pandemonium_color_set_s(pandemonium_color *p_self, pandemonium_real p_s);
+void GDAPI pandemonium_color_set_v(pandemonium_color *p_self, pandemonium_real p_v);
 
 void GDAPI pandemonium_color_new_rgba(pandemonium_color *r_dest, const pandemonium_real p_r, const pandemonium_real p_g, const pandemonium_real p_b, const pandemonium_real p_a);
 void GDAPI pandemonium_color_new_rgb(pandemonium_color *r_dest, const pandemonium_real p_r, const pandemonium_real p_g, const pandemonium_real p_b);
