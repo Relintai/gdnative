@@ -81,34 +81,34 @@ extern "C" {
 
 //=== Char16String ===
 
-//_FORCE_INLINE_ int size() const { return _cowdata.size(); }
-//Error resize(int p_size) {
+//_FORCE_INLINE_ int size() const ;
+//Error resize(int p_size) ;
 
-//_FORCE_INLINE_ char get(int p_index) const { return _cowdata.get(p_index); }
-//_FORCE_INLINE_ void set(int p_index, const char &p_elem) { _cowdata.set(p_index, p_elem); }
+//_FORCE_INLINE_ char get(int p_index) const;
+//_FORCE_INLINE_ void set(int p_index, const char &p_elem);
 
-//_FORCE_INLINE_ void operator=(const CharString &p_str) { _cowdata._ref(p_str._cowdata); }
-//void operator=(const char *p_cstr);
-//bool operator<(const CharString &p_right) const;
+//_FORCE_INLINE_ void operator=(const CharString &p_str);
+//void operator_equals(const char *p_cstr);
+//bool operator_less(const CharString &p_right) const;
 //CharString &operator+=(char p_char);
 
 //pandemonium_int GDAPI pandemonium_char_string_length(const pandemonium_char_string *p_cs);
 //const char GDAPI *pandemonium_char_string_get_data(const pandemonium_char_string *p_cs);
 
 //_FORCE_INLINE_ CharString() {}
-//_FORCE_INLINE_ CharString(const CharString &p_str) { _cowdata._ref(p_str._cowdata); }
-//_FORCE_INLINE_ CharString(const char *p_cstr) { copy_from(p_cstr); }
+//_FORCE_INLINE_ CharString(const CharString &p_str) ;
+//_FORCE_INLINE_ CharString(const char *p_cstr);
 //void GDAPI pandemonium_char_string_destroy(pandemonium_char_string *p_cs);
 
 //=== CharString ===
 
-//_FORCE_INLINE_ int size() const { return _cowdata.size(); }
+//_FORCE_INLINE_ int size() const ;
 //Error resize(int p_size) {
 
-//_FORCE_INLINE_ char get(int p_index) const { return _cowdata.get(p_index); }
-//_FORCE_INLINE_ void set(int p_index, const char &p_elem) { _cowdata.set(p_index, p_elem); }
+//_FORCE_INLINE_ char get(int p_index) const ;
+//_FORCE_INLINE_ void set(int p_index, const char &p_elem);
 
-//_FORCE_INLINE_ void operator=(const CharString &p_str) { _cowdata._ref(p_str._cowdata); }
+//_FORCE_INLINE_ void operator=(const CharString &p_str);
 //void operator=(const char *p_cstr);
 //bool operator<(const CharString &p_right) const;
 //CharString &operator+=(char p_char);
@@ -116,23 +116,23 @@ extern "C" {
 pandemonium_int GDAPI pandemonium_char_string_length(const pandemonium_char_string *p_cs);
 const char GDAPI *pandemonium_char_string_get_data(const pandemonium_char_string *p_cs);
 
-//_FORCE_INLINE_ CharString() {}
-//_FORCE_INLINE_ CharString(const CharString &p_str) { _cowdata._ref(p_str._cowdata); }
+//_FORCE_INLINE_ CharString() ;
+//_FORCE_INLINE_ CharString(const CharString &p_str);
 //_FORCE_INLINE_ CharString(const char *p_cstr) { copy_from(p_cstr); }
 void GDAPI pandemonium_char_string_destroy(pandemonium_char_string *p_cs);
 
 //=== String ===
 
-//_FORCE_INLINE_ void remove(int p_index) {
+void GDAPI pandemonium_string_remove(pandemonium_string *p_self, pandemonium_int p_index);
 
-//_FORCE_INLINE_ void clear() { resize(0); }
+void GDAPI pandemonium_string_clear(pandemonium_string *p_self);
 
-//_FORCE_INLINE_ CharType get(int p_index) const { return _cowdata.get(p_index); }
-//_FORCE_INLINE_ void set(int p_index, const CharType &p_elem) { _cowdata.set(p_index, p_elem); }
+pandemonium_char_type GDAPI pandemonium_string_get(const pandemonium_string *p_self, pandemonium_int p_index);
+void GDAPI pandemonium_string_set(pandemonium_string *p_self, pandemonium_int p_index, const pandemonium_char_type p_elem);
 
-//_FORCE_INLINE_ int size() const { return _cowdata.size(); }
-//_FORCE_INLINE_ Error resize(int p_size) {
-//_FORCE_INLINE_ Error set_length(int p_length) { return resize(p_length + 1); }
+pandemonium_int GDAPI pandemonium_string_size(const pandemonium_string *p_self);
+pandemonium_int GDAPI pandemonium_string_resize(pandemonium_string *p_self, pandemonium_int p_size);
+pandemonium_int GDAPI pandemonium_string_set_length(pandemonium_string *p_self, pandemonium_int p_length);
 
 const char32_t GDAPI *pandemonium_string_operator_index(pandemonium_string *p_self, const pandemonium_int p_idx);
 char32_t GDAPI pandemonium_string_operator_index_const(const pandemonium_string *p_self, const pandemonium_int p_idx);
@@ -145,21 +145,22 @@ signed char GDAPI pandemonium_string_casecmp_to(const pandemonium_string *p_self
 signed char GDAPI pandemonium_string_nocasecmp_to(const pandemonium_string *p_self, const pandemonium_string *p_str);
 signed char GDAPI pandemonium_string_naturalnocasecmp_to(const pandemonium_string *p_self, const pandemonium_string *p_str);
 
-//TODO Rename this to get_data
-const char32_t GDAPI *pandemonium_string_wide_str(const pandemonium_string *p_self);
+const char32_t GDAPI *pandemonium_string_get_data(const pandemonium_string *p_self);
 
 pandemonium_int GDAPI pandemonium_string_length(const pandemonium_string *p_self);
-//bool is_valid_string() const;
+pandemonium_bool GDAPI pandemonium_string_is_valid_string(const pandemonium_string *p_self);
 
-//void print_unicode_error(const String &p_message, bool p_critical = false) const;
+void GDAPI pandemonium_string_print_unicode_error(const pandemonium_string *p_self, const pandemonium_string *p_message, pandemonium_bool p_critical);
 
 pandemonium_string GDAPI pandemonium_string_substr(const pandemonium_string *p_self, pandemonium_int p_from, pandemonium_int p_chars);
-//String substr_index(const int p_start_index, const int p_end_index) const; //end_index is not included
+pandemonium_string GDAPI pandemonium_string_substr_index(const pandemonium_string *p_self, const pandemonium_int p_start_index, const pandemonium_int p_end_index);
 
 pandemonium_int GDAPI pandemonium_string_find(const pandemonium_string *p_self, pandemonium_string p_what);
 pandemonium_int GDAPI pandemonium_string_find_from(const pandemonium_string *p_self, pandemonium_string p_what, pandemonium_int p_from);
-//int find(const char *p_str, int p_from = 0) const; ///< return <0 if failed
-//int find_char(const CharType &p_char, int p_from = 0) const; ///< return <0 if failed
+pandemonium_int GDAPI pandemonium_string_findc(const pandemonium_string *p_self, const char *p_str);
+pandemonium_int GDAPI pandemonium_string_findc_from(const pandemonium_string *p_self, const char *p_str, pandemonium_int p_from);
+pandemonium_int GDAPI pandemonium_string_find_char(const pandemonium_string *p_self, const pandemonium_char_type p_char);
+pandemonium_int GDAPI pandemonium_string_find_char_from(const pandemonium_string *p_self, const pandemonium_char_type p_char, pandemonium_int p_from);
 pandemonium_int GDAPI pandemonium_string_find_last(const pandemonium_string *p_self, pandemonium_string p_what);
 pandemonium_int GDAPI pandemonium_string_findn(const pandemonium_string *p_self, pandemonium_string p_what);
 pandemonium_int GDAPI pandemonium_string_findn_from(const pandemonium_string *p_self, pandemonium_string p_what, pandemonium_int p_from);
@@ -170,10 +171,10 @@ pandemonium_int GDAPI pandemonium_string_rfindn_from(const pandemonium_string *p
 pandemonium_int GDAPI pandemonium_string_findmk(const pandemonium_string *p_self, const pandemonium_array *p_keys);
 pandemonium_int GDAPI pandemonium_string_findmk_from(const pandemonium_string *p_self, const pandemonium_array *p_keys, pandemonium_int p_from);
 pandemonium_int GDAPI pandemonium_string_findmk_from_in_place(const pandemonium_string *p_self, const pandemonium_array *p_keys, pandemonium_int p_from, pandemonium_int *r_key);
-//int find_first_difference_index(const String &p_str) const;
+pandemonium_int GDAPI pandemonium_string_find_first_difference_index(const pandemonium_string *p_self, const pandemonium_string *p_str);
 
-//bool is_word_at(const int p_index, const char *p_str) const;
-//bool is_word_at(const int p_index, const String &p_str) const;
+pandemonium_bool GDAPI pandemonium_string_is_word_atc(const pandemonium_string *p_self, const pandemonium_int p_index, const char *p_str);
+pandemonium_bool GDAPI pandemonium_string_is_word_at(const pandemonium_string *p_self, const pandemonium_int p_index, const pandemonium_string *p_str);
 
 pandemonium_bool GDAPI pandemonium_string_match(const pandemonium_string *p_self, const pandemonium_string *p_wildcard);
 pandemonium_bool GDAPI pandemonium_string_matchn(const pandemonium_string *p_self, const pandemonium_string *p_wildcard);
@@ -182,10 +183,10 @@ pandemonium_bool GDAPI pandemonium_string_begins_with(const pandemonium_string *
 pandemonium_bool GDAPI pandemonium_string_begins_with_char_array(const pandemonium_string *p_self, const char *p_char_array);
 pandemonium_bool GDAPI pandemonium_string_ends_with(const pandemonium_string *p_self, const pandemonium_string *p_string);
 
-//bool is_enclosed_in(const String &p_string) const;
+pandemonium_bool GDAPI pandemonium_string_is_enclosed_in(const pandemonium_string *p_self, const pandemonium_string *p_string);
 pandemonium_bool GDAPI pandemonium_string_is_subsequence_of(const pandemonium_string *p_self, const pandemonium_string *p_string);
 pandemonium_bool GDAPI pandemonium_string_is_subsequence_ofi(const pandemonium_string *p_self, const pandemonium_string *p_string);
-//bool is_quoted() const;
+pandemonium_bool GDAPI pandemonium_string_is_quoted(const pandemonium_string *p_self);
 
 pandemonium_array GDAPI pandemonium_string_bigrams(const pandemonium_string *p_self);
 pandemonium_real GDAPI pandemonium_string_similarity(const pandemonium_string *p_self, const pandemonium_string *p_string);
@@ -197,9 +198,9 @@ pandemonium_string GDAPI pandemonium_string_replace(const pandemonium_string *p_
 //String replace(const char *p_key, const char *p_with) const;
 pandemonium_string GDAPI pandemonium_string_replacen(const pandemonium_string *p_self, pandemonium_string p_key, pandemonium_string p_with);
 
-//String newline_to_br() const;
+pandemonium_string GDAPI pandemonium_string_newline_to_br(const pandemonium_string *p_self);
 
-//String repeat(int p_count) const;
+pandemonium_string GDAPI pandemonium_string_repeat(const pandemonium_string *p_self, pandemonium_int p_count);
 pandemonium_string GDAPI pandemonium_string_insert(const pandemonium_string *p_self, pandemonium_int p_at_pos, pandemonium_string p_string);
 
 pandemonium_string GDAPI pandemonium_string_pad_decimals(const pandemonium_string *p_self, pandemonium_int p_digits);
@@ -215,8 +216,9 @@ pandemonium_string GDAPI pandemonium_string_rpad_with_custom_character(const pan
 
 pandemonium_string GDAPI pandemonium_string_sprintf(const pandemonium_string *p_self, const pandemonium_array *p_values, pandemonium_bool *p_error);
 
-//String quote(String quotechar = "\"") const;
-//String unquote() const;
+pandemonium_string GDAPI pandemonium_string_quote(const pandemonium_string *p_self);
+pandemonium_string GDAPI pandemonium_string_quote_quotechar(const pandemonium_string *p_self, pandemonium_string *p_quotechar);
+pandemonium_string GDAPI pandemonium_string_unquote(const pandemonium_string *p_self);
 
 pandemonium_string GDAPI pandemonium_string_num(double p_num);
 pandemonium_string GDAPI pandemonium_string_num_with_decimals(double p_num, pandemonium_int p_decimals);
@@ -237,13 +239,13 @@ pandemonium_string GDAPI pandemonium_string_hex_encode_buffer(const uint8_t *p_b
 //static String bool_str(bool p_val);
 
 pandemonium_bool GDAPI pandemonium_string_is_numeric(const pandemonium_string *p_self);
-//bool is_zero() const;
+pandemonium_bool GDAPI pandemonium_string_is_zero(const pandemonium_string *p_self);
 
 double GDAPI pandemonium_string_to_double(const pandemonium_string *p_self);
 pandemonium_real GDAPI pandemonium_string_to_float(const pandemonium_string *p_self);
 pandemonium_int GDAPI pandemonium_string_to_int(const pandemonium_string *p_self);
-//bool to_bool() const;
-//uint32_t to_uint() const;
+pandemonium_bool GDAPI pandemonium_string_to_bool(const pandemonium_string *p_self);
+uint32_t GDAPI pandemonium_string_to_uint(const pandemonium_string *p_self);
 
 pandemonium_int GDAPI pandemonium_string_hex_to_int(const pandemonium_string *p_self);
 pandemonium_int GDAPI pandemonium_string_hex_to_int_without_prefix(const pandemonium_string *p_self);
@@ -263,7 +265,7 @@ int64_t GDAPI pandemonium_string_char_to_int64_with_len(const wchar_t *p_str, in
 
 double GDAPI pandemonium_string_char_to_double(const char *p_what);
 double GDAPI pandemonium_string_unicode_char_to_double(const wchar_t *p_str, const wchar_t **r_end);
-//static double to_double(const CharType *p_str, const CharType **r_end = nullptr);
+double GDAPI pandemonium_string_pandemonium_char_to_double(const pandemonium_char_type *p_str, const pandemonium_char_type **r_end);
 
 //static uint32_t num_characters(int64_t p_int);
 
@@ -271,7 +273,7 @@ pandemonium_string GDAPI pandemonium_string_capitalize(const pandemonium_string 
 pandemonium_string GDAPI pandemonium_string_camelcase_to_underscore(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_camelcase_to_underscore_lowercased(const pandemonium_string *p_self);
 
-//String get_with_code_lines() const;
+pandemonium_string GDAPI pandemonium_string_get_with_code_lines(const pandemonium_string *p_self);
 pandemonium_int GDAPI pandemonium_string_get_slice_count(const pandemonium_string *p_self, pandemonium_string p_splitter);
 pandemonium_string GDAPI pandemonium_string_get_slice(const pandemonium_string *p_self, pandemonium_string p_splitter, pandemonium_int p_slice);
 pandemonium_string GDAPI pandemonium_string_get_slicec(const pandemonium_string *p_self, wchar_t p_splitter, pandemonium_int p_slice);
@@ -293,8 +295,8 @@ pandemonium_array GDAPI pandemonium_string_split_ints_mk_allows_empty(const pand
 
 pandemonium_string GDAPI pandemonium_string_join(const pandemonium_string *p_self, const pandemonium_array *p_parts);
 
-wchar_t GDAPI pandemonium_string_char_uppercase(wchar_t p_char); //CharType !
-wchar_t GDAPI pandemonium_string_char_lowercase(wchar_t p_char); //CharType !
+pandemonium_char_type GDAPI pandemonium_string_char_uppercase(pandemonium_char_type p_char);
+pandemonium_char_type GDAPI pandemonium_string_char_lowercase(pandemonium_char_type p_char);
 pandemonium_string GDAPI pandemonium_string_to_upper(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_to_lower(const pandemonium_string *p_self);
 
@@ -303,21 +305,21 @@ pandemonium_int GDAPI pandemonium_string_countn(const pandemonium_string *p_self
 
 pandemonium_string GDAPI pandemonium_string_left(const pandemonium_string *p_self, pandemonium_int p_pos);
 pandemonium_string GDAPI pandemonium_string_right(const pandemonium_string *p_self, pandemonium_int p_pos);
-//String indent(const String &p_prefix) const;
+pandemonium_string GDAPI pandemonium_string_indent(const pandemonium_string *p_self, const pandemonium_string *p_prefix);
 pandemonium_string GDAPI pandemonium_string_dedent(const pandemonium_string *p_self);
 
 pandemonium_string GDAPI pandemonium_string_strip_edges(const pandemonium_string *p_self, pandemonium_bool p_left, pandemonium_bool p_right); // left, right variant //String strip_edges(bool left = true, bool right = true) const;
 
 pandemonium_string GDAPI pandemonium_string_strip_escapes(const pandemonium_string *p_self);
-//String lstrip(const String &p_chars) const;
+pandemonium_string GDAPI pandemonium_string_lstrip(const pandemonium_string *p_self, const pandemonium_string *p_chars);
 pandemonium_string GDAPI pandemonium_string_rstrip(const pandemonium_string *p_self, const pandemonium_string *p_chars);
 
 pandemonium_string GDAPI pandemonium_string_get_extension(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_get_basename(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_plus_file(const pandemonium_string *p_self, const pandemonium_string *p_file);
 
-//CharType unicode_at(int p_idx) const;
-wchar_t GDAPI pandemonium_string_ord_at(const pandemonium_string *p_self, pandemonium_int p_idx);
+pandemonium_char_type GDAPI pandemonium_string_unicode_at(const pandemonium_string *p_self, pandemonium_int p_idx);
+pandemonium_char_type GDAPI pandemonium_string_ord_at(const pandemonium_string *p_self, pandemonium_int p_idx);
 
 void GDAPI pandemonium_string_erase(pandemonium_string *p_self, pandemonium_int p_pos, pandemonium_int p_chars);
 
@@ -328,7 +330,7 @@ pandemonium_bool GDAPI pandemonium_string_parse_utf8(pandemonium_string *p_self,
 pandemonium_bool GDAPI pandemonium_string_parse_utf8_with_len(pandemonium_string *p_self, const char *p_utf8, pandemonium_int p_len); // p_skip_cr variant //Error parse_utf8(const char *p_utf8, int p_len = -1, bool p_skip_cr = false); //return true on error
 pandemonium_string GDAPI pandemonium_string_chars_to_utf8(const char *p_utf8);
 pandemonium_string GDAPI pandemonium_string_chars_to_utf8_with_len(const char *p_utf8, pandemonium_int p_len);
-//int utf8_byte_length() const;
+pandemonium_int GDAPI pandemonium_string_utf8_byte_length(const pandemonium_string *p_self);
 
 //Char16String utf16() const;
 //Error parse_utf16(const char16_t *p_utf16, int p_len = -1);
@@ -339,22 +341,22 @@ uint32_t GDAPI pandemonium_string_hash_chars(const char *p_cstr);
 uint32_t GDAPI pandemonium_string_hash_chars_with_len(const char *p_cstr, pandemonium_int p_len);
 uint32_t GDAPI pandemonium_string_hash_utf8_chars(const wchar_t *p_str); // rename to pandemonium_string_hash_wchars, use its name as the missin?
 uint32_t GDAPI pandemonium_string_hash_utf8_chars_with_len(const wchar_t *p_str, pandemonium_int p_len);
-//static uint32_t hash(const CharType *p_cstr);
-//static uint32_t hash(const CharType *p_cstr, int p_len);
+uint32_t GDAPI pandemonium_string_hashc(const pandemonium_char_type *p_cstr);
+uint32_t GDAPI pandemonium_string_hashc_with_len(const pandemonium_char_type *p_cstr, pandemonium_int p_len);
 
 uint32_t GDAPI pandemonium_string_hash(const pandemonium_string *p_self);
 uint64_t GDAPI pandemonium_string_hash64(const pandemonium_string *p_self);
 
 pandemonium_string GDAPI pandemonium_string_md5_text(const pandemonium_string *p_self);
-//String sha1_text() const;
+pandemonium_string GDAPI pandemonium_string_sha1_text(const pandemonium_string *p_self);
 pandemonium_pool_byte_array GDAPI pandemonium_string_sha256_buffer(const pandemonium_string *p_self);
 pandemonium_pool_byte_array GDAPI pandemonium_string_md5_buffer(const pandemonium_string *p_self);
 //Vector<uint8_t> sha1_buffer() const;
 pandemonium_string GDAPI pandemonium_string_sha256_text(const pandemonium_string *p_self);
 
 pandemonium_bool pandemonium_string_empty(const pandemonium_string *p_self);
-//_FORCE_INLINE_ bool contains(const char *p_str) const { return find(p_str) != -1; }
-//_FORCE_INLINE_ bool contains(const String &p_str) const { return find(p_str) != -1; }
+pandemonium_bool GDAPI pandemonium_string_containsc(const pandemonium_string *p_self, const char *p_str);
+pandemonium_bool GDAPI pandemonium_string_contains(const pandemonium_string *p_self, const pandemonium_string *p_str);
 
 // path functions
 
@@ -367,20 +369,20 @@ pandemonium_string GDAPI pandemonium_string_get_base_dir(const pandemonium_strin
 pandemonium_string GDAPI pandemonium_string_get_file(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_humanize_size(uint64_t p_size);
 pandemonium_string GDAPI pandemonium_string_simplify_path(const pandemonium_string *p_self);
-//bool is_network_share_path() const;
-//String append_path(const char *p_path) const;
-//String append_path(const String &p_path) const;
-//String path_clean_end_slash() const;
-//String path_ensure_end_slash() const;
-//String path_get_prev_dir() const;
+pandemonium_bool GDAPI pandemonium_string_is_network_share_path(const pandemonium_string *p_self);
+pandemonium_string GDAPI pandemonium_string_append_pathc(const pandemonium_string *p_self, const char *p_path);
+pandemonium_string GDAPI pandemonium_string_append_path(const pandemonium_string *p_self, const pandemonium_string *p_path);
+pandemonium_string GDAPI pandemonium_string_path_clean_end_slash(const pandemonium_string *p_self);
+pandemonium_string GDAPI pandemonium_string_path_ensure_end_slash(const pandemonium_string *p_self);
+pandemonium_string GDAPI pandemonium_string_path_get_prev_dir(const pandemonium_string *p_self);
 
 pandemonium_string GDAPI pandemonium_string_xml_escape(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_xml_escape_with_quotes(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_xml_unescape(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_http_escape(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_http_unescape(const pandemonium_string *p_self);
-//String uri_encode() const;
-//String uri_decode() const;
+pandemonium_string GDAPI pandemonium_string_uri_encode(const pandemonium_string *p_self);
+pandemonium_string GDAPI pandemonium_string_uri_decode(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_c_escape(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_c_escape_multiline(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_c_unescape(const pandemonium_string *p_self);
@@ -391,12 +393,12 @@ pandemonium_string GDAPI pandemonium_string_word_wrap(const pandemonium_string *
 pandemonium_string GDAPI pandemonium_string_percent_decode(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_percent_encode(const pandemonium_string *p_self);
 
-//String property_name_encode() const;
+pandemonium_string GDAPI pandemonium_string_property_name_encode(const pandemonium_string *p_self);
 
 // node functions
-//static String get_invalid_node_name_characters();
-//String validate_node_name() const;
-//String validate_identifier() const;
+pandemonium_string GDAPI pandemonium_string_get_invalid_node_name_characters();
+pandemonium_string GDAPI pandemonium_string_validate_node_name(const pandemonium_string *p_self);
+pandemonium_string GDAPI pandemonium_string_validate_identifier(const pandemonium_string *p_self);
 
 pandemonium_bool GDAPI pandemonium_string_is_valid_identifier(const pandemonium_string *p_self);
 pandemonium_bool GDAPI pandemonium_string_is_valid_integer(const pandemonium_string *p_self);
@@ -404,9 +406,9 @@ pandemonium_bool GDAPI pandemonium_string_is_valid_float(const pandemonium_strin
 pandemonium_bool GDAPI pandemonium_string_is_valid_hex_number(const pandemonium_string *p_self, pandemonium_bool p_with_prefix);
 pandemonium_bool GDAPI pandemonium_string_is_valid_html_color(const pandemonium_string *p_self);
 pandemonium_bool GDAPI pandemonium_string_is_valid_ip_address(const pandemonium_string *p_self);
-//bool is_valid_filename() const;
-//bool is_valid_bool() const;
-//bool is_valid_unsigned_integer() const;
+pandemonium_bool GDAPI pandemonium_string_is_valid_filename(const pandemonium_string *p_self);
+pandemonium_bool GDAPI pandemonium_string_is_valid_bool(const pandemonium_string *p_self);
+pandemonium_bool GDAPI pandemonium_string_is_valid_unsigned_integer(const pandemonium_string *p_self);
 
 //Vector<uint8_t> to_ascii_buffer() const;
 //Vector<uint8_t> to_utf8_buffer() const;
