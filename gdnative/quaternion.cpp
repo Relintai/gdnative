@@ -107,11 +107,63 @@ pandemonium_quaternion GDAPI pandemonium_quaternion_inverse(const pandemonium_qu
 	*((Quaternion *)&dest) = self->inverse();
 	return dest;
 }
+pandemonium_quaternion GDAPI pandemonium_quaternion_log(const pandemonium_quaternion *p_self) {
+	pandemonium_quaternion dest;
+	const Quaternion *self = (const Quaternion *)p_self;
+	*((Quaternion *)&dest) = self->log();
+	return dest;
+}
+pandemonium_quaternion GDAPI pandemonium_quaternion_exp(const pandemonium_quaternion *p_self) {
+	pandemonium_quaternion dest;
+	const Quaternion *self = (const Quaternion *)p_self;
+	*((Quaternion *)&dest) = self->exp();
+	return dest;
+}
 
 pandemonium_real GDAPI pandemonium_quaternion_dot(const pandemonium_quaternion *p_self, const pandemonium_quaternion *p_b) {
 	const Quaternion *self = (const Quaternion *)p_self;
 	const Quaternion *b = (const Quaternion *)p_b;
 	return self->dot(*b);
+}
+pandemonium_real GDAPI pandemonium_quaternion_angle_to(const pandemonium_quaternion *p_self, const pandemonium_quaternion *p_to) {
+	const Quaternion *self = (const Quaternion *)p_self;
+	const Quaternion *to = (const Quaternion *)p_to;
+	return self->angle_to(*to);
+}
+
+void GDAPI pandemonium_quaternion_set_euler_xyz(pandemonium_quaternion *p_self, const pandemonium_vector3 *p_euler) {
+	Quaternion *self = (Quaternion *)p_self;
+	const Vector3 *euler = (const Vector3 *)p_euler;
+	self->set_euler_xyz(*euler);
+}
+pandemonium_vector3 GDAPI pandemonium_quaternion_get_euler_xyz(const pandemonium_quaternion *p_self) {
+	pandemonium_vector3 dest;
+	const Quaternion *self = (const Quaternion *)p_self;
+	*((Vector3 *)&dest) = self->get_euler_xyz();
+	return dest;
+}
+void GDAPI pandemonium_quaternion_set_euler_yxz(pandemonium_quaternion *p_self, const pandemonium_vector3 *p_euler) {
+	Quaternion *self = (Quaternion *)p_self;
+	const Vector3 *euler = (const Vector3 *)p_euler;
+	self->set_euler_yxz(*euler);
+}
+pandemonium_vector3 GDAPI pandemonium_quaternion_get_euler_yxz(const pandemonium_quaternion *p_self) {
+	pandemonium_vector3 dest;
+	const Quaternion *self = (const Quaternion *)p_self;
+	*((Vector3 *)&dest) = self->get_euler_yxz();
+	return dest;
+}
+
+void GDAPI pandemonium_quaternion_set_euler(pandemonium_quaternion *p_self, const pandemonium_vector3 *p_euler) {
+	Quaternion *self = (Quaternion *)p_self;
+	const Vector3 *euler = (const Vector3 *)p_euler;
+	self->set_euler(*euler);
+}
+pandemonium_vector3 GDAPI pandemonium_quaternion_get_euler(const pandemonium_quaternion *p_self) {
+	pandemonium_vector3 dest;
+	const Quaternion *self = (const Quaternion *)p_self;
+	*((Vector3 *)&dest) = self->get_euler();
+	return dest;
 }
 
 pandemonium_vector3 GDAPI pandemonium_quaternion_xform(const pandemonium_quaternion *p_self, const pandemonium_vector3 *p_v) {
@@ -146,6 +198,27 @@ pandemonium_quaternion GDAPI pandemonium_quaternion_cubic_slerp(const pandemoniu
 	const Quaternion *post_b = (const Quaternion *)p_post_b;
 	*((Quaternion *)&dest) = self->cubic_slerp(*b, *pre_a, *post_b, p_t);
 	return dest;
+}
+
+pandemonium_quaternion GDAPI pandemonium_quaternion_spherical_cubic_interpolate(const pandemonium_quaternion *p_self, const pandemonium_quaternion *p_b, const pandemonium_quaternion *p_pre_a, const pandemonium_quaternion *p_post_b, const pandemonium_real p_weight) {
+	pandemonium_quaternion dest;
+	const Quaternion *self = (const Quaternion *)p_self;
+	const Quaternion *b = (const Quaternion *)p_b;
+	const Quaternion *pre_a = (const Quaternion *)p_pre_a;
+	const Quaternion *post_b = (const Quaternion *)p_post_b;
+	*((Quaternion *)&dest) = self->spherical_cubic_interpolate(*b, *pre_a, *post_b, p_weight);
+	return dest;
+}
+
+pandemonium_vector3 GDAPI pandemonium_quaternion_get_axis(const pandemonium_quaternion *p_self) {
+	pandemonium_vector3 dest;
+	const Quaternion *self = (const Quaternion *)p_self;
+	*((Vector3 *)&dest) = self->get_axis();
+	return dest;
+}
+pandemonium_real GDAPI pandemonium_quaternion_get_angle(const pandemonium_quaternion *p_self) {
+	const Quaternion *self = (const Quaternion *)p_self;
+	return self->get_angle();
 }
 
 pandemonium_quaternion GDAPI pandemonium_quaternion_operator_multiply(const pandemonium_quaternion *p_self, const pandemonium_real p_b) {
@@ -201,12 +274,28 @@ void GDAPI pandemonium_quaternion_set_axis_angle(pandemonium_quaternion *p_self,
 	const Vector3 *axis = (const Vector3 *)p_axis;
 	self->set_axis_angle(*axis, p_angle);
 }
+void GDAPI pandemonium_quaternion_get_axis_angle(const pandemonium_quaternion *p_self, pandemonium_vector3 *r_axis, pandemonium_real r_angle) {
+	const Quaternion *self = (const Quaternion *)p_self;
+	Vector3 *axis = (Vector3 *)r_axis;
+	self->get_axis_angle(*axis, r_angle);
+}
+
+void GDAPI pandemonium_quaternion_operator_mul_eq(pandemonium_quaternion *p_self, const pandemonium_quaternion *p_q) {
+	Quaternion *self = (Quaternion *)p_self;
+	const Quaternion *q = (const Quaternion *)p_q;
+	self->operator*=(*q);
+}
 
 pandemonium_string GDAPI pandemonium_quaternion_as_string(const pandemonium_quaternion *p_self) {
 	pandemonium_string ret;
 	const Quaternion *self = (const Quaternion *)p_self;
 	memnew_placement(&ret, String(*self));
 	return ret;
+}
+
+void GDAPI pandemonium_quaternion_set(pandemonium_quaternion *p_self, pandemonium_real p_x, pandemonium_real p_y, pandemonium_real p_z, pandemonium_real p_w) {
+	Quaternion *self = (Quaternion *)p_self;
+	self->set(p_x, p_y, p_z, p_w);
 }
 
 void GDAPI pandemonium_quaternion_new(pandemonium_quaternion *r_dest, const pandemonium_real p_x, const pandemonium_real p_y, const pandemonium_real p_z, const pandemonium_real p_w) {
@@ -230,6 +319,13 @@ void GDAPI pandemonium_quaternion_new_with_euler(pandemonium_quaternion *r_dest,
 	const Vector3 *euler = (const Vector3 *)p_euler;
 	Quaternion *dest = (Quaternion *)r_dest;
 	*dest = Quaternion(*euler);
+}
+
+void GDAPI pandemonium_quaternion_new_shortest_arc(pandemonium_quaternion *r_dest, const pandemonium_vector3 *p_v0, const pandemonium_vector3 *p_v1) {
+	const Vector3 *v0 = (const Vector3 *)p_v0;
+	const Vector3 *v1 = (const Vector3 *)p_v1;
+	Quaternion *dest = (Quaternion *)r_dest;
+	*dest = Quaternion(*v0, *v1);
 }
 
 #ifdef __cplusplus
