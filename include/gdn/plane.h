@@ -64,12 +64,12 @@ void GDAPI pandemonium_plane_set_d(pandemonium_plane *p_self, const pandemonium_
 void GDAPI pandemonium_plane_set_normal(pandemonium_plane *p_self, const pandemonium_vector3 *p_normal);
 pandemonium_vector3 GDAPI pandemonium_plane_get_normal(const pandemonium_plane *p_self);
 
-//void normalize();
+void GDAPI pandemonium_plane_normalize(pandemonium_plane *p_self);
 pandemonium_plane GDAPI pandemonium_plane_normalized(const pandemonium_plane *p_self);
 
 pandemonium_vector3 GDAPI pandemonium_plane_center(const pandemonium_plane *p_self);
 pandemonium_vector3 GDAPI pandemonium_plane_get_any_point(const pandemonium_plane *p_self);
-//Vector3 get_any_perpendicular_normal() const;
+pandemonium_vector3 GDAPI pandemonium_plane_get_any_perpendicular_normal(const pandemonium_plane *p_self);
 
 pandemonium_bool GDAPI pandemonium_plane_is_point_over(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
 pandemonium_real GDAPI pandemonium_plane_distance_to(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
@@ -82,8 +82,8 @@ pandemonium_bool GDAPI pandemonium_plane_intersects_segment(const pandemonium_pl
 pandemonium_vector3 GDAPI pandemonium_plane_project(const pandemonium_plane *p_self, const pandemonium_vector3 *p_point);
 
 pandemonium_plane GDAPI pandemonium_plane_operator_neg(const pandemonium_plane *p_self);
-//bool is_equal_approx(const Plane &p_plane) const;
-//bool is_equal_approx_any_side(const Plane &p_plane) const;
+pandemonium_bool GDAPI pandemonium_plane_is_equal_approx(const pandemonium_plane *p_self, const pandemonium_plane *p_plane);
+pandemonium_bool GDAPI pandemonium_plane_is_equal_approx_any_side(const pandemonium_plane *p_self, const pandemonium_plane *p_plane);
 
 pandemonium_bool GDAPI pandemonium_plane_operator_equal(const pandemonium_plane *p_self, const pandemonium_plane *p_b);
 

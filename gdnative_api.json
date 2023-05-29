@@ -25,15 +25,6 @@
                     },
                     "next": null,
                     "api": [{
-                            "name": "pandemonium_dictionary_merge",
-                            "return_type": "void",
-                            "arguments": [
-                                ["pandemonium_dictionary *", "p_self"],
-                                ["const pandemonium_dictionary *", "p_dictionary"],
-                                ["const pandemonium_bool", "p_overwrite"]
-                            ]
-                        },
-                        {
                             "name": "pandemonium_pool_byte_array_has",
                             "return_type": "pandemonium_bool",
                             "arguments": [
@@ -236,17 +227,6 @@
                         ]
                     },
                     {
-                        "name": "pandemonium_array_slice",
-                        "return_type": "pandemonium_array",
-                        "arguments": [
-                            ["const pandemonium_array *", "p_self"],
-                            ["const pandemonium_int", "p_begin"],
-                            ["const pandemonium_int", "p_end"],
-                            ["const pandemonium_int", "p_step"],
-                            ["const pandemonium_bool", "p_deep"]
-                        ]
-                    },
-                    {
                         "name": "pandemonium_pool_byte_array_empty",
                         "return_type": "pandemonium_bool",
                         "arguments": [
@@ -372,14 +352,6 @@
                     "arguments": [
                         ["const pandemonium_color *", "p_self"],
                         ["const pandemonium_real", "p_amount"]
-                    ]
-                },
-                {
-                    "name": "pandemonium_array_duplicate",
-                    "return_type": "pandemonium_array",
-                    "arguments": [
-                        ["const pandemonium_array *", "p_self"],
-                        ["const pandemonium_bool", "p_deep"]
                     ]
                 },
                 {
@@ -2965,15 +2937,6 @@
                 ]
             },
             {
-                "name": "pandemonium_array_find",
-                "return_type": "pandemonium_int",
-                "arguments": [
-                    ["const pandemonium_array *", "p_self"],
-                    ["const pandemonium_variant *", "p_what"],
-                    ["const pandemonium_int", "p_from"]
-                ]
-            },
-            {
                 "name": "pandemonium_array_find_last",
                 "return_type": "pandemonium_int",
                 "arguments": [
@@ -3056,15 +3019,6 @@
                 "arguments": [
                     ["pandemonium_array *", "p_self"],
                     ["const pandemonium_int", "p_size"]
-                ]
-            },
-            {
-                "name": "pandemonium_array_rfind",
-                "return_type": "pandemonium_int",
-                "arguments": [
-                    ["const pandemonium_array *", "p_self"],
-                    ["const pandemonium_variant *", "p_what"],
-                    ["const pandemonium_int", "p_from"]
                 ]
             },
             {

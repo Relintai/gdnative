@@ -30,11 +30,11 @@
 
 #include "gdn/array.h"
 
-#include "core/variant/array.h"
 #include "core/os/memory.h"
+#include "core/variant/array.h"
 
-#include "core/math/color.h"
 #include "core/containers/pool_vector.h"
+#include "core/math/color.h"
 
 #include "core/variant/variant.h"
 
@@ -163,6 +163,12 @@ const pandemonium_variant GDAPI *pandemonium_array_operator_index_const(const pa
 	return (const pandemonium_variant *)&self->operator[](p_idx);
 }
 
+void GDAPI pandemonium_array_append_array(pandemonium_array *p_self, const pandemonium_array *p_array) {
+	Array *self = (Array *)p_self;
+	const Array *array = (const Array *)p_array;
+	self->append_array(*array);
+}
+
 void GDAPI pandemonium_array_append(pandemonium_array *p_self, const pandemonium_variant *p_value) {
 	Array *self = (Array *)p_self;
 	Variant *val = (Variant *)p_value;
@@ -172,6 +178,22 @@ void GDAPI pandemonium_array_append(pandemonium_array *p_self, const pandemonium
 void GDAPI pandemonium_array_clear(pandemonium_array *p_self) {
 	Array *self = (Array *)p_self;
 	self->clear();
+}
+
+pandemonium_bool GDAPI pandemonium_array_deep_equal(const pandemonium_array *p_self, const pandemonium_array *p_array) {
+	const Array *self = (const Array *)p_self;
+	const Array *array = (const Array *)p_array;
+	return self->deep_equal(*array);
+}
+pandemonium_bool GDAPI pandemonium_array_deep_equal_recursion_count(const pandemonium_array *p_self, const pandemonium_array *p_array, pandemonium_int p_recursion_count) {
+	const Array *self = (const Array *)p_self;
+	const Array *array = (const Array *)p_array;
+	return self->deep_equal(*array, p_recursion_count);
+}
+void GDAPI pandemonium_array_operator_equal(pandemonium_array *p_self, const pandemonium_array *p_array) {
+	Array *self = (Array *)p_self;
+	const Array *array = (const Array *)p_array;
+	self->operator=(*array);
 }
 
 pandemonium_int GDAPI pandemonium_array_count(const pandemonium_array *p_self, const pandemonium_variant *p_value) {
@@ -209,7 +231,13 @@ pandemonium_variant GDAPI pandemonium_array_back(const pandemonium_array *p_self
 	return v;
 }
 
-pandemonium_int GDAPI pandemonium_array_find(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from) {
+pandemonium_int GDAPI pandemonium_array_find(const pandemonium_array *p_self, const pandemonium_variant *p_what) {
+	const Array *self = (const Array *)p_self;
+	const Variant *val = (const Variant *)p_what;
+	return self->find(*val);
+}
+
+pandemonium_int GDAPI pandemonium_array_find_from(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from) {
 	const Array *self = (const Array *)p_self;
 	const Variant *val = (const Variant *)p_what;
 	return self->find(*val, p_from);
@@ -261,6 +289,13 @@ pandemonium_variant GDAPI pandemonium_array_pop_front(pandemonium_array *p_self)
 	return v;
 }
 
+pandemonium_variant GDAPI pandemonium_array_pop_at(pandemonium_array *p_self, pandemonium_int p_pos) {
+	pandemonium_variant dest;
+	Array *self = (Array *)p_self;
+	*((Variant *)&dest) = self->pop_at(p_pos);
+	return dest;
+}
+
 void GDAPI pandemonium_array_push_back(pandemonium_array *p_self, const pandemonium_variant *p_value) {
 	Array *self = (Array *)p_self;
 	const Variant *val = (const Variant *)p_value;
@@ -278,12 +313,23 @@ void GDAPI pandemonium_array_remove(pandemonium_array *p_self, const pandemonium
 	self->remove(p_idx);
 }
 
+void GDAPI pandemonium_array_fill(pandemonium_array *p_self, const pandemonium_variant *p_value) {
+	Array *self = (Array *)p_self;
+	const Variant *value = (const Variant *)p_value;
+	self->fill(*value);
+}
+
 void GDAPI pandemonium_array_resize(pandemonium_array *p_self, const pandemonium_int p_size) {
 	Array *self = (Array *)p_self;
 	self->resize(p_size);
 }
 
-pandemonium_int GDAPI pandemonium_array_rfind(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from) {
+pandemonium_int GDAPI pandemonium_array_rfind(const pandemonium_array *p_self, const pandemonium_variant *p_what) {
+	const Array *self = (const Array *)p_self;
+	const Variant *val = (const Variant *)p_what;
+	return self->rfind(*val);
+}
+pandemonium_int GDAPI pandemonium_array_rfind_from(const pandemonium_array *p_self, const pandemonium_variant *p_what, const pandemonium_int p_from) {
 	const Array *self = (const Array *)p_self;
 	const Variant *val = (const Variant *)p_what;
 	return self->rfind(*val, p_from);
@@ -320,7 +366,15 @@ void GDAPI pandemonium_array_destroy(pandemonium_array *p_self) {
 	((Array *)p_self)->~Array();
 }
 
-pandemonium_array GDAPI pandemonium_array_duplicate(const pandemonium_array *p_self, const pandemonium_bool p_deep) {
+pandemonium_array GDAPI pandemonium_array_duplicate(const pandemonium_array *p_self) {
+	const Array *self = (const Array *)p_self;
+	pandemonium_array res;
+	Array *val = (Array *)&res;
+	memnew_placement(val, Array);
+	*val = self->duplicate();
+	return res;
+}
+pandemonium_array GDAPI pandemonium_array_duplicate_deep(const pandemonium_array *p_self, const pandemonium_bool p_deep) {
 	const Array *self = (const Array *)p_self;
 	pandemonium_array res;
 	Array *val = (Array *)&res;
@@ -329,7 +383,23 @@ pandemonium_array GDAPI pandemonium_array_duplicate(const pandemonium_array *p_s
 	return res;
 }
 
-pandemonium_array GDAPI pandemonium_array_slice(const pandemonium_array *p_self, const pandemonium_int p_begin, const pandemonium_int p_end, const pandemonium_int p_step, const pandemonium_bool p_deep) {
+pandemonium_array GDAPI pandemonium_array_slice(const pandemonium_array *p_self, const pandemonium_int p_begin, const pandemonium_int p_end) {
+	const Array *self = (const Array *)p_self;
+	pandemonium_array res;
+	Array *val = (Array *)&res;
+	memnew_placement(val, Array);
+	*val = self->slice(p_begin, p_end);
+	return res;
+}
+pandemonium_array GDAPI pandemonium_array_slice_step(const pandemonium_array *p_self, const pandemonium_int p_begin, const pandemonium_int p_end, const pandemonium_int p_step) {
+	const Array *self = (const Array *)p_self;
+	pandemonium_array res;
+	Array *val = (Array *)&res;
+	memnew_placement(val, Array);
+	*val = self->slice(p_begin, p_end, p_step);
+	return res;
+}
+pandemonium_array GDAPI pandemonium_array_slice_step_deep(const pandemonium_array *p_self, const pandemonium_int p_begin, const pandemonium_int p_end, const pandemonium_int p_step, const pandemonium_bool p_deep) {
 	const Array *self = (const Array *)p_self;
 	pandemonium_array res;
 	Array *val = (Array *)&res;

@@ -39,6 +39,13 @@ extern "C" {
 
 static_assert(sizeof(pandemonium_node_path) == sizeof(NodePath), "NodePath size mismatch");
 
+pandemonium_string_name GDAPI pandemonium_node_path_get_sname(const pandemonium_node_path *p_self) {
+	pandemonium_string_name dest;
+	const NodePath *self = (const NodePath *)p_self;
+	*((StringName *)&dest) = self->get_sname();
+	return dest;
+}
+
 void GDAPI pandemonium_node_path_new(pandemonium_node_path *r_dest, const pandemonium_string *p_from) {
 	NodePath *dest = (NodePath *)r_dest;
 	const String *from = (const String *)p_from;
@@ -112,6 +119,25 @@ pandemonium_bool GDAPI pandemonium_node_path_operator_equal(const pandemonium_no
 	return *self == *b;
 }
 
+void GDAPI pandemonium_node_path_simplify(pandemonium_node_path *p_self) {
+	NodePath *self = (NodePath *)p_self;
+	self->simplify();
+}
+pandemonium_node_path GDAPI pandemonium_node_path_simplified(const pandemonium_node_path *p_self) {
+	pandemonium_node_path dest;
+	const NodePath *self = (const NodePath *)p_self;
+	*((NodePath *)&dest) = self->simplified();
+	return dest;
+}
+
+pandemonium_node_path GDAPI pandemonium_node_path_rel_path_to(const pandemonium_node_path *p_self, const pandemonium_node_path *p_np) {
+	pandemonium_node_path dest;
+	const NodePath *self = (const NodePath *)p_self;
+	const NodePath *np = (const NodePath *)p_np;
+	*((NodePath *)&dest) = self->rel_path_to(*np);
+	return dest;
+}
+
 pandemonium_node_path pandemonium_node_path_get_as_property_path(const pandemonium_node_path *p_self) {
 	const NodePath *self = (const NodePath *)p_self;
 	pandemonium_node_path res;
@@ -119,6 +145,16 @@ pandemonium_node_path pandemonium_node_path_get_as_property_path(const pandemoni
 	memnew_placement(val, NodePath);
 	*val = self->get_as_property_path();
 	return res;
+}
+
+void GDAPI pandemonium_node_path_prepend_period(pandemonium_node_path *p_self) {
+	NodePath *self = (NodePath *)p_self;
+	self->prepend_period();
+}
+
+pandemonium_int GDAPI pandemonium_node_path_hash(const pandemonium_node_path *p_self) {
+	const NodePath *self = (const NodePath *)p_self;
+	return self->hash();
 }
 
 #ifdef __cplusplus

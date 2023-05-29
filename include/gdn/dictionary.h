@@ -69,8 +69,8 @@ pandemonium_variant GDAPI pandemonium_dictionary_get_with_default(const pandemon
 pandemonium_int GDAPI pandemonium_dictionary_size(const pandemonium_dictionary *p_self);
 pandemonium_bool GDAPI pandemonium_dictionary_empty(const pandemonium_dictionary *p_self);
 void GDAPI pandemonium_dictionary_clear(pandemonium_dictionary *p_self);
-//void merge(const Dictionary &p_dictionary, bool p_overwrite = false); p_overwrite false version
-void GDAPI pandemonium_dictionary_merge(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, const pandemonium_bool p_overwrite);
+void GDAPI pandemonium_dictionary_merge(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary);
+void GDAPI pandemonium_dictionary_merge_overwrite(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, const pandemonium_bool p_overwrite);
 
 pandemonium_bool GDAPI pandemonium_dictionary_has(const pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
 pandemonium_bool GDAPI pandemonium_dictionary_has_all(const pandemonium_dictionary *p_self, const pandemonium_array *p_keys);
@@ -78,7 +78,8 @@ pandemonium_bool GDAPI pandemonium_dictionary_has_all(const pandemonium_dictiona
 void GDAPI pandemonium_dictionary_erase(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
 pandemonium_bool GDAPI pandemonium_dictionary_erase_with_return(pandemonium_dictionary *p_self, const pandemonium_variant *p_key);
 
-//bool deep_equal(const Dictionary &p_dictionary, int p_recursion_count = 0) const;
+pandemonium_bool GDAPI pandemonium_dictionary_deep_equal(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary);
+pandemonium_bool GDAPI pandemonium_dictionary_deep_equal_recursion_count(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, pandemonium_int p_recursion_count);
 pandemonium_bool GDAPI pandemonium_dictionary_operator_equal(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_b);
 
 pandemonium_int GDAPI pandemonium_dictionary_hash(const pandemonium_dictionary *p_self);

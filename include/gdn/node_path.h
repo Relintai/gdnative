@@ -53,12 +53,13 @@ typedef struct {
 
 #include <gdn/gdnative.h>
 #include <gdn/string.h>
+#include <gdn/string_name.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-//_FORCE_INLINE_ StringName get_sname() const {
+pandemonium_string_name GDAPI pandemonium_node_path_get_sname(const pandemonium_node_path *p_self);
 
 pandemonium_bool GDAPI pandemonium_node_path_is_absolute(const pandemonium_node_path *p_self);
 pandemonium_int GDAPI pandemonium_node_path_get_name_count(const pandemonium_node_path *p_self);
@@ -69,20 +70,20 @@ pandemonium_string GDAPI pandemonium_node_path_get_subname(const pandemonium_nod
 //Vector<StringName> get_subnames() const;
 pandemonium_string GDAPI pandemonium_node_path_get_concatenated_subnames(const pandemonium_node_path *p_self);
 
-//NodePath rel_path_to(const NodePath &p_np) const;
+pandemonium_node_path GDAPI pandemonium_node_path_rel_path_to(const pandemonium_node_path *p_self, const pandemonium_node_path *p_np);
 pandemonium_node_path pandemonium_node_path_get_as_property_path(const pandemonium_node_path *p_self);
 
-//void prepend_period();
+void GDAPI pandemonium_node_path_prepend_period(pandemonium_node_path *p_self);
 
-//_FORCE_INLINE_ uint32_t hash() const {
+pandemonium_int GDAPI pandemonium_node_path_hash(const pandemonium_node_path *p_self);
 
 pandemonium_string GDAPI pandemonium_node_path_as_string(const pandemonium_node_path *p_self);
 pandemonium_bool GDAPI pandemonium_node_path_is_empty(const pandemonium_node_path *p_self);
 
 pandemonium_bool GDAPI pandemonium_node_path_operator_equal(const pandemonium_node_path *p_self, const pandemonium_node_path *p_b);
 
-//void simplify();
-//NodePath simplified() const;
+void GDAPI pandemonium_node_path_simplify(pandemonium_node_path *p_self);
+pandemonium_node_path GDAPI pandemonium_node_path_simplified(const pandemonium_node_path *p_self);
 
 //NodePath(const Vector<StringName> &p_path, bool p_absolute);
 //NodePath(const Vector<StringName> &p_path, const Vector<StringName> &p_subpath, bool p_absolute);

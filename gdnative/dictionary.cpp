@@ -32,8 +32,8 @@
 
 #include "core/variant/variant.h"
 // core/variant.h before to avoid compile errors with MSVC
-#include "core/variant/dictionary.h"
 #include "core/io/json.h"
+#include "core/variant/dictionary.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -152,6 +152,17 @@ pandemonium_variant GDAPI *pandemonium_dictionary_next(const pandemonium_diction
 	return (pandemonium_variant *)self->next(key);
 }
 
+pandemonium_bool GDAPI pandemonium_dictionary_deep_equal(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary) {
+	const Dictionary *self = (const Dictionary *)p_self;
+	const Dictionary *dictionary = (const Dictionary *)p_dictionary;
+	return self->deep_equal(*dictionary);
+}
+pandemonium_bool GDAPI pandemonium_dictionary_deep_equal_recursion_count(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, pandemonium_int p_recursion_count) {
+	const Dictionary *self = (const Dictionary *)p_self;
+	const Dictionary *dictionary = (const Dictionary *)p_dictionary;
+	return self->deep_equal(*dictionary, p_recursion_count);
+}
+
 pandemonium_bool GDAPI pandemonium_dictionary_operator_equal(const pandemonium_dictionary *p_self, const pandemonium_dictionary *p_b) {
 	const Dictionary *self = (const Dictionary *)p_self;
 	const Dictionary *b = (const Dictionary *)p_b;
@@ -184,7 +195,13 @@ pandemonium_variant GDAPI pandemonium_dictionary_get_with_default(const pandemon
 	return raw_dest;
 }
 
-void GDAPI pandemonium_dictionary_merge(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, const pandemonium_bool p_overwrite) {
+void GDAPI pandemonium_dictionary_merge(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary) {
+	Dictionary *self = (Dictionary *)p_self;
+	const Dictionary *dictionary = (const Dictionary *)p_dictionary;
+	self->merge(*dictionary);
+}
+
+void GDAPI pandemonium_dictionary_merge_overwrite(pandemonium_dictionary *p_self, const pandemonium_dictionary *p_dictionary, const pandemonium_bool p_overwrite) {
 	Dictionary *self = (Dictionary *)p_self;
 	const Dictionary *dictionary = (const Dictionary *)p_dictionary;
 	self->merge(*dictionary, p_overwrite);

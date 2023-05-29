@@ -65,6 +65,10 @@ pandemonium_string GDAPI pandemonium_plane_as_string(const pandemonium_plane *p_
 	return ret;
 }
 
+void GDAPI pandemonium_plane_normalize(pandemonium_plane *p_self) {
+	Plane *self = (Plane *)p_self;
+	self->normalize();
+}
 pandemonium_plane GDAPI pandemonium_plane_normalized(const pandemonium_plane *p_self) {
 	pandemonium_plane dest;
 	const Plane *self = (const Plane *)p_self;
@@ -83,6 +87,12 @@ pandemonium_vector3 GDAPI pandemonium_plane_get_any_point(const pandemonium_plan
 	pandemonium_vector3 dest;
 	const Plane *self = (const Plane *)p_self;
 	*((Vector3 *)&dest) = self->get_any_point();
+	return dest;
+}
+pandemonium_vector3 GDAPI pandemonium_plane_get_any_perpendicular_normal(const pandemonium_plane *p_self) {
+	pandemonium_vector3 dest;
+	const Plane *self = (const Plane *)p_self;
+	*((Vector3 *)&dest) = self->get_any_perpendicular_normal();
 	return dest;
 }
 
@@ -142,6 +152,17 @@ pandemonium_plane GDAPI pandemonium_plane_operator_neg(const pandemonium_plane *
 	const Plane *self = (const Plane *)p_self;
 	*dest = -(*self);
 	return raw_dest;
+}
+
+pandemonium_bool GDAPI pandemonium_plane_is_equal_approx(const pandemonium_plane *p_self, const pandemonium_plane *p_plane) {
+	const Plane *self = (const Plane *)p_self;
+	const Plane *plane = (const Plane *)p_plane;
+	return self->is_equal_approx(*plane);
+}
+pandemonium_bool GDAPI pandemonium_plane_is_equal_approx_any_side(const pandemonium_plane *p_self, const pandemonium_plane *p_plane) {
+	const Plane *self = (const Plane *)p_self;
+	const Plane *plane = (const Plane *)p_plane;
+	return self->is_equal_approx_any_side(*plane);
 }
 
 pandemonium_bool GDAPI pandemonium_plane_operator_equal(const pandemonium_plane *p_self, const pandemonium_plane *p_b) {
