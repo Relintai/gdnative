@@ -207,6 +207,10 @@ typedef void pandemonium_object;
 
 #include <gdn/transform.h>
 
+/////// Projection
+
+#include <gdn/projection.h>
+
 /////// Color
 
 #include <gdn/color.h>
