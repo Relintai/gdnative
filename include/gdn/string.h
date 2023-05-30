@@ -85,7 +85,7 @@ pandemonium_int GDAPI pandemonium_char_16_string_size(const pandemonium_char_16_
 pandemonium_error GDAPI pandemonium_char_16_string_resize(pandemonium_char_16_string *p_self, pandemonium_int p_size);
 
 char GDAPI pandemonium_char_16_string_get(const pandemonium_char_16_string *p_self, pandemonium_int p_index);
-void GDAPI pandemonium_char_16_string_set(pandemonium_char_16_string *p_self, pandemonium_int p_index, const char p_elem);
+void GDAPI pandemonium_char_16_string_set(pandemonium_char_16_string *p_self, pandemonium_int p_index, const char16_t p_elem);
 
 //_FORCE_INLINE_ void operator=(const Char16String &p_str);
 //void operator=(const char *p_cstr);

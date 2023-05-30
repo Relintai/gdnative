@@ -59,10 +59,9 @@ char GDAPI pandemonium_char_16_string_get(const pandemonium_char_16_string *p_se
 	*((char *)&dest) = self->get(p_index);
 	return dest;
 }
-void GDAPI pandemonium_char_16_string_set(pandemonium_char_16_string *p_self, pandemonium_int p_index, const char p_elem) {
+void GDAPI pandemonium_char_16_string_set(pandemonium_char_16_string *p_self, pandemonium_int p_index, const char16_t p_elem) {
 	Char16String *self = (Char16String *)p_self;
-	const char *elem = (const char *)p_elem;
-	self->set(p_index, *elem);
+	self->set(p_index, p_elem);
 }
 
 pandemonium_int GDAPI pandemonium_char_16_string_length(const pandemonium_char_16_string *p_cs) {
