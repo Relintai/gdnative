@@ -135,6 +135,9 @@ typedef int pandemonium_int;
 
 /////// real
 
+// TODO add real_t -> float/double support!
+// If the engine is built with doubles as real_t this won't work, as the structs won't line up!
+
 typedef float pandemonium_real;
 
 /////// Object (forward declared)
