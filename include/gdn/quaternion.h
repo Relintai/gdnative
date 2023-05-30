@@ -71,9 +71,9 @@ pandemonium_real GDAPI pandemonium_quaternion_get_w(const pandemonium_quaternion
 void GDAPI pandemonium_quaternion_set_w(pandemonium_quaternion *p_self, const pandemonium_real val);
 
 pandemonium_real GDAPI pandemonium_quaternion_length_squared(const pandemonium_quaternion *p_self);
-//bool is_equal_approx(const Quaternion &p_quat) const;
+pandemonium_bool GDAPI pandemonium_quaternion_is_equal_approx(const pandemonium_quaternion *p_self, const pandemonium_quaternion *p_quat);
 pandemonium_real GDAPI pandemonium_quaternion_length(const pandemonium_quaternion *p_self);
-//void normalize();
+void GDAPI pandemonium_quaternion_normalize(pandemonium_quaternion *p_self);
 pandemonium_quaternion GDAPI pandemonium_quaternion_normalized(const pandemonium_quaternion *p_self);
 pandemonium_bool GDAPI pandemonium_quaternion_is_normalized(const pandemonium_quaternion *p_self);
 
