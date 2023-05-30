@@ -476,16 +476,6 @@
                     ]
                 },
                 {
-                    "name": "pandemonium_string_rsplit",
-                    "return_type": "pandemonium_pool_string_array",
-                    "arguments": [
-                        ["const pandemonium_string *", "p_self"],
-                        ["const pandemonium_string *", "p_divisor"],
-                        ["const pandemonium_bool", "p_allow_empty"],
-                        ["const pandemonium_int", "p_maxsplit"]
-                    ]
-                },
-                {
                     "name": "pandemonium_basis_get_quaternion",
                     "return_type": "pandemonium_quaternion",
                     "arguments": [
@@ -4718,15 +4708,6 @@
                 ]
             },
             {
-                "name": "pandemonium_string_new_with_wide_string",
-                "return_type": "void",
-                "arguments": [
-                    ["pandemonium_string *", "r_dest"],
-                    ["const wchar_t *", "p_contents"],
-                    ["const int", "p_size"]
-                ]
-            },
-            {
                 "name": "pandemonium_string_operator_index",
                 "return_type": "const char32_t *",
                 "arguments": [
@@ -5289,7 +5270,7 @@
                 ]
             },
             {
-                "name": "pandemonium_string_unicode_char_to_double",
+                "name": "pandemonium_string_wchar_to_double",
                 "return_type": "double",
                 "arguments": [
                     ["const wchar_t *", "p_str"],
@@ -5320,86 +5301,6 @@
                     ["const pandemonium_string *", "p_self"],
                     ["wchar_t", "p_splitter"],
                     ["pandemonium_int", "p_slice"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_string *", "p_splitter"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_allow_empty",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_string *", "p_splitter"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_floats",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_string *", "p_splitter"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_floats_allows_empty",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_string *", "p_splitter"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_floats_mk",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_array *", "p_splitters"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_floats_mk_allows_empty",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_array *", "p_splitters"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_ints",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_string *", "p_splitter"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_ints_allows_empty",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_string *", "p_splitter"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_ints_mk",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_array *", "p_splitters"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_split_ints_mk_allows_empty",
-                "return_type": "pandemonium_array",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"],
-                    ["const pandemonium_array *", "p_splitters"]
                 ]
             },
             {
@@ -5501,45 +5402,6 @@
                 ]
             },
             {
-                "name": "pandemonium_string_utf8",
-                "return_type": "pandemonium_char_string",
-                "arguments": [
-                    ["const pandemonium_string *", "p_self"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_parse_utf8",
-                "return_type": "pandemonium_bool",
-                "arguments": [
-                    ["pandemonium_string *", "p_self"],
-                    ["const char *", "p_utf8"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_parse_utf8_with_len",
-                "return_type": "pandemonium_bool",
-                "arguments": [
-                    ["pandemonium_string *", "p_self"],
-                    ["const char *", "p_utf8"],
-                    ["pandemonium_int", "p_len"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_chars_to_utf8",
-                "return_type": "pandemonium_string",
-                "arguments": [
-                    ["const char *", "p_utf8"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_chars_to_utf8_with_len",
-                "return_type": "pandemonium_string",
-                "arguments": [
-                    ["const char *", "p_utf8"],
-                    ["pandemonium_int", "p_len"]
-                ]
-            },
-            {
                 "name": "pandemonium_string_hash",
                 "return_type": "uint32_t",
                 "arguments": [
@@ -5565,21 +5427,6 @@
                 "return_type": "uint32_t",
                 "arguments": [
                     ["const char *", "p_cstr"],
-                    ["pandemonium_int", "p_len"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_hash_utf8_chars",
-                "return_type": "uint32_t",
-                "arguments": [
-                    ["const wchar_t *", "p_str"]
-                ]
-            },
-            {
-                "name": "pandemonium_string_hash_utf8_chars_with_len",
-                "return_type": "uint32_t",
-                "arguments": [
-                    ["const wchar_t *", "p_str"],
                     ["pandemonium_int", "p_len"]
                 ]
             },

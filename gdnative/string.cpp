@@ -44,6 +44,65 @@ static_assert(sizeof(pandemonium_char_string) == sizeof(CharString), "CharString
 static_assert(sizeof(pandemonium_string) == sizeof(String), "String size mismatch");
 static_assert(sizeof(pandemonium_char_type) == sizeof(CharType), "CharType size mismatch");
 
+pandemonium_int GDAPI pandemonium_char_16_string_size(const pandemonium_char_16_string *p_self) {
+	const Char16String *self = (const Char16String *)p_self;
+	return self->size();
+}
+pandemonium_error GDAPI pandemonium_char_16_string_resize(pandemonium_char_16_string *p_self, pandemonium_int p_size) {
+	Char16String *self = (Char16String *)p_self;
+	return (pandemonium_error)self->resize(p_size);
+}
+
+char GDAPI pandemonium_char_16_string_get(const pandemonium_char_16_string *p_self, pandemonium_int p_index) {
+	char dest;
+	const Char16String *self = (const Char16String *)p_self;
+	*((char *)&dest) = self->get(p_index);
+	return dest;
+}
+void GDAPI pandemonium_char_16_string_set(pandemonium_char_16_string *p_self, pandemonium_int p_index, const char p_elem) {
+	Char16String *self = (Char16String *)p_self;
+	const char *elem = (const char *)p_elem;
+	self->set(p_index, *elem);
+}
+
+pandemonium_int GDAPI pandemonium_char_16_string_length(const pandemonium_char_16_string *p_cs) {
+	const Char16String *cs = (const Char16String *)p_cs;
+
+	return cs->length();
+}
+const char16_t GDAPI *pandemonium_char_16_string_get_data(const pandemonium_char_16_string *p_cs) {
+	const Char16String *cs = (const Char16String *)p_cs;
+
+	return cs->get_data();
+}
+
+void GDAPI pandemonium_char_16_string_destroy(pandemonium_char_16_string *p_cs) {
+	Char16String *cs = (Char16String *)p_cs;
+
+	cs->~Char16String();
+}
+
+pandemonium_int GDAPI pandemonium_char_string_size(const pandemonium_char_string *p_self) {
+	const CharString *self = (const CharString *)p_self;
+	return self->size();
+}
+pandemonium_error GDAPI pandemonium_char_string_resize(pandemonium_char_string *p_self, pandemonium_int p_size) {
+	CharString *self = (CharString *)p_self;
+	return (pandemonium_error)self->resize(p_size);
+}
+
+char GDAPI pandemonium_char_string_get(const pandemonium_char_string *p_self, pandemonium_int p_index) {
+	char dest;
+	const CharString *self = (const CharString *)p_self;
+	*((char *)&dest) = self->get(p_index);
+	return dest;
+}
+void GDAPI pandemonium_char_string_set(pandemonium_char_string *p_self, pandemonium_int p_index, const char *p_elem) {
+	CharString *self = (CharString *)p_self;
+	const char *elem = (const char *)p_elem;
+	self->set(p_index, *elem);
+}
+
 pandemonium_int GDAPI pandemonium_char_string_length(const pandemonium_char_string *p_cs) {
 	const CharString *cs = (const CharString *)p_cs;
 
@@ -54,6 +113,12 @@ const char GDAPI *pandemonium_char_string_get_data(const pandemonium_char_string
 	const CharString *cs = (const CharString *)p_cs;
 
 	return cs->get_data();
+}
+
+void GDAPI pandemonium_char_string_destroy(pandemonium_char_string *p_cs) {
+	CharString *cs = (CharString *)p_cs;
+
+	cs->~CharString();
 }
 
 void GDAPI pandemonium_string_remove(pandemonium_string *p_self, pandemonium_int p_index) {
@@ -394,6 +459,17 @@ pandemonium_string GDAPI pandemonium_string_insert(const pandemonium_string *p_s
 	return result;
 }
 
+pandemonium_string GDAPI pandemonium_string_bool_num(pandemonium_bool p_val) {
+	pandemonium_string dest;
+	*((String *)&dest) = String::bool_num(p_val);
+	return dest;
+}
+pandemonium_string GDAPI pandemonium_string_bool_str(pandemonium_bool p_val) {
+	pandemonium_string dest;
+	*((String *)&dest) = String::bool_str(p_val);
+	return dest;
+}
+
 pandemonium_bool GDAPI pandemonium_string_is_numeric(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 
@@ -548,6 +624,13 @@ pandemonium_string GDAPI pandemonium_string_replace(const pandemonium_string *p_
 	memnew_placement(&result, String(self->replace(*key, *with)));
 
 	return result;
+}
+
+pandemonium_string GDAPI pandemonium_string_replacec(const pandemonium_string *p_self, const pandemonium_char_type *p_key, const pandemonium_char_type *p_with) {
+	pandemonium_string dest;
+	const String *self = (const String *)p_self;
+	*((String *)&dest) = self->replace(p_key, p_with);
+	return dest;
 }
 
 pandemonium_string GDAPI pandemonium_string_replacen(const pandemonium_string *p_self, pandemonium_string p_key, pandemonium_string p_with) {
@@ -720,10 +803,6 @@ pandemonium_string GDAPI pandemonium_string_camelcase_to_underscore_lowercased(c
 	return result;
 }
 
-double GDAPI pandemonium_string_char_to_double(const char *p_what) {
-	return String::to_double(p_what);
-}
-
 pandemonium_int GDAPI pandemonium_string_char_to_int(const char *p_what) {
 	return String::to_int(p_what);
 }
@@ -738,6 +817,19 @@ pandemonium_int GDAPI pandemonium_string_char_to_int_with_len(const char *p_what
 
 int64_t GDAPI pandemonium_string_char_to_int64_with_len(const wchar_t *p_str, int p_len) {
 	return String::to_int(p_str, p_len);
+}
+
+int64_t GDAPI pandemonium_string_to_intc(const pandemonium_char_type *p_str) {
+	const CharType *str = (const CharType *)p_str;
+	return String::to_int(str);
+}
+int64_t GDAPI pandemonium_string_to_intc_len(const pandemonium_char_type *p_str, pandemonium_int p_len) {
+	const CharType *str = (const CharType *)p_str;
+	return String::to_int(str, p_len);
+}
+int64_t GDAPI pandemonium_string_to_intc_len_clamp(const pandemonium_char_type *p_str, pandemonium_int p_len, pandemonium_bool p_clamp) {
+	const CharType *str = (const CharType *)p_str;
+	return String::to_int(str, p_len, p_clamp);
 }
 
 int64_t GDAPI pandemonium_string_hex_to_int64(const pandemonium_string *p_self) {
@@ -758,12 +850,32 @@ int64_t GDAPI pandemonium_string_to_int64(const pandemonium_string *p_self) {
 	return self->to_int64();
 }
 
-double GDAPI pandemonium_string_unicode_char_to_double(const wchar_t *p_str, const wchar_t **r_end) {
+float GDAPI pandemonium_string_char_to_float(const char *p_what) {
+	return String::to_double(p_what);
+}
+
+float GDAPI pandemonium_string_wchar_to_float(const wchar_t *p_str, const wchar_t **r_end) {
+	return String::to_double(p_str, r_end);
+}
+
+float GDAPI pandemonium_string_pandemonium_char_to_float(const pandemonium_char_type *p_str, const pandemonium_char_type **r_end) {
+	return String::to_double(p_str, r_end);
+}
+
+double GDAPI pandemonium_string_char_to_double(const char *p_what) {
+	return String::to_double(p_what);
+}
+
+double GDAPI pandemonium_string_wchar_to_double(const wchar_t *p_str, const wchar_t **r_end) {
 	return String::to_double(p_str, r_end);
 }
 
 double GDAPI pandemonium_string_pandemonium_char_to_double(const pandemonium_char_type *p_str, const pandemonium_char_type **r_end) {
 	return String::to_double(p_str, r_end);
+}
+
+uint32_t GDAPI pandemonium_string_num_characters(int64_t p_int) {
+	return String::num_characters(p_int);
 }
 
 pandemonium_string GDAPI pandemonium_string_get_slice(const pandemonium_string *p_self, pandemonium_string p_splitter, pandemonium_int p_slice) {
@@ -783,29 +895,120 @@ pandemonium_string GDAPI pandemonium_string_get_slicec(const pandemonium_string 
 	return result;
 }
 
-pandemonium_array GDAPI pandemonium_string_split(const pandemonium_string *p_self, const pandemonium_string *p_splitter) {
+pandemonium_pool_string_array GDAPI pandemonium_string_split(const pandemonium_string *p_self, const pandemonium_string *p_splitter) {
 	const String *self = (const String *)p_self;
-	const String *splitter = (const String *)p_splitter;
-	pandemonium_array result;
-	memnew_placement(&result, Array);
-	Array *proxy = (Array *)&result;
-	Vector<String> return_value = self->split(*splitter, false);
+	String *splitter = (String *)p_splitter;
 
-	proxy->resize(return_value.size());
-	for (int i = 0; i < return_value.size(); i++) {
-		(*proxy)[i] = return_value[i];
+	pandemonium_pool_string_array result;
+	memnew_placement(&result, PoolStringArray);
+	PoolStringArray *proxy = (PoolStringArray *)&result;
+	PoolStringArray::Write proxy_writer = proxy->write();
+	Vector<String> tmp_result = self->split(*splitter);
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
 	}
 
 	return result;
 }
 
-pandemonium_array GDAPI pandemonium_string_split_allow_empty(const pandemonium_string *p_self, const pandemonium_string *p_splitter) {
+pandemonium_pool_string_array GDAPI pandemonium_string_split_allow_empty(const pandemonium_string *p_self, const pandemonium_string *p_splitter, const pandemonium_bool p_allow_empty) {
 	const String *self = (const String *)p_self;
-	const String *splitter = (const String *)p_splitter;
+	String *splitter = (String *)p_splitter;
+
+	pandemonium_pool_string_array result;
+	memnew_placement(&result, PoolStringArray);
+	PoolStringArray *proxy = (PoolStringArray *)&result;
+	PoolStringArray::Write proxy_writer = proxy->write();
+	Vector<String> tmp_result = self->split(*splitter, p_allow_empty);
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+
+pandemonium_pool_string_array GDAPI pandemonium_string_split_maxsplit(const pandemonium_string *p_self, const pandemonium_string *p_splitter, const pandemonium_bool p_allow_empty, const pandemonium_int p_maxsplit) {
+	const String *self = (const String *)p_self;
+	String *splitter = (String *)p_splitter;
+
+	pandemonium_pool_string_array result;
+	memnew_placement(&result, PoolStringArray);
+	PoolStringArray *proxy = (PoolStringArray *)&result;
+	PoolStringArray::Write proxy_writer = proxy->write();
+	Vector<String> tmp_result = self->split(*splitter, p_allow_empty, p_maxsplit);
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+
+pandemonium_pool_string_array GDAPI pandemonium_string_rsplit(const pandemonium_string *p_self, const pandemonium_string *p_splitter) {
+	const String *self = (const String *)p_self;
+	String *splitter = (String *)p_splitter;
+
+	pandemonium_pool_string_array result;
+	memnew_placement(&result, PoolStringArray);
+	PoolStringArray *proxy = (PoolStringArray *)&result;
+	PoolStringArray::Write proxy_writer = proxy->write();
+	Vector<String> tmp_result = self->rsplit(*splitter);
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+
+pandemonium_pool_string_array GDAPI pandemonium_string_rsplit_allow_empty(const pandemonium_string *p_self, const pandemonium_string *p_splitter, const pandemonium_bool p_allow_empty) {
+	const String *self = (const String *)p_self;
+	String *splitter = (String *)p_splitter;
+
+	pandemonium_pool_string_array result;
+	memnew_placement(&result, PoolStringArray);
+	PoolStringArray *proxy = (PoolStringArray *)&result;
+	PoolStringArray::Write proxy_writer = proxy->write();
+	Vector<String> tmp_result = self->rsplit(*splitter, p_allow_empty);
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+
+pandemonium_pool_string_array GDAPI pandemonium_string_rsplit_maxsplit(const pandemonium_string *p_self, const pandemonium_string *p_splitter, const pandemonium_bool p_allow_empty, const pandemonium_int p_maxsplit) {
+	const String *self = (const String *)p_self;
+	String *splitter = (String *)p_splitter;
+
+	pandemonium_pool_string_array result;
+	memnew_placement(&result, PoolStringArray);
+	PoolStringArray *proxy = (PoolStringArray *)&result;
+	PoolStringArray::Write proxy_writer = proxy->write();
+	Vector<String> tmp_result = self->rsplit(*splitter, p_allow_empty, p_maxsplit);
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+
+pandemonium_array GDAPI pandemonium_string_split_spaces(const pandemonium_string *p_self) {
+	const String *self = (const String *)p_self;
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<String> return_value = self->split(*splitter);
+	Vector<String> return_value = self->split_spaces();
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -821,7 +1024,7 @@ pandemonium_array GDAPI pandemonium_string_split_floats(const pandemonium_string
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<float> return_value = self->split_floats(*splitter, false);
+	Vector<float> return_value = self->split_floats(*splitter);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -831,13 +1034,13 @@ pandemonium_array GDAPI pandemonium_string_split_floats(const pandemonium_string
 	return result;
 }
 
-pandemonium_array GDAPI pandemonium_string_split_floats_allows_empty(const pandemonium_string *p_self, const pandemonium_string *p_splitter) {
+pandemonium_array GDAPI pandemonium_string_split_floats_allow_empty(const pandemonium_string *p_self, const pandemonium_string *p_splitter, const pandemonium_bool p_allow_empty) {
 	const String *self = (const String *)p_self;
 	const String *splitter = (const String *)p_splitter;
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<float> return_value = self->split_floats(*splitter);
+	Vector<float> return_value = self->split_floats(*splitter, p_allow_empty);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -860,7 +1063,7 @@ pandemonium_array GDAPI pandemonium_string_split_floats_mk(const pandemonium_str
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<float> return_value = self->split_floats_mk(splitters, false);
+	Vector<float> return_value = self->split_floats_mk(splitters);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -870,7 +1073,7 @@ pandemonium_array GDAPI pandemonium_string_split_floats_mk(const pandemonium_str
 	return result;
 }
 
-pandemonium_array GDAPI pandemonium_string_split_floats_mk_allows_empty(const pandemonium_string *p_self, const pandemonium_array *p_splitters) {
+pandemonium_array GDAPI pandemonium_string_split_floats_mk_allow_empty(const pandemonium_string *p_self, const pandemonium_array *p_splitters, const pandemonium_bool p_allow_empty) {
 	const String *self = (const String *)p_self;
 
 	Vector<String> splitters;
@@ -883,7 +1086,7 @@ pandemonium_array GDAPI pandemonium_string_split_floats_mk_allows_empty(const pa
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<float> return_value = self->split_floats_mk(splitters);
+	Vector<float> return_value = self->split_floats_mk(splitters, p_allow_empty);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -899,7 +1102,7 @@ pandemonium_array GDAPI pandemonium_string_split_ints(const pandemonium_string *
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<int> return_value = self->split_ints(*splitter, false);
+	Vector<int> return_value = self->split_ints(*splitter);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -909,13 +1112,13 @@ pandemonium_array GDAPI pandemonium_string_split_ints(const pandemonium_string *
 	return result;
 }
 
-pandemonium_array GDAPI pandemonium_string_split_ints_allows_empty(const pandemonium_string *p_self, const pandemonium_string *p_splitter) {
+pandemonium_array GDAPI pandemonium_string_split_ints_allow_empty(const pandemonium_string *p_self, const pandemonium_string *p_splitter, const pandemonium_bool p_allow_empty) {
 	const String *self = (const String *)p_self;
 	const String *splitter = (const String *)p_splitter;
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<int> return_value = self->split_ints(*splitter);
+	Vector<int> return_value = self->split_ints(*splitter, p_allow_empty);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -938,7 +1141,7 @@ pandemonium_array GDAPI pandemonium_string_split_ints_mk(const pandemonium_strin
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<int> return_value = self->split_ints_mk(splitters, false);
+	Vector<int> return_value = self->split_ints_mk(splitters);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -948,7 +1151,7 @@ pandemonium_array GDAPI pandemonium_string_split_ints_mk(const pandemonium_strin
 	return result;
 }
 
-pandemonium_array GDAPI pandemonium_string_split_ints_mk_allows_empty(const pandemonium_string *p_self, const pandemonium_array *p_splitters) {
+pandemonium_array GDAPI pandemonium_string_split_ints_mk_allow_empty(const pandemonium_string *p_self, const pandemonium_array *p_splitters, const pandemonium_bool p_allow_empty) {
 	const String *self = (const String *)p_self;
 
 	Vector<String> splitters;
@@ -961,22 +1164,7 @@ pandemonium_array GDAPI pandemonium_string_split_ints_mk_allows_empty(const pand
 	pandemonium_array result;
 	memnew_placement(&result, Array);
 	Array *proxy = (Array *)&result;
-	Vector<int> return_value = self->split_ints_mk(splitters);
-
-	proxy->resize(return_value.size());
-	for (int i = 0; i < return_value.size(); i++) {
-		(*proxy)[i] = return_value[i];
-	}
-
-	return result;
-}
-
-pandemonium_array GDAPI pandemonium_string_split_spaces(const pandemonium_string *p_self) {
-	const String *self = (const String *)p_self;
-	pandemonium_array result;
-	memnew_placement(&result, Array);
-	Array *proxy = (Array *)&result;
-	Vector<String> return_value = self->split_spaces();
+	Vector<int> return_value = self->split_ints_mk(splitters, p_allow_empty);
 
 	proxy->resize(return_value.size());
 	for (int i = 0; i < return_value.size(); i++) {
@@ -1160,16 +1348,22 @@ pandemonium_char_string GDAPI pandemonium_string_utf8(const pandemonium_string *
 	return result;
 }
 
-pandemonium_bool GDAPI pandemonium_string_parse_utf8(pandemonium_string *p_self, const char *p_utf8) {
+pandemonium_error GDAPI pandemonium_string_parse_utf8(pandemonium_string *p_self, const char *p_utf8) {
 	String *self = (String *)p_self;
 
-	return self->parse_utf8(p_utf8);
+	return (pandemonium_error)self->parse_utf8(p_utf8);
 }
 
-pandemonium_bool GDAPI pandemonium_string_parse_utf8_with_len(pandemonium_string *p_self, const char *p_utf8, pandemonium_int p_len) {
+pandemonium_error GDAPI pandemonium_string_parse_utf8_with_len(pandemonium_string *p_self, const char *p_utf8, pandemonium_int p_len) {
 	String *self = (String *)p_self;
 
-	return self->parse_utf8(p_utf8, p_len);
+	return (pandemonium_error)self->parse_utf8(p_utf8, p_len);
+}
+
+pandemonium_error GDAPI pandemonium_string_parse_utf8_with_len_skip_cr(pandemonium_string *p_self, const char *p_utf8, pandemonium_int p_len, pandemonium_bool p_skip_cr) {
+	String *self = (String *)p_self;
+
+	return (pandemonium_error)self->parse_utf8(p_utf8, p_len, p_skip_cr);
 }
 
 pandemonium_string GDAPI pandemonium_string_chars_to_utf8(const char *p_utf8) {
@@ -1189,6 +1383,46 @@ pandemonium_string GDAPI pandemonium_string_chars_to_utf8_with_len(const char *p
 pandemonium_int GDAPI pandemonium_string_utf8_byte_length(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 	return self->utf8_byte_length();
+}
+
+pandemonium_char_16_string GDAPI pandemonium_string_utf16(const pandemonium_string *p_self) {
+	const String *self = (const String *)p_self;
+
+	pandemonium_char_16_string result;
+	memnew_placement(&result, Char16String(self->utf16()));
+
+	return result;
+}
+
+pandemonium_error GDAPI pandemonium_string_parse_utf16(pandemonium_string *p_self, const char16_t *p_utf16) {
+	String *self = (String *)p_self;
+
+	return (pandemonium_error)self->parse_utf16(p_utf16);
+}
+
+pandemonium_error GDAPI pandemonium_string_parse_utf16_with_len(pandemonium_string *p_self, const char16_t *p_utf16, pandemonium_int p_len) {
+	String *self = (String *)p_self;
+
+	return (pandemonium_error)self->parse_utf16(p_utf16, p_len);
+}
+
+pandemonium_string GDAPI pandemonium_string_chars_to_utf16(const char16_t *p_utf16) {
+	pandemonium_string result;
+	memnew_placement(&result, String(String::utf16(p_utf16)));
+
+	return result;
+}
+
+pandemonium_string GDAPI pandemonium_string_chars_to_utf16_with_len(const char16_t *p_utf16, pandemonium_int p_len) {
+	pandemonium_string result;
+	memnew_placement(&result, String(String::utf16(p_utf16, p_len)));
+
+	return result;
+}
+
+pandemonium_int GDAPI pandemonium_string_utf16_byte_length(const pandemonium_string *p_self) {
+	const String *self = (const String *)p_self;
+	return self->utf16_byte_length();
 }
 
 uint32_t GDAPI pandemonium_string_hash(const pandemonium_string *p_self) {
@@ -1233,6 +1467,23 @@ uint32_t GDAPI pandemonium_string_hashc_with_len(const pandemonium_char_type *p_
 pandemonium_pool_byte_array GDAPI pandemonium_string_md5_buffer(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 	Vector<uint8_t> tmp_result = self->md5_buffer();
+
+	pandemonium_pool_byte_array result;
+	memnew_placement(&result, PoolByteArray);
+	PoolByteArray *proxy = (PoolByteArray *)&result;
+	PoolByteArray::Write proxy_writer = proxy->write();
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+
+pandemonium_pool_byte_array GDAPI pandemonium_string_sha1_buffer(const pandemonium_string *p_self) {
+	const String *self = (const String *)p_self;
+	Vector<uint8_t> tmp_result = self->sha1_buffer();
 
 	pandemonium_pool_byte_array result;
 	memnew_placement(&result, PoolByteArray);
@@ -1489,6 +1740,14 @@ pandemonium_string GDAPI pandemonium_string_word_wrap(const pandemonium_string *
 	return result;
 }
 
+pandemonium_error GDAPI pandemonium_string_parse_url(const pandemonium_string *p_self, pandemonium_string *r_scheme, pandemonium_string *r_host, pandemonium_int *r_port, pandemonium_string *r_path) {
+	const String *self = (const String *)p_self;
+	String *scheme = (String *)r_scheme;
+	String *host = (String *)r_host;
+	String *path = (String *)r_path;
+	return (pandemonium_error)self->parse_url(*scheme, *host, *r_port, *path);
+}
+
 pandemonium_string GDAPI pandemonium_string_xml_escape(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 	pandemonium_string result;
@@ -1647,16 +1906,62 @@ pandemonium_string GDAPI pandemonium_string_rstrip(const pandemonium_string *p_s
 	return result;
 }
 
-pandemonium_pool_string_array GDAPI pandemonium_string_rsplit(const pandemonium_string *p_self, const pandemonium_string *p_divisor,
-		const pandemonium_bool p_allow_empty, const pandemonium_int p_maxsplit) {
+pandemonium_pool_byte_array GDAPI to_ascii_buffer(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
-	String *divisor = (String *)p_divisor;
+	Vector<uint8_t> tmp_result = self->to_ascii_buffer();
 
-	pandemonium_pool_string_array result;
-	memnew_placement(&result, PoolStringArray);
-	PoolStringArray *proxy = (PoolStringArray *)&result;
-	PoolStringArray::Write proxy_writer = proxy->write();
-	Vector<String> tmp_result = self->rsplit(*divisor, p_allow_empty, p_maxsplit);
+	pandemonium_pool_byte_array result;
+	memnew_placement(&result, PoolByteArray);
+	PoolByteArray *proxy = (PoolByteArray *)&result;
+	PoolByteArray::Write proxy_writer = proxy->write();
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+pandemonium_pool_byte_array GDAPI to_utf8_buffer(const pandemonium_string *p_self) {
+	const String *self = (const String *)p_self;
+	Vector<uint8_t> tmp_result = self->to_utf8_buffer();
+
+	pandemonium_pool_byte_array result;
+	memnew_placement(&result, PoolByteArray);
+	PoolByteArray *proxy = (PoolByteArray *)&result;
+	PoolByteArray::Write proxy_writer = proxy->write();
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+pandemonium_pool_byte_array GDAPI to_utf16_buffer(const pandemonium_string *p_self) {
+	const String *self = (const String *)p_self;
+	Vector<uint8_t> tmp_result = self->to_utf16_buffer();
+
+	pandemonium_pool_byte_array result;
+	memnew_placement(&result, PoolByteArray);
+	PoolByteArray *proxy = (PoolByteArray *)&result;
+	PoolByteArray::Write proxy_writer = proxy->write();
+	proxy->resize(tmp_result.size());
+
+	for (int i = 0; i < tmp_result.size(); i++) {
+		proxy_writer[i] = tmp_result[i];
+	}
+
+	return result;
+}
+pandemonium_pool_byte_array GDAPI to_utf32_buffer(const pandemonium_string *p_self) {
+	const String *self = (const String *)p_self;
+	Vector<uint8_t> tmp_result = self->to_utf32_buffer();
+
+	pandemonium_pool_byte_array result;
+	memnew_placement(&result, PoolByteArray);
+	PoolByteArray *proxy = (PoolByteArray *)&result;
+	PoolByteArray::Write proxy_writer = proxy->write();
 	proxy->resize(tmp_result.size());
 
 	for (int i = 0; i < tmp_result.size(); i++) {
@@ -1677,15 +1982,29 @@ void GDAPI pandemonium_string_new_copy(pandemonium_string *r_dest, const pandemo
 	memnew_placement(dest, String(*src));
 }
 
-void GDAPI pandemonium_string_new_with_wide_string(pandemonium_string *r_dest, const wchar_t *p_contents, const int p_size) {
+void GDAPI pandemonium_string_new_char(pandemonium_string *r_dest, const char *p_contents) {
+	String *dest = (String *)r_dest;
+	memnew_placement(dest, String(p_contents));
+}
+void GDAPI pandemonium_string_new_char_clip_to_len(pandemonium_string *r_dest, const char *p_contents, const int p_size) {
 	String *dest = (String *)r_dest;
 	memnew_placement(dest, String(p_contents, p_size));
 }
-
-void GDAPI pandemonium_char_string_destroy(pandemonium_char_string *p_cs) {
-	CharString *cs = (CharString *)p_cs;
-
-	cs->~CharString();
+void GDAPI pandemonium_string_new_wchar(pandemonium_string *r_dest, const wchar_t *p_contents) {
+	String *dest = (String *)r_dest;
+	memnew_placement(dest, String(p_contents));
+}
+void GDAPI pandemonium_string_new_wchar_clip_to_len(pandemonium_string *r_dest, const wchar_t *p_contents, const int p_size) {
+	String *dest = (String *)r_dest;
+	memnew_placement(dest, String(p_contents, p_size));
+}
+void GDAPI pandemonium_string_newc(pandemonium_string *r_dest, const pandemonium_char_type *p_contents) {
+	String *dest = (String *)r_dest;
+	memnew_placement(dest, String(p_contents));
+}
+void GDAPI pandemonium_string_newc_clip_to_len(pandemonium_string *r_dest, const pandemonium_char_type *p_contents, const int p_size) {
+	String *dest = (String *)r_dest;
+	memnew_placement(dest, String(p_contents, p_size));
 }
 
 #ifdef __cplusplus
