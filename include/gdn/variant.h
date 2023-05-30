@@ -287,9 +287,12 @@ pandemonium_pool_int_array GDAPI pandemonium_variant_as_pool_int_array(const pan
 pandemonium_pool_real_array GDAPI pandemonium_variant_as_pool_real_array(const pandemonium_variant *p_self);
 pandemonium_pool_string_array GDAPI pandemonium_variant_as_pool_string_array(const pandemonium_variant *p_self);
 pandemonium_pool_vector2_array GDAPI pandemonium_variant_as_pool_vector2_array(const pandemonium_variant *p_self);
+pandemonium_pool_vector2i_array GDAPI pandemonium_variant_as_pool_vector2i_array(const pandemonium_variant *p_self);
 pandemonium_pool_vector3_array GDAPI pandemonium_variant_as_pool_vector3_array(const pandemonium_variant *p_self);
+pandemonium_pool_vector3i_array GDAPI pandemonium_variant_as_pool_vector3i_array(const pandemonium_variant *p_self);
+pandemonium_pool_vector4_array GDAPI pandemonium_variant_as_pool_vector4_array(const pandemonium_variant *p_self);
+pandemonium_pool_vector4i_array GDAPI pandemonium_variant_as_pool_vector4i_array(const pandemonium_variant *p_self);
 pandemonium_pool_color_array GDAPI pandemonium_variant_as_pool_color_array(const pandemonium_variant *p_self);
-//add the new ones
 
 void GDAPI pandemonium_variant_new_copy(pandemonium_variant *r_dest, const pandemonium_variant *p_src);
 
@@ -319,9 +322,12 @@ void GDAPI pandemonium_variant_new_pool_int_array(pandemonium_variant *r_dest, c
 void GDAPI pandemonium_variant_new_pool_real_array(pandemonium_variant *r_dest, const pandemonium_pool_real_array *p_pra);
 void GDAPI pandemonium_variant_new_pool_string_array(pandemonium_variant *r_dest, const pandemonium_pool_string_array *p_psa);
 void GDAPI pandemonium_variant_new_pool_vector2_array(pandemonium_variant *r_dest, const pandemonium_pool_vector2_array *p_pv2a);
+void GDAPI pandemonium_variant_new_pool_vector2i_array(pandemonium_variant *r_dest, const pandemonium_pool_vector2i_array *p_pv2ia);
 void GDAPI pandemonium_variant_new_pool_vector3_array(pandemonium_variant *r_dest, const pandemonium_pool_vector3_array *p_pv3a);
+void GDAPI pandemonium_variant_new_pool_vector3i_array(pandemonium_variant *r_dest, const pandemonium_pool_vector3i_array *p_pv3ia);
+void GDAPI pandemonium_variant_new_pool_vector4_array(pandemonium_variant *r_dest, const pandemonium_pool_vector4_array *p_pv4a);
+void GDAPI pandemonium_variant_new_pool_vector4i_array(pandemonium_variant *r_dest, const pandemonium_pool_vector4i_array *p_pv4ia);
 void GDAPI pandemonium_variant_new_pool_color_array(pandemonium_variant *r_dest, const pandemonium_pool_color_array *p_pca);
-//add the new ones
 
 void GDAPI pandemonium_variant_destroy(pandemonium_variant *p_self);
 

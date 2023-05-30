@@ -271,10 +271,34 @@ void GDAPI pandemonium_variant_new_pool_vector2_array(pandemonium_variant *r_des
 	memnew_placement_custom(dest, Variant, Variant(*pv2a));
 }
 
+void GDAPI pandemonium_variant_new_pool_vector2i_array(pandemonium_variant *r_dest, const pandemonium_pool_vector2i_array *p_pv2ia) {
+	Variant *dest = (Variant *)r_dest;
+	PoolVector2iArray *pv2ia = (PoolVector2iArray *)p_pv2ia;
+	memnew_placement_custom(dest, Variant, Variant(*pv2ia));
+}
+
 void GDAPI pandemonium_variant_new_pool_vector3_array(pandemonium_variant *r_dest, const pandemonium_pool_vector3_array *p_pv3a) {
 	Variant *dest = (Variant *)r_dest;
 	PoolVector3Array *pv3a = (PoolVector3Array *)p_pv3a;
 	memnew_placement_custom(dest, Variant, Variant(*pv3a));
+}
+
+void GDAPI pandemonium_variant_new_pool_vector3i_array(pandemonium_variant *r_dest, const pandemonium_pool_vector3i_array *p_pv3ia) {
+	Variant *dest = (Variant *)r_dest;
+	PoolVector3iArray *pv3ia = (PoolVector3iArray *)p_pv3ia;
+	memnew_placement_custom(dest, Variant, Variant(*pv3ia));
+}
+
+void GDAPI pandemonium_variant_new_pool_vector4_array(pandemonium_variant *r_dest, const pandemonium_pool_vector4_array *p_pv4a) {
+	Variant *dest = (Variant *)r_dest;
+	PoolVector4Array *pv4a = (PoolVector4Array *)p_pv4a;
+	memnew_placement_custom(dest, Variant, Variant(*pv4a));
+}
+
+void GDAPI pandemonium_variant_new_pool_vector4i_array(pandemonium_variant *r_dest, const pandemonium_pool_vector4i_array *p_pv4ia) {
+	Variant *dest = (Variant *)r_dest;
+	PoolVector4iArray *pv4ia = (PoolVector4iArray *)p_pv4ia;
+	memnew_placement_custom(dest, Variant, Variant(*pv4ia));
 }
 
 void GDAPI pandemonium_variant_new_pool_color_array(pandemonium_variant *r_dest, const pandemonium_pool_color_array *p_pca) {
@@ -475,11 +499,47 @@ pandemonium_pool_vector2_array GDAPI pandemonium_variant_as_pool_vector2_array(c
 	return raw_dest;
 }
 
+pandemonium_pool_vector2i_array GDAPI pandemonium_variant_as_pool_vector2i_array(const pandemonium_variant *p_self) {
+	pandemonium_pool_vector2i_array raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	PoolVector2iArray *dest = (PoolVector2iArray *)&raw_dest;
+	memnew_placement(dest, PoolVector2iArray(self->operator PoolVector2iArray())); // operator = is overloaded by PoolVector2Array
+	*dest = *self;
+	return raw_dest;
+}
+
 pandemonium_pool_vector3_array GDAPI pandemonium_variant_as_pool_vector3_array(const pandemonium_variant *p_self) {
 	pandemonium_pool_vector3_array raw_dest;
 	const Variant *self = (const Variant *)p_self;
 	PoolVector3Array *dest = (PoolVector3Array *)&raw_dest;
 	memnew_placement(dest, PoolVector3Array(self->operator PoolVector3Array())); // operator = is overloaded by PoolVector3Array
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_pool_vector3i_array GDAPI pandemonium_variant_as_pool_vector3i_array(const pandemonium_variant *p_self) {
+	pandemonium_pool_vector3i_array raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	PoolVector3iArray *dest = (PoolVector3iArray *)&raw_dest;
+	memnew_placement(dest, PoolVector3iArray(self->operator PoolVector3iArray())); // operator = is overloaded by PoolVector3Array
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_pool_vector4_array GDAPI pandemonium_variant_as_pool_vector4_array(const pandemonium_variant *p_self) {
+	pandemonium_pool_vector4_array raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	PoolVector4Array *dest = (PoolVector4Array *)&raw_dest;
+	memnew_placement(dest, PoolVector4Array(self->operator PoolVector4Array())); // operator = is overloaded by PoolVector3Array
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_pool_vector4i_array GDAPI pandemonium_variant_as_pool_vector4i_array(const pandemonium_variant *p_self) {
+	pandemonium_pool_vector4i_array raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	PoolVector4iArray *dest = (PoolVector4iArray *)&raw_dest;
+	memnew_placement(dest, PoolVector4iArray(self->operator PoolVector4iArray())); // operator = is overloaded by PoolVector3Array
 	*dest = *self;
 	return raw_dest;
 }
