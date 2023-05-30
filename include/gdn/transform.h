@@ -56,6 +56,7 @@ typedef struct {
 #include <gdn/variant.h>
 #include <gdn/vector3.h>
 #include <gdn/vector3i.h>
+#include <gdn/quaternion.h>
 
 #ifdef __cplusplus
 extern "C" {

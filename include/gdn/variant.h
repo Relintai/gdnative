@@ -169,15 +169,22 @@ typedef enum pandemonium_variant_operator {
 #include <gdn/node_path.h>
 #include <gdn/plane.h>
 #include <gdn/pool_arrays.h>
+#include <gdn/projection.h>
 #include <gdn/quaternion.h>
 #include <gdn/rect2.h>
+#include <gdn/rect2i.h>
 #include <gdn/rid.h>
 #include <gdn/string.h>
+#include <gdn/string_name.h>
 #include <gdn/transform.h>
 #include <gdn/transform2d.h>
 #include <gdn/variant.h>
 #include <gdn/vector2.h>
+#include <gdn/vector2i.h>
 #include <gdn/vector3.h>
+#include <gdn/vector3i.h>
+#include <gdn/vector4.h>
+#include <gdn/vector4i.h>
 
 #include <gdn/gdnative.h>
 
@@ -267,15 +274,22 @@ uint64_t GDAPI pandemonium_variant_as_uint(const pandemonium_variant *p_self);
 int64_t GDAPI pandemonium_variant_as_int(const pandemonium_variant *p_self);
 double GDAPI pandemonium_variant_as_real(const pandemonium_variant *p_self);
 pandemonium_string GDAPI pandemonium_variant_as_string(const pandemonium_variant *p_self);
+pandemonium_string_name GDAPI pandemonium_variant_as_string_name(const pandemonium_variant *p_self);
 pandemonium_vector2 GDAPI pandemonium_variant_as_vector2(const pandemonium_variant *p_self);
+pandemonium_vector2i GDAPI pandemonium_variant_as_vector2i(const pandemonium_variant *p_self);
 pandemonium_rect2 GDAPI pandemonium_variant_as_rect2(const pandemonium_variant *p_self);
+pandemonium_rect2i GDAPI pandemonium_variant_as_rect2i(const pandemonium_variant *p_self);
 pandemonium_vector3 GDAPI pandemonium_variant_as_vector3(const pandemonium_variant *p_self);
+pandemonium_vector3i GDAPI pandemonium_variant_as_vector3i(const pandemonium_variant *p_self);
+pandemonium_vector4 GDAPI pandemonium_variant_as_vector4(const pandemonium_variant *p_self);
+pandemonium_vector4i GDAPI pandemonium_variant_as_vector4i(const pandemonium_variant *p_self);
 pandemonium_transform2d GDAPI pandemonium_variant_as_transform2d(const pandemonium_variant *p_self);
 pandemonium_plane GDAPI pandemonium_variant_as_plane(const pandemonium_variant *p_self);
 pandemonium_quaternion GDAPI pandemonium_variant_as_quaternion(const pandemonium_variant *p_self);
 pandemonium_aabb GDAPI pandemonium_variant_as_aabb(const pandemonium_variant *p_self);
 pandemonium_basis GDAPI pandemonium_variant_as_basis(const pandemonium_variant *p_self);
 pandemonium_transform GDAPI pandemonium_variant_as_transform(const pandemonium_variant *p_self);
+pandemonium_projection GDAPI pandemonium_variant_as_projection(const pandemonium_variant *p_self);
 pandemonium_color GDAPI pandemonium_variant_as_color(const pandemonium_variant *p_self);
 pandemonium_node_path GDAPI pandemonium_variant_as_node_path(const pandemonium_variant *p_self);
 pandemonium_rid GDAPI pandemonium_variant_as_rid(const pandemonium_variant *p_self);
@@ -302,15 +316,22 @@ void GDAPI pandemonium_variant_new_uint(pandemonium_variant *r_dest, const uint6
 void GDAPI pandemonium_variant_new_int(pandemonium_variant *r_dest, const int64_t p_i);
 void GDAPI pandemonium_variant_new_real(pandemonium_variant *r_dest, const double p_r);
 void GDAPI pandemonium_variant_new_string(pandemonium_variant *r_dest, const pandemonium_string *p_s);
+void GDAPI pandemonium_variant_new_string_name(pandemonium_variant *r_dest, const pandemonium_string_name *p_s);
 void GDAPI pandemonium_variant_new_vector2(pandemonium_variant *r_dest, const pandemonium_vector2 *p_v2);
+void GDAPI pandemonium_variant_new_vector2i(pandemonium_variant *r_dest, const pandemonium_vector2 *p_v2i);
 void GDAPI pandemonium_variant_new_rect2(pandemonium_variant *r_dest, const pandemonium_rect2 *p_rect2);
+void GDAPI pandemonium_variant_new_rect2i(pandemonium_variant *r_dest, const pandemonium_rect2i *p_rect2i);
 void GDAPI pandemonium_variant_new_vector3(pandemonium_variant *r_dest, const pandemonium_vector3 *p_v3);
+void GDAPI pandemonium_variant_new_vector3i(pandemonium_variant *r_dest, const pandemonium_vector3i *p_v3i);
+void GDAPI pandemonium_variant_new_vector4(pandemonium_variant *r_dest, const pandemonium_vector4 *p_v4);
+void GDAPI pandemonium_variant_new_vector4i(pandemonium_variant *r_dest, const pandemonium_vector4i *p_v4i);
 void GDAPI pandemonium_variant_new_transform2d(pandemonium_variant *r_dest, const pandemonium_transform2d *p_t2d);
 void GDAPI pandemonium_variant_new_plane(pandemonium_variant *r_dest, const pandemonium_plane *p_plane);
 void GDAPI pandemonium_variant_new_quaternion(pandemonium_variant *r_dest, const pandemonium_quaternion *p_quaternion);
 void GDAPI pandemonium_variant_new_aabb(pandemonium_variant *r_dest, const pandemonium_aabb *p_aabb);
 void GDAPI pandemonium_variant_new_basis(pandemonium_variant *r_dest, const pandemonium_basis *p_basis);
 void GDAPI pandemonium_variant_new_transform(pandemonium_variant *r_dest, const pandemonium_transform *p_trans);
+void GDAPI pandemonium_variant_new_projection(pandemonium_variant *r_dest, const pandemonium_projection *p_proj);
 void GDAPI pandemonium_variant_new_color(pandemonium_variant *r_dest, const pandemonium_color *p_color);
 void GDAPI pandemonium_variant_new_node_path(pandemonium_variant *r_dest, const pandemonium_node_path *p_np);
 void GDAPI pandemonium_variant_new_rid(pandemonium_variant *r_dest, const pandemonium_rid *p_rid);

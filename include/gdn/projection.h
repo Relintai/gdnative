@@ -56,6 +56,8 @@ typedef struct {
 #include <gdn/vector2.h>
 #include <gdn/vector3.h>
 #include <gdn/vector4.h>
+#include <gdn/rect2.h>
+#include <gdn/transform.h>
 
 #ifdef __cplusplus
 extern "C" {

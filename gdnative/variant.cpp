@@ -137,10 +137,22 @@ void GDAPI pandemonium_variant_new_string(pandemonium_variant *r_dest, const pan
 	memnew_placement_custom(dest, Variant, Variant(*s));
 }
 
+void GDAPI pandemonium_variant_new_string_name(pandemonium_variant *r_dest, const pandemonium_string_name *p_s) {
+	Variant *dest = (Variant *)r_dest;
+	StringName *s = (StringName *)p_s;
+	memnew_placement_custom(dest, Variant, Variant(*s));
+}
+
 void GDAPI pandemonium_variant_new_vector2(pandemonium_variant *r_dest, const pandemonium_vector2 *p_v2) {
 	Variant *dest = (Variant *)r_dest;
 	Vector2 *v2 = (Vector2 *)p_v2;
 	memnew_placement_custom(dest, Variant, Variant(*v2));
+}
+
+void GDAPI pandemonium_variant_new_vector2i(pandemonium_variant *r_dest, const pandemonium_vector2 *p_v2i) {
+	Variant *dest = (Variant *)r_dest;
+	Vector2i *v2i = (Vector2i *)p_v2i;
+	memnew_placement_custom(dest, Variant, Variant(*v2i));
 }
 
 void GDAPI pandemonium_variant_new_rect2(pandemonium_variant *r_dest, const pandemonium_rect2 *p_rect2) {
@@ -149,10 +161,34 @@ void GDAPI pandemonium_variant_new_rect2(pandemonium_variant *r_dest, const pand
 	memnew_placement_custom(dest, Variant, Variant(*rect2));
 }
 
+void GDAPI pandemonium_variant_new_rect2i(pandemonium_variant *r_dest, const pandemonium_rect2i *p_rect2i) {
+	Variant *dest = (Variant *)r_dest;
+	Rect2i *rect2i = (Rect2i *)p_rect2i;
+	memnew_placement_custom(dest, Variant, Variant(*rect2i));
+}
+
 void GDAPI pandemonium_variant_new_vector3(pandemonium_variant *r_dest, const pandemonium_vector3 *p_v3) {
 	Variant *dest = (Variant *)r_dest;
 	Vector3 *v3 = (Vector3 *)p_v3;
 	memnew_placement_custom(dest, Variant, Variant(*v3));
+}
+
+void GDAPI pandemonium_variant_new_vector3i(pandemonium_variant *r_dest, const pandemonium_vector3i *p_v3i) {
+	Variant *dest = (Variant *)r_dest;
+	Vector3i *v3i = (Vector3i *)p_v3i;
+	memnew_placement_custom(dest, Variant, Variant(*v3i));
+}
+
+void GDAPI pandemonium_variant_new_vector4(pandemonium_variant *r_dest, const pandemonium_vector4 *p_v4) {
+	Variant *dest = (Variant *)r_dest;
+	Vector4 *v4 = (Vector4 *)p_v4;
+	memnew_placement_custom(dest, Variant, Variant(*v4));
+}
+
+void GDAPI pandemonium_variant_new_vector4i(pandemonium_variant *r_dest, const pandemonium_vector4i *p_v4i) {
+	Variant *dest = (Variant *)r_dest;
+	Vector4i *v4i = (Vector4i *)p_v4i;
+	memnew_placement_custom(dest, Variant, Variant(*v4i));
 }
 
 void GDAPI pandemonium_variant_new_transform2d(pandemonium_variant *r_dest, const pandemonium_transform2d *p_t2d) {
@@ -189,6 +225,12 @@ void GDAPI pandemonium_variant_new_transform(pandemonium_variant *r_dest, const 
 	Variant *dest = (Variant *)r_dest;
 	Transform *trans = (Transform *)p_trans;
 	memnew_placement_custom(dest, Variant, Variant(*trans));
+}
+
+void GDAPI pandemonium_variant_new_projection(pandemonium_variant *r_dest, const pandemonium_projection *p_proj) {
+	Variant *dest = (Variant *)r_dest;
+	Projection *proj = (Projection *)p_proj;
+	memnew_placement_custom(dest, Variant, Variant(*proj));
 }
 
 void GDAPI pandemonium_variant_new_color(pandemonium_variant *r_dest, const pandemonium_color *p_color) {
@@ -335,10 +377,26 @@ pandemonium_string GDAPI pandemonium_variant_as_string(const pandemonium_variant
 	return raw_dest;
 }
 
+pandemonium_string_name GDAPI pandemonium_variant_as_string_name(const pandemonium_variant *p_self) {
+	pandemonium_string_name raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	StringName *dest = (StringName *)&raw_dest;
+	memnew_placement(dest, StringName(self->operator StringName())); // operator = is overloaded by String
+	return raw_dest;
+}
+
 pandemonium_vector2 GDAPI pandemonium_variant_as_vector2(const pandemonium_variant *p_self) {
 	pandemonium_vector2 raw_dest;
 	const Variant *self = (const Variant *)p_self;
 	Vector2 *dest = (Vector2 *)&raw_dest;
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_vector2i GDAPI pandemonium_variant_as_vector2i(const pandemonium_variant *p_self) {
+	pandemonium_vector2i raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	Vector2i *dest = (Vector2i *)&raw_dest;
 	*dest = *self;
 	return raw_dest;
 }
@@ -351,10 +409,42 @@ pandemonium_rect2 GDAPI pandemonium_variant_as_rect2(const pandemonium_variant *
 	return raw_dest;
 }
 
+pandemonium_rect2i GDAPI pandemonium_variant_as_rect2i(const pandemonium_variant *p_self) {
+	pandemonium_rect2i raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	Rect2i *dest = (Rect2i *)&raw_dest;
+	*dest = *self;
+	return raw_dest;
+}
+
 pandemonium_vector3 GDAPI pandemonium_variant_as_vector3(const pandemonium_variant *p_self) {
 	pandemonium_vector3 raw_dest;
 	const Variant *self = (const Variant *)p_self;
 	Vector3 *dest = (Vector3 *)&raw_dest;
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_vector3i GDAPI pandemonium_variant_as_vector3i(const pandemonium_variant *p_self) {
+	pandemonium_vector3i raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	Vector3i *dest = (Vector3i *)&raw_dest;
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_vector4 GDAPI pandemonium_variant_as_vector4(const pandemonium_variant *p_self) {
+	pandemonium_vector4 raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	Vector4 *dest = (Vector4 *)&raw_dest;
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_vector4i GDAPI pandemonium_variant_as_vector4i(const pandemonium_variant *p_self) {
+	pandemonium_vector4i raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	Vector4i *dest = (Vector4i *)&raw_dest;
 	*dest = *self;
 	return raw_dest;
 }
@@ -403,6 +493,14 @@ pandemonium_transform GDAPI pandemonium_variant_as_transform(const pandemonium_v
 	pandemonium_transform raw_dest;
 	const Variant *self = (const Variant *)p_self;
 	Transform *dest = (Transform *)&raw_dest;
+	*dest = *self;
+	return raw_dest;
+}
+
+pandemonium_projection GDAPI pandemonium_variant_as_projection(const pandemonium_variant *p_self) {
+	pandemonium_projection raw_dest;
+	const Variant *self = (const Variant *)p_self;
+	Projection *dest = (Projection *)&raw_dest;
 	*dest = *self;
 	return raw_dest;
 }
