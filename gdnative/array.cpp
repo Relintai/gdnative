@@ -55,57 +55,9 @@ void GDAPI pandemonium_array_new_copy(pandemonium_array *r_dest, const pandemoni
 	memnew_placement(dest, Array(*src));
 }
 
-void GDAPI pandemonium_array_new_pool_color_array(pandemonium_array *r_dest, const pandemonium_pool_color_array *p_pca) {
+void GDAPI pandemonium_array_new_pool_byte_array(pandemonium_array *r_dest, const pandemonium_pool_byte_array *p_pba) {
 	Array *dest = (Array *)r_dest;
-	PoolVector<Color> *pca = (PoolVector<Color> *)p_pca;
-	memnew_placement(dest, Array);
-	dest->resize(pca->size());
-
-	for (int i = 0; i < dest->size(); i++) {
-		Variant v = pca->operator[](i);
-		dest->operator[](i) = v;
-	}
-}
-
-void GDAPI pandemonium_array_new_pool_vector3_array(pandemonium_array *r_dest, const pandemonium_pool_vector3_array *p_pv3a) {
-	Array *dest = (Array *)r_dest;
-	PoolVector<Vector3> *pca = (PoolVector<Vector3> *)p_pv3a;
-	memnew_placement(dest, Array);
-	dest->resize(pca->size());
-
-	for (int i = 0; i < dest->size(); i++) {
-		Variant v = pca->operator[](i);
-		dest->operator[](i) = v;
-	}
-}
-
-void GDAPI pandemonium_array_new_pool_vector2_array(pandemonium_array *r_dest, const pandemonium_pool_vector2_array *p_pv2a) {
-	Array *dest = (Array *)r_dest;
-	PoolVector<Vector2> *pca = (PoolVector<Vector2> *)p_pv2a;
-	memnew_placement(dest, Array);
-	dest->resize(pca->size());
-
-	for (int i = 0; i < dest->size(); i++) {
-		Variant v = pca->operator[](i);
-		dest->operator[](i) = v;
-	}
-}
-
-void GDAPI pandemonium_array_new_pool_string_array(pandemonium_array *r_dest, const pandemonium_pool_string_array *p_psa) {
-	Array *dest = (Array *)r_dest;
-	PoolVector<String> *pca = (PoolVector<String> *)p_psa;
-	memnew_placement(dest, Array);
-	dest->resize(pca->size());
-
-	for (int i = 0; i < dest->size(); i++) {
-		Variant v = pca->operator[](i);
-		dest->operator[](i) = v;
-	}
-}
-
-void GDAPI pandemonium_array_new_pool_real_array(pandemonium_array *r_dest, const pandemonium_pool_real_array *p_pra) {
-	Array *dest = (Array *)r_dest;
-	PoolVector<pandemonium_real> *pca = (PoolVector<pandemonium_real> *)p_pra;
+	PoolVector<uint8_t> *pca = (PoolVector<uint8_t> *)p_pba;
 	memnew_placement(dest, Array);
 	dest->resize(pca->size());
 
@@ -127,9 +79,105 @@ void GDAPI pandemonium_array_new_pool_int_array(pandemonium_array *r_dest, const
 	}
 }
 
-void GDAPI pandemonium_array_new_pool_byte_array(pandemonium_array *r_dest, const pandemonium_pool_byte_array *p_pba) {
+void GDAPI pandemonium_array_new_pool_real_array(pandemonium_array *r_dest, const pandemonium_pool_real_array *p_pra) {
 	Array *dest = (Array *)r_dest;
-	PoolVector<uint8_t> *pca = (PoolVector<uint8_t> *)p_pba;
+	PoolVector<pandemonium_real> *pca = (PoolVector<pandemonium_real> *)p_pra;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_string_array(pandemonium_array *r_dest, const pandemonium_pool_string_array *p_psa) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<String> *pca = (PoolVector<String> *)p_psa;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_vector2_array(pandemonium_array *r_dest, const pandemonium_pool_vector2_array *p_pv2a) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<Vector2> *pca = (PoolVector<Vector2> *)p_pv2a;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_vector2i_array(pandemonium_array *r_dest, const pandemonium_pool_vector2i_array *p_pv2ia) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<Vector2i> *pca = (PoolVector<Vector2i> *)p_pv2ia;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_vector3_array(pandemonium_array *r_dest, const pandemonium_pool_vector3_array *p_pv3a) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<Vector3> *pca = (PoolVector<Vector3> *)p_pv3a;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_vector3i_array(pandemonium_array *r_dest, const pandemonium_pool_vector3i_array *p_pv3ia) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<Vector3i> *pca = (PoolVector<Vector3i> *)p_pv3ia;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_vector4_array(pandemonium_array *r_dest, const pandemonium_pool_vector4_array *p_pv4a) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<Vector4> *pca = (PoolVector<Vector4> *)p_pv4a;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_vector4i_array(pandemonium_array *r_dest, const pandemonium_pool_vector4i_array *p_pv4ia) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<Vector4i> *pca = (PoolVector<Vector4i> *)p_pv4ia;
+	memnew_placement(dest, Array);
+	dest->resize(pca->size());
+
+	for (int i = 0; i < dest->size(); i++) {
+		Variant v = pca->operator[](i);
+		dest->operator[](i) = v;
+	}
+}
+
+void GDAPI pandemonium_array_new_pool_color_array(pandemonium_array *r_dest, const pandemonium_pool_color_array *p_pca) {
+	Array *dest = (Array *)r_dest;
+	PoolVector<Color> *pca = (PoolVector<Color> *)p_pca;
 	memnew_placement(dest, Array);
 	dest->resize(pca->size());
 
@@ -190,10 +238,10 @@ pandemonium_bool GDAPI pandemonium_array_deep_equal_recursion_count(const pandem
 	const Array *array = (const Array *)p_array;
 	return self->deep_equal(*array, p_recursion_count);
 }
-void GDAPI pandemonium_array_operator_equal(pandemonium_array *p_self, const pandemonium_array *p_array) {
+pandemonium_bool GDAPI pandemonium_array_operator_equals(pandemonium_array *p_self, const pandemonium_array *p_array) {
 	Array *self = (Array *)p_self;
 	const Array *array = (const Array *)p_array;
-	self->operator=(*array);
+	return self->operator==(*array);
 }
 
 pandemonium_int GDAPI pandemonium_array_count(const pandemonium_array *p_self, const pandemonium_variant *p_value) {

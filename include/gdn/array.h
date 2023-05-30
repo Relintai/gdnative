@@ -72,7 +72,7 @@ void GDAPI pandemonium_array_clear(pandemonium_array *p_self);
 
 pandemonium_bool GDAPI pandemonium_array_deep_equal(const pandemonium_array *p_self, const pandemonium_array *p_array);
 pandemonium_bool GDAPI pandemonium_array_deep_equal_recursion_count(const pandemonium_array *p_self, const pandemonium_array *p_array, pandemonium_int p_recursion_count);
-void GDAPI pandemonium_array_operator_equal(pandemonium_array *p_self, const pandemonium_array *p_array);
+pandemonium_bool GDAPI pandemonium_array_operator_equals(pandemonium_array *p_self, const pandemonium_array *p_array);
 
 pandemonium_int GDAPI pandemonium_array_hash(const pandemonium_array *p_self);
 //bool operator=(const Array &p_array) const;
@@ -125,15 +125,17 @@ pandemonium_variant GDAPI pandemonium_array_max(const pandemonium_array *p_self)
 
 void GDAPI pandemonium_array_new(pandemonium_array *r_dest);
 void GDAPI pandemonium_array_new_copy(pandemonium_array *r_dest, const pandemonium_array *p_src);
-void GDAPI pandemonium_array_new_pool_color_array(pandemonium_array *r_dest, const pandemonium_pool_color_array *p_pca);
-void GDAPI pandemonium_array_new_pool_vector3_array(pandemonium_array *r_dest, const pandemonium_pool_vector3_array *p_pv3a);
-void GDAPI pandemonium_array_new_pool_vector2_array(pandemonium_array *r_dest, const pandemonium_pool_vector2_array *p_pv2a);
-void GDAPI pandemonium_array_new_pool_string_array(pandemonium_array *r_dest, const pandemonium_pool_string_array *p_psa);
-void GDAPI pandemonium_array_new_pool_real_array(pandemonium_array *r_dest, const pandemonium_pool_real_array *p_pra);
-void GDAPI pandemonium_array_new_pool_int_array(pandemonium_array *r_dest, const pandemonium_pool_int_array *p_pia);
 void GDAPI pandemonium_array_new_pool_byte_array(pandemonium_array *r_dest, const pandemonium_pool_byte_array *p_pba);
-//Add the new ones
-
+void GDAPI pandemonium_array_new_pool_int_array(pandemonium_array *r_dest, const pandemonium_pool_int_array *p_pia);
+void GDAPI pandemonium_array_new_pool_real_array(pandemonium_array *r_dest, const pandemonium_pool_real_array *p_pra);
+void GDAPI pandemonium_array_new_pool_string_array(pandemonium_array *r_dest, const pandemonium_pool_string_array *p_psa);
+void GDAPI pandemonium_array_new_pool_vector2_array(pandemonium_array *r_dest, const pandemonium_pool_vector2_array *p_pv2a);
+void GDAPI pandemonium_array_new_pool_vector2i_array(pandemonium_array *r_dest, const pandemonium_pool_vector2i_array *p_pv2a);
+void GDAPI pandemonium_array_new_pool_vector3_array(pandemonium_array *r_dest, const pandemonium_pool_vector3_array *p_pv3a);
+void GDAPI pandemonium_array_new_pool_vector3i_array(pandemonium_array *r_dest, const pandemonium_pool_vector3i_array *p_pv3a);
+void GDAPI pandemonium_array_new_pool_vector4_array(pandemonium_array *r_dest, const pandemonium_pool_vector4_array *p_pv3a);
+void GDAPI pandemonium_array_new_pool_vector4i_array(pandemonium_array *r_dest, const pandemonium_pool_vector4i_array *p_pv3a);
+void GDAPI pandemonium_array_new_pool_color_array(pandemonium_array *r_dest, const pandemonium_pool_color_array *p_pca);
 void GDAPI pandemonium_array_destroy(pandemonium_array *p_self);
 
 #ifdef __cplusplus
