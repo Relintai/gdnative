@@ -160,6 +160,10 @@ typedef void pandemonium_object;
 
 #include <gdn/rect2.h>
 
+////// Rect2i
+
+#include <gdn/rect2i.h>
+
 ////// Vector3
 
 #include <gdn/vector3.h>
