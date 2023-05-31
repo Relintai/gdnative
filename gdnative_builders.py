@@ -13,7 +13,7 @@ def _spaced(e):
 
 def _build_gdnative_api_struct_header(api):
     gdnative_api_init_macro = ["\textern const pandemonium_gdnative_core_api_struct *_gdnative_wrapper_api_struct;"]
-
+    
     for ext in api["extensions"]:
         name = ext["name"]
         gdnative_api_init_macro.append(
@@ -95,6 +95,7 @@ def _build_gdnative_api_struct_header(api):
 
     def generate_core_extension_struct(core):
         ret_val = []
+
         if core["next"]:
             ret_val += generate_core_extension_struct(core["next"])
 
@@ -254,7 +255,15 @@ def _build_gdnative_api_struct_source(api):
         "extern const pandemonium_gdnative_core_api_struct api_struct = {",
         "\tGDNATIVE_" + api["core"]["type"] + ",",
         "\t{" + str(api["core"]["version"]["major"]) + ", " + str(api["core"]["version"]["minor"]) + "},",
-        "\t(const pandemonium_gdnative_api_struct *)&api_1_1,",
+        "\t" + (
+            "NULL"
+            if not api["core"]["next"]
+            else (
+                "(const pandemonium_gdnative_api_struct *)& api_{0}_{1}".format(
+                    api["core"]["next"]["version"]["major"], api["core"]["next"]["version"]["minor"]
+                )
+            )
+        ) + ",",
         "\t" + str(len(api["extensions"])) + ",",
         "\tgdnative_extensions_pointers,",
     ]
