@@ -149,7 +149,7 @@ void GDAPI pandemonium_variant_new_vector2(pandemonium_variant *r_dest, const pa
 	memnew_placement_custom(dest, Variant, Variant(*v2));
 }
 
-void GDAPI pandemonium_variant_new_vector2i(pandemonium_variant *r_dest, const pandemonium_vector2 *p_v2i) {
+void GDAPI pandemonium_variant_new_vector2i(pandemonium_variant *r_dest, const pandemonium_vector2i *p_v2i) {
 	Variant *dest = (Variant *)r_dest;
 	Vector2i *v2i = (Vector2i *)p_v2i;
 	memnew_placement_custom(dest, Variant, Variant(*v2i));

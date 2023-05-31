@@ -8094,7 +8094,7 @@
                 "return_type": "void",
                 "arguments": [
                     ["pandemonium_variant *", "r_dest"],
-                    ["const pandemonium_vector2 *", "p_v2i"]
+                    ["const pandemonium_vector2i *", "p_v2i"]
                 ]
             },
             {

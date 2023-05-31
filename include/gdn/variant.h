@@ -318,7 +318,7 @@ void GDAPI pandemonium_variant_new_real(pandemonium_variant *r_dest, const doubl
 void GDAPI pandemonium_variant_new_string(pandemonium_variant *r_dest, const pandemonium_string *p_s);
 void GDAPI pandemonium_variant_new_string_name(pandemonium_variant *r_dest, const pandemonium_string_name *p_s);
 void GDAPI pandemonium_variant_new_vector2(pandemonium_variant *r_dest, const pandemonium_vector2 *p_v2);
-void GDAPI pandemonium_variant_new_vector2i(pandemonium_variant *r_dest, const pandemonium_vector2 *p_v2i);
+void GDAPI pandemonium_variant_new_vector2i(pandemonium_variant *r_dest, const pandemonium_vector2i *p_v2i);
 void GDAPI pandemonium_variant_new_rect2(pandemonium_variant *r_dest, const pandemonium_rect2 *p_rect2);
 void GDAPI pandemonium_variant_new_rect2i(pandemonium_variant *r_dest, const pandemonium_rect2i *p_rect2i);
 void GDAPI pandemonium_variant_new_vector3(pandemonium_variant *r_dest, const pandemonium_vector3 *p_v3);
