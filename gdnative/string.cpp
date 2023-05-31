@@ -1444,11 +1444,11 @@ uint32_t GDAPI pandemonium_string_hash_chars_with_len(const char *p_cstr, pandem
 	return String::hash(p_cstr, p_len);
 }
 
-uint32_t GDAPI pandemonium_string_hash_utf8_chars(const wchar_t *p_str) {
+uint32_t GDAPI pandemonium_string_hash_wchar(const wchar_t *p_str) {
 	return String::hash(p_str);
 }
 
-uint32_t GDAPI pandemonium_string_hash_utf8_chars_with_len(const wchar_t *p_str, pandemonium_int p_len) {
+uint32_t GDAPI pandemonium_string_hash_wchar_with_len(const wchar_t *p_str, pandemonium_int p_len) {
 	return String::hash(p_str, p_len);
 }
 
