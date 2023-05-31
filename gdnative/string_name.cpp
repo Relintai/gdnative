@@ -70,13 +70,22 @@ pandemonium_bool GDAPI pandemonium_string_name_operator_less(const pandemonium_s
 	return *self < *other;
 }
 
-void GDAPI pandemonium_string_name_new(pandemonium_string_name *r_dest, const pandemonium_string *p_name) {
+void GDAPI pandemonium_string_name_new(pandemonium_string_name *r_dest) {
+	StringName *dest = (StringName *)r_dest;
+	memnew_placement(dest, StringName);
+}
+
+void GDAPI pandemonium_string_name_new_data_string(pandemonium_string_name *r_dest, const pandemonium_string *p_name) {
 	StringName *dest = (StringName *)r_dest;
 	const String *name = (const String *)p_name;
 	memnew_placement(dest, StringName(*name));
 }
+void GDAPI pandemonium_string_name_new_data_char(pandemonium_string_name *r_dest, const char *p_name) {
+	StringName *dest = (StringName *)r_dest;
+	memnew_placement(dest, StringName(p_name));
+}
 
-void GDAPI pandemonium_string_name_new_data(pandemonium_string_name *r_dest, const char *p_name) {
+void GDAPI pandemonium_string_name_new_datac(pandemonium_string_name *r_dest, const pandemonium_char_type *p_name) {
 	StringName *dest = (StringName *)r_dest;
 	memnew_placement(dest, StringName(p_name));
 }

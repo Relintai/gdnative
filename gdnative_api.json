@@ -4614,16 +4614,31 @@
                 "name": "pandemonium_string_name_new",
                 "return_type": "void",
                 "arguments": [
+                    ["pandemonium_string_name *", "r_dest"]
+                ]
+            },
+            {
+                "name": "pandemonium_string_name_new_data_string",
+                "return_type": "void",
+                "arguments": [
                     ["pandemonium_string_name *", "r_dest"],
                     ["const pandemonium_string *", "p_name"]
                 ]
             },
             {
-                "name": "pandemonium_string_name_new_data",
+                "name": "pandemonium_string_name_new_data_char",
                 "return_type": "void",
                 "arguments": [
                     ["pandemonium_string_name *", "r_dest"],
                     ["const char *", "p_name"]
+                ]
+            },
+            {
+                "name": "pandemonium_string_name_new_datac",
+                "return_type": "void",
+                "arguments": [
+                    ["pandemonium_string_name *", "r_dest"],
+                    ["const pandemonium_char_type *", "p_name"]
                 ]
             },
             {
