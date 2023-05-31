@@ -16,8 +16,6 @@ def get_doc_classes():
         "PluginScript",
         "StreamPeerGDNative",
         "VideoStreamGDNative",
-        "WebRTCPeerConnectionGDNative",
-        "WebRTCDataChannelGDNative",
     ]
 
 
