@@ -244,6 +244,21 @@ pandemonium_aabb GDAPI pandemonium_transform_xform_aabb(const pandemonium_transf
 	return raw_dest;
 }
 
+pandemonium_pool_vector3_array GDAPI pandemonium_transform_xform_pool_vector3(const pandemonium_transform *p_self, const pandemonium_pool_vector3_array *p_array) {
+	pandemonium_pool_vector3_array dest;
+	const Transform *self = (const Transform *)p_self;
+	const PoolVector3Array *array = (const PoolVector3Array *)p_array;
+	memnew_placement(&dest, PoolVector<Vector3>(self->xform(*array)));
+	return dest;
+}
+pandemonium_pool_vector3i_array GDAPI pandemonium_transform_xform_pool_vector3i(const pandemonium_transform *p_self, const pandemonium_pool_vector3i_array *p_array) {
+	pandemonium_pool_vector3i_array dest;
+	const Transform *self = (const Transform *)p_self;
+	const PoolVector3iArray *array = (const PoolVector3iArray *)p_array;
+	memnew_placement(&dest, PoolVector<Vector3i>(self->xform(*array)));
+	return dest;
+}
+
 pandemonium_vector3 GDAPI pandemonium_transform_xform_inv_vector3(const pandemonium_transform *p_self, const pandemonium_vector3 *p_v) {
 	pandemonium_vector3 raw_dest;
 	Vector3 *dest = (Vector3 *)&raw_dest;
@@ -268,6 +283,21 @@ pandemonium_aabb GDAPI pandemonium_transform_xform_inv_aabb(const pandemonium_tr
 	const AABB *v = (const AABB *)p_v;
 	*dest = self->xform_inv(*v);
 	return raw_dest;
+}
+
+pandemonium_pool_vector3_array GDAPI pandemonium_transform_xform_inv_pool_vector3(const pandemonium_transform *p_self, const pandemonium_pool_vector3_array *p_array) {
+	pandemonium_pool_vector3_array dest;
+	const Transform *self = (const Transform *)p_self;
+	const PoolVector3Array *array = (const PoolVector3Array *)p_array;
+	memnew_placement(&dest, PoolVector<Vector3>(self->xform_inv(*array)));
+	return dest;
+}
+pandemonium_pool_vector3i_array GDAPI pandemonium_transform_xform_inv_pool_vector3i(const pandemonium_transform *p_self, const pandemonium_pool_vector3i_array *p_array) {
+	pandemonium_pool_vector3i_array dest;
+	const Transform *self = (const Transform *)p_self;
+	const PoolVector3iArray *array = (const PoolVector3iArray *)p_array;
+	memnew_placement(&dest, PoolVector<Vector3i>(self->xform_inv(*array)));
+	return dest;
 }
 
 pandemonium_plane GDAPI pandemonium_transform_xform_plane(const pandemonium_transform *p_self, const pandemonium_plane *p_v) {

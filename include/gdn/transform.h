@@ -53,10 +53,10 @@ typedef struct {
 
 #include <gdn/basis.h>
 #include <gdn/gdnative.h>
+#include <gdn/quaternion.h>
 #include <gdn/variant.h>
 #include <gdn/vector3.h>
 #include <gdn/vector3i.h>
-#include <gdn/quaternion.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -107,14 +107,14 @@ pandemonium_bool GDAPI pandemonium_transform_operator_equal(const pandemonium_tr
 pandemonium_vector3 GDAPI pandemonium_transform_xform_vector3(const pandemonium_transform *p_self, const pandemonium_vector3 *p_v);
 pandemonium_vector3i GDAPI pandemonium_transform_xform_vector3i(const pandemonium_transform *p_self, const pandemonium_vector3i *p_vector);
 pandemonium_aabb GDAPI pandemonium_transform_xform_aabb(const pandemonium_transform *p_self, const pandemonium_aabb *p_v);
-//_FORCE_INLINE_ PoolVector<Vector3> xform(const PoolVector<Vector3> &p_array) const;
-//_FORCE_INLINE_ PoolVector<Vector3i> xform(const PoolVector<Vector3i> &p_array) const;
+pandemonium_pool_vector3_array GDAPI pandemonium_transform_xform_pool_vector3(const pandemonium_transform *p_self, const pandemonium_pool_vector3_array *p_array);
+pandemonium_pool_vector3i_array GDAPI pandemonium_transform_xform_pool_vector3i(const pandemonium_transform *p_self, const pandemonium_pool_vector3i_array *p_array);
 
 pandemonium_vector3 GDAPI pandemonium_transform_xform_inv_vector3(const pandemonium_transform *p_self, const pandemonium_vector3 *p_v);
 pandemonium_vector3i GDAPI pandemonium_transform_xform_inv_vector3i(const pandemonium_transform *p_self, const pandemonium_vector3i *p_vector);
 pandemonium_aabb GDAPI pandemonium_transform_xform_inv_aabb(const pandemonium_transform *p_self, const pandemonium_aabb *p_v);
-//_FORCE_INLINE_ PoolVector<Vector3> xform_inv(const PoolVector<Vector3> &p_array) const;
-//_FORCE_INLINE_ PoolVector<Vector3i> xform_inv(const PoolVector<Vector3i> &p_array) const;
+pandemonium_pool_vector3_array GDAPI pandemonium_transform_xform_inv_pool_vector3(const pandemonium_transform *p_self, const pandemonium_pool_vector3_array *p_array);
+pandemonium_pool_vector3i_array GDAPI pandemonium_transform_xform_inv_pool_vector3i(const pandemonium_transform *p_self, const pandemonium_pool_vector3i_array *p_array);
 
 pandemonium_plane GDAPI pandemonium_transform_xform_plane(const pandemonium_transform *p_self, const pandemonium_plane *p_v);
 pandemonium_plane GDAPI pandemonium_transform_xform_inv_plane(const pandemonium_transform *p_self, const pandemonium_plane *p_v);

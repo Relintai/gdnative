@@ -135,10 +135,10 @@ pandemonium_vector2i GDAPI pandemonium_transform2d_basis_xform_inv(const pandemo
 pandemonium_vector2i GDAPI pandemonium_transform2d_xform_vector2i(const pandemonium_transform2d *p_self, const pandemonium_vector2i *p_vec);
 pandemonium_vector2i GDAPI pandemonium_transform2d_xform_inv_vector2i(const pandemonium_transform2d *p_self, const pandemonium_vector2i *p_vec);
 
-//_FORCE_INLINE_ PoolVector<Vector2> xform(const PoolVector<Vector2> &p_array) const;
-//_FORCE_INLINE_ PoolVector<Vector2> xform_inv(const PoolVector<Vector2> &p_array) const;
-//_FORCE_INLINE_ PoolVector<Vector2i> xform(const PoolVector<Vector2i> &p_array) const;
-//_FORCE_INLINE_ PoolVector<Vector2i> xform_inv(const PoolVector<Vector2i> &p_array) const;
+pandemonium_pool_vector2_array GDAPI pandemonium_transform_xform_pool_vector2(const pandemonium_transform2d *p_self, const pandemonium_pool_vector2_array *p_array);
+pandemonium_pool_vector2_array GDAPI pandemonium_transform_xform_inv_pool_vector2(const pandemonium_transform2d *p_self, const pandemonium_pool_vector2_array *p_array);
+pandemonium_pool_vector2i_array GDAPI pandemonium_transform_xform_inv_pool_vector2i(const pandemonium_transform2d *p_self, const pandemonium_pool_vector2i_array *p_array);
+pandemonium_pool_vector2i_array GDAPI pandemonium_transform_xform_pool_vector2i(const pandemonium_transform2d *p_self, const pandemonium_pool_vector2i_array *p_array);
 
 pandemonium_string GDAPI pandemonium_transform2d_as_string(const pandemonium_transform2d *p_self);
 
