@@ -13421,6 +13421,35 @@
                 ]
             },
             {
+                "name": "pandemonium_pool_vector2i_array_write_access_copy",
+                "return_type": "pandemonium_pool_vector2i_array_write_access *",
+                "arguments": [
+                    ["const pandemonium_pool_vector2i_array_write_access *", "p_other"]
+                ]
+            },
+            {
+                "name": "pandemonium_pool_vector2i_array_write_access_ptr",
+                "return_type": "pandemonium_vector2i *",
+                "arguments": [
+                    ["const pandemonium_pool_vector2i_array_write_access *", "p_write"]
+                ]
+            },
+            {
+                "name": "pandemonium_pool_vector2i_array_write_access_operator_assign",
+                "return_type": "void",
+                "arguments": [
+                    ["pandemonium_pool_vector2i_array_write_access *", "p_write"],
+                    ["pandemonium_pool_vector2i_array_write_access *", "p_other"]
+                ]
+            },
+            {
+                "name": "pandemonium_pool_vector2i_array_write_access_destroy",
+                "return_type": "void",
+                "arguments": [
+                    ["pandemonium_pool_vector2i_array_write_access *", "p_write"]
+                ]
+            },
+            {
                 "name": "pandemonium_pool_vector3_array_write_access_copy",
                 "return_type": "pandemonium_pool_vector3_array_write_access *",
                 "arguments": [
