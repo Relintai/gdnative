@@ -310,7 +310,8 @@ pandemonium_string GDAPI pandemonium_string_right(const pandemonium_string *p_se
 pandemonium_string GDAPI pandemonium_string_indent(const pandemonium_string *p_self, const pandemonium_string *p_prefix);
 pandemonium_string GDAPI pandemonium_string_dedent(const pandemonium_string *p_self);
 
-pandemonium_string GDAPI pandemonium_string_strip_edges(const pandemonium_string *p_self, pandemonium_bool p_left, pandemonium_bool p_right); // left, right variant //String strip_edges(bool left = true, bool right = true) const;
+// left, right variant //String strip_edges(bool left = true, bool right = true) const;
+pandemonium_string GDAPI pandemonium_string_strip_edges(const pandemonium_string *p_self, pandemonium_bool p_left, pandemonium_bool p_right);
 
 pandemonium_string GDAPI pandemonium_string_strip_escapes(const pandemonium_string *p_self);
 pandemonium_string GDAPI pandemonium_string_lstrip(const pandemonium_string *p_self, const pandemonium_string *p_chars);

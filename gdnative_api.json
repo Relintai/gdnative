@@ -5908,6 +5908,17 @@
                 ]
             },
             {
+                "name": "pandemonium_string_strip_edges",
+                "return_type": "pandemonium_string",
+                "arguments": [
+                    ["const pandemonium_string *", "p_self"],
+                    ["pandemonium_bool", "p_left"],
+                    ["pandemonium_bool", "p_right"]
+                ]
+            },
+
+
+            {
                 "name": "pandemonium_string_strip_escapes",
                 "return_type": "pandemonium_string",
                 "arguments": [
