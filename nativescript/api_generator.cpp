@@ -32,11 +32,12 @@
 
 #ifdef TOOLS_ENABLED
 
-#include "core/object/class_db.h"
 #include "core/config/engine.h"
-#include "core/global_constants.h"
-#include "core/os/file_access.h"
 #include "core/containers/pair.h"
+#include "core/containers/rb_set.h"
+#include "core/global_constants.h"
+#include "core/object/class_db.h"
+#include "core/os/file_access.h"
 
 // helper stuff
 
@@ -306,6 +307,7 @@ List<ClassAPI> generate_c_api_classes() {
 			List<MethodInfo> methods;
 			ClassDB::get_method_list(class_name, &methods, true);
 			methods.sort_custom<MethodInfoComparator>();
+			RBSet<String> virtual_method_set;
 
 			for (List<MethodInfo>::Element *m = methods.front(); m != nullptr; m = m->next()) {
 				MethodAPI method_api;
@@ -338,6 +340,14 @@ List<ClassAPI> generate_c_api_classes() {
 				}
 
 				method_api.is_virtual = method_api.is_virtual || method_api.method_name[0] == '_';
+
+				if (method_api.is_virtual) {
+					if (virtual_method_set.has(method_api.method_name)) {
+						continue;
+					}
+
+					virtual_method_set.insert(method_api.method_name);
+				}
 
 				// method argument name and type
 
