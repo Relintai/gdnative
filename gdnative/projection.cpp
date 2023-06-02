@@ -366,6 +366,11 @@ pandemonium_real GDAPI pandemonium_projection_get_lod_multiplier(const pandemoni
 	return self->get_lod_multiplier();
 }
 
+void GDAPI pandemonium_projection_new_identity(pandemonium_projection *r_dest) {
+	Projection *dest = (Projection *)r_dest;
+	*dest = Projection();
+}
+
 void GDAPI pandemonium_projection_new_vector4s(pandemonium_projection *r_dest, const pandemonium_vector4 *p_x, const pandemonium_vector4 *p_y, const pandemonium_vector4 *p_z, const pandemonium_vector4 *p_w) {
 	const Vector4 *x = (const Vector4 *)p_x;
 	const Vector4 *y = (const Vector4 *)p_y;

@@ -3621,6 +3621,13 @@
                 ]
             },
             {
+                "name": "pandemonium_projection_new_identity",
+                "return_type": "void",
+                "arguments": [
+                    ["pandemonium_projection *", "r_dest"]
+                ]
+            },
+            {
                 "name": "pandemonium_projection_new_vector4s",
                 "return_type": "void",
                 "arguments": [
