@@ -6539,28 +6539,28 @@
                 ]
             },
             {
-                "name": "to_ascii_buffer",
+                "name": "pandemonium_string_to_ascii_buffer",
                 "return_type": "pandemonium_pool_byte_array",
                 "arguments": [
                     ["const pandemonium_string *", "p_self"]
                 ]
             },
             {
-                "name": "to_utf8_buffer",
+                "name": "pandemonium_string_to_utf8_buffer",
                 "return_type": "pandemonium_pool_byte_array",
                 "arguments": [
                     ["const pandemonium_string *", "p_self"]
                 ]
             },
             {
-                "name": "to_utf16_buffer",
+                "name": "pandemonium_string_to_utf16_buffer",
                 "return_type": "pandemonium_pool_byte_array",
                 "arguments": [
                     ["const pandemonium_string *", "p_self"]
                 ]
             },
             {
-                "name": "to_utf32_buffer",
+                "name": "pandemonium_string_to_utf32_buffer",
                 "return_type": "pandemonium_pool_byte_array",
                 "arguments": [
                     ["const pandemonium_string *", "p_self"]
