@@ -417,10 +417,10 @@ pandemonium_bool GDAPI pandemonium_string_is_valid_filename(const pandemonium_st
 pandemonium_bool GDAPI pandemonium_string_is_valid_bool(const pandemonium_string *p_self);
 pandemonium_bool GDAPI pandemonium_string_is_valid_unsigned_integer(const pandemonium_string *p_self);
 
-pandemonium_pool_byte_array GDAPI to_ascii_buffer(const pandemonium_string *p_self);
-pandemonium_pool_byte_array GDAPI to_utf8_buffer(const pandemonium_string *p_self);
-pandemonium_pool_byte_array GDAPI to_utf16_buffer(const pandemonium_string *p_self);
-pandemonium_pool_byte_array GDAPI to_utf32_buffer(const pandemonium_string *p_self);
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_ascii_buffer(const pandemonium_string *p_self);
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_utf8_buffer(const pandemonium_string *p_self);
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_utf16_buffer(const pandemonium_string *p_self);
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_utf32_buffer(const pandemonium_string *p_self);
 
 void GDAPI pandemonium_string_new(pandemonium_string *r_dest);
 void GDAPI pandemonium_string_new_copy(pandemonium_string *r_dest, const pandemonium_string *p_src);

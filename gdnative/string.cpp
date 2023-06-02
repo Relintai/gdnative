@@ -1905,7 +1905,7 @@ pandemonium_string GDAPI pandemonium_string_rstrip(const pandemonium_string *p_s
 	return result;
 }
 
-pandemonium_pool_byte_array GDAPI to_ascii_buffer(const pandemonium_string *p_self) {
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_ascii_buffer(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 	Vector<uint8_t> tmp_result = self->to_ascii_buffer();
 
@@ -1921,7 +1921,7 @@ pandemonium_pool_byte_array GDAPI to_ascii_buffer(const pandemonium_string *p_se
 
 	return result;
 }
-pandemonium_pool_byte_array GDAPI to_utf8_buffer(const pandemonium_string *p_self) {
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_utf8_buffer(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 	Vector<uint8_t> tmp_result = self->to_utf8_buffer();
 
@@ -1937,7 +1937,7 @@ pandemonium_pool_byte_array GDAPI to_utf8_buffer(const pandemonium_string *p_sel
 
 	return result;
 }
-pandemonium_pool_byte_array GDAPI to_utf16_buffer(const pandemonium_string *p_self) {
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_utf16_buffer(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 	Vector<uint8_t> tmp_result = self->to_utf16_buffer();
 
@@ -1953,7 +1953,7 @@ pandemonium_pool_byte_array GDAPI to_utf16_buffer(const pandemonium_string *p_se
 
 	return result;
 }
-pandemonium_pool_byte_array GDAPI to_utf32_buffer(const pandemonium_string *p_self) {
+pandemonium_pool_byte_array GDAPI pandemonium_string_to_utf32_buffer(const pandemonium_string *p_self) {
 	const String *self = (const String *)p_self;
 	Vector<uint8_t> tmp_result = self->to_utf32_buffer();
 
