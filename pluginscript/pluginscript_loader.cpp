@@ -39,7 +39,7 @@ ResourceFormatLoaderPluginScript::ResourceFormatLoaderPluginScript(PluginScriptL
 	_language = language;
 }
 
-RES ResourceFormatLoaderPluginScript::load(const String &p_path, const String &p_original_path, Error *r_error, bool p_no_subresource_cache) {
+RES ResourceFormatLoaderPluginScript::load(const String &p_path, const String &p_original_path, Error *r_error) {
 	if (r_error) {
 		*r_error = ERR_FILE_CANT_OPEN;
 	}
