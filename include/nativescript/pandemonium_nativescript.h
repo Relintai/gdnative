@@ -63,6 +63,7 @@ typedef enum {
 	PANDEMONIUM_PROPERTY_HINT_LAYERS_3D_RENDER,
 	PANDEMONIUM_PROPERTY_HINT_LAYERS_3D_PHYSICS,
 	PANDEMONIUM_PROPERTY_HINT_LAYERS_3D_NAVIGATION,
+	PANDEMONIUM_PROPERTY_HINT_LAYERS_AVOIDANCE,
 	PANDEMONIUM_PROPERTY_HINT_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
 	PANDEMONIUM_PROPERTY_HINT_DIR, ///< a directory path must be passed
 	PANDEMONIUM_PROPERTY_HINT_GLOBAL_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
